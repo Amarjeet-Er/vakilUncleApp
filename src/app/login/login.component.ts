@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
 
             if (res.UserRole == "Advocate") {
               const vakilLogin = {
-                vakilId: res.data.enrollId,
+                vId: res.data.advId,
+                enrollId: res.data.enrollId,
                 vakilName: res.data.advocateName,
                 vakilEmail: res.data.email,
                 vakilStatus: res.data.status,
