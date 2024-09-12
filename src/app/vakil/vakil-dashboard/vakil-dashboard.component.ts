@@ -94,7 +94,7 @@ export class VakilDashboardComponent implements OnInit {
 	}
 	login: any;
 	login_data: any;
-	vakilId: any;
+	vId: any;
 	dashboard: any;
 
 
@@ -105,13 +105,12 @@ export class VakilDashboardComponent implements OnInit {
 	) {
 		this.login = localStorage.getItem('vakilLoginData')
 		this.login_data = JSON.parse(this.login)
-		this.vakilId = this.login_data.vakilId
-		console.log(this.vakilId);
-
+		this.vId = this.login_data.vId;
+		console.log(this.vId);
 	}
 
 	ngOnInit() {
-		this._crud.vakil_dashboard(this.vakilId).subscribe(
+		this._crud.vakil_dashboard(this.vId).subscribe(
 			(res: any) => {
 				console.log(res, 'dashboard');
 				try {

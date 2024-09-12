@@ -12,13 +12,13 @@
         align-items: center;
         width: 100%;
         position: relative;
-        
+
         ion-icon {
             position: absolute;
             font-size: 24px;
             left: 10px;
         }
-        
+
         span {
             font-size: 20px;
             margin: 0 auto;
@@ -45,7 +45,7 @@ ion-content {
             right: 50%;
             top: 5%;
             transform: translate(50%, 10%);
-            border: 5px solid var(--color-primary);
+            border: 3px solid var(--color-primary);
             overflow: hidden;
 
             img {
@@ -79,10 +79,18 @@ ion-content {
         padding: 70px 0;
         overflow: auto;
 
-        ion-row {
-            ion-button {
-                text-transform: capitalize;
-                --background: var(--color-primary)
+        form {
+            height: auto;
+            width: calc(100% - 40px);
+            margin: 10px 20px;
+
+            ion-input {
+                margin-bottom: 10px;
+                border-bottom: 0.1px solid gray;
+            }
+
+            ion-select {
+                border-bottom: 1px solid gray;
             }
         }
     }

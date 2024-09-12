@@ -2,7 +2,7 @@
   <ion-buttons shape="round" routerLink="/home/vakiltotalcase">
     <ion-icon name="list"></ion-icon>
   </ion-buttons>
-  <ion-buttons shape="round" routerLink="/home/userprofile">
+  <ion-buttons shape="round" routerLink="/home/vakilprofile">
     <ion-icon name="person-circle"></ion-icon>
   </ion-buttons>
 </div>
@@ -19,7 +19,7 @@
       <div class="menuBox" routerLink="/home/vakiltotalcase">
         <div class="menuIcon">
           <img src="../../../assets/menuIcon/ipc.png">
-          <span>{{dashboard?.totalCase}}</span>
+          <span>{{dashboard?.totalCase || '0'}}</span>
         </div>
         <div class="menuInfo">
           <span>Total Case</span>
@@ -29,7 +29,7 @@
       <div class="menuBox" routerLink="/home/casedocuments">
         <div class="menuIcon">
           <img src="../../../assets/menuIcon/documents.png">
-          <span>{{dashboard?.totalDocument}}</span>
+          <span>{{dashboard?.totalDocument || '0'}}</span>
         </div>
         <div class="menuInfo">
           <span>Case Documents</span>
@@ -39,7 +39,7 @@
       <div class="menuBox">
         <div class="menuIcon">
           <img src="../../../assets/menuIcon/billing.png">
-          <span>{{dashboard?.totalPayment}}</span>
+          <span>{{dashboard?.totalPayment || '0'}}</span>
         </div>
         <div class="menuInfo">
           <span>Payments</span>

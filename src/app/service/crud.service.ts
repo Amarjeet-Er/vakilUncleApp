@@ -67,7 +67,7 @@ export class CrudService {
   }
 
   vakil_dashboard(vakilId: any) {
-    return this._http.post<any>(`${this.base_url}vakilDashboard?userid=${vakilId}`, {});
+    return this._http.get<any>(`${this.base_url}vakilDashboard?vakilId=${vakilId}`);
   }
 
   get_membership_detail() {
