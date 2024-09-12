@@ -1,0 +1,33 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon> <span>Advocates</span>
+  </div>
+</div>
+<ion-content>
+  <ion-list>
+    <div class="lawyerCard" *ngFor="let lawyer of topLawyers" (click)="advocateProfile()">
+      <div class="cardImg">
+        <img [src]="lawyer.image">
+      </div>
+      <div class="cardInfo">
+        <span>{{ lawyer.name }}</span>
+        <p>{{ lawyer.description }}</p>
+      </div>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span style="display: flex;">
+          <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+        </span>
+        <span style="display: flex;">
+          {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+        </span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Case<br>{{ lawyer.caseCount }}</span>
+        |
+        <span>Success Rate<br>{{ lawyer.successRate }}%</span>
+        |
+        <span>Experience<br>{{ lawyer.experience }}yr.</span>
+      </ion-row>
+    </div>
+  </ion-list>
+</ion-content>

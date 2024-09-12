@@ -1,0 +1,145 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon> <span>Publication</span>
+  </div>
+</div>
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+  <ion-row>
+    <span>Add Publication</span>
+    <ion-icon name="add-circle" (click)="AddPublication()"></ion-icon>
+  </ion-row>
+
+  <ion-list>
+
+    <ion-card>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span class="highlight">Title</span>
+        <span class="highlight">Publication Title</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Journal</span>
+        <span>Data Nhi Hai</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Date</span>
+        <span>30/07/2024</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Document</span>
+        <ion-icon name="document-attach"></ion-icon>
+      </ion-row>
+    </ion-card>
+
+    <ion-card>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span class="highlight">Title</span>
+        <span class="highlight">Publication Title</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Journal</span>
+        <span>Data Nhi Hai</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Date</span>
+        <span>30/07/2024</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Document</span>
+        <ion-icon name="document-attach"></ion-icon>
+      </ion-row>
+    </ion-card>
+
+    <ion-card>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span class="highlight">Title</span>
+        <span class="highlight">Publication Title</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Journal</span>
+        <span>Data Nhi Hai</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Date</span>
+        <span>30/07/2024</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Document</span>
+        <ion-icon name="document-attach"></ion-icon>
+      </ion-row>
+    </ion-card>
+
+    <ion-card>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span class="highlight">Title</span>
+        <span class="highlight">Publication Title</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Journal</span>
+        <span>Data Nhi Hai</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Date</span>
+        <span>30/07/2024</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Document</span>
+        <ion-icon name="document-attach"></ion-icon>
+      </ion-row>
+    </ion-card>
+
+    <ion-card>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span class="highlight">Title</span>
+        <span class="highlight">Publication Title</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Journal</span>
+        <span>Data Nhi Hai</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Date</span>
+        <span>30/07/2024</span>
+      </ion-row>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Document</span>
+        <ion-icon name="document-attach"></ion-icon>
+      </ion-row>
+    </ion-card>
+
+  </ion-list>
+
+</ion-content>
+
+
+
+<!-- for add publication  -->
+<ion-modal #modal>
+  <ng-template>
+
+    <div class="header">
+      <div class="navbar">
+        <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>Add Publication</span>
+      </div>
+    </div>
+    <ion-content>
+      <ion-list>
+
+        <ion-input label="Title" label-placement="floating" fill="outline" placeholder="Enter title"></ion-input>
+
+        <ion-input label="Journal" label-placement="floating" fill="outline" placeholder="Enter journal"></ion-input>
+
+        <ion-input type="date" label="Date" label-placement="floating" fill="outline"
+          placeholder="Enter Date"></ion-input>
+
+        <ion-input type="file" label="Document" label-placement="floating" fill="outline" placeholder="Select Document"></ion-input>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-button shape="round">Submit</ion-button>
+        </ion-row>
+
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

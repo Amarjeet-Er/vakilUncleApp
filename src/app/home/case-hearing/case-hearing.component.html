@@ -1,0 +1,138 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/case"></ion-icon>
+    <span>Case Hearing</span>
+  </div>
+</div>
+
+<ion-row>
+  <span>Total Hearing: 04</span>
+  <ion-button size="small" fill="clear" shape="round" (click)="AboutCase()">About Case</ion-button>
+</ion-row>
+
+<ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+<ion-content>
+  <h3>Property Dispute</h3>
+
+  <ion-list>
+
+    <ion-item lines="none" (click)="openModal()">
+      <ion-label>
+        CN-44385
+      </ion-label>
+      <ion-label>
+        03-Jun-2023 10:00AM
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none" (click)="openModal()">
+      <ion-label>
+        CN-44384
+      </ion-label>
+      <ion-label>
+        09-May-2023 10:00AM
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none" (click)="openModal()">
+      <ion-label>
+        CN-44383
+      </ion-label>
+      <ion-label>
+        06-Dec-2022 01:00PM
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none" (click)="openModal()">
+      <ion-label>
+        CN-44382
+      </ion-label>
+      <ion-label>
+        03-Dec-2022 11:00AM
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+
+</ion-content>
+
+
+
+<ion-modal #modal>
+  <ng-template>
+
+    <div class="header">
+      <div class="navbar">
+        <ion-icon name="chevron-back" (click)="backButton()"></ion-icon>
+        <span>Case Hearing</span>
+      </div>
+    </div>
+
+
+    <ion-content>
+
+      <ion-list>
+
+        <ion-row>
+          <span class="highlight">Lawyer Name</span>
+          <span class="highlight">Abhishek Patel</span>
+        </ion-row>
+      
+        <ion-row>
+          <span class="highlight">Hearing Number</span>
+          <span class="highlight">CN-44385</span>
+        </ion-row>
+        <ion-row>
+          <span>Lawyer User Id</span>
+          <span>VU-34834</span>
+        </ion-row>
+        <ion-row>
+          <span>Mobile Number</span>
+          <span>9775454545</span>
+        </ion-row>
+        <ion-row>
+          <span>Next Date</span>
+          <span style="color: green;">03-Jun-2023 10:00AM</span>
+        </ion-row>
+
+        <div class="description">
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis praesentium modi, sapiente autem
+            aspernatur sed aliquid facilis exercitationem, quae laboriosam quo officiis ea saepe consectetur, non
+            nobis atque dolore animi?</p>
+
+          <p>01. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, quaerat!</p>
+          <p>02. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, quaerat!</p>
+          <p>03. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, quaerat!</p>
+        </div>
+
+      </ion-list>
+      <ion-list>
+        <div class="description">
+          <h3>Required Documents</h3>
+
+          <ion-list>
+            <ion-item lines="none">
+              <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
+              <ion-label>Aadhar Card</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
+              <ion-label>Passport Size Photo</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
+              <ion-label>1000 Rupees</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-list>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,58 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home/account"></ion-icon> <span>IPC Section</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+  <h2 class="ion-padding">IPC Sections - Indian Penal Code</h2>
+
+  <p class="ion-padding">The Indian Penal Code (IPC) is the official criminal code of India. It is a comprehensive code intended to cover
+    all substantive aspects of criminal law. The code was drafted in 1860 on the recommendations of first law commission
+    of India established in 1834 under the Charter Act of 1833 under the Chairmanship of Lord Thomas Babington Macaulay.
+  </p>
+
+  <!-- Top Lawyer Section -->
+  <ion-list>
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Top IPC Lawyer</span>
+      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+    </ion-row>
+    <div class="menuList">
+      <div class="lawyerCard" *ngFor="let lawyer of topLawyers" (click)="advocateProfile()">
+        <div class="cardImg">
+          <img [src]="lawyer.image">
+        </div>
+        <div class="cardInfo">
+          <span>{{ lawyer.name }}</span>
+          <p>{{ lawyer.description }}</p>
+        </div>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span style="display: flex;">
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+          </span>
+          <span style="display: flex;">
+            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+          </span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Case<br>{{ lawyer.caseCount }}</span>
+          |
+          <span>Success Rate<br>{{ lawyer.successRate }}%</span>
+          |
+          <span>Experience<br>{{ lawyer.experience }}yr.</span>
+        </ion-row>
+      </div>
+    </div>
+  </ion-list>
+
+  <ion-list>
+    <h3 class="ion-padding">IPC Section</h3>
+    <ion-item *ngFor="let section of ipcSections">
+      <ion-label>{{ section }}</ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

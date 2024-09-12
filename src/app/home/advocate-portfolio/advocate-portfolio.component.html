@@ -1,0 +1,94 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon>
+    <span>Advocate Portfolio</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-item lines="none">
+    <ion-thumbnail slot="start">
+      <img alt="Lawyer Profile" [src]="lawyer.profileImg" />
+    </ion-thumbnail>
+
+    <ion-label>
+      <ion-row class="ion-align-items-center">
+        <ion-button>
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-button>
+        <span>{{ lawyer.rating }}</span>
+      </ion-row>
+      <ion-row class="ion-align-items-center">
+        <ion-button>
+          <ion-icon slot="icon-only" name="person"></ion-icon>
+        </ion-button>
+        <span>{{ lawyer.reviews }}</span>
+      </ion-row>
+      <ion-row class="ion-align-items-center" (click)="makeCall(lawyer.phone)">
+        <ion-button>
+          <ion-icon slot="icon-only" name="call"></ion-icon>
+        </ion-button>
+        <p>{{ lawyer.phone }}</p>
+      </ion-row>
+      <ion-row class="ion-align-items-center" (click)="chatWithLawyer()">
+        <ion-button>
+          <ion-icon slot="icon-only" name="chatbubbles"></ion-icon>
+        </ion-button>
+        <p>Chat</p>
+      </ion-row>
+    </ion-label>
+  </ion-item>
+
+  <ion-list>
+    <ion-row>
+      <h2>{{ lawyer.name }}</h2>
+      <ion-row>
+        <img src="../../../assets/icon/verified.png">
+        <span>Verified</span>
+      </ion-row>
+    </ion-row>
+  </ion-list>
+
+  <ion-list>
+    <span style="display: flex;">
+      <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>{{ lawyer.location }}
+    </span>
+  </ion-list>
+
+  <ion-list>
+    <h3>About The Lawyer</h3>
+    <p>{{ lawyer.about }}</p>
+  </ion-list>
+
+  <ion-list>
+    <h3>Awards & Achievement</h3>
+    <ion-list>
+      <ion-chip *ngFor="let award of lawyer.awards">{{ award.name }}</ion-chip>
+    </ion-list>
+  </ion-list>
+
+  <ion-list>
+    <h3>Specialization</h3>
+    <ion-list>
+      <ion-chip *ngFor="let spec of lawyer.specializations">{{ spec.name }}</ion-chip>
+    </ion-list>
+  </ion-list>
+
+  <ion-list style="margin: 0;">
+    <h3 class="ion-padding">Gallery</h3>
+    <div class="galleryList">
+      <div class="images" *ngFor="let image of lawyer.gallery">
+        <img [src]="image.src">
+      </div>
+    </div>
+  </ion-list>
+
+  <ion-list style="margin: 0;">
+    <h3 class="ion-padding">Legal Advice Videos</h3>
+    <div class="videoList">
+      <div class="video" *ngFor="let video of lawyer.videos">
+        <img [src]="video.thumbnail">
+      </div>
+    </div>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,159 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon> <span>Case Documents</span>
+  </div>
+</div>
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+  <ion-list>
+
+    <ion-item lines="full" (click)="caseDocs()">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_1.jpg" />
+      </ion-avatar>
+      <ion-label>
+        <span>Gautum Singh</span>
+        <p>Case-42388</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_2.png" />
+      </ion-avatar>
+      <ion-label>
+        <span>Sushant Kumar</span>
+        <p>Case-42388</p>
+      </ion-label>
+    </ion-item>
+
+
+    <ion-item lines="full">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_8.jpg" />
+      </ion-avatar>
+      <ion-label>
+        <span>Rahul Patel</span>
+        <p>Case-42388</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_5.png" />
+      </ion-avatar>
+      <ion-label>
+        <span>Virender Bhola</span>
+        <p>Case-42388</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_3.jfif" />
+      </ion-avatar>
+      <ion-label>
+        <span>Abhishek Kumar</span>
+        <p>Case-42388</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_1.jpg" />
+      </ion-avatar>
+      <ion-label>
+        <span>Gautum Singh</span>
+        <p>Case-42388</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_2.png" />
+      </ion-avatar>
+      <ion-label>
+        <span>Sushant Kumar</span>
+        <p>Case-42388</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_8.jpg" />
+      </ion-avatar>
+      <ion-label>
+        <span>Rahul Patel</span>
+        <p>Case-42388</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+
+
+<!-- for otp page modal, here user enter otp -->
+<ion-modal #modal>
+  <ng-template>
+    <div class="header">
+      <div class="navbar">
+        <ion-icon name="chevron-back" (click)="modal.dismiss()"></ion-icon> <span>Case Documents</span>
+      </div>
+    </div>
+    <ion-content>
+      <div class="docList">
+
+        <div class="docsBox">
+          <img src="../../../assets/images/docs.jfif">
+          <div class="doctitle">
+            <p>Documents</p>
+            <span>07/09/3023</span>
+          </div>
+        </div>
+
+        <div class="docsBox">
+          <img src="../../../assets/images/docs.jfif">
+          <div class="doctitle">
+            <p>Documents</p>
+            <span>07/09/3023</span>
+          </div>
+        </div>
+
+        <div class="docsBox">
+          <img src="../../../assets/images/docs.jfif">
+          <div class="doctitle">
+            <p>Documents</p>
+            <span>07/09/3023</span>
+          </div>
+        </div>
+
+        <div class="docsBox">
+          <img src="../../../assets/images/docs.jfif">
+          <div class="doctitle">
+            <p>Documents</p>
+            <span>07/09/3023</span>
+          </div>
+        </div>
+
+        <div class="docsBox">
+          <img src="../../../assets/images/docs.jfif">
+          <div class="doctitle">
+            <p>Documents</p>
+            <span>07/09/3023</span>
+          </div>
+        </div>
+
+        <div class="docsBox">
+          <img src="../../../assets/images/docs.jfif">
+          <div class="doctitle">
+            <p>Documents</p>
+            <span>07/09/3023</span>
+          </div>
+        </div>
+
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

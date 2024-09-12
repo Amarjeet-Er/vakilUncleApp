@@ -1,0 +1,120 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+* {
+    font-family: sans-serif;
+}
+
+
+:root {
+    --color-primary: #3c595d;
+    --color-secondary: #e2e2e2;
+    --color-light: #FDFEFE;
+    --color-dark: #0c1416;
+    --color-success: #055705;
+    --color-Error: #a22330;
+    --color-warring: #f77f0f;
+}
+
+.highlight {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.text_color {
+    color: var(--color-dark);
+}
+
+// for search bar design 
+ion-content {
+    ion-searchbar {
+        --border-radius: 50px !important;
+        --ion-color-base: var(--color-light) !important;
+    }
+
+    ion-searchbar::part(input) {
+        transition: all 0.5s ease-in-out;
+    }
+
+}
+
+
+// for input type number appearance hide/none 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    --moz-appearance: textfield;
+}
+
+/* for chart  */
+canvasjs-chart a {
+    display: none;
+}
+
+ion-modal {
+    --width: 100% !important;
+    --height: 100% !important;
+}
+
+//dropdown select
+.action-sheet-wrapper.sc-ion-action-sheet-md {
+    height: 80vh;
+}
+
+//toast message
+
+.tostSuccess {
+    --background: var(--color-success);
+    --color: white;
+}
+
+.tostError {
+    --background: var(--color-Error);
+    --color: white;
+}
+
+.tostWarring {
+    --background: var(--color-warring);
+    --color: white;
+}

@@ -1,0 +1,90 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon> <span>Ask A Free Legal Question</span>
+  </div>
+</div>
+<ion-content class="ion-padding">
+  <p>Stuck with a legal issue? Submit your query below to get FREE answers by email within a few hours. Expert legal
+    advice from top rated lawyers in your city enables you to take better decisions about your legal situation.</p>
+
+  <ion-list>
+
+    <ion-select label="Area Of Law" label-placement="floating" fill="outline" interface="action-sheet"
+      placeholder="Select area of law">
+      <ion-select-option value="Divorce/Matrimonial Issue">Divorce/Matrimonial Issue</ion-select-option>
+      <ion-select-option value="Property Issue">Property Issue</ion-select-option>
+      <ion-select-option value="Family & Inheritance Issue">Family & Inheritance Issue</ion-select-option>
+    </ion-select>
+
+    <ion-select label="Your City" label-placement="floating" fill="outline" interface="action-sheet"
+      placeholder="Select your city">
+      <ion-select-option value="Delhi">Delhi</ion-select-option>
+      <ion-select-option value="Bihar">Bihar</ion-select-option>
+      <ion-select-option value="Uttar Pardesh">Uttar Pardesh</ion-select-option>
+    </ion-select>
+
+    <ion-input label="Write Subject" label-placement="floating" fill="outline"
+      placeholder="Write your subject"></ion-input>
+
+
+
+    <ion-textarea id="custom-input" label="Write Your Question" label-placement="floating" fill="outline"
+      placeholder="Write your question" [counter]="true" maxlength="500" [counterFormatter]="customCounterFormatter">
+    </ion-textarea>
+    <p>Please DO NOT mention any person / party / company's name in your Question.
+      If this is a matrimonial or property question, please mention your religion as laws may differ.</p>
+
+
+    <h3>Your Contact Details</h3>
+
+    <ion-input label="Your Name" label-placement="floating" fill="outline" placeholder="Enter your name"></ion-input>
+
+    <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
+      helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
+      placeholder="Enter mobile number" minlength="10" maxlength="10" pattern="\d{10}">
+    </ion-input>
+
+    <ion-input type="email" label="Email Id" label-placement="floating" fill="outline" helperText="Enter a valid email"
+      placeholder="Enter your email" errorText="Invalid email" ngModel email></ion-input>
+
+    <ion-card>
+      <h3>Note</h3>
+      <p>You will be notified by SMS when you recieve a response.</p>
+      <p>You will be emailed all responses on this email id.</p>
+      <p>Your query and lawyer responses will be published on our website, without your details.</p>
+      <p>We do NOT publish your name or contact details.</p>
+      <p>Lawyers who answer your query may contact you to discuss your query in detail.</p>
+    </ion-card>
+
+    <ion-checkbox labelPlacement="end" [(ngModel)]="isChecked"><span style="text-wrap: wrap;">I am interested in talking
+        to a lawyer for my legal issue</span></ion-checkbox>
+
+    <ion-button [disabled]="!isChecked">Submit</ion-button>
+
+    <p>By submitting your question, you agree to our <b class="highlight">terms & conditions</b>.</p>
+
+  </ion-list>
+
+  <h3>Frequently Asked Questions</h3>
+
+  <h5>What kinds of questions can I ask?</h5>
+  <p>You can ask about anything related to your legal situation, such as questions about a specific process, documents
+    or forms related to your legal matter, or about the meaning of specific terms or phrases. You can ask for advice,
+    strategic coaching, or insight into possible outcomes. Advice sessions and document review services are also a good
+    way to get a second opinion about your legal issue.</p>
+
+  <h5>How can I keep my identity private while asking questions?</h5>
+  <p>Your query and lawyer responses will be published on our website, without your details. We do NOT publish your name
+    or contact details. Lawyers who answer your query may contact you to discuss your query in detail.</p>
+
+  <h5>When can I expect a reply to my question?</h5>
+  <p>Lawyers on LawRato have different and unique expertise. We work to serve your question to the right lawyer for a
+    quick and useful response. You can expect to get a response in 24 working hours after posting your question. Lawyers
+    on LawRato are active and are passionate about helping you solve your legal problems, meaning you won’t have to wait
+    very long to get answers.</p>
+
+  <h5>How can I find if my question was answered?</h5>
+  <p>We will notify you by Email and SMS whenever your question receives an answer. If at any time you wish to see the
+    question you have posted, you can view My Questions tab in your account.</p>
+</ion-content>
+

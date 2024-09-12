@@ -1,0 +1,132 @@
+ion-header {
+    box-shadow: none;
+
+    ion-toolbar {
+        --background: var(--color-primary);
+        color: var(--color-light);
+    }
+}
+
+ion-content {
+    --background: var(--color-primary);
+
+
+    .profile {
+        position: relative;
+        z-index: 100;
+
+        .profileImage {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background-color: var(--color-light);
+            position: absolute;
+            right: 50%;
+            top: 5%;
+            transform: translate(50%, 10%);
+            border: 5px solid var(--color-primary);
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        ion-button {
+            position: absolute;
+            right: 50%;
+            top: 50px;
+            transform: translate(75px, 50px);
+            --background: var(--color-primary);
+            color: var(--color-light);
+            border: 2px solid var(--color-light);
+            --box-shadow: none;
+            border-radius: 100%;
+            box-sizing: content-box;
+        }
+    }
+
+
+    .profileDetails {
+        width: 100%;
+        height: calc(100% - 80px);
+        border-radius: 50px 50px 0 0;
+        background-color: var(--color-light);
+        margin-top: 80px;
+        padding-top: 70px;
+        overflow: auto;
+
+
+        ion-list {
+
+            ion-title {
+                font-weight: 600;
+                font-size: 16px;
+            }
+
+            ion-item {
+                ion-icon:first-child {
+                    font-size: 30px;
+                    margin: 0 10px 0 0;
+                    color: var(--color-primary);
+                }
+            }
+
+        }
+    }
+}
+
+ion-modal {
+    .header {
+        width: 100%;
+        height: 70px;
+        background: var(--color-primary);
+        color: var(--color-light);
+        padding: 10px;
+        display: flex;
+        align-items: center;
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+
+            ion-icon {
+                position: absolute;
+                font-size: 24px;
+                left: 10px;
+            }
+
+            span {
+                font-size: 20px;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    ion-content {
+        --background: var(--color-light);
+
+
+        ion-list {
+
+            ion-title {
+                font-weight: 600;
+                font-size: 16px;
+            }
+
+            ion-item {
+                ion-icon:first-child {
+                    font-size: 30px;
+                    margin: 0 10px 0 0;
+                    color: var(--color-primary);
+                }
+            }
+        }
+    }
+
+}

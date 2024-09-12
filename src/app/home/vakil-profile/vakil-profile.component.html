@@ -1,0 +1,107 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home/account"></ion-icon> <span>Profile</span>
+  </div>
+</div>
+
+<ion-content>
+
+  <div class="profile">
+    <div class="profileImage">
+      <img [src]="selectedProfileImage ? selectedProfileImage : (profileInfo?.Profile_image)">
+    </div>
+    <ion-button shape="round" (click)="openFile()">
+      <ion-icon slot="icon-only" name="pencil"></ion-icon>
+    </ion-button>
+  </div>
+
+
+  <div class="profileDetails">
+
+    <ion-list>
+
+      <ion-item lines="full">
+        <ion-input label="Name" labelPlacement="floating" placeholder="Enter full name"
+          [value]="profileInfo?.Name"></ion-input>
+      </ion-item>
+      
+      <ion-item lines="full">
+        <ion-input label="User Id" labelPlacement="floating" placeholder="Your user id" [value]="profileInfo?.userId"
+          readonly></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-input label="Email" labelPlacement="floating" placeholder="Enter email id"
+          [value]="profileInfo?.Email"></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-input label="Password" labelPlacement="floating" placeholder="Change password"
+          [value]="profileInfo?.Password"></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-input label="Mobile No." labelPlacement="floating" placeholder="Enter mobile no."
+          [value]="profileInfo?.Phone_number"></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-input label="Enrollment Number" labelPlacement="floating" placeholder="Enter enrollment number"
+          [value]="profileInfo?.EnrollmentNumber"></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-select label="Gender" labelPlacement="floating" interface="action-sheet" placeholder="Select gender">
+          <ion-select-option value="Male">Male</ion-select-option>
+          <ion-select-option value="Female">Female</ion-select-option>
+          <ion-select-option value="Other">Other</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-input label="City" labelPlacement="floating" placeholder="Enter city name"
+          [value]="profileInfo?.City"></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-input label="Office Address" labelPlacement="floating" placeholder="Enter office address"
+          [value]="profileInfo?.OfficeAddress"></ion-input>
+      </ion-item>
+
+
+      <ion-item lines="full">
+        <ion-select label="Courts" labelPlacement="floating" interface="action-sheet" placeholder="Select courts">
+          <ion-select-option value="Delhi High Court">Delhi High Court</ion-select-option>
+          <ion-select-option value="Karnataka High Court">Karnataka High Court</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item lines="full">
+        <ion-select label="Lawyer Type" labelPlacement="floating" interface="action-sheet"
+          placeholder="Select lawyer type">
+          <ion-select-option value="Criminal Lawyer">Criminal Lawyer</ion-select-option>
+          <ion-select-option value="Cyber Crime">Cyber Crime</ion-select-option>
+          <ion-select-option value="Child Custody Lawyers">Child Custody Lawyers</ion-select-option>
+          <ion-select-option value="Corporate Lawyer">Corporate Lawyer</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-input label="Experience" labelPlacement="floating" placeholder="Enter experience"
+          [value]="profileInfo?.Experience"></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-textarea label="Self Description" labelPlacement="floating" placeholder="Write self description"
+          [value]="profileInfo?.SelfDescription"></ion-textarea>
+      </ion-item>
+
+    </ion-list>
+
+
+    <ion-row class="ion-justify-content-center">
+      <ion-button shape="round" (click)="submit()">Submit</ion-button>
+    </ion-row>
+  </div>
+</ion-content>

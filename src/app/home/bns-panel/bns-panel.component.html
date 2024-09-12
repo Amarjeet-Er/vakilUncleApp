@@ -1,0 +1,17 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home/account"></ion-icon> <span>BNS Section</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+  <ion-list>
+    <h3 class="ion-padding">BNS Section</h3>
+    <ion-item *ngFor="let section of bnsSections">
+      <ion-label>{{ section }}</ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

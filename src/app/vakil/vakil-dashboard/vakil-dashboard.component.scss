@@ -1,0 +1,197 @@
+.header {
+    width: 100%;
+    height: 70px;
+    background: var(--color-primary);
+    color: var(--color-light);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    ion-buttons {
+        color: var(--color-light);
+        --background: var(--color-primary);
+        --box-shadow: none;
+        cursor: pointer;
+
+        ion-icon {
+            font-size: 35px;
+        }
+    }
+}
+
+ion-content {
+    .addCaseBtn {
+        width: calc(100% - 20px);
+        --border-radius: 50px;
+        --background: var(--color-primary);
+        margin: 10px auto;
+        display: block;
+        text-transform: capitalize;
+    }
+
+    ion-list {
+        margin: 20px 0 0;
+
+        ion-row {
+            span {
+                font-size: 18px;
+                font-weight: 600;
+                color: var(--color-dark);
+            }
+
+            ion-button {
+                text-transform: capitalize;
+                color: var(--color-primary);
+            }
+        }
+
+        // for menu bar design on top 
+        .menubar {
+            width: 100%;
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(165px, 4fr));
+            gap: 10px;
+            padding: 10px;
+
+            .menuBox {
+                border-radius: 5px;
+                background-color: var(--color-light);
+                overflow: hidden;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+                .menuIcon {
+                    width: 100%;
+                    height: 70px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        padding: 10px;
+                        border-radius: 50%;
+                        background-color: var(--color-secondary);
+                    }
+
+                    span {
+                        font-size: 25px;
+                        font-weight: 600;
+                        color: var(--color-primary);
+                        width: calc(100% - 100px);
+                        text-align: center;
+                        text-wrap: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+
+                .menuInfo {
+                    width: 100%;
+                    height: calc(100% - 70px);
+                    text-align: center;
+                    color: var(--color-primary);
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    padding: 10px;
+                    text-wrap: nowrap;
+                }
+
+            }
+
+            // for features menu design 
+            .featuremenu {
+                height: 85px;
+                border-radius: 7px;
+                background-color: var(--color-light);
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                padding: 5px;
+                --background: none;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+                ion-icon {
+                    border-radius: 50%;
+                    background: var(--color-secondary);
+                    padding: 7px;
+                    color: crimson;
+                    font-size: 20px;
+                }
+
+                span {
+                    color: var(--color-primary);
+                    width: calc(100% - 45px);
+                }
+            }
+        }
+
+        .contentList {
+            width: 100%;
+
+            // for upcoming case date 
+            ion-item {
+                margin: 10px 0;
+
+                ion-label {
+                    h3 {
+                        font-weight: 600;
+                        color: var(--color-primary);
+                    }
+
+                    span {
+                        color: #27AE60;
+                    }
+                }
+            }
+
+            // for case info 
+            .caseCard {
+                width: calc(100% - 20px);
+                margin: 10px auto;
+                border-radius: 7px;
+                padding: 10px;
+                background-color: var(--color-light);
+                overflow: hidden;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+                h5 {
+                    margin: 5px 0;
+                    color: var(--color-primary);
+                }
+
+                span {
+                    font-size: 16px;
+                    font-weight: normal;
+                    color: var(--color-dark);
+                }
+            }
+        }
+
+
+    }
+
+
+    ion-list:last-child {
+        margin: 20px 0 100px;
+    }
+
+}
+
+.chatBox {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: #595959;
+    color: #ffffff;
+    z-index: 100;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 30px;
+}

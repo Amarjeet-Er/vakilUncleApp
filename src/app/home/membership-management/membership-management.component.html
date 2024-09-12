@@ -1,0 +1,27 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>Membership</span>
+  </div>
+</div>
+<ion-content>
+  <ion-list *ngFor="let item of membershipDetail">
+    <div class="packageCard">
+      <div class="cardImg">
+        <img src="../../../assets/menuIcon/platinum.png">
+      </div>
+      <div class="cardInfo">
+        <span>{{item?.planName}}</span>
+        <p>{{item?.description}}</p>
+      </div>
+      <div class="memberShipPrice">
+        <ion-row class="ion-justify-content-around">
+          <span class="discount"><ion-icon name="arrow-down"></ion-icon>{{item?.discount}}</span>
+          <span style=" text-decoration: line-through;">{{item?.oldPrice | currency:'INR'}}</span>
+          <span>{{item?.newPrice | currency:'INR'}}</span>
+        </ion-row>
+        <ion-button>Pay</ion-button>
+      </div>
+    </div>
+
+  </ion-list>
+</ion-content>

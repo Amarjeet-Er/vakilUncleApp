@@ -1,0 +1,11 @@
+{
+  "appId": "com.vakiluncle.app",
+  "appName": "Vakil Uncle",
+  "bundledWebRuntime": false,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

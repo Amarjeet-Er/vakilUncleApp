@@ -1,0 +1,169 @@
+.signUpInfo {
+    width: 100%;
+    font-size: 30px;
+    background: var(--color-primary);
+    height: 60px;
+
+    ion-segment-button.md::part(native) {
+        color: var(--color-light);
+        text-transform: capitalize;
+    }
+
+    ion-segment-button.md::part(indicator-background) {
+        height: 0px;
+        --indicator-color: none;
+    }
+
+    .active {
+        border-bottom: 4px solid #d35400;
+    }
+}
+
+ion-content {
+    --background: var(--color-light);
+
+    ion-input {
+        margin: 20px 0;
+    }
+
+    .error-message {
+        color: var(--ion-color-danger);
+        font-size: 0.9em;
+        margin-top: 8px;
+    }
+
+    .signBtn {
+        width: 100%;
+        height: 50px;
+        color: var(--color-light);
+        font-size: 20px;
+        --background: var(--color-primary);
+        margin: 10px 0;
+        text-transform: none;
+    }
+
+    p {
+        text-align: center;
+
+        b {
+            color: var(--color-primary);
+        }
+    }
+
+    .footer {
+        width: 100%;
+        height: 5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color-dark);
+
+        img {
+            height: 4vh;
+            margin: 0 5px;
+            border-radius: 0;
+            background: none;
+        }
+    }
+}
+
+
+// Design for otp page 
+// header scss code start here 
+ion-header {
+    background: var(--color-primary);
+
+    .topNav {
+        // min-height: 50px;
+        height: 6vh;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        background: none;
+        box-shadow: none;
+        --color: var(--color-secondary);
+
+        ion-icon {
+            font-size: 25px;
+        }
+    }
+}
+
+// top image scss code start here 
+.imgBox {
+    width: 100%;
+    height: 30vh;
+    overflow: hidden;
+    text-align: center;
+    margin-top: 20px;
+
+    img {
+        object-fit: cover;
+        height: 30vh;
+        width: 30vh;
+        border-radius: 50%;
+    }
+}
+
+// text after image scss code start here 
+.infoBox {
+    width: 100%;
+    height: 10vh;
+    text-align: center;
+    padding: 10px;
+
+    p {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+
+// input fileds and buttons design code here of forgot/otp pages
+.actionBox {
+    width: 100%;
+    padding: 20px;
+    overflow: auto;
+
+    ion-input {
+        margin: 20px 0;
+    }
+
+    // for ion-modal css 
+    .otpBox {
+        width: 100%;
+        height: 60px;
+        margin: 0 0 20px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(6, 1fr);
+
+        input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            background-color: var(--color-light);
+            border: none;
+            border-bottom: 2px solid var(--color-primary);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+    }
+
+    .Btn {
+        width: 100%;
+        height: 50px;
+        color: var(--color-light);
+        font-size: 20px;
+        --background: var(--color-primary);
+        margin: 10px 0;
+        text-transform: none;
+    }
+}

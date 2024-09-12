@@ -1,0 +1,58 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home"></ion-icon> <span>Profile</span>
+  </div>
+</div>
+
+<ion-content>
+
+  <div class="profile">
+    <div class="profileImage">
+      <img [src]="selectedProfileImage ? selectedProfileImage : (profileInfo?.Profile_image)">
+    </div>
+    <ion-button shape="round" (click)="openFile()">
+      <ion-icon slot="icon-only" name="pencil"></ion-icon>
+    </ion-button>
+  </div>
+
+
+  <div class="profileDetails">
+
+    <ion-list>
+      <ion-item lines="full">
+        <ion-input label="Name" labelPlacement="floating" placeholder="Enter full name"
+          [value]="profileInfo?.Name"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-input label="User Id" labelPlacement="floating" placeholder="Your user id"
+          [value]="profileInfo?.userId" readonly></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-input label="Email" labelPlacement="floating" placeholder="Enter email id"
+          [value]="profileInfo?.Email"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-input label="Password" labelPlacement="floating" placeholder="Change password"
+          [value]="profileInfo?.Password"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-input label="Mobile No." labelPlacement="floating" placeholder="Enter mobile no."
+          [value]="profileInfo?.Phone_number"></ion-input>
+      </ion-item>
+      <ion-item lines="full" routerLink="/home/useraddress">
+        <ion-input label="Address." labelPlacement="floating" placeholder="Enter your address"
+          [value]="profileInfo?.address" readonly></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-select aria-label="Gender" interface="action-sheet" placeholder="Select Gender">
+          <ion-select-option value="Male">Male</ion-select-option>
+          <ion-select-option value="Female">Female</ion-select-option>
+          <ion-select-option value="Other">Other</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-row class="ion-justify-content-center">
+      <ion-button shape="round"  (click)="submit()" >Submit</ion-button>
+    </ion-row>
+  </div>
+</ion-content>

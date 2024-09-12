@@ -1,0 +1,158 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="profile">
+    <div class="profileImage">
+      <img src="../../../assets/Lawyers/lawyer_4.jfif">
+    </div>
+    <ion-button shape="round" (click)="updatedProfile()">
+      <ion-icon slot="icon-only" name="pencil"></ion-icon>
+    </ion-button>
+  </div>
+
+
+  <div class="profileDetails">
+
+    <div class="ion-text-center">
+      <h3>Rohit Kumar</h3>
+      <p>User-Id: VU-75376</p>
+    </div>
+
+    <ion-list>
+
+      <ion-item lines="full">
+        <ion-icon name="settings-outline"></ion-icon>
+        <ion-label>Settings</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item (click)="openContact()" lines="full">
+        <ion-icon name="earth-outline"></ion-icon>
+        <ion-label>Contact Us</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <ion-label>About Us</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item (click)="openTerms()" lines="full">
+        <ion-icon name="documents-outline"></ion-icon>
+        <ion-label>Terms, Policies and Licenses</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+
+      <ion-item (click)="logout()" lines="full">
+        <ion-icon name="power-outline"></ion-icon>
+        <ion-label>Log Out</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+
+    </ion-list>
+
+
+    <ion-list>
+      <p class="ion-padding ion-no-margin">© 2020 Vakil Uncle| All Rights Reserved | Design & Development <span
+          class="highlight">Macreel Infosoft Pvt . Ltd.</span></p>
+    </ion-list>
+
+  </div>
+</ion-content>
+
+
+
+
+<!-- for term and policies desgin modal  -->
+
+<ion-modal #terms>
+  <ng-template>
+
+    <div class="header">
+      <div class="navbar">
+        <ion-icon name="chevron-back" (click)="terms.dismiss()"></ion-icon> <span>Legal Policies</span>
+      </div>
+    </div>
+    <ion-content>
+      <ion-list>
+        <ion-item lines="full">
+          <ion-icon name="documents-outline"></ion-icon>
+          <ion-label>Terms & Conditions</ion-label>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-icon name="document-lock-outline"></ion-icon>
+          <ion-label>Privacy Policy</ion-label>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-icon name="help-circle-outline"></ion-icon>
+          <ion-label>Help & Support</ion-label>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<!-- for contact us modal desgin  -->
+<ion-modal #contact>
+  <ng-template>
+
+    <div class="header">
+      <div class="navbar">
+        <ion-icon name="chevron-back" (click)="contact.dismiss()"></ion-icon> <span>Contact Us</span>
+      </div>
+    </div>
+    <ion-content>
+      <ion-card>
+        <ion-item lines="full">
+          <ion-thumbnail slot="start">
+            <img alt="service" src="../../../assets/icon/service.png" />
+          </ion-thumbnail>
+          <ion-label>
+            <ion-card-title>Noida Office</ion-card-title>
+            <ion-card-subtitle>vakiluncle.in</ion-card-subtitle>
+          </ion-label>
+        </ion-item>
+        <ion-card-content>
+
+          <ion-item>
+            <ion-icon aria-hidden="true" name="globe-outline" slot="start"></ion-icon>
+            <ion-label>Macreel InfoSoft Pvt.Ltd</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon aria-hidden="true" name="location-outline" slot="start"></ion-icon>
+            <ion-label>H-221, Sector 63 Rd, Noida</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon aria-hidden="true" name="call-outline" slot="start"></ion-icon>
+            <ion-label>+(91) 8750900044</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon aria-hidden="true" name="mail-outline" slot="start"></ion-icon>
+            <ion-label>{{'sales@macreel.co.in'}}</ion-label>
+          </ion-item>
+
+        </ion-card-content>
+
+      </ion-card>
+
+
+    </ion-content>
+  </ng-template>
+</ion-modal>

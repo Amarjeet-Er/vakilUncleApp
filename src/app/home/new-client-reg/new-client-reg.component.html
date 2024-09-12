@@ -1,0 +1,210 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon> <span>Registration List</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+  <ion-row>
+    <span>New Registration </span>
+    <ion-icon name="add-circle" (click)="AddClientReg()"></ion-icon>
+  </ion-row>
+
+  <ion-list id="client-list">
+    <ion-card (click)="onClientDetails(client)" *ngFor="let client of clients">
+
+      <div class="client-text">
+        <ion-row>
+          <span class="highlight">Name </span>
+          <span class="highlight">{{client.name}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Contact </span>
+          <span>{{client.contact}} </span>
+        </ion-row>
+        <ion-row>
+          <span>Case No</span>
+          <span>{{client.caseno}}</span>
+        </ion-row>
+      </div>
+      <div class="cleint-profile">
+        <img [src]="client.image || '../../../assets/images/image_1.jfif'" alt="">
+      </div>
+    </ion-card>
+
+  </ion-list>
+
+</ion-content>
+
+
+<!-- for add client registration  -->
+<ion-modal #modal>
+  <ng-template>
+
+    <div class="header">
+      <div class="navbar">
+        <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>New Registration</span>
+      </div>
+    </div>
+    <ion-content>
+      <ion-list>
+
+        <ion-input label="Name " label-placement="floating" fill="outline" placeholder="Enter name "></ion-input>
+
+        <ion-input label="Contact No" label-placement="floating" fill="outline"
+          placeholder="Enter contact no"></ion-input>
+
+        <ion-input label="Case No" label-placement="floating" fill="outline" placeholder="Enter case no"></ion-input>
+
+        <ion-input label="Case Title " label-placement="floating" fill="outline"
+          placeholder="Enter Case Title "></ion-input>
+
+        <ion-input label="State " label-placement="floating" fill="outline" placeholder="Enter state"></ion-input>
+
+        <ion-input label="City " label-placement="floating" fill="outline" placeholder="Enter city"></ion-input>
+
+        <ion-input label="Police Station " label-placement="floating" fill="outline"
+          placeholder="Enter police station"></ion-input>
+
+        <ion-input label="Inquiry Officer " label-placement="floating" fill="outline"
+          placeholder="Enter inquiry officer"></ion-input>
+
+        <ion-input label="Court" label-placement="floating" fill="outline" placeholder="Enter court"></ion-input>
+
+        <ion-input label="Act" label-placement="floating" fill="outline" placeholder="Enter act"></ion-input>
+
+        <ion-input label="Filling Date" type="date" label-placement="floating" fill="outline"></ion-input>
+
+        <ion-input label="Hearing  Date" type="date" label-placement="floating" fill="outline"></ion-input>
+
+        <ion-input label="FIR  Date" type="date" label-placement="floating" fill="outline"></ion-input>
+
+        <ion-input label="Advocate Fee" placeholder="Enter advocate Fee" label-placement="floating"
+          fill="outline"></ion-input>
+
+        <ion-input label="Document" type="file" label-placement="floating" fill="outline"></ion-input>
+
+        <ion-input label="Summary of the case" placeholder="Enter summary of the case" label-placement="floating"
+          fill="outline"></ion-input>
+
+        <ion-textarea label="Address " placeholder="Enter Address" label-placement="floating"
+          fill="outline"></ion-textarea>
+
+        <ion-row class="ion-justify-content-center">
+          <ion-button shape="round">Submit</ion-button>
+        </ion-row>
+
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<!-- for add client Details  -->
+<ion-modal id="client-details" #details>
+  <ng-template>
+
+    <div class="header">
+      <div class="navbar">
+        <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>Client Details</span>
+      </div>
+    </div>
+    <ion-content>
+      <ion-list>
+
+        <ion-card>
+          <div class="image-profile">
+            <img [src]="images || '../../../assets/images/image_1.jfif'" alt="">
+          </div>
+          <ion-row>
+            <ion-icon name="person-outline"></ion-icon>
+            <p>
+              <span class="highlight">Name </span>
+              <span class="highlight">{{detail.name}}</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="call-outline"></ion-icon>
+            <p>
+              <span>Contact </span>
+              <span>{{detail.contact}} </span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="code-outline"></ion-icon>
+            <p>
+              <span>Case No</span>
+              <span>{{detail.caseno}}</span>
+            </p>
+          </ion-row>
+
+          <ion-row>
+            <ion-icon name="newspaper-outline"></ion-icon>
+            <p>
+              <span>Case Title</span>
+              <span>{{detail.casetitle}}</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="business-outline"></ion-icon>
+            <p>
+              <span>Court</span>
+              <span>High Court</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="crop-outline"></ion-icon>
+            <p>
+              <span>Act</span>
+              <span>504</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="calendar-outline"></ion-icon>
+            <p>
+              <span>Fir Date</span>
+              <span>10-12-2023</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="calendar-number-outline"></ion-icon>
+            <p>
+              <span>Filling Date</span>
+              <span>19-12-2023</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="calendar-number-outline"></ion-icon>
+            <p>
+              <span> Hearing Date</span>
+              <span>25-12-2023</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="card-outline"></ion-icon>
+            <p>
+              <span>Advocate Fee</span>
+              <span>5000</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="documents-outline"></ion-icon>
+            <p>
+              <span>Document </span>
+              <span>Aadhar</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="location-outline"></ion-icon>
+            <p>
+              <span>Address</span>
+              <span>Noida Up</span>
+            </p>
+          </ion-row>
+        </ion-card>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

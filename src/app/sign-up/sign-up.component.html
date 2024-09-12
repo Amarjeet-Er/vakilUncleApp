@@ -1,0 +1,153 @@
+<ion-segment class="signUpInfo">
+  <!-- User Segment -->
+  <ion-segment-button class="active">
+    <ion-label>User Sign Up</ion-label>
+  </ion-segment-button>
+  <!-- Vakil Segment -->
+  <ion-segment-button routerLink="/vakilregistration">
+    <ion-label>Vakil Sign Up</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+<ion-content>
+  <div class="imgBox">
+    <img src="../../assets/icon/email.jpg" alt="image">
+  </div>
+
+  <div class="infoBox">
+    <p>
+      Please enter your email address
+    </p>
+  </div>
+
+  <div class="actionBox">
+    <form [formGroup]="Send_OTP_Form">
+      <ion-input type="email" label="Email Id" label-placement="floating" fill="outline"
+        helperText="Enter a valid email" errorText="Invalid email" ngModel email required formControlName="email">
+      </ion-input>
+    </form>
+    <ion-button shape="round" class="Btn" (click)="OnOtpSend()">Send</ion-button>
+
+    <p>Alredy have an account?<b (click)="Login()">Sign In</b></p>
+
+    <div class="footer">
+      <span>Developed By </span><img src="../../assets/icon/macreel_logo.png" alt="macreel icon">
+    </div>
+
+  </div>
+</ion-content>
+
+<!-- for otp page modal, here user enter otp -->
+<ion-modal #veryotp>
+  <ng-template>
+    <ion-header>
+      <ion-card class="topNav">
+        <ion-icon name="arrow-back" (click)="veryotp.dismiss()"></ion-icon>
+        <ion-title>Verify Your Email</ion-title>
+      </ion-card>
+    </ion-header>
+    <ion-content>
+      <div class="imgBox">
+        <img src="../../assets/icon/email.jpg" alt="image">
+      </div>
+      <div class="infoBox">
+        <p>
+          Please enter your OTP send to your email address
+        </p>
+      </div>
+
+      <div class="actionBox">
+        <form [formGroup]="Verify_OTP_Form">
+          <div class="otpBox">
+            <input type="number" maxlength="1" formControlName="digit1" #input1 (input)="onInputChange($event, input2)"
+              (keydown)="onInputKeyDown($event, input1, null)">
+
+            <input type="number" maxlength="1" formControlName="digit2" #input2 (input)="onInputChange($event, input3)"
+              (keydown)="onInputKeyDown($event, input2, input1)">
+
+            <input type="number" maxlength="1" formControlName="digit3" #input3 (input)="onInputChange($event, input4)"
+              (keydown)="onInputKeyDown($event, input3, input2)">
+
+            <input type="number" maxlength="1" formControlName="digit4" #input4 (input)="onInputChange($event, input5)"
+              (keydown)="onInputKeyDown($event, input4, input3)">
+
+            <input type="number" maxlength="1" formControlName="digit5" #input5 (input)="onInputChange($event, input6)"
+              (keydown)="onInputKeyDown($event, input5, input4)">
+
+            <input type="number" maxlength="1" formControlName="digit6" #input6 (input)="onInputChange($event, null)"
+              (keydown)="onInputKeyDown($event, input6, input5)">
+          </div>
+        </form>
+        <span (click)="signUp()">Resend OTP</span>
+        <ion-button shape="round" class="Btn" (click)="confirmOtp()">Verify</ion-button>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<!-- registartion form -->
+<ion-modal #userRegistration>
+  <ng-template>
+    <ion-header>
+      <ion-card class="topNav">
+        <ion-icon name="arrow-back" (click)="userRegistration.dismiss()"></ion-icon>
+        <ion-title>Registartion</ion-title>
+      </ion-card>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <form [formGroup]="User_Registration_Form">
+        <ion-input label="Full Name" label-placement="floating" fill="outline" required formControlName="ClientName"
+          placeholder="Enter name"></ion-input>
+
+        <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
+          helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
+          formControlName="contactNum" minlength="10" maxlength="10" pattern="\d{10}" placeholder="Enter Mobile Number">
+        </ion-input>
+
+        <ion-select label="State" fill="outline" label-placement="floating" interface="action-sheet"
+          placeholder="Select State" (ionChange)="onCityChange($event)" formControlName="state">
+          <ion-select-option *ngFor="let state of states" [value]="state?.Id">
+            {{ state?.name}}
+          </ion-select-option>
+        </ion-select><br>
+
+        <ion-select label="City" fill="outline" label-placement="floating" interface="action-sheet"
+          placeholder="Select City" formControlName="city">
+          <ion-select-option *ngFor="let city of citys" [value]="city?.Id">
+            {{city?.name}}
+          </ion-select-option>
+        </ion-select>
+
+        <ion-input label="Address" label-placement="floating" fill="outline" required formControlName="address"
+          placeholder="Enter address"></ion-input>
+
+        <ion-input label="Password" label-placement="floating" fill="outline" formControlName="Password" type="password"
+          placeholder="Abc@123"></ion-input>
+
+        <div class="ng-container" *ngIf="User_Registration_Form.get('Password')?.errors?.['required']">Password is
+          required</div>
+        <ion-text color="danger"
+          *ngIf="User_Registration_Form.get('Password')?.invalid && (User_Registration_Form.get('Password')?.dirty || User_Registration_Form.get('Password')?.touched)">
+          <ng-container class="ng-container"
+            *ngIf="User_Registration_Form.get('Password')?.invalid && (User_Registration_Form.get('Password')?.dirty || User_Registration_Form.get('Password')?.touched)">
+            <span *ngIf="User_Registration_Form.get('Password')?.errors?.['pattern']">Invalid password format</span>
+            <span
+              *ngIf="!User_Registration_Form.get('Password')?.errors?.['pattern'] && User_Registration_Form.get('Password')?.errors?.['minlength']">Password
+              must be at least 8 characters long</span>
+            <span
+              *ngIf="!User_Registration_Form.get('Password')?.errors?.['pattern'] && User_Registration_Form.get('Password')?.errors?.['maxlength']">Password
+              cannot exceed 30 characters</span>
+          </ng-container>
+        </ion-text>
+
+        <ion-input label="Confirm Password" label-placement="floating" fill="outline" formControlName="ConfirmPassword"
+          placeholder="Enter Confirm Password"></ion-input>
+
+        <ion-button shape="round" (click)="signUp()" class="signBtn">Sign Up</ion-button>
+
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>

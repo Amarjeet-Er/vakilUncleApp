@@ -1,0 +1,65 @@
+<div class="header">
+  <div class="navbar">
+    <span class="ion-margin-start">Chat</span>
+    <ion-thumbnail (click)="vakilProfile()">
+      <img src="../../../assets/Lawyers/lawyer_4.jfif">
+    </ion-thumbnail>
+  </div>
+</div>
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+  <ion-list lines="none">
+
+    <div class="contactList" (click)="chatRoute()">
+      <div class="userImg">
+        <img src="../../../assets/Lawyers/lawyer_1.jpg  ">
+      </div>
+      <div class="userInfo">
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Julia</span>
+          <span>02:00pm</span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Hello, Madam!</span>
+          <ion-icon name="checkmark-done"></ion-icon>
+        </ion-row>
+      </div>
+    </div>
+
+    <div class="contactList" (click)="chatRoute()">
+      <div class="userImg">
+        <img src="../../../assets/Lawyers/lawyer_3.jfif">
+      </div>
+      <div class="userInfo">
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Aditya</span>
+          <span>02:00pm</span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Hello, Sir!</span>
+          <ion-icon name="checkmark-done"></ion-icon>
+        </ion-row>
+      </div>
+    </div>
+    
+    <div class="contactList" (click)="chatRoute()">
+      <div class="userImg">
+        <img src="../../../assets/Lawyers/lawyer_4.jfif">
+      </div>
+      <div class="userInfo">
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Rohit</span>
+          <span>02:45pm</span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Hello, Sir!</span>
+          <ion-icon name="checkmark-done"></ion-icon>
+        </ion-row>
+      </div>
+    </div>
+
+
+  </ion-list>
+
+</ion-content>

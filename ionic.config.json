@@ -1,0 +1,7 @@
+{
+  "name": "vakilUncleApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

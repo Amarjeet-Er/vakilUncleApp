@@ -1,0 +1,316 @@
+<div class="header">
+  <ion-buttons shape="round" routerLink="/home/vakiltotalcase">
+    <ion-icon name="list"></ion-icon>
+  </ion-buttons>
+  <ion-buttons shape="round" routerLink="/home/userprofile">
+    <ion-icon name="person-circle"></ion-icon>
+  </ion-buttons>
+</div>
+
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+  <ion-list>
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Dashboard</span>
+    </ion-row>
+    <div class="menubar bounceInUp animated">
+
+      <div class="menuBox" routerLink="/home/vakiltotalcase">
+        <div class="menuIcon">
+          <img src="../../../assets/menuIcon/ipc.png">
+          <span>{{dashboard?.totalCase}}</span>
+        </div>
+        <div class="menuInfo">
+          <span>Total Case</span>
+        </div>
+      </div>
+
+      <div class="menuBox" routerLink="/home/casedocuments">
+        <div class="menuIcon">
+          <img src="../../../assets/menuIcon/documents.png">
+          <span>{{dashboard?.totalDocument}}</span>
+        </div>
+        <div class="menuInfo">
+          <span>Case Documents</span>
+        </div>
+      </div>
+
+      <div class="menuBox">
+        <div class="menuIcon">
+          <img src="../../../assets/menuIcon/billing.png">
+          <span>{{dashboard?.totalPayment}}</span>
+        </div>
+        <div class="menuInfo">
+          <span>Payments</span>
+        </div>
+      </div>
+
+      <div class="menuBox">
+        <div class="menuIcon">
+          <img src="../../../assets/menuIcon/report.png">
+          <span>5460</span>
+        </div>
+        <div class="menuInfo">
+          <span>Reports</span>
+        </div>
+      </div>
+
+      <div class="menuBox" routerLink="/home/enquiry">
+        <div class="menuIcon">
+          <img src="../../../assets/menuIcon/enquiry.png">
+          <span>5460</span>
+        </div>
+        <div class="menuInfo">
+          <span>Enquiry</span>
+        </div>
+      </div>
+
+      <div class="menuBox" routerLink="/home/vakilreview">
+        <div class="menuIcon">
+          <img src="../../../assets/menuIcon/review.png">
+          <span>5460</span>
+        </div>
+        <div class="menuInfo">
+          <span>Review</span>
+        </div>
+      </div>
+
+
+    </div>
+  </ion-list>
+
+
+
+  <!-- upcoming court case  -->
+  <ion-list>
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Upcoming Court Date</span>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/home/vakiltotalcase">See All</ion-button>
+    </ion-row>
+    <div class="contentList  fadeInUp animated">
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>Smith vs. Johnson - Property Dispute</h3>
+          <span>08-Jun-2023 10:22am</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>State vs. Brown - Criminal Case</h3>
+          <span>09-Jun-2023 11:30am</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>Davis vs. Wilson - Contract Breach</h3>
+          <span>10-Jun-2023 10:00am</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>White vs. Martin - Personal Injury</h3>
+          <span>11-Jun-2023 01:00pm</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>Lewis vs. Clark - Defamation Case</h3>
+          <span>13-Jun-2023 10:20am</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+    </div>
+  </ion-list>
+
+  <!-- button for add case  -->
+  <ion-button class="addCaseBtn" (click)="addClientCase()">Add Case</ion-button>
+
+
+  <!-- recent client case  -->
+  <ion-list>
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Recent Client</span>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/vakil/home/clientlist">See All</ion-button>
+    </ion-row>
+    <ion-item lines="full" (click)="clientCase()">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_1.jpg" />
+      </ion-avatar>
+      <ion-label>Gautum Singh</ion-label>
+    </ion-item>
+
+    <ion-item lines="full" (click)="clientCase()">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_2.png" />
+      </ion-avatar>
+      <ion-label>Sushant Kumar</ion-label>
+    </ion-item>
+
+    <ion-item lines="full" (click)="clientCase()">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_8.jpg" />
+      </ion-avatar>
+      <ion-label>Rahul Patel</ion-label>
+    </ion-item>
+
+    <ion-item lines="full" (click)="clientCase()">
+      <ion-avatar aria-hidden="true" slot="start">
+        <img alt="" src="../../../assets/Lawyers/lawyer_5.png" />
+      </ion-avatar>
+      <ion-label>Virender Bhola</ion-label>
+    </ion-item>
+  </ion-list>
+
+
+  <!-- for features of memebership user  -->
+  <ion-list>
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Features</span>
+    </ion-row>
+    <div class="menubar">
+
+      <div class="featuremenu" routerLink="/home/publication">
+        <ion-icon name="book"></ion-icon>
+        <span>Add Publication</span>
+      </div>
+
+      <div class="featuremenu" routerLink="/home/imagemanagement">
+        <ion-icon name="image"></ion-icon>
+        <span>Add Image & Banner</span>
+      </div>
+
+      <div class="featuremenu" routerLink="/home/videomanagement">
+        <ion-icon name="videocam"></ion-icon>
+        <span>Add Videos</span>
+      </div>
+
+      <div class="featuremenu" routerLink="/home/newclientreg">
+        <ion-icon name="person-add"></ion-icon>
+        <span>Registration</span>
+      </div>
+
+    </div>
+
+  </ion-list>
+
+  <!-- case overview  -->
+  <ion-list>
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Case Overview</span>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/home/vakiltotalcase">See All</ion-button>
+    </ion-row>
+
+    <div class="contentList">
+
+      <div class="caseCard" routerLink="/home/casehearing">
+        <h5>Walker vs. Young - Real Estate Dispute</h5>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Status</span>
+          <span>Pendding</span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Next Date</span>
+          <span>20-May-2023</span>
+        </ion-row>
+      </div>
+
+      <div class="caseCard" routerLink="/home/casehearing">
+        <h5>Walker vs. Young - Real Estate Dispute</h5>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Status</span>
+          <span>Pendding</span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Next Date</span>
+          <span>20-May-2023</span>
+        </ion-row>
+      </div>
+
+      <div class="caseCard" routerLink="/home/casehearing">
+        <h5>Walker vs. Young - Real Estate Dispute</h5>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Status</span>
+          <span>Pendding</span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Next Date</span>
+          <span>20-May-2023</span>
+        </ion-row>
+      </div>
+
+    </div>
+  </ion-list>
+
+  <!-- complete case deatils  -->
+  <ion-list>
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Complete Court Case</span>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/home/vakiltotalcase">See All</ion-button>
+    </ion-row>
+    <div class="contentList">
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>Smith vs. Johnson - Property Dispute</h3>
+          <span>08-Jun-2023 10:22am</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>State vs. Brown - Criminal Case</h3>
+          <span>09-Jun-2023 11:30am</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>Davis vs. Wilson - Contract Breach</h3>
+          <span>10-Jun-2023 10:00am</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>White vs. Martin - Personal Injury</h3>
+          <span>11-Jun-2023 01:00pm</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full" routerLink="/home/casehearing">
+        <ion-label>
+          <h3>Lewis vs. Clark - Defamation Case</h3>
+          <span>13-Jun-2023 10:20am</span>
+        </ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+    </div>
+  </ion-list>
+
+
+  <!-- daily visitors data  -->
+  <ion-list>
+    <div>
+      <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'300px'}"></canvasjs-chart>
+    </div>
+  </ion-list>
+
+  <div class="chatBox" routerLink="/user/home/contact">
+    <ion-icon name="chatbubble-ellipses"></ion-icon>
+  </div>
+
+</ion-content>

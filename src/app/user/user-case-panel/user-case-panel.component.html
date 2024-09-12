@@ -1,0 +1,34 @@
+
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home"></ion-icon> 
+    <span>Case List</span>
+  </div>
+</div>
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearchChange($event)"></ion-searchbar>
+
+  <ng-container *ngFor="let case of filteredCases">
+    <ion-card (click)="caseHearing()">
+      <ion-card-title class="text_color">{{ case.title }}</ion-card-title>
+
+      <ion-row>
+        <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Lawyer Name</span>
+        <span class="highlight">{{ case.lawyerName }}</span>
+      </ion-row>
+      <ion-row>
+        <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Case Number</span>
+        <span>{{ case.caseNumber }}</span>
+      </ion-row>
+      <ion-row>
+        <span><ion-icon name="call-outline"></ion-icon>&nbsp; Mobile Number</span>
+        <span>{{ case.mobileNumber }}</span>
+      </ion-row>
+      <ion-row>
+        <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Next Date</span>
+        <span>{{ case.nextDate }}</span>
+      </ion-row>
+    </ion-card>
+  </ng-container>
+
+</ion-content>
