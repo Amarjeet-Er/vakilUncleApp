@@ -1,116 +1,159 @@
 .header {
-    width: 100%;
-    height: 70px;
-    background: var(--color-primary);
-    color: var(--color-light);
-    padding: 10px;
+  width: 100%;
+  height: 70px;
+  background: var(--color-primary);
+  color: var(--color-light);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  span {
+    font-size: 18px;
+    margin: 0 auto;
+  }
+}
+
+
+
+
+
+.vip-card {
+  width: 400px;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #000000, #4e4e4e);
+  color: #fff;
+  position: relative;
+  margin: 20px auto;
+
+  .vip-card-header {
+    height: 60px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: #333;
 
-    .navbar {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        position: relative;
-        
-        ion-icon {
-            position: absolute;
-            font-size: 24px;
-            left: 10px;
-        }
-        
-        span {
-            font-size: 20px;
-            margin: 0 auto;
-        }
+    img {
+      height: 60px;
     }
+
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      color: gold;
+      margin: 0;
+    }
+  }
+
+  .vip-card-body {
+    padding: 1px 20px 10px;
+    text-align: start;
+    background: #222;
+  }
+
+  .vip-card-info h2 {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: gold;
+  }
+
+  .vip-card-info p {
+    margin: 5px 0;
+    font-size: 12px;
+    color: #ccc;
+  }
+
+  .vip-member-id,
+  .vip-expiry-date {
+    color: #aaa;
+  }
+
+  .vip-card-footer {
+    height: 50px;
+    padding: 2px;
+    background: #333;
+    text-align: center;
+    font-size: 16px;
+    color: gold;
+    font-weight: bold;
+    cursor: pointer;
+  }
 }
 
-ion-content {
+// .card {
+//   width: 300px;
+//   height: 170px;
+//   border-radius: 10px;
+//   margin: 10px auto;
+//   padding: 5px 10px;
+//   background: #ffc107;
 
-    ion-list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 10px;
+//   ion-item {
+//       --background: none;
+//       height: 40px;
+//       --padding-start: 0;
 
-        .packageCard {
-            width: 100%;
-            height: auto;
-            border-radius: 7px;
-            background-color: var(--color-light);
-            overflow: hidden;
-            padding: 7px;
-            text-align: center;
-            flex: none;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-            scroll-snap-align: center;
+//       ion-icon {
+//           color: var(--color-primary);
+//       }
+//   }
 
+//   .feature {
+//       width: 100%;
+//       height: calc(100% - 110px);
 
-            .cardImg {
-                width: 75px;
-                height: 75px;
-                border-radius: 50%;
-                overflow: hidden;
-                float: left;
-                margin: 0 0 10px;
+//       ion-chip {
+//           font-size: 10px;
+//           min-height: 24px;
+//       }
+//   }
 
-                img {
-                    width: 100%;
-                    height: 100%;
-                    padding: 10px;
-                    object-fit: cover;
-                }
-            }
+//   .offer {
+//       display: flex;
+//       align-items: center;
+//       height: 30px;
+//       justify-content: space-between;
+//       clear: both;
+//       margin: 5px 0;
+//       text-align: center;
 
-            .cardInfo {
-                width: calc(100% - 110px);
-                height: 75px;
-                overflow: hidden;
-                margin: 0px 0px 0px 10px;
-                float: right;
-                text-align: left;
-                text-overflow: ellipsis;
+//       span {
+//           font-size: 12px;
+//       }
+//   }
 
+//   .memberShipPrice {
+//       width: 100%;
+//       height: 30px;
+//       display: flex;
+//       align-items: center;
+//       gap: 5px;
+//       justify-content: space-between;
 
-                span {
-                    font-size: 16px;
-                    font-weight: 600;
-                    text-wrap: nowrap;
-                    color: var(--color-primary);
-                }
+//       ion-row {
+//           display: flex;
+//           gap: 5px;
 
-                p {
-                    font-size: 12px;
-                    margin: 3px 0;
-                    color: var(--color-dark);
-                }
-            }
+//           span {
+//               font-size: 16px;
+//               font-weight: 600;
+//           }
 
-            .memberShipPrice {
-                width: 100%;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                font-size: 18px;
-                justify-content: space-between;
-                font-weight: 600;
+//           .discount {
+//               align-items: center;
+//               display: flex;
+//               color: green;
+//           }
+//       }
 
-                ion-row {
-                    display: flex;
-                    gap: 5px;
+//       ion-button {
+//           --background: var(--color-primary);
+//           text-transform: capitalize;
+//       }
+//   }
 
-                    .discount {
-                        align-items: center;
-                        display: flex;
-                        color: green;
-                    }
-                }
-            }
-
-        }
-    }
-}
+// }

@@ -1,6 +1,6 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/vakil/home/account"></ion-icon> <span>Profile</span>
+    <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon> <span>Profile</span>
   </div>
 </div>
 
@@ -13,18 +13,24 @@
       <ion-icon slot="icon-only" name="pencil"></ion-icon>
     </ion-button>
   </div>
-  <div class="profileDetails">
-    <form [formGroup]="vakil_profile_update">
-      <ion-input label="Full Name" label-placement="floating" required placeholder="Enter full name" formControlName="advocateName"></ion-input>
 
-      <ion-input type="tel" label="Mobile Number" label-placement="floating" placeholder="Enter mobile number" required formControlName="contactNum">
+  <div class="profileDetails">
+
+    <form [formGroup]="vakil_profile_update">
+      <ion-input label="Full Name" label-placement="floating" required placeholder="Enter full name"
+        formControlName="advocateName">
       </ion-input>
 
-      <ion-input type="tel" label="Email Id" label-placement="floating" required placeholder="Enter email id" formControlName="email">
+      <ion-input type="tel" label="Mobile Number" label-placement="floating" placeholder="Enter mobile number" required
+        formControlName="contactNum">
+      </ion-input>
+
+      <ion-input type="tel" label="Email Id" label-placement="floating" required placeholder="Enter email id"
+        formControlName="email" [disabled]="true">
       </ion-input>
 
       <ion-select label="Gender" label-placement="floating" interface="action-sheet" placeholder="Select Gender"
-        formControlName="state">
+        formControlName="gender">
         <ion-select-option value="Male"> Male </ion-select-option>
         <ion-select-option value="Female"> Female </ion-select-option>
         <ion-select-option value="Other"> Other </ion-select-option>
@@ -45,44 +51,164 @@
       </ion-select><br>
 
       <ion-select label="Court" label-placement="floating" interface="action-sheet" placeholder="Select Court"
-        formControlName="city">
-        <ion-select-option *ngFor="let city of citys" [value]="city?.Id">
-          {{city?.name}}
+        formControlName="courtType">
+        <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
+          {{court?.courtName}}
         </ion-select-option>
       </ion-select><br>
 
-      <ion-select label="Lawyer Type" label-placement="floating" interface="action-sheet" placeholder="Select lawyer type"
-        formControlName="city">
-        <ion-select-option *ngFor="let city of citys" [value]="city?.Id">
-          {{city?.name}}
+      <ion-select label="Lawyer Type" label-placement="floating" interface="action-sheet"
+        placeholder="Select lawyer type" formControlName="advType">
+        <ion-select-option *ngFor="let advocate of advocate_type" [value]="advocate?.Id">
+          {{advocate?.name}}
         </ion-select-option>
       </ion-select><br>
 
-      <ion-input type="text" label="Experiance" label-placement="floating" placeholder="Experiance" required formControlName="experiance">
+      <ion-input type="text" label="Experiance" label-placement="floating" placeholder="Experiance" required
+        formControlName="experiance">
       </ion-input>
 
-      <ion-input type="date" label="Date Of Birth" label-placement="floating" required formControlName="experiance">
+      <ion-input type="date" label="Date Of Birth" label-placement="floating" required formControlName="DOB">
       </ion-input>
 
-      <ion-input type="text" label="LLB Registration No" label-placement="floating" placeholder="Enter LLB Registration No" required formControlName="experiance">
+      <ion-input type="text" label="LLB Registration No" label-placement="floating"
+        placeholder="Enter LLB Registration No" required formControlName="llbRegistrationNum">
       </ion-input>
 
-      <ion-input type="text" label="Office Address" label-placement="floating" placeholder="Enter Office Address" required formControlName="offAddress">
+      <ion-input type="text" label="Office Address" label-placement="floating" placeholder="Enter Office Address"
+        required formControlName="offAddress">
       </ion-input>
 
+      <!-- Aadhar Card -->
+      <div class="VakilDocuments">
+        <div class="Documents" [hidden]="AadharSelected">
+          <span>Aadhar</span>
+          <img [src]="login_data?.adharUrl? img_url+login_data?.adharUrl: '../../../assets/images/documents.jpg'" alt=""
+            width="100%" height="100%">
+        </div>
+      </div>
 
-      <ion-input type="file" label="Aadhar Card" label-placement="floating" formControlName="adhar"
-        (change)="onAadhar($event)" accept=".jpg,.png,.jpeg">
-      </ion-input>
+      <div class="VakilDocuments">
+        <div class="Documents" [hidden]="AadharSelect">
+          <span>Aadhar Card</span>
+          <img alt="documents" [src]="Aadhar_img_url">
+          <input class="d-none" type="file" accept=".jpg,.png,.jpeg," #Aadhar (change)="onAadhar(Aadhar.files)">
+        </div>
+        <div class="SelectAadhar">
+          <ion-text>Aadhar Card</ion-text>
+          <ion-fab>
+            <ion-fab-button size="small">
+              <ion-icon name="add-circle-sharp"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="start">
+              <ion-fab-button (click)="Aadhar.click()">
+                <ion-icon name="image-outline"></ion-icon>
+              </ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+        </div>
+      </div>
 
-      <ion-input type="file" label="Bar Counselling Certificate" label-placement="floating" formControlName="barCouncil"
-        (change)="onBarCouncil($event)" accept=".jpg,.png,.jpeg">
-      </ion-input>
+      <!-- Pan Card -->
+      <div class="VakilDocuments">
+        <div class="Documents" [hidden]="PanSelected">
+          <span>Pan Card</span>
+          <img [src]="login_data?.aadharCard? img_url+login_data?.aadharCard: '../../../assets/images/documents.jpg'"
+            alt="" width="100%" height="100%">
+        </div>
+      </div>
 
-      <ion-input label="Password" label-placement="floating" formControlName="Password" type="password"
+      <div class="VakilDocuments">
+        <div class="Documents" [hidden]="PanSelect">
+          <span>Pan Card</span>
+          <img alt="documents" [src]="Pan_img_url">
+          <input class="d-none" type="file" accept=".jpg,.png,.jpeg," #Pan (change)="onPan(Pan.files)">
+        </div>
+        <div class="SelectAadhar">
+          <ion-text>Pan Card</ion-text>
+          <ion-fab>
+            <ion-fab-button size="small">
+              <ion-icon name="add-circle-sharp"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="start">
+              <ion-fab-button (click)="Pan.click()">
+                <ion-icon name="image-outline"></ion-icon>
+              </ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+        </div>
+      </div>
+
+      <!-- Bar Counselling Certificate -->
+      <div class="VakilDocuments">
+        <div class="Documents" [hidden]="BarCouncilSelected">
+          <span>Bar Counselling Certificate</span>
+          <img
+            [src]="login_data?.barcouncilUrl? img_url+login_data?.barcouncilUrl: '../../../assets/images/documents.jpg'"
+            alt="" width="100%" height="100%">
+        </div>
+      </div>
+
+      <div class="VakilDocuments">
+        <div class="Documents" [hidden]="BarCouncilSelect">
+          <span>Bar Counselling Certificate</span>
+          <img alt="documents" [src]="BarCouncil_img_url">
+          <input class="d-none" type="file" accept=".jpg,.png,.jpeg," #BarCouncil
+            (change)="onBarCouncil(BarCouncil.files)">
+        </div>
+        <div class="SelectAadhar">
+          <ion-text>Bar Counselling Certificate</ion-text>
+          <ion-fab>
+            <ion-fab-button size="small">
+              <ion-icon name="add-circle-sharp"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="start">
+              <ion-fab-button (click)="BarCouncil.click()">
+                <ion-icon name="image-outline"></ion-icon>
+              </ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+        </div>
+      </div>
+      
+      <!-- LLB Certificate -->
+      <div class="VakilDocuments">
+        <div class="Documents" [hidden]="LLBCSelected">
+          <span>LLB Certificate</span>
+          <img
+            [src]="login_data?.barcouncilUrl? img_url+login_data?.barcouncilUrl: '../../../assets/images/documents.jpg'"
+            alt="" width="100%" height="100%">
+        </div>
+      </div>
+
+      <div class="VakilDocuments">
+        <div class="Documents" [hidden]="LLBCSelect">
+          <span>LLB Certificate</span>
+          <img alt="documents" [src]="LLBC_img_url">
+          <input class="d-none" type="file" accept=".jpg,.png,.jpeg," #LLBC (change)="onLLBC(LLBC.files)">
+        </div>
+        <div class="SelectAadhar">
+          <ion-text>LLB Certificate</ion-text>
+          <ion-fab>
+            <ion-fab-button size="small">
+              <ion-icon name="add-circle-sharp"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="start">
+              <ion-fab-button (click)="LLBC.click()">
+                <ion-icon name="image-outline"></ion-icon>
+              </ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+        </div>
+      </div>
+
+      <ion-input label="Password" label-placement="floating" formControlName="pass" type="text"
         placeholder="Abc@123"></ion-input>
 
-      <ion-button shape="round" (click)="submit()" class="signBtn">Submit</ion-button>
+      <div class="btn">
+        <ion-button shape="round" (click)="submit()">Submit</ion-button>
+      </div>
+
     </form>
   </div>
 

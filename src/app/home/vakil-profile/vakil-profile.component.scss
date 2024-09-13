@@ -92,6 +92,50 @@ ion-content {
             ion-select {
                 border-bottom: 1px solid gray;
             }
+            .btn{
+                width: 100%;
+                text-align: center;
+            }
+
+            .VakilDocuments {
+
+                .Documents {
+                    width: 100%;
+                    height: 280px;
+                    margin: 0px 0px 10px 0px;
+                    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+                    cursor: pointer;
+                    padding: 10px;
+                    border-radius: 5px;
+
+                    img {
+                        width: 100%;
+                        height: 90%;
+                        margin-top: 10px;
+                    }
+
+                    input {
+                        display: none;
+                    }
+                }
+
+                .SelectAadhar {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-left: 15px;
+                    width: 100%;
+                    height: 56px;
+                    cursor: pointer;
+                    border: 0.1px solid #9b9b9b;
+                    border-radius: 4px;
+
+                    ion-fab {
+                        position: relative;
+                    }
+                }
+            }
+
         }
     }
 }

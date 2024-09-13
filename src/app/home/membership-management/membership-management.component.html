@@ -1,27 +1,64 @@
 <div class="header">
-  <div class="navbar">
-    <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>Membership</span>
-  </div>
+  <span>Membership</span>
 </div>
+
+
+
+
+
 <ion-content>
-  <ion-list *ngFor="let item of membershipDetail">
-    <div class="packageCard">
-      <div class="cardImg">
-        <img src="../../../assets/menuIcon/platinum.png">
-      </div>
-      <div class="cardInfo">
-        <span>{{item?.planName}}</span>
-        <p>{{item?.description}}</p>
-      </div>
-      <div class="memberShipPrice">
-        <ion-row class="ion-justify-content-around">
-          <span class="discount"><ion-icon name="arrow-down"></ion-icon>{{item?.discount}}</span>
-          <span style=" text-decoration: line-through;">{{item?.oldPrice | currency:'INR'}}</span>
-          <span>{{item?.newPrice | currency:'INR'}}</span>
-        </ion-row>
-        <ion-button>Pay</ion-button>
+ <div class="vip-card" *ngFor="let item of membershipDetail">
+    <div class="vip-card-header">
+      <img *ngIf="item?.planName === 'Gold '" src="../../../assets/menuIcon/gold.png">
+      <img *ngIf="item?.planName === 'Silver'" src="../../../assets/menuIcon/silver.png">
+      <img *ngIf="item?.planName === 'Platinum'" src="../../../assets/menuIcon/platinum.png">
+      <h1>{{item?.planName}}</h1>
+    </div>
+    <div class="vip-card-body">
+      <div class="vip-card-info">
+        <h2>{{item?.planType}}</h2>
+        <p class="description">{{item?.description}}</p>
+        <p><strong>Old Price:</strong> <del>{{item?.oldPrice | currency:'INR'}}</del></p>
+        <p><strong>New Price:</strong> {{item?.newPrice | currency:'INR'}}</p>
+        <p><strong>Discount:</strong> {{item?.discount}}% (You save {{item?.discountAmount | currency:'INR'}})</p>
+        <p><strong>Features:</strong> {{item?.featureName}}</p>
       </div>
     </div>
+    <div class="vip-card-footer">
+      <p>Pay Now</p>
+    </div>
+  </div> 
 
-  </ion-list>
+  <!-- <div class="card">
+    <ion-item lines="none">
+      <ion-icon aria-hidden="true" name="checkmark-circle" slot="start"></ion-icon>
+      <ion-label><b>Gold Premium</b></ion-label>
+      <span>Monthly</span>
+    </ion-item>
+    <div class="feature">
+      <ion-chip [outline]="true">Article</ion-chip>
+      <ion-chip [outline]="true">Video</ion-chip>
+      <ion-chip [outline]="true">Images</ion-chip>
+    </div>
+
+    <div  class="offer">
+      <span>Offer<br>20%</span>
+      |
+      <span>Start Date<br>12-Jul-2024</span>
+      |
+      <span>End Date<br>25-Jun-2025</span>
+    </div>
+
+    <div class="memberShipPrice">
+      <ion-row class="ion-justify-content-around">
+        <span class="discount"><ion-icon name="arrow-down"></ion-icon>5%</span>
+        <span style=" text-decoration: line-through;">₹4000</span>
+        <span>₹3500</span>
+      </ion-row>
+      <ion-button size="small">Pay</ion-button>
+    </div>
+
+  </div> -->
+
+
 </ion-content>

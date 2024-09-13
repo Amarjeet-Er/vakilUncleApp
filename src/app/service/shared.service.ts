@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SharedService {
   base_url = new BehaviorSubject<string>('https://vakiluncle.in/api/');
+  img_url = new BehaviorSubject<string>('https://vakiluncle.in/');
 
   constructor(private toastController: ToastController) {}
 

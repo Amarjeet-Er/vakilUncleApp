@@ -58,12 +58,26 @@ export class CrudService {
     return this._http.get<any>(`${this.base_url}statelist`);
   }
 
+  vakil_registartion(data: any) {
+    return this._http.post<any>(`${this.base_url}VakilRegister`, data);
+  }
+
   get_city(id: any) {
     return this._http.get<any>(`${this.base_url}citylist/${id}`);
   }
 
-  vakil_registartion(data: any) {
-    return this._http.post<any>(`${this.base_url}VakilRegister`, data);
+  get_court_list() {
+    return this._http.get<any>(`${this.base_url}courtlist`);
+  }
+  get_advocate_type() {
+    return this._http.get<any>(`${this.base_url}advocatetypelist`);
+  }
+
+  update_vakil_profile(data: any) {
+    return this._http.post<any>(`${this.base_url}updateProfile`, data);
+  }
+  add_publication(data: any) {
+    return this._http.post<any>(`${this.base_url}addPublication`, data);
   }
 
   vakil_dashboard(vakilId: any) {
@@ -77,5 +91,4 @@ export class CrudService {
   user_registartion(data: any) {
     return this._http.post<any>(`${this.base_url}ClientRegister`, data);
   }
-
 }

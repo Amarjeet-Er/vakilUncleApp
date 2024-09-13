@@ -105,8 +105,7 @@ export class VakilDashboardComponent implements OnInit {
 	) {
 		this.login = localStorage.getItem('vakilLoginData')
 		this.login_data = JSON.parse(this.login)
-		this.vId = this.login_data.vId;
-		console.log(this.vId);
+		this.vId = this.login_data.advId;
 	}
 
 	ngOnInit() {

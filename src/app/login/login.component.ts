@@ -46,12 +46,17 @@ export class LoginComponent implements OnInit {
 
             if (res.UserRole == "Advocate") {
               const vakilLogin = {
-                vId: res.data.advId,
+                advId: res.data.advId,
                 enrollId: res.data.enrollId,
-                vakilName: res.data.advocateName,
-                vakilEmail: res.data.email,
-                vakilStatus: res.data.status,
-                vakilMobile: res.data.contactNum,
+                advocateName: res.data.advocateName,
+                email: res.data.email,
+                status: res.data.status,
+                contactNum: res.data.contactNum,
+                city: res.data.city,
+                state: res.data.state,
+                pass: res.data.pass,
+                adharUrl: res.data.adharUrl,
+                barcouncilUrl: res.data.barcouncilUrl,
               }
               this._shared.tostSuccessTop('Login Successfully...')
               localStorage.setItem('vakilLoginData', JSON.stringify(vakilLogin))

@@ -12,7 +12,6 @@
   </ion-row>
 
   <ion-list>
-
     <ion-card>
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span class="highlight">Title</span>
@@ -125,20 +124,29 @@
     </div>
     <ion-content>
       <ion-list>
+        <form [formGroup]="publication_form">
+          <ion-input label="Title" formControlName="title" label-placement="floating" fill="outline"
+            placeholder="Enter title">
+          </ion-input>
 
-        <ion-input label="Title" label-placement="floating" fill="outline" placeholder="Enter title"></ion-input>
+          <ion-input label="Journal" formControlName="journal" label-placement="floating" fill="outline"
+            placeholder="Enter journal">
+          </ion-input>
 
-        <ion-input label="Journal" label-placement="floating" fill="outline" placeholder="Enter journal"></ion-input>
+          <ion-datetime formControlName="date" label="Date and Time" label-placement="floating" fill="outline"
+            placeholder="Select Date and Time" presentation="date-time">
+          </ion-datetime>
 
-        <ion-input type="date" label="Date" label-placement="floating" fill="outline"
-          placeholder="Enter Date"></ion-input>
 
-        <ion-input type="file" label="Document" label-placement="floating" fill="outline" placeholder="Select Document"></ion-input>
+          <ion-input type="file" label="Document" label-placement="floating" fill="outline" formControlName="document"
+            (change)="onDocument($event)" accept=".jpg,.png,.jpeg">
+          </ion-input>
 
-        <ion-row class="ion-justify-content-center">
-          <ion-button shape="round">Submit</ion-button>
-        </ion-row>
 
+          <ion-row class="ion-justify-content-center">
+            <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+          </ion-row>
+        </form>
       </ion-list>
     </ion-content>
   </ng-template>

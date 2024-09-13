@@ -127,20 +127,20 @@
           formControlName="barCouncil" (change)="onBarCouncil($event)" accept=".jpg,.png,.jpeg">
         </ion-input>
 
-        <ion-input label="Password" label-placement="floating" fill="outline" formControlName="Password" type="password"
+        <ion-input label="Password" label-placement="floating" fill="outline" formControlName="pass" type="password"
           placeholder="Abc@123"></ion-input>
 
-        <div *ngIf="vakil_Registration_Form.get('Password')?.errors?.['required']">Password is required</div>
+        <div *ngIf="vakil_Registration_Form.get('pass')?.errors?.['required']">Password is required</div>
         <ion-text color="danger"
-          *ngIf="vakil_Registration_Form.get('Password')?.invalid && (vakil_Registration_Form.get('Password')?.dirty || vakil_Registration_Form.get('Password')?.touched)">
+          *ngIf="vakil_Registration_Form.get('pass')?.invalid && (vakil_Registration_Form.get('pass')?.dirty || vakil_Registration_Form.get('pass')?.touched)">
           <ng-container
-            *ngIf="vakil_Registration_Form.get('Password')?.invalid && (vakil_Registration_Form.get('Password')?.dirty || vakil_Registration_Form.get('Password')?.touched)">
-            <span *ngIf="vakil_Registration_Form.get('Password')?.errors?.['pattern']">Invalid password format</span>
+            *ngIf="vakil_Registration_Form.get('pass')?.invalid && (vakil_Registration_Form.get('pass')?.dirty || vakil_Registration_Form.get('pass')?.touched)">
+            <span *ngIf="vakil_Registration_Form.get('pass')?.errors?.['pattern']">Invalid password format</span>
             <span
-              *ngIf="!vakil_Registration_Form.get('Password')?.errors?.['pattern'] && vakil_Registration_Form.get('Password')?.errors?.['minlength']">Password
+              *ngIf="!vakil_Registration_Form.get('pass')?.errors?.['pattern'] && vakil_Registration_Form.get('pass')?.errors?.['minlength']">Password
               must be at least 8 characters long</span>
             <span
-              *ngIf="!vakil_Registration_Form.get('Password')?.errors?.['pattern'] && vakil_Registration_Form.get('Password')?.errors?.['maxlength']">Password
+              *ngIf="!vakil_Registration_Form.get('pass')?.errors?.['pattern'] && vakil_Registration_Form.get('pass')?.errors?.['maxlength']">Password
               cannot exceed 30 characters</span>
           </ng-container>
         </ion-text>

@@ -37,8 +37,4 @@ export class MembershipManagementComponent implements OnInit {
       }
     );
   }
-
-  backButton() {
-    this._router.navigate(['/vakil/home/dashboard'])
-  }
 }

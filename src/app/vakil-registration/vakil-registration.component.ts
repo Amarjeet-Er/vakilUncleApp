@@ -74,7 +74,7 @@ export class VakilRegistrationComponent implements OnInit {
       city: ['', Validators.required],
       adhar: ['', Validators.required],
       barCouncil: ['', Validators.required],
-      Password: [
+      pass: [
         '', [
           Validators.required,
           Validators.minLength(8),
@@ -192,10 +192,10 @@ export class VakilRegistrationComponent implements OnInit {
       console.log('adhar', this.Aadhar_select);
       console.log('BarCouncil', this.BarCouncil);
 
-      if (this.vakil_Registration_Form.get('Password')?.value === this.vakil_Registration_Form.get('ConfirmPassword')?.value) {
-        const vakilPassword = this.vakil_Registration_Form.get('Password')?.value;
+      if (this.vakil_Registration_Form.get('pass')?.value === this.vakil_Registration_Form.get('ConfirmPassword')?.value) {
+        const vakilPassword = this.vakil_Registration_Form.get('pass')?.value;
         if (vakilPassword) {
-          formdata.append('Password', vakilPassword);
+          formdata.append('pass', vakilPassword);
           this.passwordsMatch = false;
         }
       } else {
