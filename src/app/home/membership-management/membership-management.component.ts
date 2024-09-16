@@ -24,7 +24,7 @@ export class MembershipManagementComponent implements OnInit {
         try {
           if (response.status === true) {
             this.membershipDetail = response.data;
-            console.log(this.membershipDetail, 'memeber');            
+            console.log(this.membershipDetail, 'memeber');
           } else {
             console.error('Failed to fetch membership details');
           }
@@ -36,5 +36,10 @@ export class MembershipManagementComponent implements OnInit {
         console.error('Error occurred during the API call', error);
       }
     );
+  }
+
+  onPayNow(item: any) {
+    this._router.navigate(['/home/membershipPremium']);
+    localStorage.setItem('MembershipPay',JSON.stringify(item))
   }
 }

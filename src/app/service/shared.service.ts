@@ -8,8 +8,11 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedService {
   base_url = new BehaviorSubject<string>('https://vakiluncle.in/api/');
   img_url = new BehaviorSubject<string>('https://vakiluncle.in/');
+  memebership = new BehaviorSubject<object>({})
 
-  constructor(private toastController: ToastController) {}
+  constructor(
+    private toastController: ToastController
+  ) { }
 
   // for messages toast notification
   async tostSuccessTop(message: string) {

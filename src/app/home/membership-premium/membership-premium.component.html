@@ -1,0 +1,66 @@
+<div class="header">
+  <div class="navbar">
+    <ion-button fill="clear" shape="round" routerLink="/vakil/home/membership">
+      <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+    </ion-button>
+    <span>Purchase Summary</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Your price summary</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Plan Name</ion-label>
+              <ion-label class="ion-text-end">{{memebership?.planName}}</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Plan Duration</ion-label>
+              <ion-label class="ion-text-end">{{memebership?.planType}}</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Feature</ion-label>
+              <ion-label class="ion-text-end">
+                {{memebership?.featureName}}
+              </ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Final Price</ion-label>
+              <ion-label class="ion-text-end">{{memebership?.newPrice | currency: 'INR'}}</ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-footer>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-checkbox slot="start" [(ngModel)]="isChecked"></ion-checkbox>
+            <ion-label>
+              By submitting you confirm that you accept our terms & conditions and have read our <br>
+              <b routerLink="#">privacy policy</b>.
+            </ion-label>
+          </ion-item>
+
+          <ion-button expand="block" (click)="payNow(memebership)" color="primary"  [disabled]="!isChecked">
+            Pay now {{memebership?.newPrice | currency: 'INR'}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
+</ion-content>

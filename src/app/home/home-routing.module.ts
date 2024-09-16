@@ -32,6 +32,7 @@ import { VakilTotalCaseComponent } from './vakil-total-case/vakil-total-case.com
 import { CaseDocumentsComponent } from './case-documents/case-documents.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { VakilReviewComponent } from './vakil-review/vakil-review.component';
+import { MembershipPremiumComponent } from './membership-premium/membership-premium.component';
 
 
 const routes: Routes = [
@@ -72,7 +73,8 @@ const routes: Routes = [
       { path: 'enquiry', component: EnquiryComponent },
       { path: 'vakilreview', component: VakilReviewComponent },
     ]
-  }
+  },
+  { path: 'membershipPremium', component: MembershipPremiumComponent },
 ];
 
 @NgModule({

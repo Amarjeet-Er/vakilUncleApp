@@ -57,6 +57,8 @@ import { CaseDocumentsComponent } from './home/case-documents/case-documents.com
 import { EnquiryComponent } from './home/enquiry/enquiry.component';
 import { VakilReviewComponent } from './home/vakil-review/vakil-review.component';
 import { VakilRegistrationComponent } from './vakil-registration/vakil-registration.component';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
+import { MembershipPremiumComponent } from './home/membership-premium/membership-premium.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +109,7 @@ import { VakilRegistrationComponent } from './vakil-registration/vakil-registrat
     EnquiryComponent,
     VakilReviewComponent,
     VakilRegistrationComponent,
+    MembershipPremiumComponent,
   ],
   imports: [
     BrowserModule,
@@ -116,7 +119,11 @@ import { VakilRegistrationComponent } from './vakil-registration/vakil-registrat
     ReactiveFormsModule,
     SwiperModule,
     CanvasJSAngularChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true,
+    })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
   bootstrap: [AppComponent],
