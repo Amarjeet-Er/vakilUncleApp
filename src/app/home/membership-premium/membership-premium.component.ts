@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { Checkout } from 'capacitor-razorpay';
-import { RazorpayService } from 'src/app/razorpay/razorpay.service';
+import { LazorpayService } from 'src/app/service/lazorpay.service';
 import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
@@ -11,66 +10,133 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class MembershipPremiumComponent implements OnInit {
   memebership: any;
-  login: any;
-  login_data: any
-  memebrdata: any;
-  memebership_premium: any;
+  loginData: any;
+  membershipPremium: any;
   isChecked: boolean = false;
+  paymentData: any;
+  membershipData: any;
+  login: any;
 
   constructor(
-    private _razorpayService: RazorpayService,
-    private _shared: SharedService,
-    private _formBuilder: FormBuilder
-  ) {
-
-  }
+    private razorpayService: LazorpayService,
+    private sharedService: SharedService,
+  ) { }
 
   ngOnInit(): void {
     this.login = localStorage.getItem('vakilLoginData');
-    this.login_data = JSON.parse(this.login)
-    console.log(this.login_data);
+    this.loginData = JSON.parse(this.login);
+    console.log(this.loginData);
 
-    this.memebrdata = localStorage.getItem('MembershipPay')
-    this.memebership_premium = JSON.parse(this.memebrdata)
-    this.memebership = this.memebership_premium;
+    this.membershipData = localStorage.getItem('MembershipPay');
+    this.membershipPremium = JSON.parse(this.membershipData);
+    this.memebership = this.membershipPremium;
     console.log(this.memebership);
   }
 
-
   payNow(data: any) {
     console.log(data);
-    const amount = data.Price1months
-    this.createOrderL(amount)
+    const amount = (data.newPrice * 100).toString();
+    this.payWithRazorpay(amount, data.id);
   }
 
-  createOrderL(amount: string): void {
-    this.payWithrezorpay()
-  }
-
-  async payWithrezorpay() {
+  async payWithRazorpay(amount: string, id: any) {
     const options = {
-      key: 'rzp_test_YGORtbwcCRzFxD', //test
-      // key: 'rzp_live_nrumEje16i8mje', //live
-      amount: '1',
-      description: 'vakil uncle',
-      image: '',
-      // order_id: 'order_Cp10EhSaf7wLbS',
+      key: 'rzp_test_YGORtbwcCRzFxD', // Test key
+      amount: amount,
+      orderId: id,
+      description: '',
+      image: 'https://vakil.in',
       currency: 'INR',
-      name: this.login_data.advocateName,
+      name: this.loginData.advocateName,
       prefill: {
-        email: this.login_data.email,
-        contact: this.login_data.contactNum
+        name: this.loginData.advocateName,
+        email: this.loginData.email,
+        contact: this.loginData.contactNum
       },
       theme: {
-        color: '#3c595d'
+        color: '#0f4290'
       }
-    }
+    };
 
     try {
-      let data = (await Checkout.open(options));
-      console.log(data.response + "AcmeCorp");
-      console.log(JSON.stringify(data))
+      let response = (await Checkout.open(options));
+      console.log(response.response, 'res');
+      this.paymentData = response;
+      this.verifyPayment(this.memebership);
     } catch (error) {
+      console.error('Payment error:', error);
+      this.handlePaymentFailure(error);
     }
+  }
+
+  verifyPayment(data: any) {
+    console.log(data, 'id base');
+    const Id = data.id;
+    const planType = data.planType;
+
+    this.razorpayService.verifyMembershipLive(this.loginData.advId, Id, planType)
+      .subscribe(
+        (response) => {
+          console.log(response, 'Verification response');
+          if (response.status) {
+            this.handlePaymentSuccess();
+          } else {
+            alert('Payment verification failed, please try again.');
+            this.handlePaymentFailure(response);
+          }
+        },
+        (error) => {
+          console.error('Verification error:', error);
+          alert('Payment verification failed, please try again.');
+        }
+      );
+  }
+
+  handlePaymentFailure(error: any) {
+    const data = {
+      Name: this.loginData.advocateName,
+      MobileNo: this.loginData.contactNum,
+      EmailId: this.loginData.email,
+      UserId: this.loginData.advId,
+      OrderId: this.paymentData?.metadata?.order_id,
+      PaymentId: this.paymentData?.metadata?.payment_id,
+      PlanId: this.memebership.id,
+      Price: this.memebership.newPrice,
+      Status: 'Failed',
+      PayFailedReason: error.reason || 'Unknown error',
+      PaymentMode: 'through UPI',
+    };
+
+    console.log(data, 'Failed payment data amar');
+    this.razorpayService.PaymentFaildInsert(data).subscribe(
+      (res: any) => {
+        this.sharedService.tostErrorTop(res);
+      }
+    );
+  }
+
+  handlePaymentSuccess() {
+    const data = {
+      Name: this.loginData.advocateName,
+      MobileNo: this.loginData.contactNum,
+      EmailId: this.loginData.email,
+      UserId: this.loginData.advId,
+      OrderId: this.paymentData.razorpay_order_id,
+      PaymentId: this.paymentData.razorpay_payment_id,
+      PlanId: this.memebership.id,
+      Price: this.memebership.newPrice,
+      Status: 'Success',
+    };
+
+    console.log(data, 'Successful payment data');
+    this.razorpayService.PaymentSuccessInsert(data).subscribe(
+      (res: any) => {
+        this.sharedService.tostSuccessTop('Payment Successful');
+      },
+      (error) => {
+        console.error('Success callback error:', error);
+        this.sharedService.tostErrorTop('Failed to record payment success.');
+      }
+    );
   }
 }

@@ -38,7 +38,7 @@ export class MembershipManagementComponent implements OnInit {
     );
   }
 
-  onPayNow(item: any) {
+  onPayment(item: any) {
     this._router.navigate(['/home/membershipPremium']);
     localStorage.setItem('MembershipPay',JSON.stringify(item))
   }

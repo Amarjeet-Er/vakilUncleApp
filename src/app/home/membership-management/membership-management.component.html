@@ -1,64 +1,104 @@
 <div class="header">
-  <span>Membership</span>
+  <ion-title>Membership</ion-title>
 </div>
 
-
-
-
-
 <ion-content>
- <div class="vip-card" *ngFor="let item of membershipDetail">
-    <div class="vip-card-header">
-      <img *ngIf="item?.planName === 'Gold '" src="../../../assets/menuIcon/gold.png">
-      <img *ngIf="item?.planName === 'Silver'" src="../../../assets/menuIcon/silver.png">
-      <img *ngIf="item?.planName === 'Platinum'" src="../../../assets/menuIcon/platinum.png">
-      <h1>{{item?.planName}}</h1>
-    </div>
-    <div class="vip-card-body">
-      <div class="vip-card-info">
-        <h2>{{item?.planType}}</h2>
-        <p class="description">{{item?.description}}</p>
-        <p><strong>Old Price:</strong> <del>{{item?.oldPrice | currency:'INR'}}</del></p>
-        <p><strong>New Price:</strong> {{item?.newPrice | currency:'INR'}}</p>
-        <p><strong>Discount:</strong> {{item?.discount}}% (You save {{item?.discountAmount | currency:'INR'}})</p>
-        <p><strong>Features:</strong> {{item?.featureName}}</p>
-      </div>
-    </div>
-    <div class="vip-card-footer" (click)="onPayNow(item)">
-      <p>Pay Now</p>
-    </div>
-  </div> 
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" *ngFor="let premium of membershipDetail">
+        <ion-card>
+          <div [ngClass]="{
+             'card-gold header-gold': premium.planName.trim().toLowerCase() === 'gold',
+            'card-silver header-silver': premium.planName.trim().toLowerCase() === 'silver',
+            'card-platinum header-platinum': premium.planName.trim().toLowerCase() === 'platinum',
+            'card-default header-default': premium.planName.trim().toLowerCase() !== 'gold' && premium.planName.trim().toLowerCase() !== 'silver' && premium.planName.trim().toLowerCase() !== 'platinum'
+          }">
+            <img src="../../../assets/menuIcon/gold.png" width="80px"
+              *ngIf="premium.planName.trim().toLowerCase() === 'gold',">
 
-  <!-- <div class="card">
-    <ion-item lines="none">
-      <ion-icon aria-hidden="true" name="checkmark-circle" slot="start"></ion-icon>
-      <ion-label><b>Gold Premium</b></ion-label>
-      <span>Monthly</span>
-    </ion-item>
-    <div class="feature">
-      <ion-chip [outline]="true">Article</ion-chip>
-      <ion-chip [outline]="true">Video</ion-chip>
-      <ion-chip [outline]="true">Images</ion-chip>
-    </div>
+            <img src="../../../assets/menuIcon/silver.png" width="80px"
+              *ngIf="premium.planName.trim().toLowerCase() === 'silver',">
 
-    <div  class="offer">
-      <span>Offer<br>20%</span>
-      |
-      <span>Start Date<br>12-Jul-2024</span>
-      |
-      <span>End Date<br>25-Jun-2025</span>
-    </div>
+            <img src="../../../assets/menuIcon/platinum.png" width="80px"
+              *ngIf="premium.planName.trim().toLowerCase() === 'platinum',">
 
-    <div class="memberShipPrice">
-      <ion-row class="ion-justify-content-around">
-        <span class="discount"><ion-icon name="arrow-down"></ion-icon>5%</span>
-        <span style=" text-decoration: line-through;">₹4000</span>
-        <span>₹3500</span>
-      </ion-row>
-      <ion-button size="small">Pay</ion-button>
-    </div>
+            <img src="../../../assets/icon/silver.png" width="80px"
+              *ngIf="premium.planName.trim().toLowerCase() !== 'gold' && premium.planName.trim().toLowerCase() !== 'silver' && premium.planName.trim().toLowerCase() !== 'platinum'">
+            <h1>{{premium.planName}}</h1>
+          </div>
 
-  </div> -->
+          <ion-card-header>
+            <ion-card-title>{{premium.planType}}</ion-card-title>
+          </ion-card-header>
 
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <p class="description">{{premium?.description}}</p>
+              </ion-item>
+              <ion-item>
+                <p><strong>Old Price: </strong> <del> {{premium?.oldPrice | currency:'INR'}} </del></p>
+              </ion-item>
+              <ion-item>
+                <p><strong>New Price: </strong> {{premium?.newPrice | currency:'INR'}}</p>
+              </ion-item>
+              <ion-item>
+                <p><strong>Discount: </strong> {{premium?.discount}}% (You save {{premium?.discountAmount |
+                  currency:'INR'}})</p>
+              </ion-item>
+              <ion-item>
+                <p><strong>Features:</strong> {{premium?.featureName}}</p>
+              </ion-item>
+            </ion-list>
 
+            <ion-button [ngClass]="(premium.Id % 2 === 0) ? 'btn-basic' : 'btn-premium'" expand="block"
+              (click)="onPayment(premium)">
+              BUY NOW
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div id="footer">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Instruction</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          To ensure smooth transactions and a hassle-free experience, please complete your payment within the app.
+          Your cooperation is appreciated.
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Have more queries?</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-item button>
+        <ion-icon name="call" slot="start"></ion-icon>
+        <ion-label>Request a call back</ion-label>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item href="mailto:{{'Email_Id'}}">
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-label>Email: {{'abc@gmail.com'}}</ion-label>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item routerLink="#">
+        <ion-icon name="pricetags" slot="start"></ion-icon>
+        <ion-label>Privacy policy</ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
 </ion-content>

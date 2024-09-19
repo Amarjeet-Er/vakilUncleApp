@@ -13,147 +13,93 @@
   }
 }
 
-
-
-
-
-.vip-card {
-  width: calc(100% - 40px);
-  height: auto;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #000000, #4e4e4e);
-  color: #fff;
-  position: relative;
-  margin: 20px auto;
-
-  .vip-card-header {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background: #333;
-
-    img {
-      height: 60px;
-    }
-
-    h1 {
-      font-size: 24px;
-      font-weight: bold;
-      color: gold;
-      margin: 0;
-    }
-  }
-
-  .vip-card-body {
-    padding: 1px 10px 2px;
-    text-align: start;
-    background: #222;
-  }
-
-  .vip-card-info h2 {
-    margin: 10px 0;
-    font-size: 18px;
-    font-weight: bold;
-    color: gold;
-  }
-
-  .vip-card-info p {
-    margin: 5px 0;
-    font-size: 12px;
-    color: #ccc;
-  }
-
-  .vip-member-id,
-  .vip-expiry-date {
-    color: #aaa;
-  }
-
-  .vip-card-footer {
-    height: 50px;
-    padding: 2px;
-    background: #333;
-    text-align: center;
-    font-size: 16px;
-    color: gold;
-    font-weight: bold;
-    cursor: pointer;
-  }
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-// .card {
-//   width: 300px;
-//   height: 170px;
-//   border-radius: 10px;
-//   margin: 10px auto;
-//   padding: 5px 10px;
-//   background: #ffc107;
+.card-gold {
+  height: 5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 1rem 0;
+  text-align: end;
+  color: #fff;
+  clip-path: polygon(0 0, 100% 0%, 100% 85%, 0% 100%);
+  display: flex;
+  justify-content: space-between;
+}
 
-//   ion-item {
-//       --background: none;
-//       height: 40px;
-//       --padding-start: 0;
+.header-gold {
+  padding: 2px 15px 2px 15px;
+  background: linear-gradient(135deg, #eea300, #ee5700);
+}
 
-//       ion-icon {
-//           color: var(--color-primary);
-//       }
-//   }
+.card-silver {
+  height: 5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 1rem 0;
+  text-align: end;
+  color: #fff;
+  clip-path: polygon(0 0, 100% 0%, 100% 85%, 0% 100%);
+  display: flex;
+  justify-content: space-between;
+}
 
-//   .feature {
-//       width: 100%;
-//       height: calc(100% - 110px);
+.header-silver {
+  padding: 2px 15px 2px 15px;
+  background: linear-gradient(135deg, #9a9191, #888080);
+}
 
-//       ion-chip {
-//           font-size: 10px;
-//           min-height: 24px;
-//       }
-//   }
 
-//   .offer {
-//       display: flex;
-//       align-items: center;
-//       height: 30px;
-//       justify-content: space-between;
-//       clear: both;
-//       margin: 5px 0;
-//       text-align: center;
+.card-platinum {
+  height: 5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 1rem 0;
+  text-align: end;
+  color: #fff;
+  clip-path: polygon(0 0, 100% 0%, 100% 85%, 0% 100%);
+  display: flex;
+  justify-content: space-between;
+}
 
-//       span {
-//           font-size: 12px;
-//       }
-//   }
+.header-platinum {
+  padding: 2px 15px 2px 15px;
+  background: linear-gradient(135deg, #b4afa4, #b8b8b8, #a8a9ad);
+}
 
-//   .memberShipPrice {
-//       width: 100%;
-//       height: 30px;
-//       display: flex;
-//       align-items: center;
-//       gap: 5px;
-//       justify-content: space-between;
 
-//       ion-row {
-//           display: flex;
-//           gap: 5px;
+.card-default {
+  height: 5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 1rem 0;
+  text-align: end;
+  color: #fff;
+  clip-path: polygon(0 0, 100% 0%, 100% 85%, 0% 100%);
+  display: flex;
+  justify-content: space-between;
+}
 
-//           span {
-//               font-size: 16px;
-//               font-weight: 600;
-//           }
+.header-default {
+  padding: 2px 15px 2px 15px;
+  background: linear-gradient(135deg, #3c595d, #888080);
+}
 
-//           .discount {
-//               align-items: center;
-//               display: flex;
-//               color: green;
-//           }
-//       }
+#footer {
+  width: 84%;
+  margin: 0px auto;
+  padding: 4%;
+}
 
-//       ion-button {
-//           --background: var(--color-primary);
-//           text-transform: capitalize;
-//       }
-//   }
-
-// }
+ion-card {
+  margin: 10px 0px;
+}
