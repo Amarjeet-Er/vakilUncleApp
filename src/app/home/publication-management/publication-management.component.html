@@ -4,7 +4,9 @@
   </div>
 </div>
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
+  </ion-searchbar>
 
   <ion-row>
     <span>Add Publication</span>
@@ -12,103 +14,27 @@
   </ion-row>
 
   <ion-list>
-    <ion-card>
+    <ion-card *ngFor="let data of view_publication">
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span class="highlight">Title</span>
-        <span class="highlight">Publication Title</span>
+        <span class="highlight">{{data?.title}}</span>
       </ion-row>
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span>Journal</span>
-        <span>Data Nhi Hai</span>
+        <span>{{data?.journal}}</span>
       </ion-row>
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span>Date</span>
-        <span>30/07/2024</span>
+        <span>{{data?.dateString}}</span>
       </ion-row>
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span>Document</span>
-        <ion-icon name="document-attach"></ion-icon>
+        <ion-icon name="document-attach" (click)="downloadDocument(img_url + data?.documentUrl)"
+          style="cursor: pointer;">
+        </ion-icon>
       </ion-row>
     </ion-card>
-
-    <ion-card>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span class="highlight">Title</span>
-        <span class="highlight">Publication Title</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Journal</span>
-        <span>Data Nhi Hai</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Date</span>
-        <span>30/07/2024</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Document</span>
-        <ion-icon name="document-attach"></ion-icon>
-      </ion-row>
-    </ion-card>
-
-    <ion-card>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span class="highlight">Title</span>
-        <span class="highlight">Publication Title</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Journal</span>
-        <span>Data Nhi Hai</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Date</span>
-        <span>30/07/2024</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Document</span>
-        <ion-icon name="document-attach"></ion-icon>
-      </ion-row>
-    </ion-card>
-
-    <ion-card>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span class="highlight">Title</span>
-        <span class="highlight">Publication Title</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Journal</span>
-        <span>Data Nhi Hai</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Date</span>
-        <span>30/07/2024</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Document</span>
-        <ion-icon name="document-attach"></ion-icon>
-      </ion-row>
-    </ion-card>
-
-    <ion-card>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span class="highlight">Title</span>
-        <span class="highlight">Publication Title</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Journal</span>
-        <span>Data Nhi Hai</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Date</span>
-        <span>30/07/2024</span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Document</span>
-        <ion-icon name="document-attach"></ion-icon>
-      </ion-row>
-    </ion-card>
-
   </ion-list>
-
 </ion-content>
 
 
@@ -133,9 +59,9 @@
             placeholder="Enter journal">
           </ion-input>
 
-          <ion-datetime formControlName="date" label="Date and Time" label-placement="floating" fill="outline"
-            placeholder="Select Date and Time" presentation="date-time">
-          </ion-datetime>
+          <ion-input formControlName="date" label="Date and Time" label-placement="floating" fill="outline"
+            placeholder="Select Date and Time" type="date" presentation="date-time">
+          </ion-input>
 
 
           <ion-input type="file" label="Document" label-placement="floating" fill="outline" formControlName="document"

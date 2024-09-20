@@ -32,7 +32,6 @@ import { VakilHomePageComponent } from './vakil/vakil-home-page/vakil-home-page.
 import { VakilAccountComponent } from './vakil/vakil-account/vakil-account.component';
 import { VakilProfileComponent } from './home/vakil-profile/vakil-profile.component';
 import { VakilContactPanelComponent } from './vakil/vakil-contact-panel/vakil-contact-panel.component';
-import { ClientListComponent } from './vakil/client-list/client-list.component';
 import { VakilDashboardComponent } from './vakil/vakil-dashboard/vakil-dashboard.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { AddClientCaseComponent } from './home/add-client-case/add-client-case.component';
@@ -59,6 +58,7 @@ import { VakilReviewComponent } from './home/vakil-review/vakil-review.component
 import { VakilRegistrationComponent } from './vakil-registration/vakil-registration.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
 import { MembershipPremiumComponent } from './home/membership-premium/membership-premium.component';
+import { PaymentHistoryComponent } from './home/payment-history/payment-history.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +86,6 @@ import { MembershipPremiumComponent } from './home/membership-premium/membership
     VakilAccountComponent,
     VakilProfileComponent,
     VakilContactPanelComponent,
-    ClientListComponent,
     VakilDashboardComponent,
     AddClientCaseComponent,
     MembershipManagementComponent,
@@ -110,6 +109,7 @@ import { MembershipPremiumComponent } from './home/membership-premium/membership
     VakilReviewComponent,
     VakilRegistrationComponent,
     MembershipPremiumComponent,
+    PaymentHistoryComponent,
   ],
   imports: [
     BrowserModule,

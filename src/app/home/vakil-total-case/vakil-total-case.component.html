@@ -1,12 +1,16 @@
-
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon> 
+    <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
     <span>Total Case 10</span>
   </div>
 </div>
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearchChange($event)"></ion-searchbar>
+
+  <ion-row class="AddCase">
+    <span>Add Case</span>
+    <ion-icon name="add-circle" (click)="addClientCase()"></ion-icon>
+  </ion-row>
 
   <ng-container *ngFor="let case of filteredCases">
     <ion-card (click)="caseHearing()">

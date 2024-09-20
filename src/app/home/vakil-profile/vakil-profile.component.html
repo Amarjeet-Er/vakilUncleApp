@@ -7,12 +7,14 @@
 <ion-content>
   <div class="profile">
     <div class="profileImage">
-      <img [src]="selectedProfileImage ? selectedProfileImage : (profileInfo?.Profile_image)">
+      <img [src]="profile_url" *ngIf="profile_url">
     </div>
-    <ion-button shape="round" (click)="openFile()">
+    <input type="file" #fileInput (change)="openFile(fileInput.files)" [hidden]="profileInput">
+    <ion-button shape="round" (click)="fileInput.click()">
       <ion-icon slot="icon-only" name="pencil"></ion-icon>
     </ion-button>
   </div>
+  
 
   <div class="profileDetails">
 

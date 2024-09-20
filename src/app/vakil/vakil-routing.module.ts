@@ -4,8 +4,8 @@ import { VakilHomePageComponent } from './vakil-home-page/vakil-home-page.compon
 import { VakilDashboardComponent } from './vakil-dashboard/vakil-dashboard.component';
 import { VakilAccountComponent } from './vakil-account/vakil-account.component';
 import { VakilContactPanelComponent } from './vakil-contact-panel/vakil-contact-panel.component';
-import { ClientListComponent } from './client-list/client-list.component';
 import { MembershipManagementComponent } from '../home/membership-management/membership-management.component';
+import { NewClientRegComponent } from '../home/new-client-reg/new-client-reg.component';
 
 const routes: Routes = [
   {
@@ -21,8 +21,8 @@ const routes: Routes = [
       { path: 'dashboard', component: VakilDashboardComponent },
       { path: 'account', component: VakilAccountComponent },
       { path: 'contact', component: VakilContactPanelComponent },
-      { path: 'clientlist', component: ClientListComponent },
-      {path:'membership', component: MembershipManagementComponent}
+      { path: 'membership', component: MembershipManagementComponent },
+      { path: 'newclientreg', component: NewClientRegComponent },
     ]
   },
 ];

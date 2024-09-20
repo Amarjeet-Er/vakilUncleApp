@@ -79,14 +79,30 @@ export class CrudService {
   add_publication(data: any) {
     return this._http.post<any>(`${this.base_url}addPublication`, data);
   }
+  get_publication(vakilId: any) {
+    return this._http.post<any>(`${this.base_url}viewPublication?vakilId=${vakilId}`, {});
+  }
 
-  vakil_dashboard(vakilId: any) {
-    return this._http.get<any>(`${this.base_url}vakilDashboard?vakilId=${vakilId}`);
+  new_Client_register(data: any) {
+    return this._http.post<any>(`${this.base_url}ClientRegister`, data);
+  }
+
+  get_ClientListByVakilId(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}ClientListByVakilId?vakilId=${vakilId}`);
   }
 
   get_membership_detail() {
     return this._http.get<any>(`${this.base_url}MembershipDetail`);
   }
+
+  get_pay_history(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}getPaymentHistoryByAdvocate?vakilId=${vakilId}`);
+  }
+
+  vakil_dashboard(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}vakilDashboard?vakilId=${vakilId}`);
+  }
+
   //for user 
   user_registartion(data: any) {
     return this._http.post<any>(`${this.base_url}ClientRegister`, data);

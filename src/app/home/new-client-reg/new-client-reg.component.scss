@@ -43,6 +43,11 @@ ion-content {
         }
     }
 
+    .NoRecord {
+        padding-left: 20px;
+        margin: 0px;
+    }
+
     #client-list {
         ion-card {
             width: calc(100% - 20px);
@@ -75,10 +80,9 @@ ion-content {
                     height: 80px;
                     border-radius: 100%;
                     padding: 2px;
-                    border: 0.1px solid #3c595d;
+                    border: 0.1px solid #d9d0d0;
                 }
             }
-
         }
     }
 }
@@ -114,6 +118,7 @@ ion-modal {
 
             ion-card {
                 padding: 10px;
+
                 .image-profile {
                     text-align: center;
                     width: 100%;
@@ -130,7 +135,7 @@ ion-modal {
                 }
 
                 ion-row {
-                    font-size: 16px;
+                    font-size: 14px;
                     font-weight: normal;
                     background: none;
                     padding: 0px 0px 10px 0px;

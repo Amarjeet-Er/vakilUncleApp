@@ -15,15 +15,17 @@ export class VakilProfileComponent implements OnInit {
   states: any;
   citys: any;
   BarCouncil: any;
-  profileInfo = {
-    Profile_image: 'https://png.pngitem.com/pimgs/s/130-1300400_user-hd-png-download.png',
-  };
 
   login: any;
   login_data: any;
   vId: any;
   dashboard: any;
   img_url: any;
+
+  profile_select: any;
+  profile_url: any = "https://png.pngitem.com/pimgs/s/130-1300400_user-hd-png-download.png"
+  profileInput: boolean = true
+
 
   Aadhar_select: any;
   Aadhar_img_url: any = "../../../assets/images/documents.jpg"
@@ -161,22 +163,18 @@ export class VakilProfileComponent implements OnInit {
     reader.readAsDataURL(this.LLBC_select);
   }
 
-
-  openFile() {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
-    fileInput.onchange = (event: any) => {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.selectedProfileImage = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-    fileInput.click();
+  // for select profile
+  openFile(files: any) {
+    if (files.length > 0) {
+      const reader = new FileReader();
+      this.profile_select = files[0];
+      reader.onload = () => {
+        this.profile_url = reader.result;
+      };
+      reader.readAsDataURL(this.profile_select);
+    } else {
+      console.log('No file selected');
+    }
   }
 
   async submit() {
@@ -201,7 +199,7 @@ export class VakilProfileComponent implements OnInit {
     formUpdate.append('pan', this.Pan_select);
     formUpdate.append('barCouncil', this.BarCouncil_select);
     formUpdate.append('llb', this.LLBC_select);
-    formUpdate.append('profile', this.selectedProfileImage);
+    formUpdate.append('profile', this.profile_select);
 
     if (this.vakil_profile_update.valid) {
       this._crud.update_vakil_profile(formUpdate).subscribe(

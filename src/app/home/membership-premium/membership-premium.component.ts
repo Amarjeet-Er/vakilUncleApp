@@ -94,17 +94,14 @@ export class MembershipPremiumComponent implements OnInit {
 
   handlePaymentFailure(error: any) {
     const data = {
-      Name: this.loginData.advocateName,
-      MobileNo: this.loginData.contactNum,
-      EmailId: this.loginData.email,
-      UserId: this.loginData.advId,
-      OrderId: this.paymentData?.metadata?.order_id,
-      PaymentId: this.paymentData?.metadata?.payment_id,
-      PlanId: this.memebership.id,
-      Price: this.memebership.newPrice,
-      Status: 'Failed',
-      PayFailedReason: error.reason || 'Unknown error',
-      PaymentMode: 'through UPI',
+      vakilId: this.loginData.advId,
+      orderId: this.paymentData?.metadata?.order_id,
+      paymentId: this.paymentData?.metadata?.payment_id,
+      featureId: this.memebership.id,
+      price: this.memebership.newPrice,
+      paymentStatus: 0,
+      paymentDescription: error.reason || 'Unknown error',
+      paymentMode: 'through UPI',
     };
 
     console.log(data, 'Failed payment data amar');
@@ -117,15 +114,13 @@ export class MembershipPremiumComponent implements OnInit {
 
   handlePaymentSuccess() {
     const data = {
-      Name: this.loginData.advocateName,
-      MobileNo: this.loginData.contactNum,
-      EmailId: this.loginData.email,
-      UserId: this.loginData.advId,
-      OrderId: this.paymentData.razorpay_order_id,
-      PaymentId: this.paymentData.razorpay_payment_id,
-      PlanId: this.memebership.id,
-      Price: this.memebership.newPrice,
-      Status: 'Success',
+      vakilId: this.loginData.advId,
+      orderId: this.paymentData?.metadata?.order_id,
+      paymentId: this.paymentData?.metadata?.payment_id,
+      featureId: this.memebership.id,
+      price: this.memebership.newPrice,
+      paymentStatus: 1,
+      paymentMode: 'through UPI',
     };
 
     console.log(data, 'Successful payment data');

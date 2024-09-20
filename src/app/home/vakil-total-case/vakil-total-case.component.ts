@@ -51,7 +51,10 @@ export class VakilTotalCaseComponent  implements OnInit {
     );
   }
 
-
+  // for add case 
+  addClientCase() {
+    this._router.navigate(['/home/addclientcase'])
+  }
 
   // for modal 
   caseHearing() {

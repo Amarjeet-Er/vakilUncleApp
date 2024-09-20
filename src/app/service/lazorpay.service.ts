@@ -16,10 +16,10 @@ export class LazorpayService {
 
   
   PaymentSuccessInsert(data: any) {
-    return this._http.post(`https://vakiluncle.in/api/Payment`, data)
+    return this._http.post(`https://vakilUncle.in/api/addVakilPaymentHistroy`, data)
   }
 
   PaymentFaildInsert(data: any) {
-    return this._http.post(`https://vakiluncle.in/api/Payment`, data)
+    return this._http.post(`https://vakilUncle.in/api/addVakilPaymentHistroy`, data)
   }
 }

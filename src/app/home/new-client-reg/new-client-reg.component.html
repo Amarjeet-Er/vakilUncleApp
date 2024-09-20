@@ -1,11 +1,11 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon> <span>Registration List</span>
+    <span>Client List</span>
   </div>
 </div>
 
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
 
   <ion-row>
     <span>New Registration </span>
@@ -14,28 +14,26 @@
 
   <ion-list id="client-list">
     <ion-card (click)="onClientDetails(client)" *ngFor="let client of clients">
-
       <div class="client-text">
         <ion-row>
           <span class="highlight">Name </span>
-          <span class="highlight">{{client.name}}</span>
+          <span class="highlight">{{client.clientName || 'N/A' | titlecase}}</span>
         </ion-row>
         <ion-row>
           <span>Contact </span>
-          <span>{{client.contact}} </span>
+          <span>{{client.contactNum || 'N/A'}} </span>
         </ion-row>
         <ion-row>
           <span>Case No</span>
-          <span>{{client.caseno}}</span>
+          <span>{{client.caseNo || 'N/A'}}</span>
         </ion-row>
       </div>
       <div class="cleint-profile">
-        <img [src]="client.image || '../../../assets/images/image_1.jfif'" alt="">
+        <img [src]="detail?.profile ? img_url+detail.profile:  '../../../assets/icon/profile.png'" alt="">
       </div>
     </ion-card>
-
   </ion-list>
-
+  <p class="NoRecord" *ngIf="clients?.length === 0">No Record Found</p>
 </ion-content>
 
 
@@ -49,54 +47,71 @@
       </div>
     </div>
     <ion-content>
-      <ion-list>
+      <form [formGroup]="newRegistartion_form">
+        <ion-list>
 
-        <ion-input label="Name " label-placement="floating" fill="outline" placeholder="Enter name "></ion-input>
+          <ion-input label="Name" label-placement="floating" fill="outline" placeholder="Enter name"
+            formControlName="clientName">
+          </ion-input>
 
-        <ion-input label="Contact No" label-placement="floating" fill="outline"
-          placeholder="Enter contact no"></ion-input>
+          <ion-input label="Email" label-placement="floating" fill="outline" placeholder="Enter email"
+            formControlName="email"></ion-input>
 
-        <ion-input label="Case No" label-placement="floating" fill="outline" placeholder="Enter case no"></ion-input>
+          <ion-input label="Contact No" label-placement="floating" type="number" fill="outline"
+            placeholder="Enter contact no" formControlName="contactNum"></ion-input>
 
-        <ion-input label="Case Title " label-placement="floating" fill="outline"
-          placeholder="Enter Case Title "></ion-input>
+          <ion-input label="Case No" label-placement="floating" type="number" fill="outline" placeholder="Enter case no"
+            formControlName="caseNo"></ion-input>
 
-        <ion-input label="State " label-placement="floating" fill="outline" placeholder="Enter state"></ion-input>
+          <ion-input label="Case Title " label-placement="floating" fill="outline" placeholder="Enter Case Title "
+            formControlName="caseTitle"></ion-input>
 
-        <ion-input label="City " label-placement="floating" fill="outline" placeholder="Enter city"></ion-input>
+          <ion-input label="Act" label-placement="floating" fill="outline" placeholder="Enter act"
+            formControlName="act"></ion-input>
 
-        <ion-input label="Police Station " label-placement="floating" fill="outline"
-          placeholder="Enter police station"></ion-input>
+          <ion-select label="State" label-placement="floating" fill="outline" interface="action-sheet"
+            placeholder="Select State" (ionChange)="onCityChange($event)" formControlName="state">
+            <ion-select-option *ngFor="let state of states" [value]="state?.Id">
+              {{ state?.name}}
+            </ion-select-option>
+          </ion-select><br>
 
-        <ion-input label="Inquiry Officer " label-placement="floating" fill="outline"
-          placeholder="Enter inquiry officer"></ion-input>
+          <ion-select label="City" label-placement="floating" fill="outline" interface="action-sheet"
+            placeholder="Select City" formControlName="city">
+            <ion-select-option *ngFor="let city of citys" [value]="city?.Id">
+              {{city?.name}}
+            </ion-select-option>
+          </ion-select><br>
 
-        <ion-input label="Court" label-placement="floating" fill="outline" placeholder="Enter court"></ion-input>
+          <ion-select label="Court" label-placement="floating" fill="outline" interface="action-sheet"
+            placeholder="Select Court" formControlName="court">
+            <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
+              {{court?.courtName}}
+            </ion-select-option>
+          </ion-select>
 
-        <ion-input label="Act" label-placement="floating" fill="outline" placeholder="Enter act"></ion-input>
+          <ion-input label="Hearing Date" type="date" label-placement="floating" fill="outline"
+            formControlName="HearingDate"></ion-input>
 
-        <ion-input label="Filling Date" type="date" label-placement="floating" fill="outline"></ion-input>
+          <ion-input label="Advocate Fee" type="number" placeholder="Enter advocate Fee" label-placement="floating"
+            fill="outline" formControlName="advocateFee"></ion-input>
 
-        <ion-input label="Hearing  Date" type="date" label-placement="floating" fill="outline"></ion-input>
+          <ion-input type="file" label="Document" label-placement="floating" fill="outline" formControlName="document"
+            (change)="onAadhar($event)" accept=".jpg,.png,.jpeg">
+          </ion-input>
 
-        <ion-input label="FIR  Date" type="date" label-placement="floating" fill="outline"></ion-input>
+          <ion-textarea label="Address " placeholder="Enter Address" label-placement="floating" fill="outline"
+            formControlName="address"></ion-textarea>
 
-        <ion-input label="Advocate Fee" placeholder="Enter advocate Fee" label-placement="floating"
-          fill="outline"></ion-input>
+          <ion-input label="Password " placeholder="Enter password" label-placement="floating" fill="outline"
+            formControlName="password"></ion-input>
 
-        <ion-input label="Document" type="file" label-placement="floating" fill="outline"></ion-input>
+          <ion-row class="ion-justify-content-center">
+            <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+          </ion-row>
 
-        <ion-input label="Summary of the case" placeholder="Enter summary of the case" label-placement="floating"
-          fill="outline"></ion-input>
-
-        <ion-textarea label="Address " placeholder="Enter Address" label-placement="floating"
-          fill="outline"></ion-textarea>
-
-        <ion-row class="ion-justify-content-center">
-          <ion-button shape="round">Submit</ion-button>
-        </ion-row>
-
-      </ion-list>
+        </ion-list>
+      </form>
     </ion-content>
   </ng-template>
 </ion-modal>
@@ -116,91 +131,98 @@
 
         <ion-card>
           <div class="image-profile">
-            <img [src]="images || '../../../assets/images/image_1.jfif'" alt="">
+            <img [src]="detail?.profile ? img_url+detail.profile:  '../../../assets/icon/profile.png'" alt="">
           </div>
           <ion-row>
-            <ion-icon name="person-outline"></ion-icon>
+            <ion-icon name="person"></ion-icon>
             <p>
               <span class="highlight">Name </span>
-              <span class="highlight">{{detail.name}}</span>
+              <span class="highlight">{{detail?.clientName || 'N/A' | titlecase}}</span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="call-outline"></ion-icon>
+            <ion-icon name="call"></ion-icon>
             <p>
               <span>Contact </span>
-              <span>{{detail.contact}} </span>
+              <span>{{detail?.contactNum || 'N/A'}} </span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="code-outline"></ion-icon>
+            <ion-icon name="mail"></ion-icon>
+            <p>
+              <span>Email Id </span>
+              <span>{{detail?.email || 'N/A'}} </span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="code"></ion-icon>
             <p>
               <span>Case No</span>
-              <span>{{detail.caseno}}</span>
+              <span>{{detail?.caseNo || 'N/A'}}</span>
             </p>
           </ion-row>
 
           <ion-row>
-            <ion-icon name="newspaper-outline"></ion-icon>
+            <ion-icon name="newspaper"></ion-icon>
             <p>
               <span>Case Title</span>
-              <span>{{detail.casetitle}}</span>
+              <span>{{detail?.caseTitle || 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="business-outline"></ion-icon>
+            <ion-icon name="business"></ion-icon>
             <p>
               <span>Court</span>
-              <span>High Court</span>
+              <span>{{detail?.courtName || 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="crop-outline"></ion-icon>
+            <ion-icon name="crop"></ion-icon>
             <p>
               <span>Act</span>
-              <span>504</span>
+              <span>{{detail?.act || 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="calendar-outline"></ion-icon>
+            <ion-icon name="calendar"></ion-icon>
             <p>
               <span>Fir Date</span>
-              <span>10-12-2023</span>
+              <span>{{detail?.firdate || 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="calendar-number-outline"></ion-icon>
+            <ion-icon name="calendar-number"></ion-icon>
             <p>
               <span>Filling Date</span>
-              <span>19-12-2023</span>
+              <span>{{detail?.filldate || 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="calendar-number-outline"></ion-icon>
+            <ion-icon name="calendar-number"></ion-icon>
             <p>
               <span> Hearing Date</span>
-              <span>25-12-2023</span>
+              <span>{{detail?.hearingDate || 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="card-outline"></ion-icon>
+            <ion-icon name="card"></ion-icon>
             <p>
               <span>Advocate Fee</span>
-              <span>5000</span>
+              <span>{{detail?.advocateFee || 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="documents-outline"></ion-icon>
+            <ion-icon name="documents"></ion-icon>
             <p>
               <span>Document </span>
-              <span>Aadhar</span>
+              <span>{{detail?.document || 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>
-            <ion-icon name="location-outline"></ion-icon>
+            <ion-icon name="location"></ion-icon>
             <p>
               <span>Address</span>
-              <span>Noida Up</span>
+              <span>{{detail?.address || 'N/A'}}</span>
             </p>
           </ion-row>
         </ion-card>

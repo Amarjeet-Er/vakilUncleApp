@@ -3,6 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { IonModal } from '@ionic/angular';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Capacitor } from '@capacitor/core';
+
 
 @Component({
   selector: 'app-publication-management',
@@ -15,6 +18,10 @@ export class PublicationManagementComponent implements OnInit {
   document_select: any;
   login: any;
   login_data: any;
+  view_publication: any;
+  img_url: any;
+  filter_data: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private _crud: CrudService,
@@ -22,20 +29,35 @@ export class PublicationManagementComponent implements OnInit {
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
-    console.log(this.login_data, 'dssdds');
 
+    this._shared.img_url.subscribe(
+      (data: any) => {
+        this.img_url = data;
+      }
+    )
   }
 
   ngOnInit() {
     this.publication_form = this.formBuilder.group({
+      vakilId: [''],
       title: ['', Validators.required],
       date: ['', Validators.required],
       journal: ['', Validators.required],
       document: [''],
     })
+    this._crud.get_publication(this.login_data.advId).subscribe(
+      (res: any) => {
+        console.log(res, 'response');
+        this.view_publication = res.data;
+        this.filter_data = res.data;
+      }
+    )
   }
 
-  // for select Aadhar Card
+  downloadDocument(url: string) {
+    window.open(url, '_blank');
+  }
+
   onDocument(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -57,19 +79,40 @@ export class PublicationManagementComponent implements OnInit {
     formdata.append('title', this.publication_form.get('title')?.value)
     formdata.append('date', this.publication_form.get('date')?.value)
     formdata.append('journal', this.publication_form.get('journal')?.value)
-    formdata.append('title', this.document_select);
+    formdata.append('document', this.document_select);
     if (this.publication_form.valid) {
       this._crud.add_publication(formdata).subscribe((res: any) => {
         console.log(res);
-      }
-      )
+        if (res.status === true) {
+          this._shared.tostSuccessTop('Publication Add Success');
+          this.publication_form.reset();
+          this.document_select = null;
+          this.modal.dismiss();
+        }
+        else {
+          this._shared.tostErrorTop(res.message);
+        }
+      });
+    }
+    else {
+      this._shared.tostErrorTop('Please fill all the fields');
     }
   }
+
   AddPublication() {
     this.modal.present()
   }
 
   backButton() {
     this.modal.dismiss()
+  }
+
+  onSearch(event: any) {
+    const filter = event.target.value.toLowerCase();
+    this.view_publication = this.filter_data.filter((data: any) =>
+      data.title.toLowerCase().includes(filter) ||
+      data.journal.toLowerCase().includes(filter) ||
+      data.dateString.toLowerCase().includes(filter)
+    );
   }
 }
