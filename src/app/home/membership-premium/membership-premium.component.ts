@@ -16,6 +16,9 @@ export class MembershipPremiumComponent implements OnInit {
   paymentData: any;
   membershipData: any;
   login: any;
+  subscription_data: any;
+  orderId: any;
+  payData: any;
 
   constructor(
     private razorpayService: LazorpayService,
@@ -34,20 +37,35 @@ export class MembershipPremiumComponent implements OnInit {
   }
 
   payNow(data: any) {
-    console.log(data);
-    const amount = (data.newPrice * 100).toString();
-    this.payWithRazorpay(amount, data.id);
+    this.subscription_data = data
+    const amount = data.newPrice
+    this.createOrderL(amount)
   }
 
-  async payWithRazorpay(amount: string, id: any) {
+  createOrderL(amount: string): void {
+    this.razorpayService.createOrderLive(amount).subscribe(
+      (response: any) => {
+        console.log(response, 'order');
+        this.orderId = response.data.Attributes.id;
+        console.log(this.orderId, 'order id');
+        this.payWithRazorpay(response.data.Attributes.id, response.data.Attributes.amount)
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  async payWithRazorpay(order_id: string, amount: any) {
     const options = {
-      key: 'rzp_test_YGORtbwcCRzFxD', // Test key
+      key: 'rzp_test_YGORtbwcCRzFxD', //test
+      // key: 'rzp_live_nrumEje16i8mje', //live
       amount: amount,
-      orderId: id,
-      description: '',
-      image: 'https://vakil.in',
+      description: 'Vakil Uncle',
+      image: 'https://vakil',
+      order_id: order_id,
       currency: 'INR',
-      name: this.loginData.advocateName,
+      name: 'Vakil Uncle',
       prefill: {
         name: this.loginData.advocateName,
         email: this.loginData.email,
@@ -59,44 +77,44 @@ export class MembershipPremiumComponent implements OnInit {
     };
 
     try {
-      let response = (await Checkout.open(options));
-      console.log(response.response, 'res');
-      this.paymentData = response;
-      this.verifyPayment(this.memebership);
+      let data = (await Checkout.open(options));
+      console.log(data.response);
+      this.payData = data.response
+      this.verifyPaymentLive(data.response)
     } catch (error) {
-      console.error('Payment error:', error);
-      this.handlePaymentFailure(error);
+      console.log(error);
+      this.PaymentFaildInsert(error)
+
     }
   }
 
-  verifyPayment(data: any) {
-    console.log(data, 'id base');
-    const Id = data.id;
-    const planType = data.planType;
+  verifyPaymentLive(data: any) {
+    console.log(data);
+    const payment_id = data.razorpay_payment_id;
+    const order_id = data.razorpay_order_id;
+    const razorpay_signature = data.razorpay_signature;
 
-    this.razorpayService.verifyMembershipLive(this.loginData.advId, Id, planType)
+    this.razorpayService.verifyMembershipLive(payment_id, order_id, razorpay_signature)
       .subscribe(
         (response) => {
-          console.log(response, 'Verification response');
-          if (response.status) {
-            this.handlePaymentSuccess();
-          } else {
-            alert('Payment verification failed, please try again.');
-            this.handlePaymentFailure(response);
-          }
+          console.log(response);
+          this.PaymentSuccess()
         },
+
         (error) => {
-          console.error('Verification error:', error);
-          alert('Payment verification failed, please try again.');
+          console.error(error);
+          alert('Payment Faild Try again')
+
         }
       );
   }
 
-  handlePaymentFailure(error: any) {
+  PaymentFaildInsert(error: any) {
     const data = {
       vakilId: this.loginData.advId,
-      orderId: this.paymentData?.metadata?.order_id,
-      paymentId: this.paymentData?.metadata?.payment_id,
+      OrderId: this.payData.razorpay_order_id,
+      PaymentId: this.payData.razorpay_payment_id,
+      // SignatureId: this.payData.razorpay_signature,
       featureId: this.memebership.id,
       price: this.memebership.newPrice,
       paymentStatus: 0,
@@ -112,11 +130,12 @@ export class MembershipPremiumComponent implements OnInit {
     );
   }
 
-  handlePaymentSuccess() {
+  PaymentSuccess() {
     const data = {
       vakilId: this.loginData.advId,
-      orderId: this.paymentData?.metadata?.order_id,
-      paymentId: this.paymentData?.metadata?.payment_id,
+      OrderId: this.payData.razorpay_order_id,
+      PaymentId: this.payData.razorpay_payment_id,
+      // SignatureId: this.payData.razorpay_signature,
       featureId: this.memebership.id,
       price: this.memebership.newPrice,
       paymentStatus: 1,

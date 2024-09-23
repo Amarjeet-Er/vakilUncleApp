@@ -22,8 +22,8 @@
         <p><strong>Payment ID:</strong> {{ payment.paymentId }}</p>
         <div class="payment-details">
           <p><strong>Mode:</strong> {{ payment.paymentMode }}</p>
-          <p [ngClass]="{'success': payment.paymentStatus === 1, 'failed': payment.paymentStatus !== 1}">
-            <strong>Status:</strong> {{ payment.paymentStatus === 1 ? 'Successful' : 'Failed' }}
+          <p [ngClass]="{'success': payment.paymentStatus === true, 'failed': payment.paymentStatus !== true}">
+            <strong>Status:</strong> {{ payment.paymentStatus === true ? 'Successful' : 'Failed' }}
           </p>
           <p><strong>Price:</strong> ₹{{ payment.price }}</p>
           <p><strong>Description:</strong> {{ payment.paymentDescription || 'N/A' }}</p>

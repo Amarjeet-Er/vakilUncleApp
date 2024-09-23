@@ -79,6 +79,10 @@ ion-content {
         padding: 70px 0;
         overflow: auto;
 
+        .persinal{
+            padding-left: 20px;
+        }
+
         form {
             height: auto;
             width: calc(100% - 40px);
@@ -86,13 +90,9 @@ ion-content {
 
             ion-input {
                 margin-bottom: 10px;
-                border-bottom: 0.1px solid gray;
             }
 
-            ion-select {
-                border-bottom: 1px solid gray;
-            }
-            .btn{
+            .btn {
                 width: 100%;
                 text-align: center;
             }
@@ -101,7 +101,7 @@ ion-content {
 
                 .Documents {
                     width: 100%;
-                    height: 280px;
+                    height: 260px;
                     margin: 0px 0px 10px 0px;
                     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
                     cursor: pointer;
@@ -124,6 +124,7 @@ ion-content {
                     justify-content: space-between;
                     align-items: center;
                     padding-left: 15px;
+                    margin-bottom: 10px;
                     width: 100%;
                     height: 56px;
                     cursor: pointer;

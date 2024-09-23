@@ -6,24 +6,7 @@ import { CrudService } from 'src/app/service/crud.service';
   templateUrl: './payment-history.component.html',
   styleUrls: ['./payment-history.component.scss'],
 })
-export class PaymentHistoryComponent  implements OnInit {
-  // payments = [
-  //   {
-  //     vakilId: 0,
-  //     userId: null,
-  //     orderId: 'or@12345',
-  //     paymentId: '123#pId',
-  //     featureId: 0,
-  //     paymentDescription: '',
-  //     paymentMode: 'UPI',
-  //     paymentStatus: 1,
-  //     price: 2000,
-  //     planName: 'Platinum',
-  //     advocateName: 'Brijesh',
-  //     advocateEmail: 'brijesh@gmail.com',
-  //     paymentDate: '19-09-2024',
-  //   },
-  // ]  
+export class PaymentHistoryComponent  implements OnInit { 
   login:any;
   login_data:any;
   pay_history: any;
@@ -40,6 +23,7 @@ export class PaymentHistoryComponent  implements OnInit {
         console.log(res);
         if(res.status===true){
           this.pay_history=res.data
+          console.log(this.pay_history, 'payment');          
         }
       }
     )

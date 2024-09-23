@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-client-reg',
@@ -59,7 +60,15 @@ export class NewClientRegComponent implements OnInit {
     }
     )
 
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
 
+    this.loadData();
+    this.fetchDropdownData();
+  }
+
+  loadData() {
     this._crud.get_ClientListByVakilId(this.login_data.advId).subscribe(
       (res: any) => {
         console.log(res);
@@ -69,7 +78,6 @@ export class NewClientRegComponent implements OnInit {
         }
       }
     )
-    this.fetchDropdownData();
   }
 
   fetchDropdownData(): void {

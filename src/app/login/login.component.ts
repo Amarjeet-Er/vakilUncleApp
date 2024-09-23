@@ -21,7 +21,10 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _shared: SharedService,
     private _crud: CrudService
-  ) { }
+  ) {
+    localStorage.removeItem
+    localStorage.clear()
+  }
   ngOnInit() {
     this.loginForm = this._formBuilder.group({
       userid: ['', Validators.required],
@@ -45,22 +48,14 @@ export class LoginComponent implements OnInit {
             console.log(res, 'login');
 
             if (res.UserRole == "Advocate") {
-              const vakilLogin = {
-                advId: res.data.advId,
-                enrollId: res.data.enrollId,
-                advocateName: res.data.advocateName,
-                email: res.data.email,
-                status: res.data.status,
-                contactNum: res.data.contactNum,
-                city: res.data.city,
-                state: res.data.state,
-                pass: res.data.pass,
-                adharUrl: res.data.adharUrl,
-                barcouncilUrl: res.data.barcouncilUrl,
-              }
               this._shared.tostSuccessTop('Login Successfully...')
-              localStorage.setItem('vakilLoginData', JSON.stringify(vakilLogin))
-              this._router.navigate(['/vakil/home/dashboard']);
+              localStorage.setItem('vakilLoginData', JSON.stringify(res.data))
+              if (res.CompleteProfile === true) {
+                this._router.navigate(['/vakil/home/dashboard']);
+              }
+              else {
+                this._router.navigate(['/home/vakilprofile']);
+              }
             }
             else if (res.UserRole == "Client") {
               const userLogin = {

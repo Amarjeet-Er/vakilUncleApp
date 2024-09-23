@@ -33,7 +33,7 @@
 		"@capacitor/keyboard": "6.0.1",
 		"@capacitor/status-bar": "6.0.0",
 		"@ionic/angular": "^8.0.0",
-		"capacitor-razorpay": "^1.2.0",
+		"capacitor-razorpay": "github:razorpay/razorpay-capacitor",
 		"ionicons": "^7.0.0",
 		"ngx-ui-loader": "^13.0.0",
 		"rxjs": "~7.8.0",

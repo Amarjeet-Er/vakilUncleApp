@@ -7,90 +7,104 @@
 <ion-content>
   <div class="profile">
     <div class="profileImage">
-      <img [src]="profile_url" *ngIf="profile_url">
+      <img [src]="login_data?.profilePath ? img_url + login_data.profilePath : profile_url" *ngIf="profile_url">
     </div>
+
     <input type="file" #fileInput (change)="openFile(fileInput.files)" [hidden]="profileInput">
-    <ion-button shape="round" (click)="fileInput.click()">
+    <ion-button shape="round" (click)="fileInput.click()" *ngIf="!isEdit">
       <ion-icon slot="icon-only" name="pencil"></ion-icon>
     </ion-button>
   </div>
-  
+
 
   <div class="profileDetails">
 
+    <div class="persinal">
+      <ion-button (click)="onEdit()">{{isEdit?
+        'Edit' : 'View'}}
+      </ion-button>
+    </div>
+
+
     <form [formGroup]="vakil_profile_update">
+
+
       <ion-input label="Full Name" label-placement="floating" required placeholder="Enter full name"
-        formControlName="advocateName">
+        formControlName="advocateName" [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
       <ion-input type="tel" label="Mobile Number" label-placement="floating" placeholder="Enter mobile number" required
-        formControlName="contactNum">
+        formControlName="contactNum" readonly [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
       <ion-input type="tel" label="Email Id" label-placement="floating" required placeholder="Enter email id"
-        formControlName="email" [disabled]="true">
+        formControlName="email" readonly [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
       <ion-select label="Gender" label-placement="floating" interface="action-sheet" placeholder="Select Gender"
-        formControlName="gender">
+        formControlName="gender" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option value="Male"> Male </ion-select-option>
         <ion-select-option value="Female"> Female </ion-select-option>
         <ion-select-option value="Other"> Other </ion-select-option>
       </ion-select><br>
 
       <ion-select label="State" label-placement="floating" interface="action-sheet" placeholder="Select State"
-        (ionChange)="onCityChange($event)" formControlName="state">
+        (ionChange)="onCityChange($event)" formControlName="state" [disabled]="isEdit"
+        [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option *ngFor="let state of states" [value]="state?.Id">
           {{ state?.name}}
         </ion-select-option>
       </ion-select><br>
 
       <ion-select label="City" label-placement="floating" interface="action-sheet" placeholder="Select City"
-        formControlName="city">
+        formControlName="city" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option *ngFor="let city of citys" [value]="city?.Id">
           {{city?.name}}
         </ion-select-option>
       </ion-select><br>
 
       <ion-select label="Court" label-placement="floating" interface="action-sheet" placeholder="Select Court"
-        formControlName="courtType">
+        formControlName="courtType" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
           {{court?.courtName}}
         </ion-select-option>
       </ion-select><br>
 
       <ion-select label="Lawyer Type" label-placement="floating" interface="action-sheet"
-        placeholder="Select lawyer type" formControlName="advType">
+        placeholder="Select lawyer type" formControlName="advType" [disabled]="isEdit"
+        [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option *ngFor="let advocate of advocate_type" [value]="advocate?.Id">
           {{advocate?.name}}
         </ion-select-option>
       </ion-select><br>
 
       <ion-input type="text" label="Experiance" label-placement="floating" placeholder="Experiance" required
-        formControlName="experiance">
+        formControlName="experiance" [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
-      <ion-input type="date" label="Date Of Birth" label-placement="floating" required formControlName="DOB">
+      <ion-input type="date" label="Date Of Birth" label-placement="floating" required formControlName="DOB"
+        [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
       <ion-input type="text" label="LLB Registration No" label-placement="floating"
-        placeholder="Enter LLB Registration No" required formControlName="llbRegistrationNum">
+        placeholder="Enter LLB Registration No" required formControlName="llbRegistrationNum" [readonly]="isEdit"
+        [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
       <ion-input type="text" label="Office Address" label-placement="floating" placeholder="Enter Office Address"
-        required formControlName="offAddress">
+        required formControlName="offAddress" [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
       <!-- Aadhar Card -->
-      <div class="VakilDocuments">
+      <div class="VakilDocuments" *ngIf="login_data?.adharUrl || !isEdit">
         <div class="Documents" [hidden]="AadharSelected">
           <span>Aadhar</span>
-          <img [src]="login_data?.adharUrl? img_url+login_data?.adharUrl: '../../../assets/images/documents.jpg'" alt=""
+          <img [src]="login_data?.adharUrl? img_url+login_data?.adharUrl: '../../../assets/images/document.png'" alt=""
             width="100%" height="100%">
         </div>
       </div>
 
-      <div class="VakilDocuments">
+      <div class="VakilDocuments" *ngIf="!isEdit">
         <div class="Documents" [hidden]="AadharSelect">
           <span>Aadhar Card</span>
           <img alt="documents" [src]="Aadhar_img_url">
@@ -112,15 +126,15 @@
       </div>
 
       <!-- Pan Card -->
-      <div class="VakilDocuments">
+      <div class="VakilDocuments" *ngIf="login_data?.panUrl || !isEdit">
         <div class="Documents" [hidden]="PanSelected">
           <span>Pan Card</span>
-          <img [src]="login_data?.aadharCard? img_url+login_data?.aadharCard: '../../../assets/images/documents.jpg'"
-            alt="" width="100%" height="100%">
+          <img [src]="login_data?.panUrl? img_url+login_data?.panUrl: '../../../assets/images/document.png'" alt=""
+            width="100%" height="100%">
         </div>
       </div>
 
-      <div class="VakilDocuments">
+      <div class="VakilDocuments" *ngIf="!isEdit">
         <div class="Documents" [hidden]="PanSelect">
           <span>Pan Card</span>
           <img alt="documents" [src]="Pan_img_url">
@@ -142,16 +156,16 @@
       </div>
 
       <!-- Bar Counselling Certificate -->
-      <div class="VakilDocuments">
+      <div class="VakilDocuments" *ngIf="login_data?.barcouncilUrl || !isEdit">
         <div class="Documents" [hidden]="BarCouncilSelected">
           <span>Bar Counselling Certificate</span>
           <img
-            [src]="login_data?.barcouncilUrl? img_url+login_data?.barcouncilUrl: '../../../assets/images/documents.jpg'"
+            [src]="login_data?.barcouncilUrl? img_url+login_data?.barcouncilUrl: '../../../assets/images/document.png'"
             alt="" width="100%" height="100%">
         </div>
       </div>
 
-      <div class="VakilDocuments">
+      <div class="VakilDocuments" *ngIf="!isEdit">
         <div class="Documents" [hidden]="BarCouncilSelect">
           <span>Bar Counselling Certificate</span>
           <img alt="documents" [src]="BarCouncil_img_url">
@@ -172,18 +186,17 @@
           </ion-fab>
         </div>
       </div>
-      
+
       <!-- LLB Certificate -->
-      <div class="VakilDocuments">
+      <div class="VakilDocuments" *ngIf="login_data?.llbUrl || !isEdit">
         <div class="Documents" [hidden]="LLBCSelected">
           <span>LLB Certificate</span>
-          <img
-            [src]="login_data?.barcouncilUrl? img_url+login_data?.barcouncilUrl: '../../../assets/images/documents.jpg'"
-            alt="" width="100%" height="100%">
+          <img [src]="login_data?.llbUrl? img_url+login_data?.llbUrl: '../../../assets/images/document.png'" alt=""
+            width="100%" height="100%">
         </div>
       </div>
 
-      <div class="VakilDocuments">
+      <div class="VakilDocuments" *ngIf="!isEdit">
         <div class="Documents" [hidden]="LLBCSelect">
           <span>LLB Certificate</span>
           <img alt="documents" [src]="LLBC_img_url">
@@ -204,11 +217,11 @@
         </div>
       </div>
 
-      <ion-input label="Password" label-placement="floating" formControlName="pass" type="text"
-        placeholder="Abc@123"></ion-input>
+      <ion-input label="Password" label-placement="floating" formControlName="pass" type="text" placeholder="Abc@123"
+        readonly [fill]="isEdit? 'solid' : 'outline'"></ion-input>
 
       <div class="btn">
-        <ion-button shape="round" (click)="submit()">Submit</ion-button>
+        <ion-button shape="round" (click)="submit()" *ngIf="!isEdit">Submit</ion-button>
       </div>
 
     </form>
