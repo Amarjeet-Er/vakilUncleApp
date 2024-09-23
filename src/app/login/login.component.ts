@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
             if (res.UserRole == "Advocate") {
               this._shared.tostSuccessTop('Login Successfully...')
               localStorage.setItem('vakilLoginData', JSON.stringify(res.data))
+              localStorage.setItem('vakilPaymentData', JSON.stringify(res))
               if (res.CompleteProfile === true) {
                 this._router.navigate(['/vakil/home/dashboard']);
               }

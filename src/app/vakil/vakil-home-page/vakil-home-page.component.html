@@ -2,19 +2,19 @@
     <ion-tab-bar slot="bottom">
         <ion-tab-button tab="dashboard">
             <ion-icon name="home"></ion-icon>
-            Home
+            <ion-label>Home</ion-label>
         </ion-tab-button>
-        <ion-tab-button tab="newclientreg">
+        <ion-tab-button (click)="newClientAdd()">
             <ion-icon name="people"></ion-icon>
-            Client List
+            <ion-label>Client List</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="membership">
             <ion-icon name="medkit"></ion-icon>
-            Membership
+            <ion-label>Membership</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="account">
             <ion-icon name="person"></ion-icon>
-            Account
+            <ion-label>Account</ion-label>
         </ion-tab-button>
     </ion-tab-bar>
 </ion-tabs>

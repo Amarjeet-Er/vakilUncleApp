@@ -7,25 +7,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CrudService {
-  async getCurrentPosition() {
-    const coordinates = await Geolocation.getCurrentPosition();
-    return coordinates;
-  }
-
-  async getDetailedLocation(lat: number, lon: number) {
-    const response = await fetch(
-      // `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`,
-      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
-    );
-    return response.json();
-  }
-
-
-
-
-
-
-
   base_url: string = ''
 
   constructor(
@@ -60,6 +41,11 @@ export class CrudService {
 
   vakil_registartion(data: any) {
     return this._http.post<any>(`${this.base_url}VakilRegister`, data);
+  }
+
+
+  vakil_dashboard(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}vakilDashboard?vakilId=${vakilId}`);
   }
 
   get_city(id: any) {
@@ -99,9 +85,10 @@ export class CrudService {
     return this._http.get<any>(`${this.base_url}getPaymentHistoryByAdvocate?vakilId=${vakilId}`);
   }
 
-  vakil_dashboard(vakilId: any) {
-    return this._http.get<any>(`${this.base_url}vakilDashboard?vakilId=${vakilId}`);
+  get_total_case_documents(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}totalCaseDocumentList?vakilId=${vakilId}`);
   }
+
 
   //for user 
   user_registartion(data: any) {

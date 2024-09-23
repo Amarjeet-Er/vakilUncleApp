@@ -91,7 +91,11 @@
           </ion-select>
 
           <ion-input label="Hearing Date" type="date" label-placement="floating" fill="outline"
-            formControlName="HearingDate"></ion-input>
+            formControlName="HearingDate">
+          </ion-input>
+
+          <ion-input label="FIR Date" type="date" label-placement="floating" fill="outline" formControlName="firDate">
+          </ion-input>
 
           <ion-input label="Advocate Fee" type="number" placeholder="Enter advocate Fee" label-placement="floating"
             fill="outline" formControlName="advocateFee"></ion-input>
@@ -100,8 +104,13 @@
             (change)="onAadhar($event)" accept=".jpg,.png,.jpeg">
           </ion-input>
 
+          <ion-textarea label="Case Summary " placeholder="Enter Address" label-placement="floating" fill="outline"
+            formControlName="caseSummary">
+          </ion-textarea><br>
+
           <ion-textarea label="Address " placeholder="Enter Address" label-placement="floating" fill="outline"
-            formControlName="address"></ion-textarea>
+            formControlName="address">
+          </ion-textarea>
 
           <ion-input label="Password " placeholder="Enter password" label-placement="floating" fill="outline"
             formControlName="password"></ion-input>
@@ -190,13 +199,7 @@
               <span>{{detail?.firdate || 'N/A'}}</span>
             </p>
           </ion-row>
-          <ion-row>
-            <ion-icon name="calendar-number"></ion-icon>
-            <p>
-              <span>Filling Date</span>
-              <span>{{detail?.filldate || 'N/A'}}</span>
-            </p>
-          </ion-row>
+
           <ion-row>
             <ion-icon name="calendar-number"></ion-icon>
             <p>
@@ -216,6 +219,13 @@
             <p>
               <span>Document </span>
               <span>{{detail?.document || 'N/A'}}</span>
+            </p>
+          </ion-row>
+          <ion-row>
+            <ion-icon name="location"></ion-icon>
+            <p>
+              <span>Case Summary</span>
+              <span>{{detail?.caseSummary || 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>

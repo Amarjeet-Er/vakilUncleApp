@@ -8,84 +8,13 @@
 
   <ion-list>
 
-    <ion-item lines="full" (click)="caseDocs()">
+    <ion-item lines="full" *ngFor="let case_doc of total_case_docs" (click)="caseDocs(case_doc)">
       <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_1.jpg" />
+        <img alt="" [src]="case_doc?.profile ? img_url+case_doc.profile:  '../../../assets/icon/profile.png'" />
       </ion-avatar>
       <ion-label>
-        <span>Gautum Singh</span>
-        <p>Case-42388</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_2.png" />
-      </ion-avatar>
-      <ion-label>
-        <span>Sushant Kumar</span>
-        <p>Case-42388</p>
-      </ion-label>
-    </ion-item>
-
-
-    <ion-item lines="full">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_8.jpg" />
-      </ion-avatar>
-      <ion-label>
-        <span>Rahul Patel</span>
-        <p>Case-42388</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_5.png" />
-      </ion-avatar>
-      <ion-label>
-        <span>Virender Bhola</span>
-        <p>Case-42388</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_3.jfif" />
-      </ion-avatar>
-      <ion-label>
-        <span>Abhishek Kumar</span>
-        <p>Case-42388</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_1.jpg" />
-      </ion-avatar>
-      <ion-label>
-        <span>Gautum Singh</span>
-        <p>Case-42388</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_2.png" />
-      </ion-avatar>
-      <ion-label>
-        <span>Sushant Kumar</span>
-        <p>Case-42388</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_8.jpg" />
-      </ion-avatar>
-      <ion-label>
-        <span>Rahul Patel</span>
-        <p>Case-42388</p>
+        <span>{{case_doc?.clientName | titlecase}}</span>
+        <p>Case No {{case_doc?.caseNo || 'N/A'}}</p>
       </ion-label>
     </ion-item>
 

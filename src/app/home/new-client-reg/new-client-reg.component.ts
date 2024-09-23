@@ -55,6 +55,8 @@ export class NewClientRegComponent implements OnInit {
       court: ['', Validators.required],
       act: ['', Validators.required],
       HearingDate: ['', Validators.required],
+      firDate: ['', Validators.required],
+      caseSummary: ['', Validators.required],
       advocateFee: ['', Validators.required],
       document: [''],
     }
@@ -147,6 +149,8 @@ export class NewClientRegComponent implements OnInit {
     formdata.append('court', this.newRegistartion_form.get('court')?.value)
     formdata.append('act', this.newRegistartion_form.get('act')?.value)
     formdata.append('HearingDate', this.newRegistartion_form.get('HearingDate')?.value)
+    formdata.append('firDate', this.newRegistartion_form.get('firDate')?.value)
+    formdata.append('caseSummary', this.newRegistartion_form.get('caseSummary')?.value)
     formdata.append('advocateFee', this.newRegistartion_form.get('advocateFee')?.value)
     formdata.append('document', this.Aadhar_select);
     console.log(formdata, 'formdata');

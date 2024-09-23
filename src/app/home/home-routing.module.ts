@@ -32,6 +32,7 @@ import { EnquiryComponent } from './enquiry/enquiry.component';
 import { VakilReviewComponent } from './vakil-review/vakil-review.component';
 import { MembershipPremiumComponent } from './membership-premium/membership-premium.component';
 import { PaymentHistoryComponent } from './payment-history/payment-history.component';
+import { PaymentLockComponent } from '../payment-lock/payment-lock.component';
 
 
 const routes: Routes = [
@@ -70,6 +71,7 @@ const routes: Routes = [
       { path: 'enquiry', component: EnquiryComponent },
       { path: 'vakilreview', component: VakilReviewComponent },
       { path: 'paymenthistory', component: PaymentHistoryComponent },
+      { path: 'paymentlock', component: PaymentLockComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

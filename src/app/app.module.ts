@@ -59,6 +59,7 @@ import { VakilRegistrationComponent } from './vakil-registration/vakil-registrat
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
 import { MembershipPremiumComponent } from './home/membership-premium/membership-premium.component';
 import { PaymentHistoryComponent } from './home/payment-history/payment-history.component';
+import { PaymentLockComponent } from './payment-lock/payment-lock.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { PaymentHistoryComponent } from './home/payment-history/payment-history.
     VakilRegistrationComponent,
     MembershipPremiumComponent,
     PaymentHistoryComponent,
+    PaymentLockComponent
   ],
   imports: [
     BrowserModule,
