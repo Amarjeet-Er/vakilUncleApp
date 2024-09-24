@@ -101,7 +101,7 @@
             fill="outline" formControlName="advocateFee"></ion-input>
 
           <ion-input type="file" label="Document" label-placement="floating" fill="outline" formControlName="document"
-            (change)="onAadhar($event)" accept=".jpg,.png,.jpeg">
+            (change)="onAadhar($event)" accept=".jpg,.png,.jpeg" multiple>
           </ion-input>
 
           <ion-textarea label="Case Summary " placeholder="Enter Address" label-placement="floating" fill="outline"
@@ -113,7 +113,8 @@
           </ion-textarea>
 
           <ion-input label="Password " placeholder="Enter password" label-placement="floating" fill="outline"
-            formControlName="password"></ion-input>
+            formControlName="password">
+          </ion-input>
 
           <ion-row class="ion-justify-content-center">
             <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>

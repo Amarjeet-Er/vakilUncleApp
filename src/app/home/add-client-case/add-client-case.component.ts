@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CrudService } from 'src/app/service/crud.service';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-add-client-case',
@@ -6,17 +9,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-client-case.component.scss'],
 })
 export class AddClientCaseComponent implements OnInit {
+  addCase_form!: FormGroup
   members: { name: string, details: string }[] = [];
 
-  constructor() { }
+  constructor(
+    private _fb: FormBuilder,
+    private _crud: CrudService,
+    private _shared: SharedService
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.addCase_form = this._fb.group({
+      caseTitle: ['', Validators.required],
+      caseNo: ['', Validators.required],
+      clientName: ['', Validators.required],
+      clientMobile: ['', Validators.required],
+      hearingDate: ['', Validators.required],
+      ipcSection: ['', Validators.required],
+      courtName: ['', Validators.required],
+      aboutCase: ['', Validators.required],
+      addMembers: this._fb.array([]),
+    })
+  }
 
-  addMember() {
-    this.members.push({ name: '', details: '' });
+  get membersArray() {
+    return this.addCase_form.get('addMembers') as FormArray;
+  }
+
+  addMemberControls() {
+    const memberNumber = this.membersArray.length + 1;
+    const memberGroup = this._fb.group({
+      [`MemberName${memberNumber}`]: [''],
+      [`MemberDetails${memberNumber}`]: [''],
+    });
+    this.membersArray.push(memberGroup);
   }
 
   removeMember(index: number) {
-    this.members.splice(index, 1);
+    this.membersArray.removeAt(index + 0);
+  }
+
+  onSubmit() {
+    console.log(this.addCase_form.value);
   }
 }

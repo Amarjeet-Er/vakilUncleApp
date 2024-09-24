@@ -16,6 +16,9 @@ export class CaseDocumentsComponent implements OnInit {
   login_data: any;
   total_case_docs: any;
   img_url: any;
+  case: any;
+  case_no: any
+  docs: any;
 
   constructor(
     private _crud: CrudService,
@@ -40,12 +43,22 @@ export class CaseDocumentsComponent implements OnInit {
       (error) => {
         console.error(error);
       }
-    )
+    );
+
+   
   }
 
 
-  caseDocs(case_doc:any) {
-    console.log(case_doc);
+  caseDocs(case_doc: any) {
+    console.log(case_doc.caseNo);
+    this._crud.get_case_document(this.login_data.advId, case_doc.caseNo).subscribe(
+      (response) => {
+        console.log(response.data.documentUrl, 'case document');
+        this.docs = response.data.documentUrl
+      }
+    )
+    return
+    localStorage.setItem('caseNo', JSON.stringify(case_doc.caseNo))
     this.modal.present()
   }
 }

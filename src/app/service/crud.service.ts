@@ -59,6 +59,10 @@ export class CrudService {
     return this._http.get<any>(`${this.base_url}advocatetypelist`);
   }
 
+  get_update_vakil_profile(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}advocateProfile?vakilId=${vakilId}`);
+  }
+
   update_vakil_profile(data: any) {
     return this._http.post<any>(`${this.base_url}updateProfile`, data);
   }
@@ -100,6 +104,9 @@ export class CrudService {
     return this._http.get<any>(`${this.base_url}completeCaseDetail?vakilId=${vakilId}`);
   }
 
+  get_case_document(VakilId: any, CaseNo: any) {
+    return this._http.get<any>(`${this.base_url}caseDocumentByCaseNo?vakilId=${VakilId}&caseno=${CaseNo}`);
+  }
   //for user 
   user_registartion(data: any) {
     return this._http.post<any>(`${this.base_url}ClientRegister`, data);

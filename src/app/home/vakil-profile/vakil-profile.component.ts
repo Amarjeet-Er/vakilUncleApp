@@ -52,6 +52,8 @@ export class VakilProfileComponent implements OnInit {
   court_list: any;
   advocate_type: any;
   stateId: any;
+  profile_data: any;
+  edit_profile_data: any;
 
 
   constructor(
@@ -60,11 +62,25 @@ export class VakilProfileComponent implements OnInit {
     private _shared: SharedService,
     private _formBuilder: FormBuilder
   ) {
-    this.login = localStorage.getItem('vakilLoginData')
-    this.login_data = JSON.parse(this.login)
+    this.login = localStorage.getItem('vakilLoginData');
+    this.login_data = JSON.parse(this.login);
   }
 
   ngOnInit() {
+    this.initializeForm();
+    this._crud.get_update_vakil_profile(this.login_data.advId).subscribe(
+      (res: any) => {
+        if (res.status === true) {
+          this.edit_profile_data = res.data;
+          console.log(this.edit_profile_data, 'edit');
+          this.patchProfileForm();
+        }
+      }
+    );
+    this.fetchDropdownData();
+  }
+
+  initializeForm() {
     this.vakil_profile_update = this._formBuilder.group({
       advId: [''],
       advocateName: ['', Validators.required],
@@ -86,15 +102,17 @@ export class VakilProfileComponent implements OnInit {
       profile: [''],
       pass: ['', Validators.required],
     });
-    this.fetchDropdownData();
+  }
 
-    if (this.login_data) {
-      this.stateId = this.login_data.state;
-      console.log(this.stateId, 'jaasas');
-      this.vakil_profile_update.patchValue(this.login_data);
+  patchProfileForm() {
+    if (this.edit_profile_data) {
+      this.vakil_profile_update.patchValue(this.edit_profile_data);
+      this.stateId = this.edit_profile_data.state;
+      console.log(this.stateId, 'Selected State ID');
       this.onCityChange({ detail: { value: this.stateId } });
     }
   }
+
 
   fetchDropdownData(): void {
     this._shared.img_url.subscribe((data: any) => { this.img_url = data; })
@@ -181,10 +199,6 @@ export class VakilProfileComponent implements OnInit {
   async submit() {
     console.log(this.vakil_profile_update.value);
 
-    const defaultContent = '';
-    const defaultBlob = new Blob([defaultContent], { type: '' });
-    const fileToUpload = new File([defaultBlob], '', { type: '' });
-
     const formUpdate = new FormData();
     formUpdate.append('vakilId', this.login_data.advId);
     formUpdate.append('advocateName', this.vakil_profile_update.get('advocateName')?.value);
@@ -200,43 +214,24 @@ export class VakilProfileComponent implements OnInit {
     formUpdate.append('experiance', this.vakil_profile_update.get('experiance')?.value);
     formUpdate.append('advType', this.vakil_profile_update.get('advType')?.value);
     formUpdate.append('courtType', this.vakil_profile_update.get('courtType')?.value);
-    formUpdate.append('adhar', this.Aadhar_select || this.login_data.adharUrl || fileToUpload);
-    formUpdate.append('pan', this.Pan_select || this.login_data.panUrl || fileToUpload);
-    formUpdate.append('barcouncil', this.BarCouncil_select || this.login_data.barcouncilUrl || fileToUpload);
-    formUpdate.append('llb', this.LLBC_select || this.login_data.llbUrl || fileToUpload);
-    formUpdate.append('profile', this.profile_select);
+
+    formUpdate.append('adhar', this.Aadhar_select || null);
+    formUpdate.append('pan', this.Pan_select || null);
+    formUpdate.append('barcouncil', this.BarCouncil_select || null);
+    formUpdate.append('llb', this.LLBC_select || null);
+    formUpdate.append('profile', this.profile_select || null);
+
+    formUpdate.append('adharUrl', this.edit_profile_data.adharUrl);
+    formUpdate.append('panUrl', this.edit_profile_data.panUrl);
+    formUpdate.append('barcouncilUrl', this.edit_profile_data.barcouncilUrl);
+    formUpdate.append('llbUrl', this.edit_profile_data.llbUrl);
+    formUpdate.append('profilePath', this.edit_profile_data.profilePath);
 
     if (this.vakil_profile_update.valid) {
       this._crud.update_vakil_profile(formUpdate).subscribe(
         (res: any) => {
           console.log(res);
           if (res.status === true) {
-            // Update the login data with conditional checks
-            const updatedLoginData = {
-              ...this.login_data,
-              advocateName: this.vakil_profile_update.get('advocateName')?.value,
-              contactNum: this.vakil_profile_update.get('contactNum')?.value,
-              email: this.vakil_profile_update.get('email')?.value,
-              state: this.vakil_profile_update.get('state')?.value,
-              city: this.vakil_profile_update.get('city')?.value,
-              pass: this.vakil_profile_update.get('pass')?.value,
-              gender: this.vakil_profile_update.get('gender')?.value,
-              DOB: this.vakil_profile_update.get('DOB')?.value,
-              llbRegistrationNum: this.vakil_profile_update.get('llbRegistrationNum')?.value,
-              offAddress: this.vakil_profile_update.get('offAddress')?.value,
-              experiance: this.vakil_profile_update.get('experiance')?.value,
-              advType: this.vakil_profile_update.get('advType')?.value,
-              courtType: this.vakil_profile_update.get('courtType')?.value,
-              adhar: this.Aadhar_select || this.login_data.adharUrl,
-              pan: this.Pan_select || this.login_data.panUrl,
-              barCouncil: this.BarCouncil_select || this.login_data.barcouncilUrl,
-              llb: this.LLBC_select || this.login_data.llbUrl,
-              profile: this.profile_select || this.login_data.profilePath,
-            };
-
-            // Update the local storage
-            localStorage.setItem('vakilLoginData', JSON.stringify(updatedLoginData));
-
             this._shared.tostSuccessTop('Profile updated successfully');
             this._router.navigate(['/vakil/home']);
           } else {

@@ -119,18 +119,31 @@ export class NewClientRegComponent implements OnInit {
 
   // for select Aadhar Card
   onAadhar(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        console.log('File content:', reader.result);
-        this.Aadhar_select = file;
-      };
-      reader.readAsDataURL(file);
+    const files = event.target.files;
+    if (files.length > 0) {
+      const fileArray: any[] = [];
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          // Storing file details
+          fileArray.push({
+            name: file.name,
+            content: e.target.result
+          });
+          console.log('File content:', e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+      }
+      // Store or process the selected files
+      this.Aadhar_select = fileArray;
     } else {
-      console.log('No file selected');
+      console.log('No files selected');
     }
   }
+
 
   onSubmit() {
     console.log(this.newRegistartion_form.value);
@@ -152,7 +165,7 @@ export class NewClientRegComponent implements OnInit {
     formdata.append('firDate', this.newRegistartion_form.get('firDate')?.value)
     formdata.append('caseSummary', this.newRegistartion_form.get('caseSummary')?.value)
     formdata.append('advocateFee', this.newRegistartion_form.get('advocateFee')?.value)
-    formdata.append('document', this.Aadhar_select);
+    formdata.append('document', JSON.stringify(this.Aadhar_select));
     console.log(formdata, 'formdata');
     if (this.newRegistartion_form.valid) {
       this._crud.new_Client_register(formdata).subscribe(

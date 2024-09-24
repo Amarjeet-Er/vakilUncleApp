@@ -6,68 +6,73 @@
 </div>
 
 <ion-content>
-  <ion-list>
-    <ion-input label="Case Title" label-placement="floating" fill="outline" placeholder="Enter case title"></ion-input>
-    <ion-input label="Case Number" label-placement="floating" fill="outline"
-      placeholder="Enter case number"></ion-input>
-    <ion-input label="Lawyer Name" label-placement="floating" fill="outline"
-      placeholder="Enter lawyer name"></ion-input>
-    <ion-input label="Lawyer Mobile no." label-placement="floating" fill="outline"
-      placeholder="Enter lawyer mobile no."></ion-input>
-    <ion-input label="Client Name" label-placement="floating" fill="outline"
-      placeholder="Enter client name"></ion-input>
-    <ion-input label="Client Mobile no." label-placement="floating" fill="outline"
-      placeholder="Enter Client mobile no."></ion-input>
-    <ion-textarea label="About Case" labelPlacement="floating" fill="outline"
-      placeholder="Write about the case"></ion-textarea>
 
-    <div *ngFor="let member of members; let i = index" class="member-field">
-      <ion-input label="Member Name" label-placement="floating" fill="outline" placeholder="Enter member name"
-        [(ngModel)]="member.name"></ion-input>
-      <ion-textarea label="Member Details" labelPlacement="floating" fill="outline" placeholder="Write about the member"
-        [(ngModel)]="member.details"></ion-textarea>
-      <ion-button shape="round" size="small" (click)="removeMember(i)" color="danger">
-        <ion-icon slot="icon-only" name="trash"></ion-icon>
-      </ion-button>
-    </div>
+  <form [formGroup]="addCase_form">
+    <ion-list>
 
-    <ion-row>
-      <span>Add Member</span>
-      <ion-icon name="add-circle" (click)="addMember()"></ion-icon>
-    </ion-row>
-  </ion-list>
+      <ion-input label="Client Name" label-placement="floating" fill="outline" placeholder="Enter client name"
+        formControlName="clientName">
+      </ion-input>
 
-  <h3 class="ion-padding">Defendant</h3>
-  <ion-list>
-    <ion-input label="Lawyer Name" label-placement="floating" fill="outline"
-      placeholder="Enter lawyer name"></ion-input>
-    <ion-input label="Lawyer Mobile no." label-placement="floating" fill="outline"
-      placeholder="Enter lawyer mobile no."></ion-input>
-    <ion-input label="Client Name" label-placement="floating" fill="outline"
-      placeholder="Enter client name"></ion-input>
-    <ion-input label="Client Mobile no." label-placement="floating" fill="outline"
-      placeholder="Enter Client mobile no."></ion-input>
-    <ion-textarea label="About Case" labelPlacement="floating" fill="outline"
-      placeholder="Write about the case"></ion-textarea>
+      <ion-input label="Client Mobile No" label-placement="floating" fill="outline" placeholder="Enter Client mobile no"
+        formControlName="clientMobile" type="number">
+      </ion-input>
 
-    <div *ngFor="let member of members; let i = index" class="member-field">
-      <ion-input label="Member Name" label-placement="floating" fill="outline" placeholder="Enter member name"
-        [(ngModel)]="member.name"></ion-input>
-      <ion-textarea label="Member Details" labelPlacement="floating" fill="outline" placeholder="Write about the member"
-        [(ngModel)]="member.details"></ion-textarea>
-      <ion-button shape="round" size="small" (click)="removeMember(i)" color="danger">
-        <ion-icon slot="icon-only" name="trash"></ion-icon>
-      </ion-button>
-    </div>
+      <ion-input label="Case Title" label-placement="floating" fill="outline" placeholder="Enter case title"
+        formControlName="caseTitle">
+      </ion-input>
 
-    <ion-row>
-      <span>Add Member</span>
-      <ion-icon name="add-circle" (click)="addMember()"></ion-icon>
-    </ion-row>
-  </ion-list>
+      <ion-input label="Case Number" label-placement="floating" fill="outline" placeholder="Enter case number"
+        formControlName="caseNo">
+      </ion-input>
+
+      <ion-input label="IPC Section" label-placement="floating" fill="outline" placeholder="Enter ipc section"
+        formControlName="ipcSection">
+      </ion-input>
+
+      <ion-input label="Hearing Date" label-placement="floating" fill="outline" placeholder="Enter hearing date"
+        formControlName="hearingDate">
+      </ion-input>
+
+      <ion-input label="Court Name" label-placement="floating" fill="outline" placeholder="Enter Court Name"
+        formControlName="courtName">
+      </ion-input>
+
+      <ion-textarea label="About Case" labelPlacement="floating" fill="outline" placeholder="Write about the case"
+        formControlName="aboutCase">
+      </ion-textarea>
+
+      <div formArrayName="addMembers">
+        <div *ngFor="let member of membersArray.controls; let i = index">
+          <div [formGroupName]="i">
+            <span>
+              <p>Member {{ i + 1 }}</p>
+            </span>
+
+            <ion-input label-placement="floating" type="text" fill="outline" label="Member Name"
+              placeholder="Enter member name" formControlName="MemberName{{ i + 1 }}"></ion-input>
+
+            <ion-textarea class="memberDetails" label="Member Details" labelPlacement="floating" fill="outline"
+              placeholder="Write about the member" formControlName="MemberDetails{{i + 1}}">
+            </ion-textarea>
+
+            <ion-button shape="round" size="small" (click)="removeMember(i)" color="danger">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+
+      <ion-row>
+        <span>Add Member</span>
+        <ion-icon name="add-circle" (click)="addMemberControls()"></ion-icon>
+      </ion-row>
+    </ion-list>
+
+  </form>
 
   <ion-row class="ion-justify-content-center">
-    <ion-button shape="round">Submit</ion-button>
+    <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
   </ion-row>
 
 </ion-content>
