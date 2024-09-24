@@ -94,8 +94,6 @@ export class VakilDashboardComponent implements OnInit {
 	}
 	login: any;
 	login_data: any;
-	payment: any;
-	payment_data: any;
 	vId: any;
 	dashboard: any;
 
@@ -108,9 +106,6 @@ export class VakilDashboardComponent implements OnInit {
 		this.login = localStorage.getItem('vakilLoginData')
 		this.login_data = JSON.parse(this.login)
 		this.vId = this.login_data.advId;
-
-		this.payment = localStorage.getItem('vakilPaymentData');
-		this.payment_data = JSON.parse(this.payment);
 	}
 
 	ngOnInit() {
@@ -132,7 +127,7 @@ export class VakilDashboardComponent implements OnInit {
 	}
 
 	addPublication() {
-		if (this.payment_data.status === true) {
+		if (this.login_data.status === true) {
 			this._router.navigate(['/home/publication']);
 		}
 		else {
@@ -141,7 +136,7 @@ export class VakilDashboardComponent implements OnInit {
 	}
 
 	addImageBanner() {
-		if (this.payment_data.status === true) {
+		if (this.login_data.status === true) {
 			this._router.navigate(['/home/imagemanagement']);
 		}
 		else {
@@ -150,7 +145,7 @@ export class VakilDashboardComponent implements OnInit {
 	}
 
 	addVideo() {
-		if (this.payment_data.status === true) {
+		if (this.login_data.status === true) {
 			this._router.navigate(['/home/videomanagement']);
 		}
 		else {
@@ -159,7 +154,7 @@ export class VakilDashboardComponent implements OnInit {
 	}
 
 	newClientAdd() {
-		if (this.payment_data.status === true) {
+		if (this.login_data.status === true) {
 			this._router.navigate(['/vakil/home/newclientreg']);
 		}
 		else {

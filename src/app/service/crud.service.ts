@@ -62,18 +62,29 @@ export class CrudService {
   update_vakil_profile(data: any) {
     return this._http.post<any>(`${this.base_url}updateProfile`, data);
   }
+
+  //premium feature
   add_publication(data: any) {
     return this._http.post<any>(`${this.base_url}addPublication`, data);
   }
+
   get_publication(vakilId: any) {
     return this._http.post<any>(`${this.base_url}viewPublication?vakilId=${vakilId}`, {});
+  }
+
+  get_image_banner(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}imageBannerList?vakilId=${vakilId}`);
+  }
+
+  get_video(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}videoList?vakilId=${vakilId}`);
   }
 
   new_Client_register(data: any) {
     return this._http.post<any>(`${this.base_url}ClientRegister`, data);
   }
 
-  get_ClientListByVakilId(vakilId: any) {
+  get_new_Client(vakilId: any) {
     return this._http.get<any>(`${this.base_url}ClientListByVakilId?vakilId=${vakilId}`);
   }
 
@@ -85,10 +96,9 @@ export class CrudService {
     return this._http.get<any>(`${this.base_url}getPaymentHistoryByAdvocate?vakilId=${vakilId}`);
   }
 
-  get_total_case_documents(vakilId: any) {
-    return this._http.get<any>(`${this.base_url}totalCaseDocumentList?vakilId=${vakilId}`);
+  get_complete_case_detail(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}completeCaseDetail?vakilId=${vakilId}`);
   }
-
 
   //for user 
   user_registartion(data: any) {

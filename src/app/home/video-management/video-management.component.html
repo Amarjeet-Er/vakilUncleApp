@@ -4,31 +4,28 @@
   </div>
 </div>
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
-
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
   <ion-row>
     <span>Add Video</span>
     <ion-icon name="add-circle" (click)="AddVideo()"></ion-icon>
   </ion-row>
 
   <ion-list>
-
-
-    <ion-card>
+    <ion-card *ngFor="let video of videoList">
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span class="highlight">Title</span>
-        <span class="highlight">Video Title</span>
+        <span class="highlight">{{video?.title}}</span>
       </ion-row>
       <ion-row>
         <span class="highlight">Link</span>
-        <ion-icon name="copy-outline"></ion-icon>
+        <ion-icon name="copy-outline" (click)="copyUrl(video?.videoUrl)"></ion-icon>
       </ion-row>
       <ion-card-content>
-        https://youtu.be/92cGK-pwgjY?si=oZpTKDydl7P_3ors
+        {{video?.videoUrl}}
       </ion-card-content>
     </ion-card>
-  
   </ion-list>
+  <p class="NoRecord" *ngIf="videoList?.length === 0">No Record Found</p>
 
 </ion-content>
 

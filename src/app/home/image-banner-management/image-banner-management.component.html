@@ -4,20 +4,24 @@
   </div>
 </div>
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
 
   <ion-row>
     <span>Add Image & Banner</span>
     <ion-icon name="add-circle" (click)="AddImage()"></ion-icon>
   </ion-row>
 
-  <ion-list>
-
+  <ion-list *ngFor="let image of image_banner">
     <ion-card>
-      <img alt="Silhouette of mountains" src="../../../assets/images/image_1.jfif" />
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span class="highlight">Title</span>
+        <span class="highlight">{{image?.title || 'N/A'}}</span>
+      </ion-row>
+      <img alt="Image & Banner"
+        [src]="image?.imageUrl ? img_url+image?.imageUrl : '../../../assets/images/image_1.jfif'" />
     </ion-card>
-  
   </ion-list>
+  <p class="NoRecord" *ngIf="image_banner?.length === 0">No Record Found</p>
 
 </ion-content>
 
@@ -34,7 +38,11 @@
     <ion-content>
       <ion-list>
 
-        <ion-input type="file" label="Choose Image" label-placement="floating" fill="outline" placeholder="Select Image"></ion-input>
+        <ion-input type="text" label="Image title" label-placement="floating" fill="outline"
+          placeholder="Image title"></ion-input>
+
+        <ion-input type="file" label="Choose Image" label-placement="floating" fill="outline"
+          placeholder="Select Image"></ion-input>
 
         <ion-row class="ion-justify-content-center">
           <ion-button shape="round">Submit</ion-button>

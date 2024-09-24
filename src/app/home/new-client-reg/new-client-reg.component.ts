@@ -71,7 +71,7 @@ export class NewClientRegComponent implements OnInit {
   }
 
   loadData() {
-    this._crud.get_ClientListByVakilId(this.login_data.advId).subscribe(
+    this._crud.get_new_Client(this.login_data.advId).subscribe(
       (res: any) => {
         console.log(res);
         if (res.status === true) {

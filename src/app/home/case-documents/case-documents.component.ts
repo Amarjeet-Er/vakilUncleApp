@@ -32,7 +32,7 @@ export class CaseDocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._crud.get_ClientListByVakilId(this.login_data.advId).subscribe(
+    this._crud.get_new_Client(this.login_data.advId).subscribe(
       (response) => {
         console.log(response, 'case documnet');
         this.total_case_docs = response.data;

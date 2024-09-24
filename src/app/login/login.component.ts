@@ -48,9 +48,17 @@ export class LoginComponent implements OnInit {
             console.log(res, 'login');
 
             if (res.UserRole == "Advocate") {
+              const vakilLogin = {
+                advId: res.data.advId,
+                enrollId: res.data.enrollId,
+                advocateName: res.data.advocateName,
+                email: res.data.email,
+                contactNum: res.data.contactNum,
+                status: res.status,
+              }
+
               this._shared.tostSuccessTop('Login Successfully...')
-              localStorage.setItem('vakilLoginData', JSON.stringify(res.data))
-              localStorage.setItem('vakilPaymentData', JSON.stringify(res))
+              localStorage.setItem('vakilLoginData', JSON.stringify(vakilLogin))
               if (res.CompleteProfile === true) {
                 this._router.navigate(['/vakil/home/dashboard']);
               }

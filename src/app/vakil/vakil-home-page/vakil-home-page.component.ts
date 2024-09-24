@@ -7,19 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./vakil-home-page.component.scss'],
 })
 export class VakilHomePageComponent implements OnInit {
-  payment: any;
-  payment_data: any;
+  login: any;
+  login_data: any;
 
   constructor(
     private _router: Router
   ) {
-    this.payment = localStorage.getItem('vakilPaymentData');
-    this.payment_data = JSON.parse(this.payment);
+    this.login = localStorage.getItem('vakilLoginData');
+    this.login_data = JSON.parse(this.login);
   }
 
   ngOnInit() { }
   newClientAdd() {
-    if (this.payment_data.status === true) {
+    if (this.login_data.status === false) {
       this._router.navigate(['/vakil/home/newclientreg']);
     }
     else {
