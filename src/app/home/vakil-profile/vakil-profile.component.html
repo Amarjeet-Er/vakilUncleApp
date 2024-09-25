@@ -14,7 +14,7 @@
     <ion-button shape="round" (click)="fileInput.click()" *ngIf="!isEdit">
       <ion-icon slot="icon-only" name="pencil"></ion-icon>
     </ion-button>
-  </div> 
+  </div>
 
 
   <div class="profileDetails">
@@ -41,14 +41,14 @@
         formControlName="email" readonly [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
-      <ion-select label="Gender" label-placement="floating" interface="action-sheet" placeholder="Select Gender"
+      <ion-select label="Gender" label-placement="floating" placeholder="Select Gender"
         formControlName="gender" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option value="Male"> Male </ion-select-option>
         <ion-select-option value="Female"> Female </ion-select-option>
         <ion-select-option value="Other"> Other </ion-select-option>
       </ion-select><br>
 
-      <ion-select label="State" label-placement="floating" interface="action-sheet" placeholder="Select State"
+      <ion-select label="State" label-placement="floating" placeholder="Select State"
         (ionChange)="onCityChange($event)" formControlName="state" [disabled]="isEdit"
         [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option *ngFor="let state of states" [value]="state?.Id">
@@ -56,7 +56,7 @@
         </ion-select-option>
       </ion-select><br>
 
-      <ion-select label="City" label-placement="floating" interface="action-sheet" placeholder="Select City"
+      <ion-select label="City" label-placement="floating" placeholder="Select City"
         formControlName="city" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option *ngFor="let city of citys" [value]="city?.Id">
           {{city?.name}}
@@ -64,7 +64,7 @@
       </ion-select><br>
 
       <ion-select label="Court" label-placement="floating" interface="action-sheet" placeholder="Select Court"
-        formControlName="courtType" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
+        formControlName="courtType" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'" [multiple]="true">
         <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
           {{court?.courtName}}
         </ion-select-option>
@@ -72,7 +72,7 @@
 
       <ion-select label="Lawyer Type" label-placement="floating" interface="action-sheet"
         placeholder="Select lawyer type" formControlName="advType" [disabled]="isEdit"
-        [fill]="isEdit? 'solid' : 'outline'">
+        [fill]="isEdit? 'solid' : 'outline'" [multiple]="true">
         <ion-select-option *ngFor="let advocate of advocate_type" [value]="advocate?.Id">
           {{advocate?.name}}
         </ion-select-option>

@@ -3,7 +3,7 @@ import { IonModal } from '@ionic/angular';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { Clipboard } from '@capacitor/clipboard';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-video-management',
@@ -16,16 +16,23 @@ export class VideoManagementComponent implements OnInit {
   login_data: any;
   videoList: any;
   filter_data: any;
+  video_form!: FormGroup;
 
   constructor(
     private _crud: CrudService,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _fb: FormBuilder,
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login)
   }
 
   ngOnInit() {
+    this.video_form = this._fb.group({
+      title: ['', Validators.required],
+      url: ['', Validators.required],
+    }
+    )
     this._crud.get_video(this.login_data.advId).subscribe(
       (res: any) => {
         if (res.status === true) {
@@ -38,6 +45,32 @@ export class VideoManagementComponent implements OnInit {
         this._shared.tostErrorTop('No Data')
       }
     )
+  }
+
+  onSubmit() {
+    const formdata = new FormData();
+    formdata.append('id', this.login_data.advId);
+    formdata.append('title', this.video_form.get('title')?.value);
+    formdata.append('url', this.video_form.get('url')?.value);
+    if (this.video_form.valid) {
+      this._crud.add_video(formdata).subscribe(
+        (res: any) => {
+          if (res.status === true) {
+            this._shared.tostSuccessTop('Video Added Successfully')
+            this.modal.dismiss();
+          }
+          else {
+            this._shared.tostErrorTop('Not Add Video')
+          }
+        },
+        (error: any) => {
+          this._shared.tostErrorTop('Not Add Video')
+        }
+      )
+    }
+    else {
+      this._shared.tostWrraingTop('plz all field required')
+    }
   }
 
   AddVideo() {

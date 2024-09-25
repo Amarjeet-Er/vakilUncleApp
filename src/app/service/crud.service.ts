@@ -76,8 +76,16 @@ export class CrudService {
     return this._http.post<any>(`${this.base_url}viewPublication?vakilId=${vakilId}`, {});
   }
 
+  add_image_banner(data: any) {
+    return this._http.post<any>(`${this.base_url}addImageAndBanner`, data);
+  }
+
   get_image_banner(vakilId: any) {
     return this._http.get<any>(`${this.base_url}imageBannerList?vakilId=${vakilId}`);
+  }
+
+  add_video(data: any) {
+    return this._http.post<any>(`${this.base_url}addvideo`, data);
   }
 
   get_video(vakilId: any) {

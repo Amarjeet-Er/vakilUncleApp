@@ -67,3 +67,38 @@ ion-modal {
 
     }
 }
+
+
+.custom-modal {
+    --width: 90%;
+    --height: 80%;
+    --border-radius: 10px;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+  
+  .close-btn {
+    --background: transparent;
+    --color: black;
+  }
+  
+  .image-container {
+    text-align: center;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
+  .document-details {
+    margin-top: 20px;
+    padding: 10px;
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+  

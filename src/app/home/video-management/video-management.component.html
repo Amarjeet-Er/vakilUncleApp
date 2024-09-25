@@ -42,14 +42,19 @@
     <ion-content>
       <ion-list>
 
-        <ion-input label="Title" label-placement="floating" fill="outline" placeholder="Enter title"></ion-input>
+        <form [formGroup]="video_form">
+          <ion-input label="Title" label-placement="floating" fill="outline" placeholder="Enter title"
+            formControlName="title">
+          </ion-input>
 
-        <ion-input label="Link" label-placement="floating" fill="outline" placeholder="Paste Link"></ion-input>
+          <ion-input label="Link" label-placement="floating" fill="outline" placeholder="Paste Link"
+            formControlName="url">
+          </ion-input>
 
-        <ion-row class="ion-justify-content-center">
-          <ion-button shape="round">Submit</ion-button>
-        </ion-row>
-
+          <ion-row class="ion-justify-content-center">
+            <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+          </ion-row>
+        </form>
       </ion-list>
     </ion-content>
   </ng-template>

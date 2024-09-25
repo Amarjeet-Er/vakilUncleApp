@@ -37,17 +37,20 @@
     </div>
     <ion-content>
       <ion-list>
+        <form [formGroup]="addImage_form">
+          <ion-input type="text" label="Image title" label-placement="floating" fill="outline" placeholder="Image title"
+            formControlName="title">
+          </ion-input>
 
-        <ion-input type="text" label="Image title" label-placement="floating" fill="outline"
-          placeholder="Image title"></ion-input>
 
-        <ion-input type="file" label="Choose Image" label-placement="floating" fill="outline"
-          placeholder="Select Image"></ion-input>
+          <ion-input type="file" label="Image & Banner" label-placement="floating" fill="outline" formControlName="image"
+            (change)="onBanner($event)" accept=".jpg,.png,.jpeg">
+          </ion-input>
 
-        <ion-row class="ion-justify-content-center">
-          <ion-button shape="round">Submit</ion-button>
-        </ion-row>
-
+          <ion-row class="ion-justify-content-center">
+            <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+          </ion-row>
+        </form>
       </ion-list>
     </ion-content>
   </ng-template>

@@ -34,10 +34,10 @@
     <ion-content>
       <div class="docList">
         <div class="docsBox" *ngFor="let doc of docs">
-          <img src="../../../assets/images/docs.jfif">
+          <img [src]="docs ? img_url+docs :'../../../assets/images/document.png'">
           <div class="doctitle">
             <p>Documents</p>
-            <span>07/09/3023</span>
+            <span>{{ docs_content?.firdate | date: 'dd-MM-yyyy'}}</span>
           </div>
         </div>
       </div>
