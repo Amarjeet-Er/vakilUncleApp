@@ -23,8 +23,9 @@ export class VakilProfileComponent implements OnInit {
   img_url: any;
 
   profile_select: any;
-  profile_url: any = "https://png.pngitem.com/pimgs/s/130-1300400_user-hd-png-download.png"
-  profileInput: boolean = true
+  profile_url: any = "../../../assets/icon/profile.png"
+  profileSelect: boolean = true
+  profileSelected: boolean = false
 
 
   Aadhar_select: any;
@@ -182,7 +183,9 @@ export class VakilProfileComponent implements OnInit {
   }
 
   // for select profile
-  openFile(files: any) {
+  onProfile(files: any) {
+    this.profileSelect = false
+    this.profileSelected = true
     if (files.length > 0) {
       const reader = new FileReader();
       this.profile_select = files[0];

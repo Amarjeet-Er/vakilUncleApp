@@ -49,7 +49,7 @@ export class VideoManagementComponent implements OnInit {
 
   onSubmit() {
     const formdata = new FormData();
-    formdata.append('id', this.login_data.advId);
+    formdata.append('vakilId', this.login_data.advId);
     formdata.append('title', this.video_form.get('title')?.value);
     formdata.append('url', this.video_form.get('url')?.value);
     if (this.video_form.valid) {

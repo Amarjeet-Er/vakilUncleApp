@@ -1,36 +1,37 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
-    <span>Total Case 10</span>
+    <span>Total Case {{cases?.length}}</span>
   </div>
 </div>
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearchChange($event)"></ion-searchbar>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
+  </ion-searchbar>
 
   <ion-row class="AddCase">
     <span>Add Case</span>
     <ion-icon name="add-circle" (click)="addClientCase()"></ion-icon>
   </ion-row>
 
-  <ng-container *ngFor="let case of filteredCases">
-    <ion-card (click)="caseHearing()">
-      <ion-card-title class="text_color">{{ case.title }}</ion-card-title>
+  <ng-container *ngFor="let case of cases">
+    <ion-card (click)="caseHearing(case)">
+      <ion-card-title class="text_color">{{ case?.caseTitle || 'N/A' }}</ion-card-title>
 
       <ion-row>
-        <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Lawyer Name</span>
-        <span class="highlight">{{ case.lawyerName }}</span>
+        <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Client Name</span>
+        <span class="highlight">{{ case?.clientName || 'N/A' }}</span>
       </ion-row>
       <ion-row>
         <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Case Number</span>
-        <span>{{ case.caseNumber }}</span>
+        <span>{{ case?.caseNo || 'N/A' }}</span>
       </ion-row>
       <ion-row>
         <span><ion-icon name="call-outline"></ion-icon>&nbsp; Mobile Number</span>
-        <span>{{ case.mobileNumber }}</span>
+        <span>{{ case?.contactNum || 'N/A' }}</span>
       </ion-row>
       <ion-row>
         <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Next Date</span>
-        <span>{{ case.nextDate }}</span>
+        <span>{{ case?.hearingDate || 'N/A' }}</span>
       </ion-row>
     </ion-card>
   </ng-container>

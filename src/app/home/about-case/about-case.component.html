@@ -1,114 +1,65 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back"  (click)="backButton()"></ion-icon> <span>About Case</span>
+    <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>About Case</span>
   </div>
 </div>
 <ion-content>
   <div class="caseInfo">
-    <h4 class="text_color">Case Title</h4>
+    <h4 class="text_color">{{about_case?.caseTitle || 'N/A' | titlecase}}</h4>
     <ion-row class="ion-justify-content-between border">
       <span class="highlight">Case Number</span>
-      <span class="highlight">CN-394232</span>
+      <span class="highlight">{{about_case?.caseNo || 'N/A'}}</span>
     </ion-row>
   </div>
 
   <div class="caseList">
     <ion-list>
       <ion-row>
-        <span class="highlight">Lawyer Name</span>
-        <span class="highlight">Abhishek Patel</span>
-      </ion-row>
-
-      <ion-row>
-        <span>Lawyer User Id</span>
-        <span>VU-34834</span>
-      </ion-row>
-
-      <ion-row>
-        <span>Mobile Number</span>
-        <span>9934342332</span>
-      </ion-row>
-
-    </ion-list>
-
-    <ion-list>
-      <ion-row>
         <span class="highlight">Client Name</span>
-        <span class="highlight">Manoj Kumar</span>
+        <span class="highlight">{{about_case?.clientName || 'N/A'}}</span>
       </ion-row>
       <ion-row>
-        <span>Client User Id</span>
-        <span>VU-54654</span>
-      </ion-row>
-      <ion-row>
-        <span>Mobile Number</span>
-        <span>4565465465</span>
-      </ion-row>
-    </ion-list>
-
-    <ion-list>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore soluta ullam alias, neque commodi quidem
-        fugit. Quo ab reiciendis placeat. Quaerat voluptates repellendus suscipit quos recusandae, accusamus cupiditate
-        culpa pariatur?</p>
-    </ion-list>
-
-    <ion-list>
-      <ion-item-group>
-        <ion-item-divider>
-          <ion-label>Members</ion-label>
-        </ion-item-divider>
-
-        <ion-item>
-          <ion-label>Rohit Kumar</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Lalan Mahato</ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>Jignesh Patel</ion-label>
-        </ion-item>
-      </ion-item-group>
-    </ion-list>
-  </div>
-
-  <div class="caseList">
-    <h4 class="text_color">Defendant</h4>
-    <ion-list>
-      <ion-row>
-        <span class="highlight">Lawyer Name</span>
-        <span class="highlight">Sunil Mishra</span>
-      </ion-row>
-      <ion-row>
-        <span>Lawyer User Id</span>
-        <span>VU-76573</span>
+        <span>Client Email</span>
+        <span>{{about_case?.email || 'N/A'}}</span>
       </ion-row>
       <ion-row>
         <span>Mobile Number</span>
-        <span>9934342332</span>
+        <span>{{about_case?.contactNum || 'N/A'}}</span>
       </ion-row>
     </ion-list>
 
     <ion-list>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore soluta ullam alias, neque commodi quidem
-        fugit. Quo ab reiciendis placeat. Quaerat voluptates repellendus suscipit quos recusandae, accusamus cupiditate
-        culpa pariatur?</p>
+      <h4>Summary</h4>
+      <p>
+        {{about_case?.caseSummary}}
+      </p>
     </ion-list>
 
     <ion-list>
-      <ion-item-group>
+      <ion-item-group *ngFor="let member of memberDetails let i = index">
         <ion-item-divider>
-          <ion-label>Members</ion-label>
+          <ion-label>Members {{i + 1}}</ion-label>
         </ion-item-divider>
-
-        <ion-item>
-          <ion-label>Rohit Kumar</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Lalan Mahato</ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>Jignesh Patel</ion-label>
-        </ion-item>
+        <ion-row>
+          <span>Father Name</span>
+          <span>{{member?.fatherName || 'N/A'}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Member Name</span>
+          <span>{{member?.memberName || 'N/A'}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Member Contact No</span>
+          <span>{{member?.membercontactNum || 'N/A'}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Member Details</span>
+          <span>{{member?.memberDetails || 'N/A'}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Member Address</span>
+          <span>{{member?.memberaddress || 'N/A'}}</span>
+        </ion-row>
       </ion-item-group>
     </ion-list>
   </div>

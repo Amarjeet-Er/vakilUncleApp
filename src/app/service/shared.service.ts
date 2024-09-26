@@ -9,6 +9,7 @@ export class SharedService {
   base_url = new BehaviorSubject<string>('https://vakiluncle.in/api/');
   img_url = new BehaviorSubject<string>('https://vakiluncle.in/');
   memebership = new BehaviorSubject<object>({})
+  sharedData = new BehaviorSubject<object>({})
   videoList: any;
 
   constructor(

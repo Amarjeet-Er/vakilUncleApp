@@ -1,64 +1,30 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/user/case"></ion-icon>
+    <ion-icon name="chevron-back" (click)="backButton1()"></ion-icon>
     <span>Case Hearing</span>
   </div>
 </div>
 
 <ion-row>
-  <span>Total Hearing: 04</span>
+  <span>Total Hearing : {{case_hearing?.length || '0'}}</span>
   <ion-button size="small" fill="clear" shape="round" (click)="AboutCase()">About Case</ion-button>
 </ion-row>
 
-<ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+<ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
+</ion-searchbar>
 
 <ion-content>
-  <h3>Property Dispute</h3>
-
   <ion-list>
-
-    <ion-item lines="none" (click)="openModal()">
+    <ion-item lines="none" *ngFor="let data of case_hearing" (click)="openModal(data)">
       <ion-label>
-        CN-44385
+        {{data?.caseNo || 'N/A'}}
       </ion-label>
       <ion-label>
-        03-Jun-2023 10:00AM
-      </ion-label>
-      <ion-icon name="chevron-forward"></ion-icon>
-    </ion-item>
-
-    <ion-item lines="none" (click)="openModal()">
-      <ion-label>
-        CN-44384
-      </ion-label>
-      <ion-label>
-        09-May-2023 10:00AM
+        {{data?.hearingDate || 'N/A'}}
       </ion-label>
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>
-
-    <ion-item lines="none" (click)="openModal()">
-      <ion-label>
-        CN-44383
-      </ion-label>
-      <ion-label>
-        06-Dec-2022 01:00PM
-      </ion-label>
-      <ion-icon name="chevron-forward"></ion-icon>
-    </ion-item>
-
-    <ion-item lines="none" (click)="openModal()">
-      <ion-label>
-        CN-44382
-      </ion-label>
-      <ion-label>
-        03-Dec-2022 11:00AM
-      </ion-label>
-      <ion-icon name="chevron-forward"></ion-icon>
-    </ion-item>
-
   </ion-list>
-
 
 </ion-content>
 
@@ -74,19 +40,18 @@
       </div>
     </div>
 
-
     <ion-content>
 
       <ion-list>
 
         <ion-row>
-          <span class="highlight">Lawyer Name</span>
-          <span class="highlight">Abhishek Patel</span>
+          <span class="highlight">Client Name</span>
+          <span class="highlight">{{case_hearing_details?.clientName}}</span>
         </ion-row>
-      
+
         <ion-row>
-          <span class="highlight">Hearing Number</span>
-          <span class="highlight">CN-44385</span>
+          <span>Case Number</span>
+          <span>{{case_hearing_details?.caseNo}}</span>
         </ion-row>
         <ion-row>
           <span>Lawyer User Id</span>
@@ -94,21 +59,15 @@
         </ion-row>
         <ion-row>
           <span>Mobile Number</span>
-          <span>9775454545</span>
+          <span>{{case_hearing_details?.contactNum}}</span>
         </ion-row>
         <ion-row>
           <span>Next Date</span>
-          <span style="color: green;">03-Jun-2023 10:00AM</span>
+          <span style="color: green;">{{case_hearing_details?.hearingDate}}</span>
         </ion-row>
 
         <div class="description">
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis praesentium modi, sapiente autem
-            aspernatur sed aliquid facilis exercitationem, quae laboriosam quo officiis ea saepe consectetur, non
-            nobis atque dolore animi?</p>
-
-          <p>01. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, quaerat!</p>
-          <p>02. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, quaerat!</p>
-          <p>03. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, quaerat!</p>
+          <p>{{case_hearing_details?.caseSummary}}</p>
         </div>
 
       </ion-list>

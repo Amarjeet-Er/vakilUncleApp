@@ -6,11 +6,15 @@
 
 <ion-content>
   <div class="profile">
-    <div class="profileImage">
-      <img [src]="login_data?.profilePath ? img_url + login_data.profilePath : profile_url" *ngIf="profile_url">
+    <div class="profileImage" [hidden]="profileSelected">
+      <img
+        [src]="edit_profile_data?.profilePath ? img_url + edit_profile_data.profilePath : '../../../assets/icon/profile.png'">
+    </div>
+    <div class="profileImage" [hidden]="profileSelect">
+      <img [src]="profile_url" alt="">
+      <input type="file" #fileInput (change)="onProfile(fileInput.files)">
     </div>
 
-    <input type="file" #fileInput (change)="openFile(fileInput.files)" [hidden]="profileInput">
     <ion-button shape="round" (click)="fileInput.click()" *ngIf="!isEdit">
       <ion-icon slot="icon-only" name="pencil"></ion-icon>
     </ion-button>
@@ -25,9 +29,7 @@
       </ion-button>
     </div>
 
-
     <form [formGroup]="vakil_profile_update">
-
 
       <ion-input label="Full Name" label-placement="floating" required placeholder="Enter full name"
         formControlName="advocateName" [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
@@ -41,23 +43,22 @@
         formControlName="email" readonly [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
-      <ion-select label="Gender" label-placement="floating" placeholder="Select Gender"
-        formControlName="gender" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
-        <ion-select-option value="Male"> Male </ion-select-option>
-        <ion-select-option value="Female"> Female </ion-select-option>
-        <ion-select-option value="Other"> Other </ion-select-option>
+      <ion-select label="Gender" label-placement="floating" placeholder="Select Gender" formControlName="gender"
+        [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
+        <ion-select-option value="Male | titlecase"> Male </ion-select-option>
+        <ion-select-option value="Female | titlecase"> Female </ion-select-option>
+        <ion-select-option value="Other | titlecase"> Other </ion-select-option>
       </ion-select><br>
 
-      <ion-select label="State" label-placement="floating" placeholder="Select State"
-        (ionChange)="onCityChange($event)" formControlName="state" [disabled]="isEdit"
-        [fill]="isEdit? 'solid' : 'outline'">
+      <ion-select label="State" label-placement="floating" placeholder="Select State" (ionChange)="onCityChange($event)"
+        formControlName="state" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option *ngFor="let state of states" [value]="state?.Id">
           {{ state?.name}}
         </ion-select-option>
       </ion-select><br>
 
-      <ion-select label="City" label-placement="floating" placeholder="Select City"
-        formControlName="city" [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
+      <ion-select label="City" label-placement="floating" placeholder="Select City" formControlName="city"
+        [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
         <ion-select-option *ngFor="let city of citys" [value]="city?.Id">
           {{city?.name}}
         </ion-select-option>
@@ -96,11 +97,12 @@
       </ion-input>
 
       <!-- Aadhar Card -->
-      <div class="VakilDocuments" *ngIf="login_data?.adharUrl || !isEdit">
+      <div class="VakilDocuments" *ngIf="edit_profile_data?.adharUrl || !isEdit">
         <div class="Documents" [hidden]="AadharSelected">
           <span>Aadhar</span>
-          <img [src]="login_data?.adharUrl? img_url+login_data?.adharUrl: '../../../assets/images/document.png'" alt=""
-            width="100%" height="100%">
+          <img
+            [src]="edit_profile_data?.adharUrl? img_url+edit_profile_data?.adharUrl: '../../../assets/images/document.png'"
+            alt="" width="100%" height="100%">
         </div>
       </div>
 
@@ -126,11 +128,12 @@
       </div>
 
       <!-- Pan Card -->
-      <div class="VakilDocuments" *ngIf="login_data?.panUrl || !isEdit">
+      <div class="VakilDocuments" *ngIf="edit_profile_data?.panUrl || !isEdit">
         <div class="Documents" [hidden]="PanSelected">
           <span>Pan Card</span>
-          <img [src]="login_data?.panUrl? img_url+login_data?.panUrl: '../../../assets/images/document.png'" alt=""
-            width="100%" height="100%">
+          <img
+            [src]="edit_profile_data?.panUrl? img_url+edit_profile_data?.panUrl: '../../../assets/images/document.png'"
+            alt="" width="100%" height="100%">
         </div>
       </div>
 
@@ -156,11 +159,11 @@
       </div>
 
       <!-- Bar Counselling Certificate -->
-      <div class="VakilDocuments" *ngIf="login_data?.barcouncilUrl || !isEdit">
+      <div class="VakilDocuments" *ngIf="edit_profile_data?.barcouncilUrl || !isEdit">
         <div class="Documents" [hidden]="BarCouncilSelected">
           <span>Bar Counselling Certificate</span>
           <img
-            [src]="login_data?.barcouncilUrl? img_url+login_data?.barcouncilUrl: '../../../assets/images/document.png'"
+            [src]="edit_profile_data?.barcouncilUrl? img_url+edit_profile_data?.barcouncilUrl: '../../../assets/images/document.png'"
             alt="" width="100%" height="100%">
         </div>
       </div>
@@ -188,11 +191,12 @@
       </div>
 
       <!-- LLB Certificate -->
-      <div class="VakilDocuments" *ngIf="login_data?.llbUrl || !isEdit">
+      <div class="VakilDocuments" *ngIf="edit_profile_data?.llbUrl || !isEdit">
         <div class="Documents" [hidden]="LLBCSelected">
           <span>LLB Certificate</span>
-          <img [src]="login_data?.llbUrl? img_url+login_data?.llbUrl: '../../../assets/images/document.png'" alt=""
-            width="100%" height="100%">
+          <img
+            [src]="edit_profile_data?.llbUrl? img_url+edit_profile_data?.llbUrl: '../../../assets/images/document.png'"
+            alt="" width="100%" height="100%">
         </div>
       </div>
 
