@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
 import { CrudService } from 'src/app/service/crud.service';
@@ -10,84 +10,95 @@ import { SharedService } from 'src/app/service/shared.service';
   styleUrls: ['./case-hearing.component.scss'],
 })
 export class CaseHearingComponent implements OnInit {
-  @ViewChild('modal') modal !: IonModal;
+  @ViewChild('modal') modal!: IonModal;
+
   panelOpenState = false;
 
-  login_data: any;
-  login: any;
-  case_hearing: any;
-  filter_data: any;
-  clientId: any;
-  case_data: any;
-  case_no: any;
-  case_hearing_no: any;
-  case_hearing_data: any;
-  case_hearing_details: any;
+  // Data properties
+  loginData: any;
+  caseData: any;
+  caseHearingData: any;
+  caseHearingList: any[] = [];
+  filterData: any[] = [];
+  caseHearingDetails: any;
 
   constructor(
-    private _router: Router,
-    private _shared: SharedService,
-    private _crud: CrudService
+    private router: Router,
+    private sharedService: SharedService,
+    private crudService: CrudService
   ) {
-    this.login = localStorage.getItem('vakilLoginData');
-    this.login_data = JSON.parse(this.login);
-
-    this.case_no = localStorage.getItem('CaseNo');
-    this.case_data = JSON.parse(this.case_no);
-
-    this.case_hearing_no = localStorage.getItem('CaseHearingNo');
-    this.case_hearing_data = JSON.parse(this.case_hearing_no);
+    this.loadLocalData();
   }
 
   ngOnInit() {
-    this._crud.get_case_hearing_law_list(this.login_data.advId, this.case_data.id).subscribe(
-      (res: any) => {
-        console.log(res, 'hearing');
-        this.case_hearing = res.data;
-        this.filter_data = res.data;
-        console.log(this.case_hearing);
-      }
-    )
-    this._crud.get_case_hearing_law_details(this.login_data.advId, this.case_hearing_data.caseNo).subscribe(
-      (res: any) => {
-        if (res.status === true) {
-          this.case_hearing_details = res.data;
-        }
-      }
-    )
+    this.fetchCaseHearingList();
+    this.fetchCaseHearingDetails();
   }
 
-  // for about case button 
-  AboutCase() {
-    this._router.navigate(['/home/aboutcase'])
+  private loadLocalData() {
+    this.loginData = this.getLocalData('vakilLoginData');
+    this.caseData = this.getLocalData('CaseNo');
+    this.caseHearingData = this.getLocalData('CaseHearingNo');
+  }
+
+  private getLocalData(key: string): any {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+  }
+
+  private fetchCaseHearingList() {
+    this.crudService.get_case_hearing_law_list(this.loginData?.advId, this.caseData?.id)
+      .subscribe((res: any) => {
+        if (res?.data) {
+          this.caseHearingList = res.data;
+          this.filterData = [...this.caseHearingList];
+        }
+      });
+  }
+
+  private fetchCaseHearingDetails() {
+    this.crudService.get_case_hearing_law_details(this.loginData?.advId, this.caseHearingData?.caseNo).subscribe(
+      (res: any) => {
+        if (res.status === true) {
+          this.caseHearingDetails = res.data;
+          const documentNames = this.caseHearingDetails.documentName;
+          if (documentNames) {
+            this.caseHearingDetails.documents = documentNames.split(',').map((name: string, index: number) => ({
+              id: index + 1,
+              name: name.trim()
+            }));
+          } else {
+            this.caseHearingDetails.documents = [];
+          }
+        }
+      }
+    );
+  }
+
+  aboutCase() {
+    this.router.navigate(['/home/aboutcase']);
   }
 
   openModal(data: any) {
-    console.log(data);
-    localStorage.setItem('CaseHearingNo', JSON.stringify(data))
-    this.modal.present()
+    localStorage.setItem('CaseHearingNo', JSON.stringify(data));
+    this.modal.present();
   }
 
-  backButton1() {
+  backButtonToCaseList() {
     localStorage.removeItem('CaseNo');
-    this._router.navigate(['/home/vakiltotalcase'])
+    this.router.navigate(['/home/vakiltotalcase']);
   }
-  backButton() {
+
+  dismissModal() {
     localStorage.removeItem('CaseHearingNo');
     this.modal.dismiss();
   }
 
   onSearch(event: any) {
     const filter = event.target.value.toLowerCase();
-    this.case_hearing = this.filter_data.filter((data: any) => {
-      if (data?.caseNo.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
-        return true;
-      }
-      if (data?.hearingDate.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
-        return true;
-      }
-      return false;
-    }
-    );
+    this.caseHearingList = this.filterData.filter((data: any) => {
+      return data?.caseNo.toString().toLowerCase().includes(filter) ||
+        data?.hearingDate.toString().toLowerCase().includes(filter);
+    });
   }
 }

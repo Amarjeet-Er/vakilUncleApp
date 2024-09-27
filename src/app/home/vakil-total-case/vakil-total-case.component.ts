@@ -40,11 +40,14 @@ export class VakilTotalCaseComponent implements OnInit {
   }
 
   // for modal 
-  caseHearing(data:any) {
+  caseHearing(data: any) {
     localStorage.setItem('CaseNo', JSON.stringify(data))
     this._router.navigate(['/home/casehearing'])
   }
-
+  addHearingDate(data:any) {
+    localStorage.setItem('CaseNo', JSON.stringify(data))
+    this._router.navigate(['/home/addhearingdate'])
+  }
 
   onSearch(event: any) {
     const filter = event.target.value.toLowerCase();

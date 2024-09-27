@@ -8,7 +8,7 @@
 </div>
 
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+  <!-- <ion-searchbar color="light" placeholder="Search"></ion-searchbar> -->
 
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -86,49 +86,16 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Upcoming Court Date</span>
-      <ion-button size="small" fill="clear" shape="round" routerLink="/home/vakiltotalcase">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/home/upcomingcourtlist">See All</ion-button>
     </ion-row>
-    <div class="contentList  fadeInUp animated">
-      <ion-item lines="full" routerLink="/home/casehearing">
+    <div class="contentList">
+      <ion-item lines="full" *ngFor="let data of upcuming_court" (click)="onUpcoming(data)">
         <ion-label>
-          <h3>Smith vs. Johnson - Property Dispute</h3>
-          <span>08-Jun-2023 10:22am</span>
+          <h3>{{data?.clientName || 'N/A' | titlecase}}</h3>
+          <span>{{data?.hearingDate}}</span>
         </ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
-
-      <ion-item lines="full" routerLink="/home/casehearing">
-        <ion-label>
-          <h3>State vs. Brown - Criminal Case</h3>
-          <span>09-Jun-2023 11:30am</span>
-        </ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-      <ion-item lines="full" routerLink="/home/casehearing">
-        <ion-label>
-          <h3>Davis vs. Wilson - Contract Breach</h3>
-          <span>10-Jun-2023 10:00am</span>
-        </ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-      <ion-item lines="full" routerLink="/home/casehearing">
-        <ion-label>
-          <h3>White vs. Martin - Personal Injury</h3>
-          <span>11-Jun-2023 01:00pm</span>
-        </ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-      <ion-item lines="full" routerLink="/home/casehearing">
-        <ion-label>
-          <h3>Lewis vs. Clark - Defamation Case</h3>
-          <span>13-Jun-2023 10:20am</span>
-        </ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
     </div>
   </ion-list>
 
@@ -140,35 +107,15 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Recent Client</span>
-      <ion-button size="small" fill="clear" shape="round" routerLink="/vakil/home/clientlist">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/home/recentclient">See All</ion-button>
     </ion-row>
-    <ion-item lines="full" (click)="clientCase()">
+    <ion-item lines="full" *ngFor="let data of recent_client">
       <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_1.jpg" />
+        <img alt="" [src]="data?.profile ? img_url+data?.profile :'../../../assets/icon/profile.png'" />
       </ion-avatar>
-      <ion-label>Gautum Singh</ion-label>
+      <ion-label>{{data?.clientName | titlecase}}</ion-label>
     </ion-item>
 
-    <ion-item lines="full" (click)="clientCase()">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_2.png" />
-      </ion-avatar>
-      <ion-label>Sushant Kumar</ion-label>
-    </ion-item>
-
-    <ion-item lines="full" (click)="clientCase()">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_8.jpg" />
-      </ion-avatar>
-      <ion-label>Rahul Patel</ion-label>
-    </ion-item>
-
-    <ion-item lines="full" (click)="clientCase()">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_5.png" />
-      </ion-avatar>
-      <ion-label>Virender Bhola</ion-label>
-    </ion-item>
   </ion-list>
 
 
@@ -255,49 +202,16 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Complete Court Case</span>
-      <ion-button size="small" fill="clear" shape="round" routerLink="/home/vakiltotalcase">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/home/completecase">See All</ion-button>
     </ion-row>
     <div class="contentList">
-      <ion-item lines="full" routerLink="/home/casehearing">
+      <ion-item lines="full" *ngFor="let data of complete_case" (click)="onCompleteCase(data)">
         <ion-label>
-          <h3>Smith vs. Johnson - Property Dispute</h3>
-          <span>08-Jun-2023 10:22am</span>
+          <h3>{{data?.clientName | titlecase}}</h3>
+          <span>{{data?.hearingDate}}</span>
         </ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
-
-      <ion-item lines="full" routerLink="/home/casehearing">
-        <ion-label>
-          <h3>State vs. Brown - Criminal Case</h3>
-          <span>09-Jun-2023 11:30am</span>
-        </ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-      <ion-item lines="full" routerLink="/home/casehearing">
-        <ion-label>
-          <h3>Davis vs. Wilson - Contract Breach</h3>
-          <span>10-Jun-2023 10:00am</span>
-        </ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-      <ion-item lines="full" routerLink="/home/casehearing">
-        <ion-label>
-          <h3>White vs. Martin - Personal Injury</h3>
-          <span>11-Jun-2023 01:00pm</span>
-        </ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-      <ion-item lines="full" routerLink="/home/casehearing">
-        <ion-label>
-          <h3>Lewis vs. Clark - Defamation Case</h3>
-          <span>13-Jun-2023 10:20am</span>
-        </ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
     </div>
   </ion-list>
 

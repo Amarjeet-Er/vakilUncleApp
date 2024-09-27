@@ -4,9 +4,9 @@
     <span>Total Case {{cases?.length}}</span>
   </div>
 </div>
+
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
-  </ion-searchbar>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
 
   <ion-row class="AddCase">
     <span>Add Case</span>
@@ -14,26 +14,32 @@
   </ion-row>
 
   <ng-container *ngFor="let case of cases">
-    <ion-card (click)="caseHearing(case)">
-      <ion-card-title class="text_color">{{ case?.caseTitle || 'N/A' }}</ion-card-title>
+    <ion-card>
+      <ion-row class="title-row">
+        <ion-card-title class="text_color">{{ case?.caseTitle || 'N/A' }}</ion-card-title>
+        <ion-button fill="clear" (click)="addHearingDate(case)">
+          <ion-icon name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-row>
 
-      <ion-row>
-        <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Client Name</span>
-        <span class="highlight">{{ case?.clientName || 'N/A' }}</span>
-      </ion-row>
-      <ion-row>
-        <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Case Number</span>
-        <span>{{ case?.caseNo || 'N/A' }}</span>
-      </ion-row>
-      <ion-row>
-        <span><ion-icon name="call-outline"></ion-icon>&nbsp; Mobile Number</span>
-        <span>{{ case?.contactNum || 'N/A' }}</span>
-      </ion-row>
-      <ion-row>
-        <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Next Date</span>
-        <span>{{ case?.hearingDate || 'N/A' }}</span>
-      </ion-row>
+      <div (click)="caseHearing(case)">
+        <ion-row>
+          <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Client Name</span>
+          <span class="highlight">{{ case?.clientName || 'N/A' }}</span>
+        </ion-row>
+        <ion-row>
+          <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Case Number</span>
+          <span>{{ case?.caseNo || 'N/A' }}</span>
+        </ion-row>
+        <ion-row>
+          <span><ion-icon name="call-outline"></ion-icon>&nbsp; Mobile Number</span>
+          <span>{{ case?.contactNum || 'N/A' }}</span>
+        </ion-row>
+        <ion-row>
+          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Next Date</span>
+          <span>{{ case?.hearingDate || 'N/A' }}</span>
+        </ion-row>
+      </div>
     </ion-card>
   </ng-container>
-
 </ion-content>

@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
+    <span>Recent Client List</span>
+  </div>
+</div>
+
+<ion-content>
+
+  <ion-row>
+    <span>Total Recent Client : {{recent_client?.length || '0'}}</span>
+  </ion-row>
+
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+  <ion-item lines="full" *ngFor="let data of recent_client">
+    <ion-avatar aria-hidden="true" slot="start">
+      <img alt="" [src]="data?.profile ? img_url+data?.profile :'../../../assets/icon/profile.png'" />
+    </ion-avatar>
+    <ion-label>{{data?.clientName | titlecase}}</ion-label>
+  </ion-item>
+
+</ion-content>

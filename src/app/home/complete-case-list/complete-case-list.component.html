@@ -1,0 +1,24 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
+    <span>Complete Case List</span>
+  </div>
+</div>
+
+<ion-content>
+
+  <ion-row>
+    <span>Total Complete : {{complete_case?.length || '0'}}</span>
+  </ion-row>
+
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+  <div class="contentList">
+    <ion-item lines="full" *ngFor="let data of complete_case" (click)="onDetails(data)">
+      <ion-label>
+        <h3>{{data?.clientName | titlecase}}</h3>
+        <span>{{data?.hearingDate}}</span>
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+  </div>
+</ion-content>

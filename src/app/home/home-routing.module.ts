@@ -34,6 +34,12 @@ import { MembershipPremiumComponent } from './membership-premium/membership-prem
 import { PaymentHistoryComponent } from './payment-history/payment-history.component';
 import { PaymentLockComponent } from '../payment-lock/payment-lock.component';
 import { ClientPaymentComponent } from './client-payment/client-payment.component';
+import { UpcomingCourtListComponent } from './upcoming-court-list/upcoming-court-list.component';
+import { UpcomingCourtHearingListComponent } from './upcoming-court-hearing-list/upcoming-court-hearing-list.component';
+import { RecentClientListComponent } from './recent-client-list/recent-client-list.component';
+import { CompleteCaseListComponent } from './complete-case-list/complete-case-list.component';
+import { CompleteCaseDetailsComponent } from './complete-case-details/complete-case-details.component';
+import { AddHearingDateComponent } from './add-hearing-date/add-hearing-date.component';
 
 
 const routes: Routes = [
@@ -74,6 +80,12 @@ const routes: Routes = [
       { path: 'paymenthistory', component: PaymentHistoryComponent },
       { path: 'clientpaymenthistory', component: ClientPaymentComponent },
       { path: 'paymentlock', component: PaymentLockComponent },
+      { path: 'upcomingcourtlist', component: UpcomingCourtListComponent },
+      { path: 'upcominghearinglist', component: UpcomingCourtHearingListComponent },
+      { path: 'recentclient', component: RecentClientListComponent },
+      { path: 'completecase', component: CompleteCaseListComponent },
+      { path: 'completecasedetails', component: CompleteCaseDetailsComponent },
+      { path: 'addhearingdate', component: AddHearingDateComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

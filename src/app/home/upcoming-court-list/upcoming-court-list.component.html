@@ -1,0 +1,26 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
+    <span>Upcoming Court Date</span>
+  </div>
+</div>
+
+<ion-content>
+  
+  <ion-row>
+    <span>Total Hearing : {{upcuming_court?.length || '0'}}</span>
+  </ion-row>
+  
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
+  </ion-searchbar>
+  <!-- upcoming court case  -->
+  <div class="contentList">
+    <ion-item lines="full" *ngFor="let data of upcuming_court" (click)="onUpcoming(data)">
+      <ion-label>
+        <h3>{{data?.clientName || 'N/A' | titlecase}}</h3>
+        <span>{{data?.hearingDate}}</span>
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+  </div>
+</ion-content>

@@ -110,10 +110,6 @@ export class CrudService {
     return this._http.get<any>(`${this.base_url}getPaymentHistoryByAdvocate?vakilId=${vakilId}`);
   }
 
-  get_complete_case_detail(vakilId: any) {
-    return this._http.get<any>(`${this.base_url}completeCaseDetail?vakilId=${vakilId}`);
-  }
-
   get_case_document(VakilId: any, CaseNo: any) {
     return this._http.get<any>(`${this.base_url}caseDocumentByCaseNo?vakilId=${VakilId}&caseno=${CaseNo}`);
   }
@@ -121,18 +117,35 @@ export class CrudService {
   get_total_case_list(vakilId: any) {
     return this._http.get<any>(`${this.base_url}getCaseByAdvocate?vakilId=${vakilId}`);
   }
+
+  get_upcoming_court_list(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}upcomingCourtDateList?vakilId=${vakilId}`);
+  }
+
+  get_complete_court_list(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}completeCaseDetail?vakilId=${vakilId}`);
+  }
+
   get_client_payment_list(vakilId: any) {
     return this._http.get<any>(`${this.base_url}clientPaymentHistoryByAdvocate?vakilId=${vakilId}`);
   }
+
   get_total_case_hearing_law_list(vakilId: any) {
     return this._http.get<any>(`${this.base_url}getCaseHearingDetailByAdvocate?vakilId=${vakilId}`);
   }
+
   get_case_hearing_law_list(vakilId: any, clientId: any) {
     return this._http.get<any>(`${this.base_url}caseHearingDetail?vakilId=${vakilId}&clientId=${clientId}`);
   }
+
+  post_hearing_date(data: any) {
+    return this._http.post<any>(`${this.base_url}addHearingDetail`, data);
+  }
+
   get_case_about_law_list(vakilId: any, caseNo: any) {
     return this._http.get<any>(`${this.base_url}caseDetailByCaseno?vakilId=${vakilId}&caseNo=${caseNo}`);
   }
+
   get_case_hearing_law_details(vakilId: any, caseNo: any) {
     return this._http.get<any>(`${this.base_url}hearingDetailByCaseNo?vakilId=${vakilId}&caseNo=${caseNo}`);
   }

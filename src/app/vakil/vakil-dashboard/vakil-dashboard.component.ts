@@ -96,6 +96,10 @@ export class VakilDashboardComponent implements OnInit {
 	login_data: any;
 	vId: any;
 	dashboard: any;
+	upcuming_court: any;
+	recent_client: any;
+	img_url: any;
+	complete_case: any;
 
 
 	constructor(
@@ -106,6 +110,12 @@ export class VakilDashboardComponent implements OnInit {
 		this.login = localStorage.getItem('vakilLoginData')
 		this.login_data = JSON.parse(this.login)
 		this.vId = this.login_data.advId;
+
+		this._shared.img_url.subscribe(
+			(img_url) => {
+				this.img_url = img_url;
+			}
+		)
 	}
 
 	ngOnInit() {
@@ -124,6 +134,61 @@ export class VakilDashboardComponent implements OnInit {
 				}
 			},
 		)
+
+		this._crud.get_upcoming_court_list(this.vId).subscribe(
+			(res: any) => {
+				console.log(res, 'dashboard');
+				try {
+					if (res.status === true) {
+						this.upcuming_court = res.data.slice(0, 3);;
+					} else {
+						this._shared.tostErrorTop('Error',);
+					}
+				}
+				catch (error) {
+					this._shared.tostErrorTop('Error',);
+				}
+			},
+		)
+		this._crud.get_new_Client(this.vId).subscribe(
+			(res: any) => {
+				console.log(res, 'dashboard');
+				try {
+					if (res.status === true) {
+						this.recent_client = res.data.slice(0, 5);;
+					} else {
+						this._shared.tostErrorTop('Error',);
+					}
+				}
+				catch (error) {
+					this._shared.tostErrorTop('Error',);
+				}
+			},
+		)
+		this._crud.get_complete_court_list(this.vId).subscribe(
+			(res: any) => {
+				console.log(res, 'dashboard');
+				try {
+					if (res.status === true) {
+						this.complete_case = res.data.slice(0, 5);;
+					} else {
+						this._shared.tostErrorTop('Error',);
+					}
+				}
+				catch (error) {
+					this._shared.tostErrorTop('Error',);
+				}
+			},
+		)
+	}
+	onCompleteCase(data: any) {
+		this._shared.sharedData.next(data)
+		this._router.navigate(['/home/completecasedetails']);
+	}
+
+	onUpcoming(data: any) {
+		localStorage.setItem('CaseHearingNo', JSON.stringify(data))
+		this._router.navigate(['/home/upcominghearinglist']);
 	}
 
 	addPublication() {
@@ -164,15 +229,11 @@ export class VakilDashboardComponent implements OnInit {
 
 	// for add case 
 	addClientCase() {
-		this._router.navigate(['/home/addclientcase'])
-	}
-
-	// for manage/about case 
-	clientCase() {
-		this._router.navigate(['/home/casehearing'])
-	}
-
-	membership() {
-		this._router.navigate(['/home/membership'])
+		if (this.login_data.status === true) {
+			this._router.navigate(['/home/addclientcase'])
+		}
+		else {
+			this._router.navigate(['/home/paymentlock']);
+		}
 	}
 }

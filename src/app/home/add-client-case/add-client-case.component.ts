@@ -10,24 +10,42 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class AddClientCaseComponent implements OnInit {
   addCase_form!: FormGroup
-  members: { name: string, details: string }[] = [];
+  login: any;
+  login_data: any;
+  clientName: any;
+  court_list: any;
 
   constructor(
     private _fb: FormBuilder,
     private _crud: CrudService,
     private _shared: SharedService
-  ) { }
+  ) {
+    this.login = localStorage.getItem('vakilLoginData');
+    this.login_data = JSON.parse(this.login)
+
+    this.fetchDropdownData();
+  }
+  fetchDropdownData() {
+    this._crud.get_new_Client(this.login_data.advId).subscribe((res: any) => { this.clientName = res.data })
+    this._crud.get_court_list().subscribe((res: any) => { if (res.status === true) { this.court_list = res.data; } })
+  }
 
   ngOnInit() {
     this.addCase_form = this._fb.group({
+      vakilId: [''],
+      clientId: ['', Validators.required],
       caseTitle: ['', Validators.required],
-      caseNo: ['', Validators.required],
-      clientName: ['', Validators.required],
-      clientMobile: ['', Validators.required],
-      hearingDate: ['', Validators.required],
-      ipcSection: ['', Validators.required],
-      courtName: ['', Validators.required],
-      aboutCase: ['', Validators.required],
+      caseno: ['', Validators.required],
+      court: ['', Validators.required],
+      act: ['', Validators.required],
+      firdate: ['', Validators.required],
+      advocatefee: ['', Validators.required],
+      aboutcase: ['', Validators.required],
+      fatherName: ['', Validators.required],
+      membername: ['', Validators.required],
+      membercontactNum: ['', Validators.required],
+      memberDetail: ['', Validators.required],
+      memberaddress: ['', Validators.required],
       addMembers: this._fb.array([]),
     })
   }

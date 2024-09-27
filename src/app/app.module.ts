@@ -61,6 +61,12 @@ import { MembershipPremiumComponent } from './home/membership-premium/membership
 import { PaymentHistoryComponent } from './home/payment-history/payment-history.component';
 import { PaymentLockComponent } from './payment-lock/payment-lock.component';
 import { ClientPaymentComponent } from './home/client-payment/client-payment.component';
+import { UpcomingCourtListComponent } from './home/upcoming-court-list/upcoming-court-list.component';
+import { UpcomingCourtHearingListComponent } from './home/upcoming-court-hearing-list/upcoming-court-hearing-list.component';
+import { RecentClientListComponent } from './home/recent-client-list/recent-client-list.component';
+import { CompleteCaseListComponent } from './home/complete-case-list/complete-case-list.component';
+import { CompleteCaseDetailsComponent } from './home/complete-case-details/complete-case-details.component';
+import { AddHearingDateComponent } from './home/add-hearing-date/add-hearing-date.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +119,13 @@ import { ClientPaymentComponent } from './home/client-payment/client-payment.com
     MembershipPremiumComponent,
     PaymentHistoryComponent,
     PaymentLockComponent,
-    ClientPaymentComponent
+    ClientPaymentComponent,
+    UpcomingCourtListComponent,
+    UpcomingCourtHearingListComponent,
+    RecentClientListComponent,
+    CompleteCaseListComponent,
+    CompleteCaseDetailsComponent,
+    AddHearingDateComponent,
   ],
   imports: [
     BrowserModule,

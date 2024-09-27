@@ -1,0 +1,29 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" (click)="backButtonToCaseList()"></ion-icon>
+    <span>Add Hearing Details</span>
+  </div>
+</div>
+
+<ion-content>
+  <form [formGroup]="caseForm">
+
+    <ion-input label-placement="floating" type="date" fill="outline" label="Hearing Date"
+      placeholder="Enter Extra Charge" formControlName="hearingDate">
+    </ion-input>
+
+    <ion-input label-placement="floating" type="number" fill="outline" label="Extra Charge"
+      placeholder="Enter Extra Charge" formControlName="extracharge">
+    </ion-input>
+
+    <ion-textarea class="ChargeDetails" label="Member Details" labelPlacement="floating" fill="outline"
+      placeholder="Enter details..." formControlName="chargeDetail">
+    </ion-textarea>
+
+    <ion-input label-placement="floating" type="text" fill="outline" label="Document Name"
+      placeholder="Enter Document Name" formControlName="documentName">
+    </ion-input>
+
+    <ion-button expand="block" type="submit" (click)="onSubmit()">Submit</ion-button>
+  </form>
+</ion-content>

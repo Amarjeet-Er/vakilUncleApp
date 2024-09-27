@@ -1,0 +1,50 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" (click)="backButton()"></ion-icon>
+    <span>Upcoming Court Hearing</span>
+  </div>
+</div>
+
+<ion-content>
+
+  <!-- <ion-row>
+    <ion-button size="small" fill="clear" shape="round" (click)="AboutCase()">About Case</ion-button>
+  </ion-row> -->
+
+  <ion-list>
+
+    <ion-row>
+      <span class="highlight">Client Name</span>
+      <span class="highlight">{{case_hearing_details?.clientName || 'N/A'}}</span>
+    </ion-row>
+
+    <ion-row>
+      <span>Case Number</span>
+      <span>{{case_hearing_details?.caseNo || 'N/A'}}</span>
+    </ion-row>
+
+    <ion-row>
+      <span>Mobile Number</span>
+      <span>{{case_hearing_details?.contactNum || 'N/A'}}</span>
+    </ion-row>
+    <ion-row>
+      <span>Next Date</span>
+      <span style="color: green;">{{case_hearing_details?.hearingDate || 'N/A'}}</span>
+    </ion-row>
+
+    <div class="description">
+      <h4>Summary</h4>
+      <p>{{case_hearing_details?.caseSummary || 'N/A'}}</p>
+    </div>
+
+  </ion-list>
+  <ion-list>
+    <div class="description">
+      <h3>Required Documents</h3>
+      <ion-item lines="none" *ngFor="let data of case_hearing_details?.documents">
+        <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
+        <ion-label>{{data?.name | titlecase}}</ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

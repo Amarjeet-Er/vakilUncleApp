@@ -1,13 +1,13 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" (click)="backButton1()"></ion-icon>
+    <ion-icon name="chevron-back" (click)="backButtonToCaseList()"></ion-icon>
     <span>Case Hearing</span>
   </div>
 </div>
 
 <ion-row>
-  <span>Total Hearing : {{case_hearing?.length || '0'}}</span>
-  <ion-button size="small" fill="clear" shape="round" (click)="AboutCase()">About Case</ion-button>
+  <span>Total Hearing : {{caseHearingList.length || '0'}}</span>
+  <ion-button size="small" fill="clear" shape="round" (click)="aboutCase()">About Case</ion-button>
 </ion-row>
 
 <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
@@ -15,7 +15,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item lines="none" *ngFor="let data of case_hearing" (click)="openModal(data)">
+    <ion-item lines="none" *ngFor="let data of caseHearingList" (click)="openModal(data)">
       <ion-label>
         {{data?.caseNo || 'N/A'}}
       </ion-label>
@@ -35,7 +35,7 @@
 
     <div class="header">
       <div class="navbar">
-        <ion-icon name="chevron-back" (click)="backButton()"></ion-icon>
+        <ion-icon name="chevron-back" (click)="dismissModal()"></ion-icon>
         <span>Case Hearing</span>
       </div>
     </div>
@@ -46,49 +46,36 @@
 
         <ion-row>
           <span class="highlight">Client Name</span>
-          <span class="highlight">{{case_hearing_details?.clientName}}</span>
+          <span class="highlight">{{caseHearingDetails?.clientName}}</span>
         </ion-row>
 
         <ion-row>
           <span>Case Number</span>
-          <span>{{case_hearing_details?.caseNo}}</span>
+          <span>{{caseHearingDetails?.caseNo}}</span>
         </ion-row>
-        <ion-row>
-          <span>Lawyer User Id</span>
-          <span>VU-34834</span>
-        </ion-row>
+     
         <ion-row>
           <span>Mobile Number</span>
-          <span>{{case_hearing_details?.contactNum}}</span>
+          <span>{{caseHearingDetails?.contactNum}}</span>
         </ion-row>
         <ion-row>
           <span>Next Date</span>
-          <span style="color: green;">{{case_hearing_details?.hearingDate}}</span>
+          <span style="color: green;">{{caseHearingDetails?.hearingDate}}</span>
         </ion-row>
 
         <div class="description">
-          <p>{{case_hearing_details?.caseSummary}}</p>
+          <h4>Summary</h4>
+          <p>{{caseHearingDetails?.caseSummary}}</p>
         </div>
 
       </ion-list>
       <ion-list>
         <div class="description">
           <h3>Required Documents</h3>
-
-          <ion-list>
-            <ion-item lines="none">
-              <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
-              <ion-label>Aadhar Card</ion-label>
-            </ion-item>
-            <ion-item lines="none">
-              <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
-              <ion-label>Passport Size Photo</ion-label>
-            </ion-item>
-            <ion-item lines="none">
-              <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
-              <ion-label>1000 Rupees</ion-label>
-            </ion-item>
-          </ion-list>
+          <ion-item lines="none" *ngFor="let data of caseHearingDetails?.documents">
+            <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
+            <ion-label>{{data?.name | titlecase}}</ion-label>
+          </ion-item>
         </div>
       </ion-list>
 

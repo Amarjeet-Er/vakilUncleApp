@@ -1,0 +1,50 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/home/completecase"></ion-icon>
+    <span>Complete Case Details</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-card-header>
+    <ion-card-title>{{ case_hearing_details.caseTitle }}</ion-card-title>
+    <ion-card-subtitle>Case No: {{ case_hearing_details.caseNo }}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-item>
+      <ion-label><strong>Client Name:</strong></ion-label>
+      <ion-text>{{ case_hearing_details.clientName }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><strong>Contact Number:</strong></ion-label>
+      <ion-text>{{ case_hearing_details.contactNum | titlecase }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><strong>Fir Date:</strong></ion-label>
+      <ion-text>{{ case_hearing_details.firdate }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><strong>Hearing Date:</strong></ion-label>
+      <ion-text>{{ case_hearing_details.hearingDate }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><strong>Filing Date:</strong></ion-label>
+      <ion-text>{{ case_hearing_details.filDate }}</ion-text>
+    </ion-item>
+
+    <ion-item *ngIf="case_hearing_details.documentName">
+      <ion-label><strong>Documents:</strong></ion-label>
+      <ion-text>{{ case_hearing_details.documentName }}</ion-text>
+    </ion-item>
+
+    <ion-item *ngIf="case_hearing_details.caseSummary">
+      <ion-label><strong>Case Summary:</strong></ion-label>
+      <ion-text>{{ case_hearing_details.caseSummary }}</ion-text>
+    </ion-item>
+  </ion-card-content>
+</ion-content>

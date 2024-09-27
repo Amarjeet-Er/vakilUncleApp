@@ -10,58 +10,76 @@
   <form [formGroup]="addCase_form">
     <ion-list>
 
-      <ion-input label="Client Name" label-placement="floating" fill="outline" placeholder="Enter client name"
-        formControlName="clientName">
-      </ion-input>
-
-      <ion-input label="Client Mobile No" label-placement="floating" fill="outline" placeholder="Enter Client mobile no"
-        formControlName="clientMobile" type="number">
-      </ion-input>
+      <ion-select label="Client Name" fill="outline" label-placement="floating" interface="action-sheet"
+        placeholder="Select City" formControlName="clientId">
+        <ion-select-option *ngFor="let city of clientName" [value]="city?.id">
+          {{city?.clientName}}
+        </ion-select-option>
+      </ion-select>
 
       <ion-input label="Case Title" label-placement="floating" fill="outline" placeholder="Enter case title"
         formControlName="caseTitle">
       </ion-input>
 
       <ion-input label="Case Number" label-placement="floating" fill="outline" placeholder="Enter case number"
-        formControlName="caseNo">
+        formControlName="caseno">
       </ion-input>
 
-      <ion-input label="IPC Section" label-placement="floating" fill="outline" placeholder="Enter ipc section"
-        formControlName="ipcSection">
+      <ion-select label="Court" label-placement="floating" interface="action-sheet" placeholder="Select Court"
+        formControlName="courtType" [multiple]="true">
+        <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
+          {{court?.courtName}}
+        </ion-select-option>
+      </ion-select><br>
+
+      <ion-input label="Act" label-placement="floating" fill="outline" placeholder="Enter act" formControlName="act">
       </ion-input>
 
-      <ion-input label="Hearing Date" label-placement="floating" fill="outline" placeholder="Enter hearing date"
-        formControlName="hearingDate">
+      <ion-input label="FIR Date" type="date" label-placement="floating" fill="outline" placeholder="Enter fir date"
+        formControlName="firdate">
       </ion-input>
 
-      <ion-input label="Court Name" label-placement="floating" fill="outline" placeholder="Enter Court Name"
-        formControlName="courtName">
+      <ion-input label="Advocate Fee" type="text" label-placement="floating" fill="outline"
+        placeholder="Enter advocate fee" formControlName="advocatefee">
       </ion-input>
 
       <ion-textarea label="About Case" labelPlacement="floating" fill="outline" placeholder="Write about the case"
-        formControlName="aboutCase">
+        formControlName="aboutcase">
       </ion-textarea>
 
       <div formArrayName="addMembers">
         <div *ngFor="let member of membersArray.controls; let i = index">
-          <div [formGroupName]="i">
-            <span>
-              <p>Member {{ i + 1 }}</p>
-            </span>
+          <!-- <div [formGroupName]="i"> -->
+          <span>
+            <p>Member {{ i + 1 }}</p>
+          </span>
 
-            <ion-input label-placement="floating" type="text" fill="outline" label="Member Name"
-              placeholder="Enter member name" formControlName="MemberName{{ i + 1 }}"></ion-input>
+          <ion-input label-placement="floating" type="text" fill="outline" label="Father Name"
+            placeholder="Enter father name" formControlName="fatherName">
+          </ion-input>
 
-            <ion-textarea class="memberDetails" label="Member Details" labelPlacement="floating" fill="outline"
-              placeholder="Write about the member" formControlName="MemberDetails{{i + 1}}">
-            </ion-textarea>
+          <ion-input label-placement="floating" type="text" fill="outline" label="Member Name"
+            placeholder="Enter member name" formControlName="membername">
+          </ion-input>
 
-            <ion-button shape="round" size="small" (click)="removeMember(i)" color="danger">
-              <ion-icon slot="icon-only" name="trash"></ion-icon>
-            </ion-button>
-          </div>
+          <ion-input label-placement="floating" type="number" fill="outline" label="Contact No"
+            placeholder="Enter contact no" formControlName="membercontactNum">
+          </ion-input>
+
+          <ion-input label-placement="floating" type="number" fill="outline" label="Member Details"
+            placeholder="Enter member details" formControlName="memberDetail">
+          </ion-input>
+
+          <ion-textarea class="memberDetails" label="Member Details" labelPlacement="floating" fill="outline"
+            placeholder="Write about the member" formControlName="memberaddress">
+          </ion-textarea>
+
+          <ion-button shape="round" size="small" (click)="removeMember(i)" color="danger">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
         </div>
       </div>
+      <!-- </div> -->
 
       <ion-row>
         <span>Add Member</span>
