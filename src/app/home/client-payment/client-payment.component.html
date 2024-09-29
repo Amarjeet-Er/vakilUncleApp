@@ -14,19 +14,19 @@
 
   <ion-card *ngFor="let case of payment" class="case-card">
     <ion-card-header>
-      <ion-card-title>{{ case.name }}</ion-card-title>
+      <ion-card-title>{{ case?.name }}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       <div class="case-details">
-        <p><strong>Contact Number:</strong> {{ case?.contactNum | titlecase }}</p>
-        <p><strong>Case Title:</strong> {{ case?.caseTitle }}</p>
-        <p><strong>Case Number:</strong> {{ case?.caseNumber }}</p>
-        <p><strong>Extra Charge:</strong> ₹{{ case?.extracharge }}</p>
-        <p><strong>Fee:</strong> ₹{{ case?.fee }}</p>
-        <p><strong>Client Payment:</strong> ₹{{ case?.Clientpayment }}</p>
-        <p><strong>Due Amount:</strong> ₹{{ case?.due }}</p>
-        <p><strong>Date:</strong> {{ case?.date | date: 'short' }}</p>
+        <p><strong>Contact Number :</strong> {{ case?.contactNum}}</p>
+        <p><strong>Case Title :</strong> {{ case?.caseTitle }}</p>
+        <p><strong>Case Number :</strong> {{ case?.caseNumber }}</p>
+        <p><strong>Extra Charge :</strong> ₹{{ case?.extracharge }}</p>
+        <p><strong>Fee :</strong> ₹{{ case?.fee }}</p>
+        <p><strong>Client Payment :</strong> ₹{{ case?.Clientpayment }}</p>
+        <p><strong>Due Amount :</strong> ₹{{ case?.due }}</p>
+        <p><strong>Date :</strong> {{ case?.date | date: 'short' }}</p>
       </div>
     </ion-card-content>
   </ion-card>

@@ -25,12 +25,12 @@
         formControlName="caseno">
       </ion-input>
 
-      <ion-select label="Court" label-placement="floating" interface="action-sheet" placeholder="Select Court"
-        formControlName="courtType" [multiple]="true">
+      <ion-select label="Court" label-placement="floating" fill="outline" interface="action-sheet"
+        placeholder="Select Court" formControlName="court" [multiple]="true">
         <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
           {{court?.courtName}}
         </ion-select-option>
-      </ion-select><br>
+      </ion-select>
 
       <ion-input label="Act" label-placement="floating" fill="outline" placeholder="Enter act" formControlName="act">
       </ion-input>

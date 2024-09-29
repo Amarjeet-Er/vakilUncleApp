@@ -17,7 +17,7 @@
   <ion-list>
     <ion-item lines="none" *ngFor="let data of caseHearingList" (click)="openModal(data)">
       <ion-label>
-        {{data?.caseNo || 'N/A'}}
+        {{data?.caseNo || 'N/A' | titlecase}}
       </ion-label>
       <ion-label>
         {{data?.hearingDate || 'N/A'}}
@@ -25,7 +25,6 @@
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>
   </ion-list>
-
 </ion-content>
 
 

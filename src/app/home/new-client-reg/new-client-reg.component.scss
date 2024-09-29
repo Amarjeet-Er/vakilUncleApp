@@ -3,26 +3,12 @@
     height: 70px;
     background: var(--color-primary);
     color: var(--color-light);
-    padding: 10px;
-    display: flex;
-    align-items: center;
+    text-align: center;
+    line-height: 70px;
 
-    .navbar {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        position: relative;
-
-        ion-icon {
-            position: absolute;
-            font-size: 24px;
-            left: 10px;
-        }
-
-        span {
-            font-size: 20px;
-            margin: 0 auto;
-        }
+    span {
+        font-size: 16px;
+        margin: 0 auto;
     }
 }
 
@@ -31,15 +17,16 @@ ion-content {
         padding: 10px;
         display: flex;
         align-items: center;
-        font-size: 16px;
+        font-size: 15px;
         justify-content: space-between;
         background: var(--color-secondary);
         font-weight: 600;
         color: var(--color-dark);
 
         ion-icon {
-            font-size: 30px;
+            font-size: 24px;
             color: var(--color-primary);
+            cursor: pointer;
         }
     }
 
@@ -54,6 +41,8 @@ ion-content {
             display: flex;
             background-color: var(--color-light);
             padding: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
 
             .client-text {
                 width: calc(100% - 80px);
@@ -65,7 +54,8 @@ ion-content {
                 ion-row {
                     font-weight: normal;
                     background: none;
-                    padding: 0px 0px 10px 0px;
+                    padding: 0px 0px 6px 0px;
+                    font-size: 12px;
                 }
 
             }
@@ -89,6 +79,18 @@ ion-content {
 
 //client registration form
 ion-modal {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+
+        ion-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
+
     ion-content {
         ion-list {
             padding: 0px 20px;
@@ -112,6 +114,17 @@ ion-modal {
 
 //client details
 #client-details {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+
+        ion-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
     ion-content {
         ion-list {
             padding: 0px 0px;
@@ -141,7 +154,7 @@ ion-modal {
                     padding: 0px 0px 10px 0px;
 
                     ion-icon {
-                        font-size: 24px;
+                        font-size: 16px;
                     }
 
                     p {
@@ -150,10 +163,13 @@ ion-modal {
                         justify-content: space-between;
                         margin: 0px;
                         align-items: center;
+                        padding: 5px 0px;
+                        border-bottom: 1px dotted gray;
 
                         span:last-child {
                             max-width: calc(100% - 100px);
-                            text-align: end;
+                            text-align: start;
+                            color: rgb(15, 15, 180);
                         }
                     }
                 }

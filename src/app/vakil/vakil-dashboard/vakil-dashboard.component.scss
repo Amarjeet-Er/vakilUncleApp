@@ -52,7 +52,7 @@ ion-content {
             width: 100%;
             height: auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(165px, 4fr));
+            grid-template-columns: repeat(auto-fill, minmax(142px, 4fr));
             gap: 10px;
             padding: 10px;
 
@@ -70,15 +70,15 @@ ion-content {
                     justify-content: space-around;
 
                     img {
-                        width: 50px;
-                        height: 50px;
+                        width: 40px;
+                        height: 40px;
                         padding: 10px;
                         border-radius: 50%;
                         background-color: var(--color-secondary);
                     }
 
                     span {
-                        font-size: 25px;
+                        font-size: 16px;
                         font-weight: 600;
                         color: var(--color-primary);
                         width: calc(100% - 100px);
@@ -171,8 +171,6 @@ ion-content {
                 }
             }
         }
-
-
     }
 
 

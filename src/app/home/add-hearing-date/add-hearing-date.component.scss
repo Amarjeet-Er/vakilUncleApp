@@ -8,64 +8,41 @@
   align-items: center;
 
   .navbar {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      position: relative;
-      
-      ion-icon {
-          position: absolute;
-          font-size: 24px;
-          left: 10px;
-      }
-      
-      span {
-          font-size: 18px;
-          margin: 0 auto;
-      }
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    ion-icon {
+      position: absolute;
+      font-size: 24px;
+      left: 10px;
+    }
+
+    span {
+      font-size: 16px;
+      margin: 0 auto;
+    }
   }
 }
+
 form {
-    padding: 20px;
-  
-    ion-input,
-    ion-datetime,
-    ion-textarea {
-      margin-bottom: 20px;
-  
-      ion-label {
-        font-size: 14px;
-        color: var(--ion-color-primary);
-      }
-  
-      ion-input,
-      ion-textarea {
-        --padding-start: 10px;
-        --padding-end: 10px;
-        font-size: 16px;
-      }
-  
-      ion-datetime {
-        --padding-start: 10px;
-        --padding-end: 10px;
-        font-size: 16px;
-      }
-  
-      &::part(native) {
-        border-radius: 8px;
-        border: 1px solid var(--ion-color-medium);
-        padding: 10px;
-      }
-    }
-  
-    ion-button {
-      margin-top: 30px;
-      --background: var(--ion-color-primary);
-      --border-radius: 8px;
-    }
-    ion-textarea {
-        min-height: 200px;
-        margin-top: 20px;
-    }
+  padding: 20px;
+
+  ion-input,
+  ion-datetime,
+  ion-textarea {
+    margin-bottom: 20px;
   }
-  
+
+  ion-button {
+    margin-top: 30px;
+    --background: var(--ion-color-primary);
+    --border-radius: 8px;
+  }
+
+  ion-textarea {
+    min-height: 200px;
+    margin-top: 20px;
+  }
+}

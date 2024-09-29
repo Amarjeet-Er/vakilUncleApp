@@ -1,7 +1,5 @@
 <div class="header">
-  <div class="navbar">
-    <span>Client List</span>
-  </div>
+  <span>Total Client {{clients?.length || '0'}}</span>
 </div>
 
 <ion-content>
@@ -24,6 +22,10 @@
           <span>{{client.contactNum || 'N/A'}} </span>
         </ion-row>
         <ion-row>
+          <span>Case Title</span>
+          <span>{{client.caseTitle || 'N/A' | titlecase}}</span>
+        </ion-row>
+        <ion-row>
           <span>Case No</span>
           <span>{{client.caseNo || 'N/A'}}</span>
         </ion-row>
@@ -40,12 +42,11 @@
 <!-- for add client registration  -->
 <ion-modal #modal>
   <ng-template>
-
     <div class="header">
-      <div class="navbar">
-        <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>New Registration</span>
-      </div>
+      <ion-icon name="chevron-back" (click)="backButton()" class="custom-back-icon"></ion-icon>
+      <span class="header-title">New Registration</span>
     </div>
+
     <ion-content>
       <form [formGroup]="newRegistartion_form">
         <ion-list>
@@ -84,7 +85,7 @@
           </ion-select><br>
 
           <ion-select label="Court" label-placement="floating" fill="outline" interface="action-sheet"
-            placeholder="Select Court" formControlName="court">
+            placeholder="Select Court" formControlName="court" [multiple]="true">
             <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
               {{court?.courtName}}
             </ion-select-option>
@@ -132,9 +133,8 @@
   <ng-template>
 
     <div class="header">
-      <div class="navbar">
-        <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>Client Details</span>
-      </div>
+      <ion-icon name="chevron-back" (click)="backButton()"></ion-icon>
+      <span>Client Details</span>
     </div>
     <ion-content>
       <ion-list>

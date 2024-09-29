@@ -20,7 +20,7 @@
         }
         
         span {
-            font-size: 18px;
+            font-size: 16px;
             margin: 0 auto;
         }
     }
@@ -31,6 +31,10 @@ ion-row {
     justify-content: space-between;
     align-items: center;
     padding: 7px;
+
+    span{
+        font-size: 15px;
+    }
 
     ion-button {
         color: var(--color-light);
@@ -44,13 +48,6 @@ ion-searchbar {
     --ion-color-base: var(--color-light) !important;
 }
 
-h3 {
-    color: var(--color-primary);
-    text-align: center;
-    margin: 5px 0 15px;
-    font-size: 18px;
-}
-
 
 ion-content {
     --background: var(--color-light);
@@ -58,10 +55,11 @@ ion-content {
 
     ion-list {
         ion-item {
-            margin: 10px 0;
+            margin: 7px 0;
             --background: var(--color-secondary);
             color: var(--color-primary);
             font-weight: 500;
+            font-size: 14px;
 
             ion-icon {
                 color: var(--color-primary);
@@ -94,7 +92,7 @@ ion-modal {
             }
             
             span {
-                font-size: 18px;
+                font-size: 16px;
                 margin: 0 auto;
             }
         }
@@ -116,9 +114,12 @@ ion-modal {
                 display: flex;
                 gap: 10px;
                 align-items: center;
-                margin: 6px 0;
+                margin: 0px 0;
                 justify-content: space-between;
                 text-transform: capitalize;
+                span{
+                    font-size: 12px;
+                }
             }
 
             .description {
@@ -126,12 +127,23 @@ ion-modal {
                 padding-bottom: 7px;
                 text-transform: capitalize;
                 border-bottom: 2px dotted black;
+                h4{
+                    font-size: 15px;
+                }
                 p{
-                    font-size: 14px;
-                    word-spacing: 2px;
+                    font-size: 12px;
+                    color: gray;
                 }
             }
         }
     }
 
+}
+
+
+h3 {
+    color: var(--color-primary);
+    text-align: center;
+    margin: 5px 0 15px;
+    font-size: 15px;
 }

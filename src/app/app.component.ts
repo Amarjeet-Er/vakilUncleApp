@@ -31,8 +31,8 @@ export class AppComponent {
     this.vakil = localStorage.getItem('vakilLoginData');
     this.vakil_id = JSON.parse(this.vakil);
 
-    this.user = localStorage.getItem('userLoginData');
-    this.user_id = JSON.parse(this.user);
+    // this.user = localStorage.getItem('userLoginData');
+    // this.user_id = JSON.parse(this.user);
 
 
     if (this.vakil_id.advId) {
@@ -42,12 +42,12 @@ export class AppComponent {
       else {
       }
     }
-    if (this.user_id.userId) {
-      if (this._location.path() == '') {
-        this._router.navigate(['/user/home/dashboard'])
-      }
-      else {
-      }
-    }
+    // if (this.user_id.userId) {
+    //   if (this._location.path() == '') {
+    //     this._router.navigate(['/user/home/dashboard'])
+    //   }
+    //   else {
+    //   }
+    // }
   }
 }

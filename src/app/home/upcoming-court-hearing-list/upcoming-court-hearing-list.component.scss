@@ -20,7 +20,7 @@
         }
 
         span {
-            font-size: 18px;
+            font-size: 16px;
             margin: 0 auto;
         }
     }
@@ -48,7 +48,7 @@ h3 {
     color: var(--color-primary);
     text-align: center;
     margin: 5px 0 15px;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 
@@ -111,8 +111,9 @@ ion-content {
             padding-bottom: 7px;
             text-transform: capitalize;
             border-bottom: 2px dotted black;
+            font-size: 15px;
             p{
-                font-size: 14px;
+                font-size: 12px;
                 word-spacing: 2px;
             }
         }
