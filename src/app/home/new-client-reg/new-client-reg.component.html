@@ -58,8 +58,10 @@
           <ion-input label="Email" label-placement="floating" fill="outline" placeholder="Enter email"
             formControlName="email"></ion-input>
 
-          <ion-input label="Contact No" label-placement="floating" type="number" fill="outline"
-            placeholder="Enter contact no" formControlName="contactNum"></ion-input>
+          <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
+            helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
+            formControlName="contactNum" minlength="10" maxlength="10" pattern="\d{10}">
+          </ion-input>
 
           <ion-input label="Case No" label-placement="floating" type="number" fill="outline" placeholder="Enter case no"
             formControlName="caseNo"></ion-input>
@@ -91,11 +93,11 @@
             </ion-select-option>
           </ion-select>
 
-          <ion-input label="Hearing Date" type="date" label-placement="floating" fill="outline"
-            formControlName="HearingDate">
+          <ion-input label="FIR Date" type="date" label-placement="floating" fill="outline" formControlName="firDate">
           </ion-input>
 
-          <ion-input label="FIR Date" type="date" label-placement="floating" fill="outline" formControlName="firDate">
+          <ion-input label="Hearing Date" type="date" label-placement="floating" fill="outline"
+            formControlName="HearingDate">
           </ion-input>
 
           <ion-input label="Advocate Fee" type="number" placeholder="Enter advocate Fee" label-placement="floating"

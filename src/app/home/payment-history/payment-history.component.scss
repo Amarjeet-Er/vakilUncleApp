@@ -20,7 +20,7 @@
     }
 
     span{
-      font-size: 20px;
+      font-size: 16px;
       margin: 0 auto;
     }
   }
@@ -37,10 +37,10 @@
   align-items: center;
   margin-bottom: 10px;
   ion-icon{
-    font-size: 25px;
+    font-size: 24px;
   }
   p{
-    font-size: 16px;
+    font-size: 15px;
     margin-left: 8px;
   }
 }
@@ -51,4 +51,9 @@
 
 .failed {
   color: red;
+}
+
+.NoRecord {
+  padding: 20px;
+  margin: 0px;
 }

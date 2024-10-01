@@ -45,7 +45,7 @@ export class NewClientRegComponent implements OnInit {
     this.newRegistartion_form = this._fb.group({
       clientName: ['', Validators.required],
       email: ['', Validators.required],
-      contactNum: ['', Validators.required],
+      contactNum: ['', [Validators.required, Validators.pattern('\\d{10}')]],
       password: ['', Validators.required],
       state: ['', Validators.required],
       city: ['', Validators.required],
@@ -139,11 +139,12 @@ export class NewClientRegComponent implements OnInit {
       }
       // Store or process the selected files
       this.Aadhar_select = fileArray;
+      console.log(this.Aadhar_select, 'file');
+
     } else {
       console.log('No files selected');
     }
   }
-
 
   onSubmit() {
     console.log(this.newRegistartion_form.value);
@@ -173,12 +174,17 @@ export class NewClientRegComponent implements OnInit {
           console.log(res);
           if (res.status === true) {
             this._shared.tostSuccessTop('Client Registered Successfully');
+            this.clients.unshift(res.data);
+            this.filterData = [...this.clients];
             this.modal.dismiss();
             this.details.dismiss();
           }
           else {
             this._shared.tostErrorTop(res.message);
           }
+        },
+        (error: any) => {
+          this._shared.tostErrorTop('An error has occurred')
         }
       )
     }

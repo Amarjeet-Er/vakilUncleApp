@@ -40,6 +40,8 @@ import { RecentClientListComponent } from './recent-client-list/recent-client-li
 import { CompleteCaseListComponent } from './complete-case-list/complete-case-list.component';
 import { CompleteCaseDetailsComponent } from './complete-case-details/complete-case-details.component';
 import { AddHearingDateComponent } from './add-hearing-date/add-hearing-date.component';
+import { TotalClientComponent } from './total-client/total-client.component';
+import { TodayHearingComponent } from './today-hearing/today-hearing.component';
 
 
 const routes: Routes = [
@@ -86,6 +88,8 @@ const routes: Routes = [
       { path: 'completecase', component: CompleteCaseListComponent },
       { path: 'completecasedetails', component: CompleteCaseDetailsComponent },
       { path: 'addhearingdate', component: AddHearingDateComponent },
+      { path: 'totalclientlist', component: TotalClientComponent },
+      { path: 'todayhearing', component: TodayHearingComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

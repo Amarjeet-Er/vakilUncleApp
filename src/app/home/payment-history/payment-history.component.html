@@ -1,6 +1,6 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon>
+    <ion-icon name="chevron-back" routerLink="/vakil/home/account"></ion-icon>
     <span>Payment History</span>
   </div>
 </div>
@@ -9,26 +9,27 @@
   <ion-list>
     <ion-card *ngFor="let payment of pay_history" class="payment-card">
       <ion-card-header>
-        <ion-card-title>{{ payment.planName }}</ion-card-title>
-        <ion-card-subtitle>{{ payment.paymentDate }}</ion-card-subtitle>
+        <ion-card-title>{{ payment?.planName }}</ion-card-title>
+        <ion-card-subtitle>{{ payment?.paymentDate }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <div class="advocate-info">
           <ion-icon name="person-circle" slot="start"></ion-icon>
-          <p><strong>{{ payment.advocateName | titlecase}}</strong></p>
+          <p><strong>{{ payment?.advocateName | titlecase}}</strong></p>
         </div>
-        <p><strong>Email:</strong> {{ payment.advocateEmail }}</p>
-        <p><strong>Order ID:</strong> {{ payment.orderId }}</p>
-        <p><strong>Payment ID:</strong> {{ payment.paymentId }}</p>
+        <p><strong>Email:</strong> {{ payment?.advocateEmail }}</p>
+        <p><strong>Order ID:</strong> {{ payment?.orderId }}</p>
+        <p><strong>Payment ID:</strong> {{ payment?.paymentId }}</p>
         <div class="payment-details">
-          <p><strong>Mode:</strong> {{ payment.paymentMode }}</p>
-          <p [ngClass]="{'success': payment.paymentStatus === true, 'failed': payment.paymentStatus !== true}">
-            <strong>Status:</strong> {{ payment.paymentStatus === true ? 'Successful' : 'Failed' }}
+          <p><strong>Mode:</strong> {{ payment?.paymentMode }}</p>
+          <p [ngClass]="{'success': payment?.paymentStatus === true, 'failed': payment?.paymentStatus !== true}">
+            <strong>Status:</strong> {{ payment?.paymentStatus === true ? 'Successful' : 'Failed' }}
           </p>
-          <p><strong>Price:</strong> ₹{{ payment.price }}</p>
-          <p><strong>Description:</strong> {{ payment.paymentDescription || 'N/A' }}</p>
+          <p><strong>Price:</strong> ₹{{ payment?.price }}</p>
+          <p><strong>Description:</strong> {{ payment?.paymentDescription || 'N/A' }}</p>
         </div>
       </ion-card-content>
     </ion-card>
   </ion-list>
+  <p class="NoRecord" *ngIf="pay_history?.length === 0">No Record Found</p>
 </ion-content>

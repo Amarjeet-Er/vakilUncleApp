@@ -85,6 +85,13 @@ export class PublicationManagementComponent implements OnInit {
         console.log(res);
         if (res.status === true) {
           this._shared.tostSuccessTop('Publication Add Success');
+          this._crud.get_publication(this.login_data.advId).subscribe(
+            (res: any) => {
+              console.log(res, 'response');
+              this.view_publication = res.data;
+              this.filter_data = res.data;
+            }
+          )
           this.publication_form.reset();
           this.document_select = null;
           this.modal.dismiss();

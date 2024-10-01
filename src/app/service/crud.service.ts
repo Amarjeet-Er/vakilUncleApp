@@ -150,6 +150,10 @@ export class CrudService {
     return this._http.get<any>(`${this.base_url}hearingDetailByCaseNo?vakilId=${vakilId}&caseNo=${caseNo}`);
   }
 
+  get_case_duplicate_number(vakilId: any, caseNo: any) {
+    return this._http.get<any>(`${this.base_url}checkDblCaseNumber?VakiId=${vakilId}&caseno=${caseNo}`)
+  }
+
   //for user 
   user_registartion(data: any) {
     return this._http.post<any>(`${this.base_url}ClientRegister`, data);

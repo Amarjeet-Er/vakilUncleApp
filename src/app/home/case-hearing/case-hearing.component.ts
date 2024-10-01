@@ -11,10 +11,6 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class CaseHearingComponent implements OnInit {
   @ViewChild('modal') modal!: IonModal;
-
-  panelOpenState = false;
-
-  // Data properties
   loginData: any;
   caseData: any;
   caseHearingData: any;
@@ -24,7 +20,6 @@ export class CaseHearingComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private sharedService: SharedService,
     private crudService: CrudService
   ) {
     this.loadLocalData();
@@ -32,7 +27,6 @@ export class CaseHearingComponent implements OnInit {
 
   ngOnInit() {
     this.fetchCaseHearingList();
-    this.fetchCaseHearingDetails();
   }
 
   private loadLocalData() {
@@ -56,8 +50,12 @@ export class CaseHearingComponent implements OnInit {
       });
   }
 
-  private fetchCaseHearingDetails() {
-    this.crudService.get_case_hearing_law_details(this.loginData?.advId, this.caseHearingData?.caseNo).subscribe(
+  aboutCase() {
+    this.router.navigate(['/home/aboutcase']);
+  }
+
+  openModal(data: any) {
+    this.crudService.get_case_hearing_law_details(this.loginData?.advId, data?.caseNo).subscribe(
       (res: any) => {
         if (res.status === true) {
           this.caseHearingDetails = res.data;
@@ -73,14 +71,6 @@ export class CaseHearingComponent implements OnInit {
         }
       }
     );
-  }
-
-  aboutCase() {
-    this.router.navigate(['/home/aboutcase']);
-  }
-
-  openModal(data: any) {
-    localStorage.setItem('CaseHearingNo', JSON.stringify(data));
     this.modal.present();
   }
 

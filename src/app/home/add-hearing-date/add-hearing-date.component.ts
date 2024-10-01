@@ -48,12 +48,13 @@ export class AddHearingDateComponent implements OnInit {
     formUpdate.append('hearingDate', this.caseForm.get('hearingDate')?.value);
     formUpdate.append('extracharge', this.caseForm.get('extracharge')?.value);
     formUpdate.append('chargeDetail', this.caseForm.get('chargeDetail')?.value);
+    formUpdate.append('documentName', this.caseForm.get('documentName')?.value);
     if (this.caseForm.valid) {
       this._crud.post_hearing_date(formUpdate).subscribe(
         (res: any) => {
           this._shared.tostSuccessTop('Hearing Date Added Successfully');
           this.caseForm.reset();
-          this._router.navigate(['/vakil/vakiltotalcase'])
+          this._router.navigate(['/home/vakiltotalcase'])
         },
         (error: any) => {
           this._shared.tostErrorTop('Error Adding Hearing Date');

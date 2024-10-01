@@ -49,6 +49,9 @@ export class CaseDocumentsComponent implements OnInit {
     );
   }
 
+  downloadDocument(url: string) {
+    window.open(url, '_blank');
+  }
 
   caseDocs(case_doc: any) {
     console.log(case_doc.caseNo);

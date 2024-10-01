@@ -69,5 +69,12 @@ export class AddClientCaseComponent implements OnInit {
 
   onSubmit() {
     console.log(this.addCase_form.value);
+    this._crud.get_case_duplicate_number(this.login_data.advId, this.addCase_form.value?.caseno).subscribe(
+      (res: any) => {
+        if (res.status === true) {
+          this._shared.tostErrorTop('Case Number Already Exists')
+        }
+      }
+    )
   }
 }

@@ -26,6 +26,26 @@
         </div>
       </div>
 
+      <div class="menuBox" routerLink="/home/totalclientlist">
+        <div class="menuIcon">
+          <img src="../../../assets/icon/client.png">
+          <span>{{dashboard?.totalClient || '0'}}</span>
+        </div>
+        <div class="menuInfo">
+          <span>Total Client</span>
+        </div>
+      </div>
+
+      <div class="menuBox" routerLink="/home/todayhearing">
+        <div class="menuIcon">
+          <img src="../../../assets/icon/clender.png">
+          <span>{{dashboard?.totalTodayCaseHearing || '0'}}</span>
+        </div>
+        <div class="menuInfo">
+          <span>Today Hearing</span>
+        </div>
+      </div>
+
       <div class="menuBox" routerLink="/home/casedocuments">
         <div class="menuIcon">
           <img src="../../../assets/menuIcon/documents.png">
@@ -151,7 +171,7 @@
   </ion-list>
 
   <!-- case overview  -->
-  <ion-list>
+  <!-- <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Case Overview</span>
       <ion-button size="small" fill="clear" shape="round" routerLink="/home/vakiltotalcase">See All</ion-button>
@@ -196,7 +216,7 @@
       </div>
 
     </div>
-  </ion-list>
+  </ion-list> -->
 
   <!-- complete case deatils  -->
   <ion-list>
@@ -223,7 +243,7 @@
     </div>
   </ion-list>
 
-  <div class="chatBox" routerLink="/user/home/contact">
+  <div class="chatBox" routerLink="/vakil/home/contact">
     <ion-icon name="chatbubble-ellipses"></ion-icon>
   </div>
 

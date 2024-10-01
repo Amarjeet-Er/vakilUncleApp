@@ -68,15 +68,14 @@ export class LoginComponent implements OnInit {
               }
             }
             else if (res.UserRole == "Client") {
-              const userLogin = {
-                userId: res.data.enrollId,
-                userName: res.data.advocateName,
-                userEmail: res.data.email,
-                userStatus: res.data.status,
-                userMobile: res.data.contactNum,
+              const clientLogin = {
+                id: res.clientData[0].id,
+                clientName: res.clientData[0].clientName,
+                email: res.clientData[0].email,
+                contactNum: res.clientData[0].contactNum,
               }
               this._shared.tostSuccessTop('Login Successfully...')
-              localStorage.setItem('userLoginData', JSON.stringify(userLogin))
+              localStorage.setItem('userLoginData', JSON.stringify(clientLogin))
               this._router.navigate(['/user/home/dashboard']);
             }
             else {

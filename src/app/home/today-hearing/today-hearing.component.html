@@ -1,0 +1,35 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
+    <span>Today Hearing</span>
+  </div>
+</div>
+
+<ion-content class="custom-content">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <span class="total-hearing-text">Total Hearing: {{ upcuming_court?.length || '0' }}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)" class="custom-searchbar">
+  </ion-searchbar>
+
+  <div class="contentList">
+    <ion-list>
+      <ion-item lines="full" *ngFor="let data of upcuming_court" class="hearing-item">
+        <ion-label>
+          <h3>Name : -{{ data?.clientName || 'N/A' | titlecase }}</h3>
+          <p>Contact Number : - {{ data?.contactNum }}</p>
+          <p>Case Number : - {{ data?.caseNo }}</p>
+          <p>Hearing Date: - {{ data?.hearingDate }}</p>
+          <p>Summary : - {{ data?.caseSummary }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

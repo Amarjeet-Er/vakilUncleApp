@@ -65,28 +65,34 @@ export class ImageBannerManagementComponent implements OnInit {
   }
 
   onSubmit() {
-    const formdata = new FormData();
-    formdata.append('vakilId', this.login_data.advId);
-    formdata.append('title', this.addImage_form.get('title')?.value);
-    formdata.append('image', this.banner_select);
-    if (this.addImage_form.valid) {
+    if (this.addImage_form.valid && this.banner_select) {
+      const formdata = new FormData();
+      formdata.append('vakilId', this.login_data.advId);
+      formdata.append('title', this.addImage_form.get('title')?.value);
+      formdata.append('image', this.banner_select);
       this._crud.add_image_banner(formdata).subscribe(
         (res: any) => {
           if (res.status === true) {
-            this._shared.tostSuccessTop('Image Added Successfully...')
-            this.modal.dismiss()
-          }
-          else {
-            this._shared.tostErrorTop('Not Add Image')
+            this._shared.tostSuccessTop('Image Added Successfully...');
+            this._crud.get_image_banner(this.login_data.advId).subscribe(
+              (response: any) => {
+                if (response.status === true) {
+                  this.image_banner = response.data;
+                  this.filterData = response.data;
+                }
+              }
+            );
+            this.modal.dismiss();
+          } else {
+            this._shared.tostErrorTop('Failed to add image');
           }
         },
         (error: any) => {
-          this._shared.tostErrorTop('Not Add Image')
+          this._shared.tostErrorTop('Error occurred while adding image');
         }
-      )
-    }
-    else {
-      this._shared.tostWrraingTop('plz all field required')
+      );
+    } else {
+      this._shared.tostWrraingTop('All fields are required');
     }
   }
 

@@ -32,7 +32,7 @@ ion-content {
     }
 
     ion-list {
-        margin: 20px 0 0;
+        margin: 1px 0 0;
 
         ion-row {
             span {
@@ -60,11 +60,11 @@ ion-content {
                 border-radius: 5px;
                 background-color: var(--color-light);
                 overflow: hidden;
-                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
                 .menuIcon {
                     width: 100%;
-                    height: 70px;
+                    height: 55px;
                     display: flex;
                     align-items: center;
                     justify-content: space-around;
@@ -91,12 +91,13 @@ ion-content {
 
                 .menuInfo {
                     width: 100%;
-                    height: calc(100% - 70px);
+                    height: calc(100% - 55px);
                     text-align: center;
                     color: var(--color-primary);
                     text-overflow: ellipsis;
                     overflow: hidden;
-                    padding: 10px;
+                    padding: 5px;
+                    font-size: 15px;
                     text-wrap: nowrap;
                 }
 
@@ -112,7 +113,7 @@ ion-content {
                 gap: 5px;
                 padding: 5px;
                 --background: none;
-                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
                 ion-icon {
                     border-radius: 50%;
@@ -140,10 +141,12 @@ ion-content {
                     h3 {
                         font-weight: 600;
                         color: var(--color-primary);
+                        font-size: 15px;
                     }
 
                     span {
                         color: #27AE60;
+                        font-size: 12px;
                     }
                 }
             }
@@ -161,11 +164,11 @@ ion-content {
                 h5 {
                     margin: 5px 0;
                     color: var(--color-primary);
-                    font-size: 18px;
+                    font-size: 16px;
                 }
 
                 span {
-                    font-size: 14px;
+                    font-size: 15px;
                     font-weight: normal;
                     color: var(--color-dark);
                 }

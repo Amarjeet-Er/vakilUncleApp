@@ -8,16 +8,15 @@
 
   <div class="profile">
     <div class="profileImage">
-      <img src="../../../assets/Lawyers/lawyer_4.jfif">
+      <img [src]="profile_data?.profilePath ? img_url + profile_data?.profilePath :   '../../../assets/icon/profile.png'">
     </div>
   </div>
-
 
   <div class="profileDetails">
 
     <div class="ion-text-center">
-      <h3>Rohit Kumar</h3>
-      <p>User-Id: VU-75376</p>
+      <h3>{{profile_data?.advocateName}}</h3>
+      <p>Id: {{profile_data?.enrollId}}</p>
     </div>
 
     <ion-list>

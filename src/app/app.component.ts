@@ -10,44 +10,44 @@ import { Location } from '@angular/common';
 })
 export class AppComponent {
   user: any;
-  user_id: any
+  user_id: any;
   vakil: any;
   vakil_id: any;
-  
- 
+
   constructor(
     private _router: Router,
     private _backbtn: BackBtnService,
-    private _location: Location,
-  ) {
+    private _location: Location
+  ) {}
 
-  }
   ngOnInit(): void {
     this._backbtn.back();
-    this.isLogin()
+    this.isLogin();
   }
 
   isLogin() {
+    // Check if vakilLoginData exists and parse it
     this.vakil = localStorage.getItem('vakilLoginData');
-    this.vakil_id = JSON.parse(this.vakil);
+    this.vakil_id = this.vakil ? JSON.parse(this.vakil) : null;
 
-    // this.user = localStorage.getItem('userLoginData');
-    // this.user_id = JSON.parse(this.user);
+    // Check if userLoginData exists and parse it
+    this.user = localStorage.getItem('userLoginData');
+    this.user_id = this.user ? JSON.parse(this.user) : null;
 
+    // Log current path for debugging
+    console.log(this._location.path(), 'current path');
+    console.log(this.user_id?.id, 'user');
+    console.log(this.vakil_id?.advId, 'vakil');
 
-    if (this.vakil_id.advId) {
-      if (this._location.path() == '') {
-        this._router.navigate(['/vakil/home/dashboard'])
+    // Conditional navigation
+    if (this.vakil_id?.advId) {
+      if (this._location.path() === '') {
+        this._router.navigate(['/vakil/home/dashboard']);
       }
-      else {
+    } else if (this.user_id?.id) {
+      if (this._location.path() === '') {
+        this._router.navigate(['/user/home/dashboard']);
       }
     }
-    // if (this.user_id.userId) {
-    //   if (this._location.path() == '') {
-    //     this._router.navigate(['/user/home/dashboard'])
-    //   }
-    //   else {
-    //   }
-    // }
   }
 }

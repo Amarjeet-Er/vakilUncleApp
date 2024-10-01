@@ -1,0 +1,36 @@
+
+<div class="header">
+    <ion-icon slot="start" name="chevron-back" routerLink="/vakil/home"></ion-icon>
+    <span>Total Clients {{clients?.length || '0'}}</span>
+</div>
+
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
+
+  <ion-list id="client-list">
+    <ion-card *ngFor="let client of clients">
+      <div class="client-text">
+        <ion-row>
+          <span class="highlight">Name </span>
+          <span class="highlight">{{client.clientName || 'N/A' | titlecase}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Contact </span>
+          <span>{{client.contactNum || 'N/A'}} </span>
+        </ion-row>
+        <ion-row>
+          <span>Case Title</span>
+          <span>{{client.caseTitle || 'N/A' | titlecase}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Case No</span>
+          <span>{{client.caseNo || 'N/A'}}</span>
+        </ion-row>
+      </div>
+      <div class="cleint-profile">
+        <img [src]="detail?.profile ? img_url+detail.profile:  '../../../assets/icon/profile.png'" alt="">
+      </div>
+    </ion-card>
+  </ion-list>
+  <p class="NoRecord" *ngIf="clients?.length === 0">No Record Found</p>
+</ion-content>
