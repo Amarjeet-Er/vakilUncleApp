@@ -151,7 +151,10 @@ export class CrudService {
   }
 
   get_case_duplicate_number(vakilId: any, caseNo: any) {
-    return this._http.get<any>(`${this.base_url}checkDblCaseNumber?VakiId=${vakilId}&caseno=${caseNo}`)
+    return this._http.get<any>(`${this.base_url}checkDblCaseNumber?vakilId=${vakilId}&caseno=${caseNo}`)
+  }
+  post_add_case(data:any) {
+    return this._http.post<any>(`${this.base_url}addCase`, data)
   }
 
   //for user 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-vakil-total-case',
@@ -24,6 +25,12 @@ export class VakilTotalCaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+  }
+
+  loadData(): void {
     this._crud.get_total_case_list(this.login_data.advId).subscribe
       ((res: any) => {
         if (res.status === true) {
@@ -44,7 +51,7 @@ export class VakilTotalCaseComponent implements OnInit {
     localStorage.setItem('CaseNo', JSON.stringify(data))
     this._router.navigate(['/home/casehearing'])
   }
-  addHearingDate(data:any) {
+  addHearingDate(data: any) {
     localStorage.setItem('CaseNo', JSON.stringify(data))
     this._router.navigate(['/home/addhearingdate'])
   }

@@ -109,7 +109,7 @@
       <ion-button size="small" fill="clear" shape="round" routerLink="/home/upcomingcourtlist">See All</ion-button>
     </ion-row>
     <div class="contentList">
-      <ion-item lines="full" *ngFor="let data of upcuming_court" (click)="onUpcoming(data)">
+      <ion-item lines="full" *ngFor="let data of upcoming_court" (click)="onUpcoming(data)">
         <ion-label>
           <h3>{{data?.clientName || 'N/A' | titlecase}}</h3>
           <span>{{data?.hearingDate}}</span>
@@ -118,10 +118,6 @@
       </ion-item>
     </div>
   </ion-list>
-
-  <!-- button for add case  -->
-  <ion-button class="addCaseBtn" (click)="addClientCase()">Add Case</ion-button>
-
 
   <!-- recent client case  -->
   <ion-list>

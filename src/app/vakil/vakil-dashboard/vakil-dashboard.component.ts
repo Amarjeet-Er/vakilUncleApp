@@ -91,148 +91,119 @@ export class VakilDashboardComponent implements OnInit {
 				{ x: new Date(2022, 0, 16), y: 570 }
 			]
 		}]
-	}
+	};
 	login: any;
 	login_data: any;
 	vId: any;
 	dashboard: any;
-	upcuming_court: any;
+	upcoming_court: any;
 	recent_client: any;
 	img_url: any;
 	complete_case: any;
-
+	plan_name: any;
 
 	constructor(
 		private _router: Router,
 		private _crud: CrudService,
 		private _shared: SharedService
 	) {
-		this.login = localStorage.getItem('vakilLoginData')
-		this.login_data = JSON.parse(this.login)
-		this.vId = this.login_data.advId;
+		this.login = localStorage.getItem('vakilLoginData');
+		this.login_data = this.login ? JSON.parse(this.login) : {};
+		this.vId = this.login_data?.advId;
+		this.plan_name = this.login_data?.plan;
 
 		this._shared.img_url.subscribe(
 			(img_url) => {
 				this.img_url = img_url;
 			}
-		)
+		);
 	}
 
 	ngOnInit() {
 		this._crud.vakil_dashboard(this.vId).subscribe(
 			(res: any) => {
-				console.log(res, 'dashboard');
-				try {
-					if (res.status === true) {
-						this.dashboard = res.data[0];
-					} else {
-						this._shared.tostErrorTop('Error',);
-					}
-				}
-				catch (error) {
-					this._shared.tostErrorTop('Error',);
+				if (res.status === true) {
+					this.dashboard = res.data?.[0] || {};
+				} else {
+					this._shared.tostErrorTop('Error');
 				}
 			},
-		)
+			(error) => this._shared.tostErrorTop('Error')
+		);
 
 		this._crud.get_upcoming_court_list(this.vId).subscribe(
 			(res: any) => {
-				console.log(res, 'dashboard');
-				try {
-					if (res.status === true) {
-						this.upcuming_court = res.data.slice(0, 3);;
-					} else {
-						this._shared.tostErrorTop('Error',);
-					}
-				}
-				catch (error) {
-					this._shared.tostErrorTop('Error',);
+				if (res.status === true) {
+					this.upcoming_court = res.data.slice(0, 3);
+				} else {
+					this._shared.tostErrorTop('Error');
 				}
 			},
-		)
+			(error) => this._shared.tostErrorTop('Error')
+		);
+
 		this._crud.get_new_Client(this.vId).subscribe(
 			(res: any) => {
-				console.log(res, 'dashboard');
-				try {
-					if (res.status === true) {
-						this.recent_client = res.data.slice(0, 5);;
-					} else {
-						this._shared.tostErrorTop('Error',);
-					}
-				}
-				catch (error) {
-					this._shared.tostErrorTop('Error',);
+				if (res.status === true) {
+					this.recent_client = res.data.slice(0, 5);
+				} else {
+					this._shared.tostErrorTop('Error');
 				}
 			},
-		)
+			(error) => this._shared.tostErrorTop('Error')
+		);
+
 		this._crud.get_complete_court_list(this.vId).subscribe(
 			(res: any) => {
-				console.log(res, 'dashboard');
-				try {
-					if (res.status === true) {
-						this.complete_case = res.data.slice(0, 5);;
-					} else {
-						this._shared.tostErrorTop('Error',);
-					}
-				}
-				catch (error) {
-					this._shared.tostErrorTop('Error',);
+				if (res.status === true) {
+					this.complete_case = res.data.slice(0, 5);
+				} else {
+					this._shared.tostErrorTop('Error');
 				}
 			},
-		)
+			(error) => this._shared.tostErrorTop('Error')
+		);
 	}
+
 	onCompleteCase(data: any) {
-		this._shared.sharedData.next(data)
+		this._shared.sharedData.next(data);
 		this._router.navigate(['/home/completecasedetails']);
 	}
 
 	onUpcoming(data: any) {
-		localStorage.setItem('CaseHearingNo', JSON.stringify(data))
+		localStorage.setItem('CaseHearingNo', JSON.stringify(data));
 		this._router.navigate(['/home/upcominghearinglist']);
 	}
 
+	// Handle different service plans
 	addPublication() {
-		if (this.login_data.status === true) {
-			this._router.navigate(['/home/publication']);
-		}
-		else {
+		if (this.plan_name?.serviceName === "Article") {
+			this._router.navigate(this.login_data?.status ? ['/home/publication'] : ['/home/paymentlock']);
+		} else {
 			this._router.navigate(['/home/paymentlock']);
 		}
 	}
 
 	addImageBanner() {
-		if (this.login_data.status === true) {
-			this._router.navigate(['/home/imagemanagement']);
-		}
-		else {
+		if (this.plan_name?.serviceName === "Image and Banner") {
+			this._router.navigate(this.login_data?.status ? ['/home/imagemanagement'] : ['/home/paymentlock']);
+		} else {
 			this._router.navigate(['/home/paymentlock']);
 		}
 	}
 
 	addVideo() {
-		if (this.login_data.status === true) {
-			this._router.navigate(['/home/videomanagement']);
-		}
-		else {
+		if (this.plan_name?.serviceName === "Video") {
+			this._router.navigate(this.login_data?.status ? ['/home/videomanagement'] : ['/home/paymentlock']);
+		} else {
 			this._router.navigate(['/home/paymentlock']);
 		}
 	}
 
 	newClientAdd() {
-		if (this.login_data.status === true) {
-			this._router.navigate(['/vakil/home/newclientreg']);
-		}
-		else {
-			this._router.navigate(['/home/paymentlock']);
-		}
-	}
-
-	// for add case 
-	addClientCase() {
-		if (this.login_data.status === true) {
-			this._router.navigate(['/home/addclientcase'])
-		}
-		else {
+		if (this.plan_name?.serviceName === "Client Registration") {
+			this._router.navigate(this.login_data?.status ? ['/vakil/home/newclientreg'] : ['/home/paymentlock']);
+		} else {
 			this._router.navigate(['/home/paymentlock']);
 		}
 	}
