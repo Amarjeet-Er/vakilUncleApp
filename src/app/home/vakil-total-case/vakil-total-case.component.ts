@@ -51,8 +51,11 @@ export class VakilTotalCaseComponent implements OnInit {
     localStorage.setItem('CaseNo', JSON.stringify(data))
     this._router.navigate(['/home/casehearing'])
   }
-  addHearingDate(data: any) {
-    localStorage.setItem('CaseNo', JSON.stringify(data))
+  
+  addHearingDate() {
+    this._router.navigate(['/home/addhearingdate'])
+  }
+  addMember() {
     this._router.navigate(['/home/addhearingdate'])
   }
 

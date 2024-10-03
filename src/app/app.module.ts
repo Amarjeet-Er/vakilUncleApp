@@ -69,6 +69,7 @@ import { CompleteCaseDetailsComponent } from './home/complete-case-details/compl
 import { AddHearingDateComponent } from './home/add-hearing-date/add-hearing-date.component';
 import { TotalClientComponent } from './home/total-client/total-client.component';
 import { TodayHearingComponent } from './home/today-hearing/today-hearing.component';
+import { CaseHearingDetailsComponent } from './home/case-hearing-details/case-hearing-details.component';
 
 @NgModule({
   declarations: [
@@ -130,6 +131,7 @@ import { TodayHearingComponent } from './home/today-hearing/today-hearing.compon
     AddHearingDateComponent,
     TotalClientComponent,
     TodayHearingComponent,
+    CaseHearingDetailsComponent,
   ],
   imports: [
     BrowserModule,

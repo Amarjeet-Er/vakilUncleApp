@@ -8,24 +8,34 @@
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
 
-  <ion-row class="AddCase">
-    <span>Add Case</span>
-    <ion-icon name="add-circle" (click)="addClientCase()"></ion-icon>
-  </ion-row>
+  <div class="addbutton">
+    <ion-row class="AddCase" (click)="addClientCase()">
+      <ion-icon name="add-circle"></ion-icon>
+      <span>Case</span>
+    </ion-row>
+
+    <ion-row class="AddCase" (click)="addMember()">
+      <ion-icon name="add-circle"></ion-icon>
+      <span>Member</span>
+    </ion-row>
+
+    <ion-row class="AddCase" (click)="addHearingDate()">
+      <ion-icon name="add-circle"></ion-icon>
+      <span>Hearing</span>
+    </ion-row>
+  </div>
 
   <ng-container *ngFor="let case of cases">
     <ion-card>
-      <ion-row class="title-row">
-        <ion-card-title class="text_color">{{ case?.caseTitle || 'N/A' }}</ion-card-title>
-        <ion-button fill="clear" (click)="addHearingDate(case)">
-          <ion-icon name="ellipsis-vertical"></ion-icon>
-        </ion-button>
-      </ion-row>
-
       <div (click)="caseHearing(case)">
         <ion-row>
-          <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Client Name</span>
-          <span class="highlight">{{ case?.clientName || 'N/A' }}</span>
+          <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Client Name </span>
+          <span class="highlight">{{ case?.clientName|| 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="person-outline"></ion-icon>&nbsp; Case Title </span>
+          <span>{{ case?.caseTitle || 'N/A' }}</span>
         </ion-row>
         <ion-row>
           <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Case Number</span>

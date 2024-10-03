@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-case-hearing',
@@ -13,26 +14,33 @@ export class CaseHearingComponent implements OnInit {
   @ViewChild('modal') modal!: IonModal;
   loginData: any;
   caseData: any;
-  caseHearingData: any;
   caseHearingList: any[] = [];
   filterData: any[] = [];
-  caseHearingDetails: any;
 
   constructor(
-    private router: Router,
-    private crudService: CrudService
-  ) {
-    this.loadLocalData();
-  }
+    private _router: Router,
+    private _crud: CrudService,
+    private _shared: SharedService
+  ) {}
 
   ngOnInit() {
-    this.fetchCaseHearingList();
+    this.loadLocalData();
+
+    // Reload data every time a navigation event ends
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      if (this.loginData && this.caseData) {
+        this.fetchCaseHearingList();
+      }
+    });
   }
 
   private loadLocalData() {
     this.loginData = this.getLocalData('vakilLoginData');
     this.caseData = this.getLocalData('CaseNo');
-    this.caseHearingData = this.getLocalData('CaseHearingNo');
+
+    if (this.loginData && this.caseData) {
+      this.fetchCaseHearingList();
+    }
   }
 
   private getLocalData(key: string): any {
@@ -41,54 +49,47 @@ export class CaseHearingComponent implements OnInit {
   }
 
   private fetchCaseHearingList() {
-    this.crudService.get_case_hearing_law_list(this.loginData?.advId, this.caseData?.id)
+    if (!this.loginData?.advId || !this.caseData?.id) {
+      console.error("Missing loginData or caseData, cannot fetch case hearing list.");
+      return;
+    }
+
+    this._crud.get_case_hearing_law_list(this.loginData.advId, this.caseData.id)
       .subscribe((res: any) => {
+        console.log(res);
+        
         if (res?.data) {
           this.caseHearingList = res.data;
           this.filterData = [...this.caseHearingList];
+        } else {
+          console.warn("No data found for case hearings.");
         }
+      }, (error) => {
+        console.error("Error fetching case hearing list:", error);
       });
   }
 
   aboutCase() {
-    this.router.navigate(['/home/aboutcase']);
+    this._router.navigate(['/home/aboutcase']);
   }
 
-  openModal(data: any) {
-    this.crudService.get_case_hearing_law_details(this.loginData?.advId, data?.caseNo).subscribe(
-      (res: any) => {
-        if (res.status === true) {
-          this.caseHearingDetails = res.data;
-          const documentNames = this.caseHearingDetails.documentName;
-          if (documentNames) {
-            this.caseHearingDetails.documents = documentNames.split(',').map((name: string, index: number) => ({
-              id: index + 1,
-              name: name.trim()
-            }));
-          } else {
-            this.caseHearingDetails.documents = [];
-          }
-        }
-      }
-    );
-    this.modal.present();
+  onDetails(data: any) {
+    console.log(data);
+    
+    localStorage.setItem('DetailsNo', JSON.stringify(data));
+    this._router.navigate(['/home/casehearingdetails']);
   }
 
   backButtonToCaseList() {
     localStorage.removeItem('CaseNo');
-    this.router.navigate(['/home/vakiltotalcase']);
-  }
-
-  dismissModal() {
-    localStorage.removeItem('CaseHearingNo');
-    this.modal.dismiss();
+    this._router.navigate(['/home/vakiltotalcase']);
   }
 
   onSearch(event: any) {
-    const filter = event.target.value.toLowerCase();
+    const filterValue = event.target.value.toLowerCase();
     this.caseHearingList = this.filterData.filter((data: any) => {
-      return data?.caseNo.toString().toLowerCase().includes(filter) ||
-        data?.hearingDate.toString().toLowerCase().includes(filter);
+      return data?.caseNo?.toString().toLowerCase().includes(filterValue) ||
+        data?.hearingDate?.toString().toLowerCase().includes(filterValue);
     });
   }
 }

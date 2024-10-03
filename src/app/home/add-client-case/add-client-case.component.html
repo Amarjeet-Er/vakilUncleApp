@@ -45,7 +45,7 @@
       </ion-input>
 
       <ion-input type="file" label="Document" label-placement="floating" fill="outline" formControlName="document"
-        (change)="onAadhar($event)" accept=".jpg,.png,.jpeg" multiple>
+        (change)="onAadhar($event)" accept=".jpg,.png,.jpeg">
       </ion-input>
 
       <ion-textarea label="About Case" labelPlacement="floating" fill="outline" placeholder="Write about the case"
@@ -60,27 +60,27 @@
             </span>
 
             <ion-input label-placement="floating" type="text" fill="outline" label="Father Name"
-              placeholder="Enter father name" formControlName="fatherName{{ i + 0 }}">
+              placeholder="Enter father name" formControlName="fatherName">
             </ion-input>
 
             <ion-input label-placement="floating" type="text" fill="outline" label="Member Name"
-              placeholder="Enter member name" formControlName="membername{{ i + 0 }}">
+              placeholder="Enter member name" formControlName="membername">
             </ion-input>
 
             <ion-input label-placement="floating" type="number" fill="outline" label="Contact No"
-              placeholder="Enter contact no" formControlName="membercontactNum{{ i + 0 }}">
+              placeholder="Enter contact no" formControlName="membercontactNum">
             </ion-input>
 
             <ion-input label-placement="floating" type="text" fill="outline" label="Member Address"
-              placeholder="Enter member details" formControlName="memberaddress{{ i + 0 }}">
+              placeholder="Enter member details" formControlName="memberaddress">
             </ion-input>
 
             <ion-input type="file" label="Document" label-placement="floating" fill="outline"
-              formControlName="MemberDocument{{i + 0}}" (change)="memberDocs($event)" accept=".jpg,.png,.jpeg,.pdf">
+              formControlName="MemberDocument" (change)="MemberDocumentChange($event, i)" accept=".jpg,.png,.jpeg,.pdf">
             </ion-input>
 
             <ion-textarea class="memberDetails" label="Member Details" labelPlacement="floating" fill="outline"
-              placeholder="Write about the member" formControlName="memberDetail{{ i + 0 }}">
+              placeholder="Write about the member" formControlName="memberDetail">
             </ion-textarea>
 
             <ion-button shape="round" size="small" (click)="removeMember(i)" color="danger">

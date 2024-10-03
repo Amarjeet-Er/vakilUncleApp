@@ -42,6 +42,7 @@ import { CompleteCaseDetailsComponent } from './complete-case-details/complete-c
 import { AddHearingDateComponent } from './add-hearing-date/add-hearing-date.component';
 import { TotalClientComponent } from './total-client/total-client.component';
 import { TodayHearingComponent } from './today-hearing/today-hearing.component';
+import { CaseHearingDetailsComponent } from './case-hearing-details/case-hearing-details.component';
 
 
 const routes: Routes = [
@@ -90,6 +91,7 @@ const routes: Routes = [
       { path: 'addhearingdate', component: AddHearingDateComponent },
       { path: 'totalclientlist', component: TotalClientComponent },
       { path: 'todayhearing', component: TodayHearingComponent },
+      { path: 'casehearingdetails', component: CaseHearingDetailsComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },
