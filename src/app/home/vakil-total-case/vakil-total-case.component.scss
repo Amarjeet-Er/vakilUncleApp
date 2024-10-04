@@ -28,18 +28,19 @@
 
 ion-content {
   .addbutton {
+    width: 100%;
+    height: auto;
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(142px, 4fr));
     gap: 0px 10px;
     padding: 0px 10px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
   }
 
   .AddCase {
     padding: 10px;
     display: flex;
     align-items: center;
-    font-size: 11px;
+    font-size: 15px;
     justify-content: flex-start;
     background-color: var(--color-light);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -47,7 +48,7 @@ ion-content {
     color: var(--color-dark);
 
     ion-icon {
-      font-size: px;
+      font-size: 24px;
       color: var(--color-primary);
     }
   }

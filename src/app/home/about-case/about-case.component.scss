@@ -28,6 +28,19 @@
 
 
 ion-content {
+    form {
+        width: calc(100% - 40px);
+        margin: 20px 20px 0px;
+
+        ion-select {
+            margin-bottom: 10px;
+        }
+
+        ion-input {
+            margin-bottom: 10px;
+        }
+    }
+
     .border {
         padding: 0px 0px 7px;
         border-bottom: 1px dotted var(--color-primary);
@@ -71,4 +84,10 @@ ion-content {
             }
         }
     }
+}
+
+ion-button {
+    --background: #c5000fab;
+    font-size: 12px;
+    text-transform: capitalize;
 }

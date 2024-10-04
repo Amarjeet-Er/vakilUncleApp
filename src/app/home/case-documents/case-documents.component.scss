@@ -24,8 +24,6 @@
       margin: 0 auto;
     }
   }
-
-
 }
 
 
@@ -63,4 +61,11 @@
       font-size: 12px;
     }
   }
+}
+
+ion-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px 0px;
 }

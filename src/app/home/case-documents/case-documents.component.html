@@ -4,10 +4,11 @@
   </div>
 </div>
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
-
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+  <ion-row>
+    <span>Case Documents : {{total_case_docs?.length || '0'}}</span>
+  </ion-row>
   <ion-list>
-
     <ion-item lines="full" *ngFor="let case_doc of total_case_docs" (click)="caseDocs(case_doc)">
       <ion-avatar aria-hidden="true" slot="start">
         <img alt="" [src]="case_doc?.profile ? img_url+case_doc.profile:  '../../../assets/icon/profile.png'" />
@@ -20,8 +21,6 @@
 
   </ion-list>
 </ion-content>
-
-
 
 <!-- for otp page modal, here user enter otp -->
 <ion-modal #modal>
@@ -36,8 +35,8 @@
       <div class="docList">
         <div class="docsBox" *ngFor="let doc of docs">
           <img src="../../../assets/images/download.png" (click)="downloadDocument(img_url+docs)">
-            <p>Documents</p>
-            <span>{{ docs_content?.firdate | date: 'dd-MM-yyyy'}}</span>
+          <p>Documents</p>
+          <span>{{ docs_content?.firdate | date: 'dd-MM-yyyy'}}</span>
         </div>
       </div>
     </ion-content>

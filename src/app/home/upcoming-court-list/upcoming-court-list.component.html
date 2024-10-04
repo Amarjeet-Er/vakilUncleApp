@@ -6,13 +6,14 @@
 </div>
 
 <ion-content>
-  
+
+
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
+  </ion-searchbar>
+
   <ion-row>
     <span>Total Hearing : {{upcuming_court?.length || '0'}}</span>
   </ion-row>
-  
-  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
-  </ion-searchbar>
   <!-- upcoming court case  -->
   <div class="contentList">
     <ion-item lines="full" *ngFor="let data of upcuming_court" (click)="onUpcoming(data)">

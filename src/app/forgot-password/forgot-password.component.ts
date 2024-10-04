@@ -39,8 +39,8 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   // send otp on mail id 
-  async sendOtp() {    const email = this.forgotForm.value.email;
-
+  async sendOtp() {
+    const email = this.forgotForm.value.email;
     this._crud.verify_email(email).subscribe(
       (res: any) => {
         if (res.status === true) {
@@ -48,6 +48,7 @@ export class ForgotPasswordComponent implements OnInit {
             (otpRes: any) => {
               if (otpRes.status === true && otpRes.OTP) {
                 localStorage.setItem('otpData', JSON.stringify(otpRes.OTP));
+                localStorage.setItem('veryEmail', JSON.stringify(email));
                 this.modal.present();
                 this._shared.tostSuccessTop('OTP sent successfully');
               } else {
@@ -78,7 +79,7 @@ export class ForgotPasswordComponent implements OnInit {
     const verifyOtp = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
     console.log('verifyOtp:', verifyOtp);
     const otpData = localStorage.getItem('otpData');
-    console.log(otpData, 'confirm otp amr');
+    console.log(otpData, verifyOtp, 'confirm otp');
 
     if (otpData == verifyOtp) {
       this._router.navigate(['/confirmpassword'])
@@ -89,8 +90,6 @@ export class ForgotPasswordComponent implements OnInit {
       this._shared.tostWrraingTop('OTP does not match');
     }
   }
-
-
 
   // here user enter number/otp in input field 
   onInputChange(event: any, nextInput: HTMLInputElement | null) {

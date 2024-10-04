@@ -10,12 +10,8 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class CompleteCaseDetailsComponent implements OnInit {
   case_hearing_details: any;
-  filter_data: any;
-
 
   constructor(
-    private _router: Router,
-    private _crud: CrudService,
     private _shared: SharedService
   ) {
 
@@ -24,10 +20,9 @@ export class CompleteCaseDetailsComponent implements OnInit {
   ngOnInit() {
     this._shared.sharedData.subscribe(
       (res: any) => {
-        console.log(res, 'dashboard');
+        console.log(res, 'case complete');
         try {
           this.case_hearing_details = res
-
         }
         catch (error) {
           this._shared.tostErrorTop('Error',);

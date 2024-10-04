@@ -20,27 +20,33 @@
         }
 
         span {
-            font-size: 16px;
+            font-size: 20px;
             margin: 0 auto;
         }
     }
 }
 
+ion-content {
+    form {
+        width: calc(100% - 40px);
+        margin: 10px 20px 0px;
 
-ion-card {
-    margin: 16px;
+        ion-select {
+            margin-bottom: 10px;
+        }
+
+        ion-input {
+            margin-bottom: 10px;
+        }
+        ion-textarea {
+            min-height: 200px;
+            margin-bottom: 10px;
+        }
+    }
+
 }
 
-ion-card-header {
-    padding: 10px 10px 0px;
-}
-
-ion-card-content {
-    margin: 0px;
-    padding: 0px 5px;
-}
-
-ion-item {
-    font-size: 12px;
-    --background: transparent;
+ion-button {
+    --background: var(--color-primary);
+    margin-bottom: 20px;
 }

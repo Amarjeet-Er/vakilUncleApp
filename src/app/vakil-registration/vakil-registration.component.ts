@@ -74,6 +74,7 @@ export class VakilRegistrationComponent implements OnInit {
       city: ['', Validators.required],
       adhar: ['', Validators.required],
       barCouncil: ['', Validators.required],
+      gender: ['', Validators.required],
       pass: [
         '', [
           Validators.required,
@@ -184,6 +185,7 @@ export class VakilRegistrationComponent implements OnInit {
       const formdata = new FormData();
       formdata.append('advocateName', this.vakil_Registration_Form.value.advocateName);
       formdata.append('contactNum', this.vakil_Registration_Form.value.contactNum);
+      formdata.append('gender', this.vakil_Registration_Form.value.gender);
       formdata.append('email', this.vakilEmail);
       formdata.append('state', this.vakil_Registration_Form.value.state);
       formdata.append('city', this.vakil_Registration_Form.value.city);

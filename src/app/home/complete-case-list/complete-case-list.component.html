@@ -6,12 +6,10 @@
 </div>
 
 <ion-content>
-
-  <ion-row>
-    <span>Total Complete : {{complete_case?.length || '0'}}</span>
-  </ion-row>
-
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+  <ion-row>
+    <span>Completed Case : {{complete_case?.length || '0'}}</span>
+  </ion-row>
   <div class="contentList">
     <ion-item lines="full" *ngFor="let data of complete_case" (click)="onDetails(data)">
       <ion-label>

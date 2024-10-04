@@ -4,39 +4,55 @@
   </div>
 </div>
 <ion-content>
+
+  <form [formGroup]="add_members_form">
+
+    <ion-select label="Select Client Name" fill="outline" label-placement="floating" interface="action-sheet"
+      placeholder="Select Client Name" formControlName="clientId" (ionChange)="onClientSelect($event)">
+      <ion-select-option *ngFor="let client of clientName" [value]="client?.id">
+        {{client?.clientName}}
+      </ion-select-option>
+    </ion-select>
+
+    <ion-input label="Case Number" label-placement="floating" type="text" fill="outline" placeholder="Case number"
+      formControlName="caseNo" readonly>
+    </ion-input>
+  </form>
+
   <div class="caseInfo">
-    <h4 class="text_color">{{about_case?.caseTitle || 'N/A' | titlecase}}</h4>
-    <ion-row class="ion-justify-content-between border">
+    <h4 class="text_color" *ngIf="about_case?.caseTitle">{{about_case?.caseTitle || 'N/A' | titlecase}}</h4>
+    <ion-row class="ion-justify-content-between border" *ngIf="about_case?.caseNo">
       <span class="highlight">Case Number</span>
       <span class="highlight">{{about_case?.caseNo || 'N/A'}}</span>
     </ion-row>
   </div>
 
   <div class="caseList">
+
     <ion-list>
-      <ion-row>
+      <ion-row *ngIf="about_case?.clientName">
         <span class="highlight">Client Name</span>
         <span class="highlight">{{about_case?.clientName || 'N/A'}}</span>
       </ion-row>
-      <ion-row>
+
+      <ion-row *ngIf="about_case?.email">
         <span>Client Email</span>
         <span>{{about_case?.email || 'N/A'}}</span>
       </ion-row>
-      <ion-row>
+
+      <ion-row *ngIf="about_case?.contactNum">
         <span>Mobile Number</span>
         <span>{{about_case?.contactNum || 'N/A'}}</span>
       </ion-row>
     </ion-list>
 
-    <ion-list>
+    <ion-list *ngIf="about_case?.caseSummary">
       <h4>Summary</h4>
-      <p>
-        {{about_case?.caseSummary}}
-      </p>
+      <p [innerHTML]="about_case?.caseSummary"> </p>
     </ion-list>
 
-    <ion-list>
-      <ion-item-group *ngFor="let member of memberDetails let i = index">
+    <ion-list *ngFor="let member of memberDetails let i = index">
+      <ion-item-group>
         <ion-item-divider>
           <ion-label>Members {{i + 1}}</ion-label>
         </ion-item-divider>
@@ -60,6 +76,10 @@
           <span>Member Address</span>
           <span>{{member?.memberaddress || 'N/A'}}</span>
         </ion-row>
+
+        <ion-button shape="round" size="small" (click)="removeMember(member)">
+          <span>Remove</span>
+        </ion-button>
       </ion-item-group>
     </ion-list>
   </div>

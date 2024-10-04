@@ -129,7 +129,10 @@
       <ion-avatar aria-hidden="true" slot="start">
         <img alt="" [src]="data?.profile ? img_url+data?.profile :'../../../assets/icon/profile.png'" />
       </ion-avatar>
-      <ion-label>{{data?.clientName | titlecase}}</ion-label>
+      <div class="recentClient">
+        <ion-label>{{data?.clientName | titlecase}}</ion-label>
+        <ion-label class="CaseNo">{{data?.caseNo}}</ion-label>
+      </div>
     </ion-item>
 
   </ion-list>

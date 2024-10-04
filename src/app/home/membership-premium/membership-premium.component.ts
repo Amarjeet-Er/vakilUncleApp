@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Checkout } from 'capacitor-razorpay';
 import { LazorpayService } from 'src/app/service/lazorpay.service';
 import { SharedService } from 'src/app/service/shared.service';
@@ -23,6 +24,7 @@ export class MembershipPremiumComponent implements OnInit {
   constructor(
     private razorpayService: LazorpayService,
     private sharedService: SharedService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +35,10 @@ export class MembershipPremiumComponent implements OnInit {
     this.membershipData = localStorage.getItem('MembershipPay');
     this.membershipPremium = JSON.parse(this.membershipData);
     this.memebership = this.membershipPremium;
-    console.log(this.memebership);
+  }
+  onBack() {
+    localStorage.removeItem('MembershipPay')
+    this._router.navigate(['/vakil/home/membership'])
   }
 
   payNow(data: any) {

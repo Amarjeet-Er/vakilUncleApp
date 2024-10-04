@@ -51,28 +51,7 @@ export class AddClientCaseComponent implements OnInit {
       advocatefee: ['', Validators.required],
       aboutcase: ['', Validators.required],
       document: [''],
-      MemberDataList: this._fb.array([]),
     });
-  }
-
-  get membersArray() {
-    return this.addCase_form.get('MemberDataList') as FormArray;
-  }
-
-  addMemberControls() {
-    const memberGroup = this._fb.group({
-      fatherName: [''],
-      membername: [''],
-      membercontactNum: [''],
-      memberDetail: [''],
-      memberaddress: [''],
-      MemberDocument: [''],
-    });
-    this.membersArray.push(memberGroup);
-  }
-
-  removeMember(index: number) {
-    this.membersArray.removeAt(index);
   }
 
   // For select Aadhar Card
@@ -90,28 +69,6 @@ export class AddClientCaseComponent implements OnInit {
     }
   }
 
-  // Handle member document selection
-  MemberDocumentChange(event: Event, index: number) {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0]; // Get the first file
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        console.log(`Member ${index + 1} Document content:`, reader.result);
-      };
-
-      reader.onerror = (error) => {
-        console.error('Error reading member file:', error);
-      };
-
-      reader.readAsDataURL(file);
-      this.membersArray.at(index).patchValue({ MemberDocument: file });
-    } else {
-      console.log('No file selected');
-    }
-  }
-
   onSubmit() {
     const formdata = new FormData();
     formdata.append('vakilId', this.login_data.advId);
@@ -124,9 +81,6 @@ export class AddClientCaseComponent implements OnInit {
     formdata.append('advocatefee', this.addCase_form.get('advocatefee')?.value);
     formdata.append('aboutcase', this.addCase_form.get('aboutcase')?.value);
     formdata.append('document', this.Aadhar_select);
-
-    formdata.append('MemberDataList', JSON.stringify(this.addCase_form.get('MemberDataList')?.value));
-
 
     console.log(this.addCase_form.value);
 

@@ -26,6 +26,9 @@ export class CrudService {
   verify_email(email: string) {
     return this._http.post<any>(`${this.base_url}verifyEmail?email=${email}`, {});
   }
+  forget_password(email: string, password: any) {
+    return this._http.post<any>(`${this.base_url}resetPassword?email=${email}$pass=${password}`, {});
+  }
 
   // for vakil 
   login(data: any) {
@@ -153,9 +156,19 @@ export class CrudService {
   get_case_duplicate_number(vakilId: any, caseNo: any) {
     return this._http.get<any>(`${this.base_url}checkDblCaseNumber?vakilId=${vakilId}&caseno=${caseNo}`)
   }
-  post_add_case(data:any) {
+  post_add_case(data: any) {
     return this._http.post<any>(`${this.base_url}addCase`, data)
   }
+  post_add_members(data: any) {
+    return this._http.post<any>(`${this.base_url}addCaseMember`, data)
+  }
+
+  post_delete_member(data: any) {
+    console.log(data, 'submitted');    
+    return this._http.delete<any>('https://vakiluncle.in/api/removeMember', data)
+  }
+
+
 
   //for user 
   user_registartion(data: any) {

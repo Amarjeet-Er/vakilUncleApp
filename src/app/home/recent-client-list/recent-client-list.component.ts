@@ -22,7 +22,6 @@ export class RecentClientListComponent implements OnInit {
     const login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(login!);
 
-
     this._shared.img_url.subscribe(
       (img_url) => {
         this.img_url = img_url;
@@ -57,7 +56,8 @@ export class RecentClientListComponent implements OnInit {
     const filter = event.target.value.toLowerCase();
     this.recent_client = this.filter_data.filter((data: any) => {
       return (
-        data?.clientName.toString().toLowerCase().includes(filter)
+        data?.clientName.toString().toLowerCase().includes(filter) ||
+        data?.caseNo.toString().toLowerCase().includes(filter)
       );
     });
   }

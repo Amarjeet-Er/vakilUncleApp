@@ -31,15 +31,17 @@ export class TodayHearingComponent implements OnInit {
     this.crudService.get_upcoming_court_list(this.login_data.advId).subscribe(
       (res: any) => {
         console.log(res);
-  
         if (res.status === true) {
-          const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+          const today = new Date(); 
           console.log(today, 'today');
-  
-          // Filter the court hearings for today by comparing the hearing date
-          this.upcuming_court = res.data.filter((item: any) => {
-            const hearingDate = new Date(item.hearingDate).toISOString().split('T')[0];
-            return hearingDate === today;
+            this.upcuming_court = res.data.filter((item: any) => {
+            const hearingDate = new Date(item.hearingDate);
+          
+            return (
+              hearingDate.getFullYear() === today.getFullYear() &&
+              hearingDate.getMonth() === today.getMonth() &&
+              hearingDate.getDate() === today.getDate()
+            );
           });
   
           console.log(this.upcuming_court, 'Filtered hearings for today');
@@ -52,6 +54,7 @@ export class TodayHearingComponent implements OnInit {
     );
   }
   
+
 
   onUpcoming(data: any): void {
     localStorage.setItem('CaseHearingNo', JSON.stringify(data));

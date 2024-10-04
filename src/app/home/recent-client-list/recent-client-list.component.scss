@@ -12,19 +12,20 @@
         align-items: center;
         width: 100%;
         position: relative;
-        
+
         ion-icon {
             position: absolute;
             font-size: 24px;
             left: 10px;
         }
-        
+
         span {
             font-size: 16px;
             margin: 0 auto;
         }
     }
 }
+
 .contentList {
     width: 100%;
 
@@ -42,6 +43,12 @@
                 color: #27AE60;
             }
         }
+
+        .recentClient {
+            display: flex;
+            justify-content: flex-start;
+        }
+
     }
 
     // for case info 
@@ -66,12 +73,13 @@ ion-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px 0px;
-    margin-top: 5px;
+    padding: 5px 10px 0px;
 }
 
 ion-searchbar {
     --border-radius: 50px !important;
     --ion-color-base: var(--color-light) !important;
 }
-
+.CaseNo{
+    font-size: 10px;
+}

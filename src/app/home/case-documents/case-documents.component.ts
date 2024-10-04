@@ -21,6 +21,7 @@ export class CaseDocumentsComponent implements OnInit {
   case_no: any
   docs: any;
   docs_content: any;
+  filter_data: any;
 
   constructor(
     private _crud: CrudService,
@@ -42,6 +43,7 @@ export class CaseDocumentsComponent implements OnInit {
       (response) => {
         console.log(response, 'case documnet');
         this.total_case_docs = response.data;
+        this.filter_data = response.data;
       },
       (error) => {
         console.error(error);
@@ -60,7 +62,7 @@ export class CaseDocumentsComponent implements OnInit {
         if (response.status === true && response.data && response.data.length > 0) {
           this.docs = response.data[0].documentUrl;
           this.docs_content = response.data[0];
-          console.log(this.docs_content, 'content');          
+          console.log(this.docs_content, 'content');
           this.modal.present();
         } else if (response.data.length === 0) {
           this._shared.tostWrraingTop('No documents available');
@@ -72,5 +74,15 @@ export class CaseDocumentsComponent implements OnInit {
         this._shared.tostErrorTop('Error fetching case documents:');
       }
     );
+  }
+
+  onSearch(event: any): void {
+    const filter = event.target.value.toLowerCase();
+    this.total_case_docs = this.filter_data.filter((data: any) => {
+      return (
+        data?.clientName.toString().toLowerCase().includes(filter) ||
+        data?.caseNo.toString().toLowerCase().includes(filter)
+      );
+    });
   }
 }

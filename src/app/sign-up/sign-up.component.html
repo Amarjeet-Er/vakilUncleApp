@@ -106,6 +106,12 @@
           formControlName="contactNum" minlength="10" maxlength="10" pattern="\d{10}" placeholder="Enter Mobile Number">
         </ion-input>
 
+        <ion-select label="Gender" label-placement="floating" placeholder="Select Gender" formControlName="gender">
+          <ion-select-option value="Male"> Male </ion-select-option>
+          <ion-select-option value="Female"> Female </ion-select-option>
+          <ion-select-option value="Other"> Other </ion-select-option>
+        </ion-select><br>
+
         <ion-select label="State" fill="outline" label-placement="floating" interface="action-sheet"
           placeholder="Select State" (ionChange)="onCityChange($event)" formControlName="state">
           <ion-select-option *ngFor="let state of states" [value]="state?.Id">

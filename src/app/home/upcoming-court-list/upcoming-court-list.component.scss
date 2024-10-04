@@ -12,25 +12,26 @@
         align-items: center;
         width: 100%;
         position: relative;
-        
+
         ion-icon {
             position: absolute;
             font-size: 24px;
             left: 10px;
         }
-        
+
         span {
             font-size: 16px;
             margin: 0 auto;
         }
     }
 }
+
 .contentList {
     width: 100%;
 
-    // for upcoming case date 
     ion-item {
-        margin: 10px 0;
+        margin: 5px 0;
+        font-size: 12px;
 
         ion-label {
             h3 {
@@ -66,8 +67,8 @@ ion-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px 0px;
-    margin-top: 5px;
+    align-items: center;
+    padding: 5px 10px 0px;
 }
 
 ion-searchbar {

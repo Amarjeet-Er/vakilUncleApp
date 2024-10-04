@@ -70,6 +70,7 @@ export class SignUpComponent implements OnInit {
       state: ['', Validators.required],
       city: ['', Validators.required],
       address: ['', Validators.required],
+      gender: ['', Validators.required],
       Password: [
         '', [
           Validators.required,
@@ -150,6 +151,7 @@ export class SignUpComponent implements OnInit {
       const formdata = new FormData();
       formdata.append('ClientName', this.User_Registration_Form.value.ClientName);
       formdata.append('contactNum', this.User_Registration_Form.value.contactNum);
+      formdata.append('gender', this.User_Registration_Form.value.gender);
       formdata.append('email', this.userEmail);
       formdata.append('state', this.User_Registration_Form.value.state);
       formdata.append('city', this.User_Registration_Form.value.city);

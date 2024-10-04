@@ -69,10 +69,6 @@ export class CaseHearingComponent implements OnInit {
       });
   }
 
-  aboutCase() {
-    this._router.navigate(['/home/aboutcase']);
-  }
-
   onDetails(data: any) {
     console.log(data);
     

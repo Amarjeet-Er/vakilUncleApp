@@ -7,16 +7,12 @@
 
 <ion-content class="custom-content">
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <span class="total-hearing-text">Total Hearing: {{ upcuming_court?.length || '0' }}</span>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)" class="custom-searchbar">
   </ion-searchbar>
+  <ion-row>
+    <span>Total Hearing: {{ upcuming_court?.length || '0' }}</span>
+  </ion-row>
 
   <div class="contentList">
     <ion-list>
@@ -29,6 +25,15 @@
           <p>Summary : - {{ data?.caseSummary }}</p>
         </ion-label>
       </ion-item>
+      <!-- <ion-list>
+        <div class="description">
+          <h3>Required Documents</h3>
+          <ion-item lines="none" *ngFor="let data of caseHearingDetails">
+            <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
+            <ion-label>{{data?.name | titlecase}}</ion-label>
+          </ion-item>
+        </div>
+      </ion-list> -->
     </ion-list>
   </div>
 

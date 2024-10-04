@@ -12,13 +12,13 @@
         align-items: center;
         width: 100%;
         position: relative;
-        
+
         ion-icon {
             position: absolute;
             font-size: 24px;
             left: 10px;
         }
-        
+
         span {
             font-size: 16px;
             margin: 0 auto;
@@ -42,10 +42,11 @@ ion-content {
             display: flex;
             gap: 10px;
             align-items: center;
-            margin: 0px 0;
+            margin: 10px 0;
             justify-content: space-between;
             text-transform: capitalize;
-            span{
+
+            span {
                 font-size: 12px;
             }
         }
@@ -55,10 +56,12 @@ ion-content {
             padding-bottom: 7px;
             text-transform: capitalize;
             border-bottom: 2px dotted black;
-            h4{
+
+            h4 {
                 font-size: 15px;
             }
-            p{
+
+            p {
                 font-size: 12px;
                 color: gray;
             }
@@ -66,12 +69,9 @@ ion-content {
     }
 }
 
-
-
-
 h3 {
-color: var(--color-primary);
-text-align: center;
-margin: 5px 0 15px;
-font-size: 15px;
+    color: var(--color-primary);
+    text-align: center;
+    margin: 5px 0 5px;
+    font-size: 15px;
 }

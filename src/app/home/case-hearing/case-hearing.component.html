@@ -5,13 +5,12 @@
   </div>
 </div>
 
-<ion-row>
-  <span>Total Hearing : {{caseHearingList.length || '0'}}</span>
-  <ion-button size="small" fill="clear" shape="round" (click)="aboutCase()">About Case</ion-button>
-</ion-row>
-
 <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
 </ion-searchbar>
+
+<ion-row>
+  <span>Total Hearing : {{caseHearingList.length || '0'}}</span>
+</ion-row>
 
 <ion-content>
   <ion-list>

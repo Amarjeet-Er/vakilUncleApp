@@ -8,17 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./confirm-password.component.scss'],
 })
 export class ConfirmPasswordComponent implements OnInit {
-  passwordForm!: FormGroup;
+  forget_pass_form!: FormGroup;
   userEmail: any;
+  email_id: any;
+  email: any;
   constructor(
     private _router: Router,
     private _formBuilder: FormBuilder
   ) {
-
+    this.email=localStorage.getItem('veryEmail');
+    this.email_id=JSON.parse(this.email)
   }
 
   ngOnInit() {
-    this.passwordForm = this._formBuilder.group({
+    this.forget_pass_form = this._formBuilder.group({
       newPassword: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
     }, { validator: this.passwordMatchValidator });
@@ -32,8 +35,8 @@ export class ConfirmPasswordComponent implements OnInit {
   }
 
   async confirmPassword() {
-    console.log(this.passwordForm.value.confirmPassword);
-    console.log(this.passwordForm.value.newPassword);
+    console.log(this.forget_pass_form.value.confirmPassword);
+    console.log(this.forget_pass_form.value.newPassword);
     this._router.navigate(['/login'])
   }
 }

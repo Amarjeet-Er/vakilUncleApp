@@ -56,7 +56,10 @@ export class VakilTotalCaseComponent implements OnInit {
     this._router.navigate(['/home/addhearingdate'])
   }
   addMember() {
-    this._router.navigate(['/home/addhearingdate'])
+    this._router.navigate(['/home/addmembers'])
+  }
+  aboutCase() {
+    this._router.navigate(['/home/aboutcase'])
   }
 
   onSearch(event: any) {

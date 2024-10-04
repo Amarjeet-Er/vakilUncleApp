@@ -36,7 +36,7 @@ ion-content {
 
         ion-row {
             span {
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: 600;
                 color: var(--color-dark);
             }
@@ -126,6 +126,7 @@ ion-content {
                 span {
                     color: var(--color-primary);
                     width: calc(100% - 45px);
+                    font-size: 15px;
                 }
             }
         }
@@ -196,4 +197,8 @@ ion-content {
     text-align: center;
     line-height: 60px;
     font-size: 30px;
+}
+
+.CaseNo {
+    font-size: 10px;
 }

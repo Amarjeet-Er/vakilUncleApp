@@ -23,6 +23,11 @@
       <ion-icon name="add-circle"></ion-icon>
       <span>Hearing</span>
     </ion-row>
+
+    <ion-row class="AddCase" (click)="aboutCase()">
+      <ion-icon name="document-text"></ion-icon>
+      <span>About Case</span>
+    </ion-row>
   </div>
 
   <ng-container *ngFor="let case of cases">

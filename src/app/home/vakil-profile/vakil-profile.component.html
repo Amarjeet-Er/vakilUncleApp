@@ -20,7 +20,6 @@
     </ion-button>
   </div>
 
-
   <div class="profileDetails">
 
     <div class="persinal">
@@ -45,9 +44,9 @@
 
       <ion-select label="Gender" label-placement="floating" placeholder="Select Gender" formControlName="gender"
         [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
-        <ion-select-option value="Male | titlecase"> Male </ion-select-option>
-        <ion-select-option value="Female | titlecase"> Female </ion-select-option>
-        <ion-select-option value="Other | titlecase"> Other </ion-select-option>
+        <ion-select-option value="Male"> Male </ion-select-option>
+        <ion-select-option value="Female"> Female </ion-select-option>
+        <ion-select-option value="Other"> Other </ion-select-option>
       </ion-select><br>
 
       <ion-select label="State" label-placement="floating" placeholder="Select State" (ionChange)="onCityChange($event)"

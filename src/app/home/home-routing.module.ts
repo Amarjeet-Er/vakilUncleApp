@@ -43,6 +43,7 @@ import { AddHearingDateComponent } from './add-hearing-date/add-hearing-date.com
 import { TotalClientComponent } from './total-client/total-client.component';
 import { TodayHearingComponent } from './today-hearing/today-hearing.component';
 import { CaseHearingDetailsComponent } from './case-hearing-details/case-hearing-details.component';
+import { AddMembersComponent } from './add-members/add-members.component';
 
 
 const routes: Routes = [
@@ -92,6 +93,7 @@ const routes: Routes = [
       { path: 'totalclientlist', component: TotalClientComponent },
       { path: 'todayhearing', component: TodayHearingComponent },
       { path: 'casehearingdetails', component: CaseHearingDetailsComponent },
+      { path: 'addmembers', component: AddMembersComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

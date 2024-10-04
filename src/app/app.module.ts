@@ -70,6 +70,7 @@ import { AddHearingDateComponent } from './home/add-hearing-date/add-hearing-dat
 import { TotalClientComponent } from './home/total-client/total-client.component';
 import { TodayHearingComponent } from './home/today-hearing/today-hearing.component';
 import { CaseHearingDetailsComponent } from './home/case-hearing-details/case-hearing-details.component';
+import { AddMembersComponent } from './home/add-members/add-members.component';
 
 @NgModule({
   declarations: [
@@ -132,6 +133,7 @@ import { CaseHearingDetailsComponent } from './home/case-hearing-details/case-he
     TotalClientComponent,
     TodayHearingComponent,
     CaseHearingDetailsComponent,
+    AddMembersComponent,
   ],
   imports: [
     BrowserModule,
