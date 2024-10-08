@@ -105,6 +105,10 @@ export class CrudService {
 
   //end feature
 
+  get_plan_details(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}GetVakilPlanDetail?vakilId=${vakilId}`);
+  }
+
   get_membership_detail() {
     return this._http.get<any>(`${this.base_url}MembershipDetail`);
   }
@@ -162,11 +166,16 @@ export class CrudService {
   post_add_members(data: any) {
     return this._http.post<any>(`${this.base_url}addCaseMember`, data)
   }
-
-  post_delete_member(data: any) {
-    console.log(data, 'submitted');    
-    return this._http.delete<any>('https://vakiluncle.in/api/removeMember', data)
+  post_upload_docs(data: any) {
+    return this._http.post<any>(`${this.base_url}uploadCaseDocument`, data)
   }
+
+  post_delete_members(caseNo: any, memberId: any, vakilId: any, clientId: any) {
+    return this._http.delete<any>(`${this.base_url}removeMember?caseNum=${caseNo
+      }&memId=${memberId}&vakilId=${vakilId}&clientId=${clientId}`
+    );
+  }
+
 
 
 
@@ -174,4 +183,9 @@ export class CrudService {
   user_registartion(data: any) {
     return this._http.post<any>(`${this.base_url}ClientRegister`, data);
   }
+
+  get_search_advocate(query: string) {
+    return this._http.get<any>(`${this.base_url}searchAdvocate?userSearchInp=${encodeURIComponent(query)}`);
+  }
+  
 }

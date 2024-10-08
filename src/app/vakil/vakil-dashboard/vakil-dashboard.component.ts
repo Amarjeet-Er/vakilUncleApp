@@ -101,6 +101,7 @@ export class VakilDashboardComponent implements OnInit {
 	img_url: any;
 	complete_case: any;
 	plan_name: any;
+	memberships: any;
 
 	constructor(
 		private _router: Router,
@@ -110,7 +111,6 @@ export class VakilDashboardComponent implements OnInit {
 		this.login = localStorage.getItem('vakilLoginData');
 		this.login_data = this.login ? JSON.parse(this.login) : {};
 		this.vId = this.login_data?.advId;
-		this.plan_name = this.login_data?.plan;
 
 		this._shared.img_url.subscribe(
 			(img_url) => {
@@ -118,8 +118,17 @@ export class VakilDashboardComponent implements OnInit {
 			}
 		);
 	}
-
+	disable() { }
 	ngOnInit() {
+		this._crud.get_plan_details(this.vId).subscribe(
+			(res: any) => {
+				this.memberships = res.data
+				console.log(this.memberships);
+
+			},
+			(error) => this._shared.tostErrorTop('Error')
+		);
+
 		this._crud.vakil_dashboard(this.vId).subscribe(
 			(res: any) => {
 				if (res.status === true) {
@@ -175,36 +184,35 @@ export class VakilDashboardComponent implements OnInit {
 		this._router.navigate(['/home/upcominghearinglist']);
 	}
 
-	// Handle different service plans
-	addPublication() {
-		if (this.plan_name?.serviceName === "Article") {
-			this._router.navigate(this.login_data?.status ? ['/home/publication'] : ['/home/paymentlock']);
-		} else {
-			this._router.navigate(['/home/paymentlock']);
+	handleClick(member: any) {
+		switch (member?.servicePath) {
+			case '/vakil/addPublication':
+				this.addPublication();
+				break;
+			case '/vakil/AddImageBanner':
+				this.addImageBanner();
+				break;
+			case '/vakil/addVideo':
+				this.addVideo();
+				break;
+			case '/vakil/NewClientRegstration':
+				this.registerNewClient();
+				break;
+			default:
+				this.disable();
+				break;
 		}
 	}
-
-	addImageBanner() {
-		if (this.plan_name?.serviceName === "Image and Banner") {
-			this._router.navigate(this.login_data?.status ? ['/home/imagemanagement'] : ['/home/paymentlock']);
-		} else {
-			this._router.navigate(['/home/paymentlock']);
-		}
+	registerNewClient() {
+		this._router.navigate(['/vakil/home/newclientreg'])
 	}
-
 	addVideo() {
-		if (this.plan_name?.serviceName === "Video") {
-			this._router.navigate(this.login_data?.status ? ['/home/videomanagement'] : ['/home/paymentlock']);
-		} else {
-			this._router.navigate(['/home/paymentlock']);
-		}
+		this._router.navigate(['/home/videomanagement'])
 	}
-
-	newClientAdd() {
-		if (this.plan_name?.serviceName === "Client Registration") {
-			this._router.navigate(this.login_data?.status ? ['/vakil/home/newclientreg'] : ['/home/paymentlock']);
-		} else {
-			this._router.navigate(['/home/paymentlock']);
-		}
+	addImageBanner() {
+		this._router.navigate(['/home/imagemanagement'])
+	}
+	addPublication() {
+		this._router.navigate(['/home/publication'])
 	}
 }

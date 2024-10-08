@@ -27,7 +27,6 @@ import { ConfirmPasswordComponent } from './confirm-password/confirm-password.co
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SearchPageComponent } from './home/search-page/search-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { CaseHearingComponent } from './home/case-hearing/case-hearing.component';
 import { VakilHomePageComponent } from './vakil/vakil-home-page/vakil-home-page.component';
 import { VakilAccountComponent } from './vakil/vakil-account/vakil-account.component';
 import { VakilProfileComponent } from './home/vakil-profile/vakil-profile.component';
@@ -69,8 +68,8 @@ import { CompleteCaseDetailsComponent } from './home/complete-case-details/compl
 import { AddHearingDateComponent } from './home/add-hearing-date/add-hearing-date.component';
 import { TotalClientComponent } from './home/total-client/total-client.component';
 import { TodayHearingComponent } from './home/today-hearing/today-hearing.component';
-import { CaseHearingDetailsComponent } from './home/case-hearing-details/case-hearing-details.component';
 import { AddMembersComponent } from './home/add-members/add-members.component';
+import { UploadDocumentsComponent } from './home/upload-documents/upload-documents.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +92,6 @@ import { AddMembersComponent } from './home/add-members/add-members.component';
     ConfirmPasswordComponent,
     SignUpComponent,
     SearchPageComponent,
-    CaseHearingComponent,
     VakilHomePageComponent,
     VakilAccountComponent,
     VakilProfileComponent,
@@ -132,8 +130,8 @@ import { AddMembersComponent } from './home/add-members/add-members.component';
     AddHearingDateComponent,
     TotalClientComponent,
     TodayHearingComponent,
-    CaseHearingDetailsComponent,
     AddMembersComponent,
+    UploadDocumentsComponent
   ],
   imports: [
     BrowserModule,

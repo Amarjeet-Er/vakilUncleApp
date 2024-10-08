@@ -51,10 +51,11 @@
               </ion-item>
             </ion-list>
 
-            <ion-button [ngClass]="(premium.Id % 2 === 0) ? 'btn-basic' : 'btn-premium'" expand="block"
-              (click)="onPayment(premium)">
-              BUY NOW
+            <ion-button [ngClass]="(premium?.id % 2 === 0) ? 'btn-basic' : 'btn-premium'" expand="block"
+              [disabled]="premium?.id == memberships?.planId" (click)="onPayment(premium)">
+              {{ premium?.id == memberships?.planId ? 'Purchase' : 'BUY NOW' }}
             </ion-button>
+
           </ion-card-content>
         </ion-card>
       </ion-col>

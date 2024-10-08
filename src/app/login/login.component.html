@@ -21,12 +21,12 @@
       </ion-input>
 
       <ion-row class="ion-float-right ion-margin-bottom ion-margin-end">
-        <span (click)="forgotPassword()">Forgot Password?</span>
+        <span (click)="forgotPassword()" class="actionAccount">Forgot Password?</span>
       </ion-row>
     </form>
     <ion-button class="submitBtn" shape="round" (click)="login()">Login</ion-button>
 
-    <p>Don't have account?<b (click)="SignUp()">Sign Up</b></p>
+    <p class="actionAccount">Don't have account?<b (click)="SignUp()">Sign Up</b></p>
     <div class="footer">
       <span>Developed By </span><img src="../../assets/icon/macreel_logo.png" alt="macreel icon">
     </div>

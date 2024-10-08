@@ -68,6 +68,10 @@ ion-content {
             align-items: center;
             color: var(--color-dark);
 
+            span {
+                font-size: 12px;
+            }
+
             img {
                 height: 4vh;
                 margin: 0 5px;
@@ -76,4 +80,8 @@ ion-content {
             }
         }
     }
+}
+
+.actionAccount {
+    font-size: 12px;
 }

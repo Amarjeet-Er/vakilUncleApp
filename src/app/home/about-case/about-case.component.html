@@ -5,20 +5,6 @@
 </div>
 <ion-content>
 
-  <form [formGroup]="add_members_form">
-
-    <ion-select label="Select Client Name" fill="outline" label-placement="floating" interface="action-sheet"
-      placeholder="Select Client Name" formControlName="clientId" (ionChange)="onClientSelect($event)">
-      <ion-select-option *ngFor="let client of clientName" [value]="client?.id">
-        {{client?.clientName}}
-      </ion-select-option>
-    </ion-select>
-
-    <ion-input label="Case Number" label-placement="floating" type="text" fill="outline" placeholder="Case number"
-      formControlName="caseNo" readonly>
-    </ion-input>
-  </form>
-
   <div class="caseInfo">
     <h4 class="text_color" *ngIf="about_case?.caseTitle">{{about_case?.caseTitle || 'N/A' | titlecase}}</h4>
     <ion-row class="ion-justify-content-between border" *ngIf="about_case?.caseNo">

@@ -143,28 +143,17 @@
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Features</span>
     </ion-row>
-    <div class="menubar">
-
-      <div class="featuremenu" (click)="addPublication()">
-        <ion-icon name="book"></ion-icon>
-        <span>Add Publication</span>
+    <div class="memberships" *ngFor="let member of memberships">      
+      <div class="featuremenu" (click)="handleClick(member)">
+        <ion-icon *ngIf="member?.servicePath === '/vakil/addPublication'" name="book"></ion-icon>
+        <ion-icon *ngIf="member?.servicePath === '/vakil/AddImageBanner'" name="image"></ion-icon>
+        <ion-icon *ngIf="member?.servicePath === '/vakil/addVideo'" name="videocam"></ion-icon>
+        <ion-icon *ngIf="member?.servicePath === '/vakil/NewClientRegstration'" name="person-add"></ion-icon>
+        <ion-icon
+          *ngIf="!['/vakil/addPublication', '/vakil/AddImageBanner', '/vakil/addVideo', '/vakil/NewClientRegstration'].includes(member?.servicePath)"
+          name="help-circle"></ion-icon>
+        <span>{{member?.serviceName || 'N/A'}}</span>
       </div>
-
-      <div class="featuremenu" (click)="addImageBanner()">
-        <ion-icon name="image"></ion-icon>
-        <span>Add Image & Banner</span>
-      </div>
-
-      <div class="featuremenu" (click)="addVideo()">
-        <ion-icon name="videocam"></ion-icon>
-        <span>Add Videos</span>
-      </div>
-
-      <div class="featuremenu" (click)="newClientAdd()">
-        <ion-icon name="person-add"></ion-icon>
-        <span>Registration</span>
-      </div>
-
     </div>
 
   </ion-list>

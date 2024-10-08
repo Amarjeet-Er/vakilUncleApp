@@ -15,7 +15,6 @@ export class AddClientCaseComponent implements OnInit {
   login_data: any;
   clientName: any;
   court_list: any;
-  Aadhar_select: any;
 
   constructor(
     private _fb: FormBuilder,
@@ -50,23 +49,7 @@ export class AddClientCaseComponent implements OnInit {
       firdate: ['', Validators.required],
       advocatefee: ['', Validators.required],
       aboutcase: ['', Validators.required],
-      document: [''],
     });
-  }
-
-  // For select Aadhar Card
-  onAadhar(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        console.log('File content:', reader.result);
-        this.Aadhar_select = file;
-      };
-      reader.readAsDataURL(file);
-    } else {
-      console.log('No file selected');
-    }
   }
 
   onSubmit() {
@@ -80,9 +63,6 @@ export class AddClientCaseComponent implements OnInit {
     formdata.append('firdate', this.addCase_form.get('firdate')?.value);
     formdata.append('advocatefee', this.addCase_form.get('advocatefee')?.value);
     formdata.append('aboutcase', this.addCase_form.get('aboutcase')?.value);
-    formdata.append('document', this.Aadhar_select);
-
-    console.log(this.addCase_form.value);
 
     this._crud.get_case_duplicate_number(this.login_data.advId, this.addCase_form.value?.caseno).subscribe(
       (res: any) => {

@@ -19,11 +19,6 @@ export class VakilHomePageComponent implements OnInit {
 
   ngOnInit() { }
   newClientAdd() {
-    if (this.login_data.status === true) {
-      this._router.navigate(['/vakil/home/newclientreg']);
-    }
-    else {
-      this._router.navigate(['/home/paymentlock']);
-    }
+    this._router.navigate(['/home/totalclientlist']);
   }
 }

@@ -10,14 +10,28 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class MembershipManagementComponent implements OnInit {
   membershipDetail: any;
+  login: any;
+  login_data: any;
+  memberships: any;
 
   constructor(
     private _router: Router,
     private _crud: CrudService,
     private _shared: SharedService
-  ) { }
+  ) { 
+    this.login = localStorage.getItem('vakilLoginData');
+		this.login_data = this.login ? JSON.parse(this.login) : {};
+  }
 
   ngOnInit() {
+    this._crud.get_plan_details(this.login_data?.advId).subscribe(
+			(res: any) => {
+				this.memberships = res.data[0]
+				console.log(this.memberships?.planId, 'p id');
+			},
+			(error) => this._shared.tostErrorTop('Error')
+		);
+
     this._crud.get_membership_detail().subscribe(
       (response) => {
         console.log(response);

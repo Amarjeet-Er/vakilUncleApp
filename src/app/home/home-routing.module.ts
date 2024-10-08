@@ -10,7 +10,6 @@ import { AdvocateCategoryComponent } from './advocate-category/advocate-category
 import { FilterAdvocateComponent } from './filter-advocate/filter-advocate.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SearchPageComponent } from './search-page/search-page.component';
-import { CaseHearingComponent } from './case-hearing/case-hearing.component';
 import { VakilProfileComponent } from './vakil-profile/vakil-profile.component';
 import { AddClientCaseComponent } from './add-client-case/add-client-case.component';
 import { PublicationManagementComponent } from './publication-management/publication-management.component';
@@ -42,8 +41,8 @@ import { CompleteCaseDetailsComponent } from './complete-case-details/complete-c
 import { AddHearingDateComponent } from './add-hearing-date/add-hearing-date.component';
 import { TotalClientComponent } from './total-client/total-client.component';
 import { TodayHearingComponent } from './today-hearing/today-hearing.component';
-import { CaseHearingDetailsComponent } from './case-hearing-details/case-hearing-details.component';
 import { AddMembersComponent } from './add-members/add-members.component';
+import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 
 
 const routes: Routes = [
@@ -61,7 +60,6 @@ const routes: Routes = [
       { path: 'filteradvocate', component: FilterAdvocateComponent },
       { path: 'userprofile', component: UserProfileComponent },
       { path: 'search', component: SearchPageComponent },
-      { path: 'casehearing', component: CaseHearingComponent },
       { path: 'vakilprofile', component: VakilProfileComponent },
       { path: 'addclientcase', component: AddClientCaseComponent },
       { path: 'publication', component: PublicationManagementComponent },
@@ -92,8 +90,8 @@ const routes: Routes = [
       { path: 'addhearingdate', component: AddHearingDateComponent },
       { path: 'totalclientlist', component: TotalClientComponent },
       { path: 'todayhearing', component: TodayHearingComponent },
-      { path: 'casehearingdetails', component: CaseHearingDetailsComponent },
       { path: 'addmembers', component: AddMembersComponent },
+      { path: 'uploaddocuments', component: UploadDocumentsComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

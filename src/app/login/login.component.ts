@@ -69,10 +69,10 @@ export class LoginComponent implements OnInit {
             }
             else if (res.UserRole == "Client") {
               const clientLogin = {
-                id: res.clientData[0].id,
-                clientName: res.clientData[0].clientName,
-                email: res.clientData[0].email,
-                contactNum: res.clientData[0].contactNum,
+                id: res.data.id,
+                clientName: res.data.clientName,
+                email: res.data.email,
+                contactNum: res.data.contactNum,
               }
               this._shared.tostSuccessTop('Login Successfully...')
               localStorage.setItem('userLoginData', JSON.stringify(clientLogin))

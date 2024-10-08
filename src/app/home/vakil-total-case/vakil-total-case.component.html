@@ -11,28 +11,13 @@
   <div class="addbutton">
     <ion-row class="AddCase" (click)="addClientCase()">
       <ion-icon name="add-circle"></ion-icon>
-      <span>Case</span>
-    </ion-row>
-
-    <ion-row class="AddCase" (click)="addMember()">
-      <ion-icon name="add-circle"></ion-icon>
-      <span>Member</span>
-    </ion-row>
-
-    <ion-row class="AddCase" (click)="addHearingDate()">
-      <ion-icon name="add-circle"></ion-icon>
-      <span>Hearing</span>
-    </ion-row>
-
-    <ion-row class="AddCase" (click)="aboutCase()">
-      <ion-icon name="document-text"></ion-icon>
-      <span>About Case</span>
+      <span>Add Another Case</span>
     </ion-row>
   </div>
 
   <ng-container *ngFor="let case of cases">
     <ion-card>
-      <div (click)="caseHearing(case)">
+      <div>
         <ion-row>
           <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Client Name </span>
           <span class="highlight">{{ case?.clientName|| 'N/A' }}</span>
@@ -42,19 +27,47 @@
           <span><ion-icon name="person-outline"></ion-icon>&nbsp; Case Title </span>
           <span>{{ case?.caseTitle || 'N/A' }}</span>
         </ion-row>
-        <ion-row>
-          <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Case Number</span>
-          <span>{{ case?.caseNo || 'N/A' }}</span>
-        </ion-row>
+
         <ion-row>
           <span><ion-icon name="call-outline"></ion-icon>&nbsp; Mobile Number</span>
           <span>{{ case?.contactNum || 'N/A' }}</span>
         </ion-row>
+
         <ion-row>
-          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Next Date</span>
-          <span>{{ case?.hearingDate || 'N/A' }}</span>
+          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Court</span>
+          <span>{{ case?.courtName || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Case Number</span>
+          <span>{{ case?.caseNo || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Act</span>
+          <span>{{ case?.act || 'N/A' }}</span>
         </ion-row>
       </div>
+
+      <div class="actionButton">
+        <div (click)="addMember(case)">
+          <ion-icon name="add-circle"></ion-icon>
+          Member
+        </div>
+        <div (click)="Documents(case)">
+          <ion-icon name="add-circle"></ion-icon>
+          Documents
+        </div>
+        <div (click)="addHearingDate(case)">
+          <ion-icon name="add-circle"></ion-icon>
+          Hearing
+        </div>
+        <div (click)="aboutCase(case)">
+          <ion-icon name="newspaper"></ion-icon>
+          About
+        </div>
+      </div>
+
     </ion-card>
   </ng-container>
   <p class="NoRecord" *ngIf="cases?.length === 0">No Record Found</p>

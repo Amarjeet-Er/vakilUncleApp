@@ -14,6 +14,7 @@ export class AddHearingDateComponent implements OnInit {
   loginData: any;
   caseData: any;
   clientName: any;
+  case_number: any;
 
   constructor(private fb: FormBuilder,
     private _crud: CrudService,
@@ -21,20 +22,15 @@ export class AddHearingDateComponent implements OnInit {
     private _router: Router,
   ) {
     this.loadLocalData();
-    this.fetchDropdownData();
+    this._shared.sharedData.subscribe(
+      (data) => {
+        this.case_number = data;
+      }
+    )
   }
-
-  fetchDropdownData() {
-    this._crud.get_new_Client(this.loginData.advId).subscribe((res: any) => {
-      this.clientName = res.data;
-    });
-  }
-
 
   ngOnInit() {
     this.caseForm = this.fb.group({
-      clientId: ['', Validators.required],
-      caseNo: ['', Validators.required],
       hearingDate: ['', Validators.required],
       extracharge: ['', Validators.required],
       chargeDetail: ['', Validators.required],
@@ -42,21 +38,8 @@ export class AddHearingDateComponent implements OnInit {
     });
   }
 
-  onClientSelect(event: any) {
-    const clientId = event.detail.value;
-    const selectedClient = this.clientName.find((client: { id: any; }) => client.id === clientId);
-    console.log(selectedClient, 'id');
-    if (selectedClient && selectedClient.caseNo) {
-      this.caseForm.get('caseNo')?.setValue(selectedClient.caseNo);
-    } else {
-      this.caseForm.get('caseNo')?.setValue('');
-    }
-  }
-
-
   private loadLocalData() {
     this.loginData = this.getLocalData('vakilLoginData');
-    this.caseData = this.getLocalData('CaseNo');
   }
 
   private getLocalData(key: string): any {
@@ -67,8 +50,8 @@ export class AddHearingDateComponent implements OnInit {
   onSubmit() {
     const formUpdate = new FormData();
     formUpdate.append('vakilId', this.loginData.advId);
-    formUpdate.append('clientId', this.caseForm.get('clientId')?.value);
-    formUpdate.append('caseno', this.caseForm.get('caseNo')?.value);
+    formUpdate.append('clientId', this.case_number?.id);
+    formUpdate.append('caseno', this.case_number?.caseNo);
     formUpdate.append('hearingDate', this.caseForm.get('hearingDate')?.value);
     formUpdate.append('extracharge', this.caseForm.get('extracharge')?.value);
     formUpdate.append('chargeDetail', this.caseForm.get('chargeDetail')?.value);

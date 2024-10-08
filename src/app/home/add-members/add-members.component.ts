@@ -15,6 +15,7 @@ export class AddMembersComponent implements OnInit {
   login_data: any;
   clientName: any;
   Aadhar_select: any;
+  case_number: any;
 
   constructor(
     private _fb: FormBuilder,
@@ -25,13 +26,11 @@ export class AddMembersComponent implements OnInit {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
 
-    this.fetchDropdownData();
-  }
-
-  fetchDropdownData() {
-    this._crud.get_new_Client(this.login_data.advId).subscribe((res: any) => {
-      this.clientName = res.data;
-    });
+    this._shared.sharedData.subscribe(
+      (data) => {
+        this.case_number = data;
+      }
+    )
   }
 
   ngOnInit() {
@@ -42,21 +41,8 @@ export class AddMembersComponent implements OnInit {
       memberaddress: [''],
       fatherName: [''],
       vakilId: [''],
-      caseNo: [''],
-      clientId: [''],
       memberDocument: [''],
     });
-  }
-
-  onClientSelect(event: any) {
-    const clientId = event.detail.value;
-    const selectedClient = this.clientName.find((client: { id: any; }) => client.id === clientId);
-    console.log(selectedClient, 'id');
-    if (selectedClient && selectedClient.caseNo) {
-      this.add_members_form.get('caseNo')?.setValue(selectedClient.caseNo);
-    } else {
-      this.add_members_form.get('caseNo')?.setValue('');
-    }
   }
 
   // For select Aadhar Card
@@ -77,8 +63,8 @@ export class AddMembersComponent implements OnInit {
   onSubmit() {
     const formdata = new FormData();
     formdata.append('vakilId', this.login_data.advId);
-    formdata.append('clientId', this.add_members_form.get('clientId')?.value);
-    formdata.append('caseNo', this.add_members_form.get('caseNo')?.value);
+    formdata.append('clientId', this.case_number.id);
+    formdata.append('caseNo', this.case_number.caseNo);
     formdata.append('memberName', this.add_members_form.get('memberName')?.value);
     formdata.append('membercontactNum', this.add_members_form.get('membercontactNum')?.value);
     formdata.append('memberDetails', this.add_members_form.get('memberDetails')?.value);

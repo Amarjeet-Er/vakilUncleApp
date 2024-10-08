@@ -8,17 +8,6 @@
 <ion-content>
   <form [formGroup]="add_members_form">
 
-    <ion-select label="Client Name" fill="outline" label-placement="floating" interface="action-sheet"
-      placeholder="Select City" formControlName="clientId" (ionChange)="onClientSelect($event)">
-      <ion-select-option *ngFor="let city of clientName" [value]="city?.id">
-        {{city?.clientName}}
-      </ion-select-option>
-    </ion-select>
-
-    <ion-input label="Case Number" label-placement="floating" type="text" fill="outline"
-      placeholder="Enter case number" formControlName="caseNo" readonly>
-    </ion-input>
-
     <ion-input label-placement="floating" type="text" fill="outline" label="Father Name" placeholder="Enter father name"
       formControlName="fatherName">
     </ion-input>

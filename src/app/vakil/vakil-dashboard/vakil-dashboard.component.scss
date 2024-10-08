@@ -202,3 +202,93 @@ ion-content {
 .CaseNo {
     font-size: 10px;
 }
+
+// for memberships design on top 
+.memberships {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    gap: 10px;
+    padding: 5px 10px;
+
+    .menuBox {
+        border-radius: 5px;
+        background-color: var(--color-light);
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column; // Ensure vertical stacking of content
+        width: 100%; // Make sure the box takes full width
+        max-width: 100%; // Prevent overflow on larger screens
+
+        .menuIcon {
+            width: 100%;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            img {
+                width: 40px;
+                height: 40px;
+                padding: 10px;
+                border-radius: 50%;
+                background-color: var(--color-secondary);
+            }
+
+            span {
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--color-primary);
+                width: calc(100% - 100px);
+                text-align: center;
+                white-space: nowrap; // Prevent text wrapping
+                overflow: hidden;
+                text-overflow: ellipsis; // Add ellipsis for overflow text
+            }
+        }
+
+        .menuInfo {
+            width: 100%;
+            height: calc(100% - 55px);
+            text-align: center;
+            color: var(--color-primary);
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding: 5px;
+            font-size: 15px;
+            white-space: nowrap; // Prevent text wrapping
+        }
+    }
+
+    // For features menu design 
+    .featuremenu {
+        height: 85px;
+        border-radius: 7px;
+        background-color: var(--color-light);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%; // Make sure the feature menu takes full width
+
+        ion-icon {
+            border-radius: 50%;
+            background: var(--color-secondary);
+            padding: 7px;
+            color: crimson;
+            font-size: 20px;
+        }
+
+        span {
+            color: var(--color-primary);
+            width: calc(100% - 45px);
+            font-size: 15px;
+            white-space: nowrap; // Prevent text wrapping
+            overflow: hidden;
+            text-overflow: ellipsis; // Add ellipsis for overflow text
+        }
+    }
+}

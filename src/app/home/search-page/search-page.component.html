@@ -1,57 +1,67 @@
-<ion-searchbar #searchbar show-cancel-button="always" placeholder="Search" (ionCancel)="onCancel()"></ion-searchbar>
+<ion-searchbar #searchbar show-cancel-button="always" placeholder="Search" (ionInput)="onSearch($event)"
+  (ionCancel)="onCancel()">
+</ion-searchbar>
+
+<ion-list *ngIf="recentSearches.length > 0">
+  <ion-item *ngFor="let search of recentSearches" (click)="onRecentSearch(search)">
+    {{ search }}
+  </ion-item>
+</ion-list>
+
+
 <ion-content>
 
   <ion-list>
 
     <ion-item lines="full">
-       <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-       <ion-label>Best lawyer in pune</ion-label>
-       <ion-button  slot="end" fill="clear">
+      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
+      <ion-label>Best lawyer in pune</ion-label>
+      <ion-button slot="end" fill="clear">
         <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
       </ion-button>
     </ion-item>
 
     <ion-item lines="full">
-       <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-       <ion-label>Top lawyer in india</ion-label>
-       <ion-button  slot="end" fill="clear">
+      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
+      <ion-label>Top lawyer in india</ion-label>
+      <ion-button slot="end" fill="clear">
         <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
       </ion-button>
     </ion-item>
 
     <ion-item lines="full">
-       <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-       <ion-label>Best Advocate in tamilnadu</ion-label>
-       <ion-button  slot="end" fill="clear">
+      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
+      <ion-label>Best Advocate in tamilnadu</ion-label>
+      <ion-button slot="end" fill="clear">
         <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
       </ion-button>
     </ion-item>
 
     <ion-item lines="full">
-       <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-       <ion-label>Most Popular Advocate</ion-label>
-       <ion-button  slot="end" fill="clear">
+      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
+      <ion-label>Most Popular Advocate</ion-label>
+      <ion-button slot="end" fill="clear">
         <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
       </ion-button>
     </ion-item>
     <ion-item lines="full">
-       <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-       <ion-label>Most Popular Advocate</ion-label>
-       <ion-button  slot="end" fill="clear">
+      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
+      <ion-label>Most Popular Advocate</ion-label>
+      <ion-button slot="end" fill="clear">
         <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
       </ion-button>
     </ion-item>
     <ion-item lines="full">
-       <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-       <ion-label>Most Popular Advocate</ion-label>
-       <ion-button  slot="end" fill="clear">
+      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
+      <ion-label>Most Popular Advocate</ion-label>
+      <ion-button slot="end" fill="clear">
         <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
       </ion-button>
     </ion-item>
     <ion-item lines="full">
-       <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-       <ion-label>Most Popular Advocate</ion-label>
-       <ion-button  slot="end" fill="clear">
+      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
+      <ion-label>Most Popular Advocate</ion-label>
+      <ion-button slot="end" fill="clear">
         <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
       </ion-button>
     </ion-item>

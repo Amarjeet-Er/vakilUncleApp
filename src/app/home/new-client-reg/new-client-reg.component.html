@@ -63,6 +63,13 @@
             formControlName="contactNum" minlength="10" maxlength="10" pattern="\d{10}">
           </ion-input>
 
+          <ion-select label="Gender" label-placement="floating" fill="outline" placeholder="Select Gender"
+            formControlName="gender">
+            <ion-select-option value="Male"> Male </ion-select-option>
+            <ion-select-option value="Female"> Female </ion-select-option>
+            <ion-select-option value="Other"> Other </ion-select-option>
+          </ion-select><br>
+
           <ion-input label="Case No" label-placement="floating" type="number" fill="outline" placeholder="Enter case no"
             formControlName="caseNo"></ion-input>
 
@@ -87,7 +94,7 @@
           </ion-select><br>
 
           <ion-select label="Court" label-placement="floating" fill="outline" interface="action-sheet"
-            placeholder="Select Court" formControlName="court" [multiple]="true">
+            placeholder="Select Court" formControlName="court">
             <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
               {{court?.courtName}}
             </ion-select-option>
@@ -102,10 +109,6 @@
 
           <ion-input label="Advocate Fee" type="number" placeholder="Enter advocate Fee" label-placement="floating"
             fill="outline" formControlName="advocateFee"></ion-input>
-
-          <ion-input type="file" label="Document" label-placement="floating" fill="outline" formControlName="document"
-            (change)="onAadhar($event)" accept=".jpg,.png,.jpeg" multiple>
-          </ion-input>
 
           <ion-textarea label="Case Summary " placeholder="Enter Address" label-placement="floating" fill="outline"
             formControlName="caseSummary">

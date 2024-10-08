@@ -151,6 +151,7 @@ export class MembershipPremiumComponent implements OnInit {
     this.razorpayService.PaymentSuccessInsert(data).subscribe(
       (res: any) => {
         this.sharedService.tostSuccessTop('Payment Successful');
+        this._router.navigate(['/vakil/home/dashboard'])
       },
       (error) => {
         console.error('Success callback error:', error);

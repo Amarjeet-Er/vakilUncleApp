@@ -10,6 +10,9 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./vakil-total-case.component.scss'],
 })
 export class VakilTotalCaseComponent implements OnInit {
+addDocuments(_t21: any) {
+throw new Error('Method not implemented.');
+}
   cases: any;
   filter_data: any;
   login_data: any;
@@ -33,6 +36,8 @@ export class VakilTotalCaseComponent implements OnInit {
   loadData(): void {
     this._crud.get_total_case_list(this.login_data.advId).subscribe
       ((res: any) => {
+        console.log(res, 'total case');
+        
         if (res.status === true) {
           this.cases = res.data;
           this.filter_data = res.data;
@@ -46,19 +51,20 @@ export class VakilTotalCaseComponent implements OnInit {
     this._router.navigate(['/home/addclientcase'])
   }
 
-  // for modal 
-  caseHearing(data: any) {
-    localStorage.setItem('CaseNo', JSON.stringify(data))
-    this._router.navigate(['/home/casehearing'])
+  Documents(data: any) {
+    this._shared.sharedData.next(data)    
+    this._router.navigate(['/home/uploaddocuments'])
   }
-  
-  addHearingDate() {
+  addHearingDate(data: any) {
+    this._shared.sharedData.next(data)
     this._router.navigate(['/home/addhearingdate'])
   }
-  addMember() {
+  addMember(data: any) {
+    this._shared.sharedData.next(data)
     this._router.navigate(['/home/addmembers'])
   }
-  aboutCase() {
+  aboutCase(data: any) {
+    this._shared.sharedData.next(data);
     this._router.navigate(['/home/aboutcase'])
   }
 
@@ -77,7 +83,10 @@ export class VakilTotalCaseComponent implements OnInit {
       if (data?.contactNum.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
         return true;
       }
-      if (data?.hearingDate.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+      if (data?.courtName.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        return true;
+      }
+      if (data?.act.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
         return true;
       }
       return false;

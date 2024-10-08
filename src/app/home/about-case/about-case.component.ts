@@ -19,7 +19,7 @@ export class AboutCaseComponent implements OnInit {
   case_data: any;
   clientName: any;
   add_members_form!: FormGroup;
-  caseMembers: any;
+  case_number: any;
 
 
   constructor(
@@ -32,43 +32,25 @@ export class AboutCaseComponent implements OnInit {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
 
-    this.fetchDropdownData();
-  }
-
-  fetchDropdownData() {
-    this._crud.get_new_Client(this.login_data.advId).subscribe((res: any) => {
-      this.clientName = res.data;
-    });
+    this._shared.sharedData.subscribe(
+      (data) => {
+        this.case_number = data;
+      }
+    )
   }
 
   ngOnInit() {
-    this.add_members_form = this._fb.group({
-      caseNo: [''],
-      clientId: [''],
-    });
-  }
-
-  onClientSelect(event: any) {
-    const clientId = event.detail.value;
-    const selectedClient = this.clientName.find((client: { id: any; }) => client.id === clientId);
-    this.caseMembers = selectedClient.caseNo
-    console.log(this.caseMembers, 'id');
-    this._crud.get_case_about_law_list(this.login_data.advId, this.caseMembers).subscribe(
+    this._crud.get_case_about_law_list(this.login_data.advId, this.case_number.caseNo).subscribe(
       (res: any) => {
         console.log(res);
         this.about_case = res.data;
         this.memberDetails = res.data.memberDetails;
       }
     )
-    if (selectedClient && selectedClient.caseNo) {
-      this.add_members_form.get('caseNo')?.setValue(selectedClient.caseNo);
-    } else {
-      this.add_members_form.get('caseNo')?.setValue('');
-    }
   }
 
   async removeMember(data: any) {
-    console.log(data.MemId);
+    const memberId = data.MemId
     const alert = await this.alertController.create({
       header: 'Confirm Delete',
       message: 'Are you sure you want to delete this member?',
@@ -84,38 +66,51 @@ export class AboutCaseComponent implements OnInit {
         {
           text: 'Delete',
           handler: () => {
-            const formdata = {
-              caseNum: this.add_members_form.get('caseNo')?.value,
-              MemId: data.MemId,
-              vakilId: this.login_data.advId,
-              clientId: this.add_members_form.get('clientId')?.value,
-            };
-            console.log(formdata);
-            this._crud.post_delete_member(formdata).subscribe(
+            this._crud.post_delete_members(this.case_number.caseNo, memberId, this.login_data.advId, this.case_number.id).subscribe(
               (res: any) => {
-                console.log(res, 'result delete');
                 if (res.status === true) {
-                  this._shared.tostSuccessTop('Member Deleted');
-                } else {
-                  this._shared.tostErrorTop('Member Not Deleted');
+                  this._crud.get_case_about_law_list(this.login_data.advId, this.case_number.caseNo).subscribe(
+                    (res: any) => {
+                      this.about_case = res.data;
+                      this.memberDetails = res.data.memberDetails;
+                    }
+                  )
+                  this._shared.tostSuccessTop('Member Deleted')
+                }
+                else {
+                  this._shared.tostErrorTop('Member Not Deleted')
                 }
               },
               (error: any) => {
-                this._shared.tostErrorTop('Member Not Deleted');
+                this._shared.tostErrorTop('Member Not Deleted')
               }
-            );
+            )
           }
         }
       ]
     });
-
     await alert.present();
   }
 
-
-
   backButton() {
     this._router.navigate(['/home/vakiltotalcase'])
+  }
+
+
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: string[] = [];
+  selectedOption: string = '';
+
+  filterOptions(event: any) {
+    const value = event.target.value?.toLowerCase() || '';
+    this.filteredOptions = this.options.filter(option =>
+      option.toLowerCase().includes(value)
+    );
+  }
+
+  selectOption(option: string) {
+    this.selectedOption = option;
+    this.filteredOptions = []; // Clear the filtered options after selection
   }
 }
 

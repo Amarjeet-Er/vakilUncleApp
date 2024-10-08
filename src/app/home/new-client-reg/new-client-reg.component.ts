@@ -23,7 +23,6 @@ export class NewClientRegComponent implements OnInit {
   states: any;
   citys: any;
   court_list: any;
-  Aadhar_select: any;
   filterData: any;
 
   constructor(
@@ -47,6 +46,7 @@ export class NewClientRegComponent implements OnInit {
       email: ['', Validators.required],
       contactNum: ['', [Validators.required, Validators.pattern('\\d{10}')]],
       password: ['', Validators.required],
+      gender: ['', Validators.required],
       state: ['', Validators.required],
       city: ['', Validators.required],
       address: ['', Validators.required],
@@ -58,7 +58,6 @@ export class NewClientRegComponent implements OnInit {
       firDate: ['', Validators.required],
       caseSummary: ['', Validators.required],
       advocateFee: ['', Validators.required],
-      document: [''],
     }
     )
 
@@ -117,42 +116,14 @@ export class NewClientRegComponent implements OnInit {
     }
   }
 
-  // for select Aadhar Card
-  onAadhar(event: any) {
-    const files = event.target.files;
-    if (files.length > 0) {
-      const fileArray: any[] = [];
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const reader = new FileReader();
-
-        reader.onload = (e: any) => {
-          // Storing file details
-          fileArray.push({
-            name: file.name,
-            content: e.target.result
-          });
-          console.log('File content:', e.target.result);
-        };
-
-        reader.readAsDataURL(file);
-      }
-      // Store or process the selected files
-      this.Aadhar_select = fileArray;
-      console.log(this.Aadhar_select, 'file');
-
-    } else {
-      console.log('No files selected');
-    }
-  }
-
-  onSubmit() {
+    onSubmit() {
     console.log(this.newRegistartion_form.value);
 
     const formdata = new FormData();
     formdata.append('vakilId', this.login_data.advId);
     formdata.append('clientName', this.newRegistartion_form.get('clientName')?.value)
     formdata.append('email', this.newRegistartion_form.get('email')?.value)
+    formdata.append('gender', this.newRegistartion_form.get('gender')?.value)
     formdata.append('contactNum', this.newRegistartion_form.get('contactNum')?.value)
     formdata.append('password', this.newRegistartion_form.get('password')?.value)
     formdata.append('state', this.newRegistartion_form.get('state')?.value)
@@ -166,8 +137,7 @@ export class NewClientRegComponent implements OnInit {
     formdata.append('firDate', this.newRegistartion_form.get('firDate')?.value)
     formdata.append('caseSummary', this.newRegistartion_form.get('caseSummary')?.value)
     formdata.append('advocateFee', this.newRegistartion_form.get('advocateFee')?.value)
-    formdata.append('document', JSON.stringify(this.Aadhar_select));
-    console.log(formdata, 'formdata');
+
     if (this.newRegistartion_form.valid) {
       this._crud.new_Client_register(formdata).subscribe(
         (res: any) => {
