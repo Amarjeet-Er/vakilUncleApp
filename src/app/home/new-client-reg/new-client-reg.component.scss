@@ -98,7 +98,10 @@ ion-modal {
             ion-input {
                 margin: 20px 0;
             }
-
+            ion-textarea {
+                min-height: 200px;
+                margin-top: 20px;
+            }
             ion-row {
                 background: none;
 

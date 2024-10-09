@@ -2,70 +2,44 @@
   (ionCancel)="onCancel()">
 </ion-searchbar>
 
-<ion-list *ngIf="recentSearches.length > 0">
-  <ion-item *ngFor="let search of recentSearches" (click)="onRecentSearch(search)">
-    {{ search }}
-  </ion-item>
-</ion-list>
-
-
 <ion-content>
 
-  <ion-list>
-
-    <ion-item lines="full">
+  <ion-list *ngIf="recentSearches.length > 0">
+    <ion-item lines="full" *ngFor="let search of recentSearches" (click)="onRecentSearch(search)">
       <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-      <ion-label>Best lawyer in pune</ion-label>
+      <ion-label> {{ search }}</ion-label>
       <ion-button slot="end" fill="clear">
         <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
       </ion-button>
     </ion-item>
-
-    <ion-item lines="full">
-      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-      <ion-label>Top lawyer in india</ion-label>
-      <ion-button slot="end" fill="clear">
-        <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-      <ion-label>Best Advocate in tamilnadu</ion-label>
-      <ion-button slot="end" fill="clear">
-        <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-      <ion-label>Most Popular Advocate</ion-label>
-      <ion-button slot="end" fill="clear">
-        <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
-      </ion-button>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-      <ion-label>Most Popular Advocate</ion-label>
-      <ion-button slot="end" fill="clear">
-        <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
-      </ion-button>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-      <ion-label>Most Popular Advocate</ion-label>
-      <ion-button slot="end" fill="clear">
-        <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
-      </ion-button>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-      <ion-label>Most Popular Advocate</ion-label>
-      <ion-button slot="end" fill="clear">
-        <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
-      </ion-button>
-    </ion-item>
-
   </ion-list>
 
+  <!-- search Lawyer Section -->
+  <ion-card *ngFor="let search of searchLawyers" (click)="advocateProfile()">
+    <ion-card-content class="profile-card">
+      <div class="profile-image">
+        <img [src]="search?.profilePath ? img_url+search?.profilePath :'../../../assets/icon/profile.png'"
+          alt="Profile Picture" />
+      </div>
+      <div class="profile-details">
+        <ion-card-title>{{search?.advocateName | titlecase}}</ion-card-title>
+        <ion-card-subtitle>{{search?.cityName}}, {{search?.stateName}}</ion-card-subtitle>
+        <div class="experience">
+          <strong>Experience:</strong> {{search?.experiance}} years
+        </div>
+        <div class="practice-area">
+          <strong>Skills:</strong> {{search?.advocateTypeName[0]}}
+        </div>
+        <div class="practice-area">
+          <strong>Court:</strong> {{search?.courtName[0]}}
+        </div>
+        <div class="ratings">
+          <ion-icon name="star" *ngFor="let star of [].constructor(5); let i = index"
+            [class.filled]="i < userRating"></ion-icon>
+          <span>{{ userRating }} | 200+ user ratings</span>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <p class="NoRecord" *ngIf="searchLawyers?.length === 0">No results found</p>
 </ion-content>

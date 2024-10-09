@@ -20,7 +20,7 @@
         }
 
         span {
-            font-size: 20px;
+            font-size: 16px;
             margin: 0 auto;
         }
     }
@@ -53,16 +53,7 @@ ion-content {
 
     h3 {
         font-weight: 600;
+        font-size: 15px;
         color: var(--color-primary);
     }
-
-    h5 {
-        color: var(--color-primary);
-    }
-
-    p {
-        font-size: 14px;
-        color: var(--color-dark);
-    }
-
 }

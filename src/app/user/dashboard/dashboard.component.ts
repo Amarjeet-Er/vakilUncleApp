@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CrudService } from 'src/app/service/crud.service';
+import { SharedService } from 'src/app/service/shared.service';
 
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
 SwiperCore.use([Autoplay, Pagination, Navigation]);
@@ -9,16 +11,9 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit , OnDestroy{
-  slider_data = [
-    { Slider_img: '../../../assets/slider/slider_4.jfif' },
-    { Slider_img: '../../../assets/slider/slider_5.jfif' },
-    { Slider_img: '../../../assets/slider/slider_6.jfif' },
-    { Slider_img: '../../../assets/slider/slider_7.jfif' },
-    { Slider_img: '../../../assets/slider/slider_1.jpg' },
-    { Slider_img: '../../../assets/slider/slider_2.jpg' },
-    { Slider_img: '../../../assets/slider/slider_3.jpg' },
-  ];
+export class DashboardComponent implements OnInit, OnDestroy {
+  slider_data: any;
+  top_Lawyers: any;
 
   LawyerTypes = [
     { name: 'Civil Lawyer', icon: '../../../assets/menuIcon/civil_lawyer.png' },
@@ -30,7 +25,6 @@ export class DashboardComponent implements OnInit , OnDestroy{
     { name: 'Tax Lawyer', icon: '../../../assets/menuIcon/tax_lawyer.png' },
     { name: 'Consumer Court Lawyer', icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
   ];
-
 
   topLawyers = [
     { name: 'Julia', description: `Family Lawyer ,Criminal Lawyer`, image: '../../../assets/Lawyers/lawyer_1.jpg', address: `Noida, Sector 64`, rating: 4.4, caseCount: 280, successRate: 80, experience: 6 },
@@ -72,13 +66,41 @@ export class DashboardComponent implements OnInit , OnDestroy{
   currentPlaceholder: string = this.placeholderTexts[0];
   placeholderIndex: number = 0;
   intervalId: any;
+  img_url: any;
 
   constructor(
-    private _router: Router
-  ) { }
+    private _router: Router,
+    private _shared: SharedService,
+    private _crud: CrudService
+  ) {
+    this._shared.img_url.subscribe(
+      (res: any) => {
+        this.img_url = res
+      }
+    )
+  }
 
   ngOnInit(): void {
     this.startPlaceholderRotation();
+
+
+    this._crud.get_banner_slide().subscribe(
+      (response) => {
+        this.slider_data = response.data;
+      }
+    )
+    this._crud.get_top_advocated().subscribe(
+      (response) => {
+        if (response.status === true) {
+          console.log(response.data, 'top lawyers');
+          
+          this.top_Lawyers = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
 
   }
 
@@ -92,7 +114,7 @@ export class DashboardComponent implements OnInit , OnDestroy{
     this.intervalId = setInterval(() => {
       this.placeholderIndex = (this.placeholderIndex + 1) % this.placeholderTexts.length;
       this.currentPlaceholder = this.placeholderTexts[this.placeholderIndex];
-    }, 3000); 
+    }, 3000);
   }
 
   searchPage() {

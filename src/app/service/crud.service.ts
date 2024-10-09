@@ -184,8 +184,22 @@ export class CrudService {
     return this._http.post<any>(`${this.base_url}ClientRegister`, data);
   }
 
-  get_search_advocate(query: string) {
-    return this._http.get<any>(`${this.base_url}searchAdvocate?userSearchInp=${encodeURIComponent(query)}`);
+  get_search_advocate(search: string) {
+    return this._http.get<any>(`${this.base_url}searchAdvocate?userSearchInp=${search}`);
   }
-  
+  get_banner_slide() {
+    return this._http.get<any>(`${this.base_url}BannerAdvertisement`);
+  }
+  get_top_advocated() {
+    return this._http.get<any>(`${this.base_url}topAdvocateList`);
+  }
+  get_city_list() {
+    return this._http.get<any>(`${this.base_url}allCityList`);
+  }
+  post_ask_free_question(data:any) {
+    return this._http.post<any>(`${this.base_url}askFreeLegalQuestion`, data);
+  }
+  get_client_profile(clientId:any) {
+    return this._http.get<any>(`${this.base_url}GetClientById?Id=${clientId}`);
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonSearchbar } from '@ionic/angular';
 import { CrudService } from 'src/app/service/crud.service';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-search-page',
@@ -10,14 +11,24 @@ import { CrudService } from 'src/app/service/crud.service';
 })
 export class SearchPageComponent implements OnInit {
   @ViewChild('searchbar', { static: false }) searchbar!: IonSearchbar;
-
+  userRating=4
   searchQuery: string = '';
   recentSearches: string[] = [];
+  validSearch: boolean = false; 
+  searchLawyers: any;
+  img_url: any;
 
   constructor(
     private _router: Router,
-    private _crud: CrudService
-  ) {}
+    private _crud: CrudService,
+    private _shared:SharedService
+  ) {
+    this._shared.img_url.subscribe(
+      (res:any)=>{
+        this.img_url=res
+      }
+    )
+  }
 
   ionViewDidEnter() {
     this.searchbar.setFocus();
@@ -25,15 +36,27 @@ export class SearchPageComponent implements OnInit {
   }
 
   ngOnInit() {}
-
   onSearch(event: any) {
-    this.searchQuery = event.target.value;
-    console.log(this.searchQuery);
-    if (this.searchQuery.trim().length > 0) {
+    this.searchQuery = event.target.value.trim();
+    
+    if (this.searchQuery.length === 0) {
+      this.loadRecentSearches();
+    } else {
+      this.recentSearches = [];
+    }
+
+    if (this.searchQuery.length > 0) {
       this._crud.get_search_advocate(this.searchQuery).subscribe(
         (res: any) => {
-          console.log(res.data);
-          this.saveRecentSearch(this.searchQuery);
+          if (res.data && res.data.length > 0) {
+            this.validSearch = true;
+            this.searchLawyers=res.data
+            this.saveRecentSearch(this.searchQuery); 
+            console.log(res.data);
+          } else {
+            this.validSearch = false;
+            console.log('No results found');
+          }
         },
         (error) => {
           console.error('Error fetching search results', error);
@@ -47,28 +70,25 @@ export class SearchPageComponent implements OnInit {
     this._router.navigate(['/user/home/dashboard']);
   }
 
-  // Load recent searches from localStorage
   loadRecentSearches() {
     const searches = localStorage.getItem('recentSearches');
     if (searches) {
       this.recentSearches = JSON.parse(searches);
     }
   }
-
-  // Save the current search query to recent searches
+  advocateProfile(){}
   saveRecentSearch(search: string) {
     if (!this.recentSearches.includes(search)) {
       if (this.recentSearches.length >= 5) {
-        this.recentSearches.pop(); // Remove the oldest search
+        this.recentSearches.pop(); 
       }
-      this.recentSearches.unshift(search); // Add the new search to the top
+      this.recentSearches.unshift(search);
       localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
     }
   }
 
-  // Handle click on recent search
   onRecentSearch(search: string) {
     this.searchQuery = search;
-    this.onSearch({ target: { value: search } }); // Trigger search with the selected recent search
+    this.onSearch({ target: { value: search } }); 
   }
 }

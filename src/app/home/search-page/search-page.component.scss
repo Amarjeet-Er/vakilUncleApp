@@ -1,15 +1,109 @@
-ion-content{
-    ion-list{
-        ion-item{
-            ion-icon{
+ion-content {
+    ion-list {
+        ion-item {
+            ion-icon {
                 margin: 0px 15px 0px 0px;
             }
 
-            ion-button{
-                ion-icon{
+            ion-button {
+                ion-icon {
                     margin: 0;
                 }
             }
         }
+    }
+
+    ion-card {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-image {
+            margin-right: 16px;
+
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #ccc;
+            }
+        }
+
+        .profile-details {
+            flex: 1;
+
+            ion-card-title {
+                margin: 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 10px;
+            }
+
+            ion-card-subtitle {
+                margin: 0;
+                margin-bottom: 8px;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 10px;
+            }
+
+            .experience {
+                font-size: 12px;
+                margin: 4px 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 10px;
+            }
+
+            .ratings {
+                display: flex;
+                align-items: center;
+                font-size: 12px;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 10px;
+
+                ion-icon {
+                    color: #FFD700;
+                    margin-right: 4px;
+
+                    &.filled {
+                        color: #FFD700;
+                    }
+                }
+            }
+
+            .practice-area {
+                font-size: 12px;
+                margin: 4px 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    .NoRecord {
+        padding: 20px;
+        margin: 0px;
     }
 }

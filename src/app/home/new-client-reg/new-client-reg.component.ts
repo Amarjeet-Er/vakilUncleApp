@@ -116,7 +116,7 @@ export class NewClientRegComponent implements OnInit {
     }
   }
 
-    onSubmit() {
+  onSubmit() {
     console.log(this.newRegistartion_form.value);
 
     const formdata = new FormData();
@@ -137,30 +137,37 @@ export class NewClientRegComponent implements OnInit {
     formdata.append('firDate', this.newRegistartion_form.get('firDate')?.value)
     formdata.append('caseSummary', this.newRegistartion_form.get('caseSummary')?.value)
     formdata.append('advocateFee', this.newRegistartion_form.get('advocateFee')?.value)
-
-    if (this.newRegistartion_form.valid) {
-      this._crud.new_Client_register(formdata).subscribe(
-        (res: any) => {
-          console.log(res);
-          if (res.status === true) {
-            this._shared.tostSuccessTop('Client Registered Successfully');
-            this.clients.unshift(res.data);
-            this.filterData = [...this.clients];
-            this.modal.dismiss();
-            this.details.dismiss();
-          }
-          else {
-            this._shared.tostErrorTop(res.message);
-          }
-        },
-        (error: any) => {
-          this._shared.tostErrorTop('An error has occurred')
+    this._crud.get_case_duplicate_number(this.login_data.advId, this.newRegistartion_form.value?.caseNo).subscribe(
+      (res: any) => {
+        if (res.status === true) {
+          this._shared.tostErrorTop('Case Number Already Exists');
+          return;
         }
-      )
-    }
-    else {
-      this._shared.tostErrorTop('Please fill all the fields');
-    }
+        if (this.newRegistartion_form.valid) {
+          this._crud.new_Client_register(formdata).subscribe(
+            (res: any) => {
+              console.log(res);
+              if (res.status === true) {
+                this._shared.tostSuccessTop('Client Registered Successfully');
+                this.clients.unshift(res.data);
+                this.filterData = [...this.clients];
+                this.modal.dismiss();
+                this.details.dismiss();
+              }
+              else {
+                this._shared.tostErrorTop('Please try after sometime or maybe email or contact Number are duplicate');
+              }
+            },
+            (error: any) => {
+              this._shared.tostErrorTop('An error has occurred')
+            }
+          )
+        }
+        else {
+          this._shared.tostErrorTop('Please fill all the fields');
+        }
+      }
+    )
   }
 
   onSearch(event: any) {

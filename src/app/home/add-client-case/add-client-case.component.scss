@@ -20,7 +20,7 @@
         }
         
         span {
-            font-size: 20px;
+            font-size: 16px;
             margin: 0 auto;
         }
     }
@@ -32,7 +32,6 @@ ion-content {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        border-bottom: 2px dotted;
 
         ion-row {
             padding: 10px;

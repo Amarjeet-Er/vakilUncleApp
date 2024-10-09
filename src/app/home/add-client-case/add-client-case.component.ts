@@ -70,21 +70,26 @@ export class AddClientCaseComponent implements OnInit {
           this._shared.tostErrorTop('Case Number Already Exists');
           return;
         }
-        this._crud.post_add_case(formdata).subscribe(
-          (res: any) => {
-            if (res.status === true) {
-              this._shared.tostSuccessTop('Add Case Successfully...');
-              this.addCase_form.reset();
-              this._router.navigate(['/home/vakiltotalcase']);
-            } else {
+        if (this.addCase_form.valid) {
+          this._crud.post_add_case(formdata).subscribe(
+            (res: any) => {
+              if (res.status === true) {
+                this._shared.tostSuccessTop('Add Case Successfully...');
+                this.addCase_form.reset();
+                this._router.navigate(['/home/vakiltotalcase']);
+              } else {
+                this._shared.tostErrorTop('Not Add Case');
+              }
+            },
+            (error: any) => {
+              console.error(error);
               this._shared.tostErrorTop('Not Add Case');
             }
-          },
-          (error: any) => {
-            console.error(error);
-            this._shared.tostErrorTop('Not Add Case');
-          }
-        );
+          );
+        }
+        else {
+          this._shared.tostErrorTop('Please fill all the fields');
+        }
       }
     );
   }

@@ -15,7 +15,8 @@
     <swiper [spaceBetween]="10" [centeredSlides]="true" [autoplay]="{delay: 1000, disableOnInteraction: false}"
       [pagination]="{clickable: true, dynamicBullets: true}" [grabCursor]="true" [navigation]="true" class="sliderBox">
       <ng-template swiperSlide *ngFor="let slider of slider_data">
-        <img [src]="slider.Slider_img" alt="Slider image">
+        <img [src]="slider.banerUrl ? img_url + slider?.banerUrl : '../../../assets/slider/slider_1.jpg' "
+          alt="Slider image">
       </ng-template>
     </swiper>
   </div>
@@ -83,28 +84,26 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of topLawyers" (click)="advocateProfile()">
+      <div class="lawyerCard" *ngFor="let lawyer of top_Lawyers" (click)="advocateProfile()">
         <div class="cardImg">
-          <img [src]="lawyer.image">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
         <div class="cardInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateType }}</p>
         </div>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span style="display: flex;">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer?.offAddress}}
           </span>
           <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Case<br>{{ lawyer.caseCount }}</span>
-          |
-          <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-          |
-          <span>Experience<br>{{ lawyer.experience }}yr.</span>
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
     </div>
