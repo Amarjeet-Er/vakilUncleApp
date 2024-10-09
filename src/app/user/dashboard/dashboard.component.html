@@ -47,7 +47,7 @@
       <ion-button size="small" fill="clear" shape="round" (click)="allCategory()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="menu" *ngFor="let lawyer of LawyerTypes" (click)="filterAdvocate()">
+      <div class="menu" *ngFor="let lawyer of Lawyers_types" (click)="filterAdvocate()">
         <div class="menuIcon">
           <img [src]="lawyer.icon">
         </div>
@@ -84,7 +84,7 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of top_Lawyers" (click)="advocateProfile()">
+      <div class="lawyerCard" *ngFor="let lawyer of top_Lawyers" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
           <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
@@ -153,16 +153,18 @@
     </ion-row>
     <div class="menuList">
 
-      <div class="advocateCard" *ngFor="let lawyer of properityLawyer" (click)="advocateProfile()">
+      <div class="advocateCard" *ngFor="let lawyer of nearest_Lawyers" (click)="advocateProfile()">
         <div class="advocateImg">
-          <img [src]="lawyer.image">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
         <div class="advocateInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
 
           <p style="display: flex;" class="highlight">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+             {{lawyer?.cityName}}
+             {{lawyer?.stateName}}
           </p>
           <p style="display: flex;" class="highlight">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
@@ -173,7 +175,7 @@
             |
             <span>Success Rate<br>{{ lawyer.successRate }}%</span>
             |
-            <span>Experience<br>{{ lawyer.experience }}yr.</span>
+            <span>Experience<br>{{ lawyer?.experiance }}yr.</span>
           </ion-row>
         </div>
       </div>

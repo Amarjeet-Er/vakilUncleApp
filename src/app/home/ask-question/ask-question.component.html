@@ -51,7 +51,7 @@
           talking to a lawyer for my legal issue</span>
       </ion-checkbox>
 
-      <ion-button [disabled]="!isChecked" (click)="onSubmit()">Submit</ion-button>
+      <ion-button [disabled]="!isChecked || !ask_free_question_form.valid" (click)="onSubmit()">Submit</ion-button>
     </form>
   </ion-list>
 

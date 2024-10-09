@@ -15,6 +15,7 @@ ion-content {
 
     ion-card {
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin: 0px 10px 10px;
 
         .profile-card {
             display: flex;
@@ -106,4 +107,24 @@ ion-content {
         padding: 20px;
         margin: 0px;
     }
+
+    .recent-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+        height: 30px;
+
+        h2 {
+            margin: 0;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        ion-button{
+            text-transform: capitalize;
+            font-size: 12px;
+        }
+    }
+
+
 }

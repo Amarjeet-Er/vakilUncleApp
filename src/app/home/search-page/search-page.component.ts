@@ -11,9 +11,9 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class SearchPageComponent implements OnInit {
   @ViewChild('searchbar', { static: false }) searchbar!: IonSearchbar;
-  userRating=4
+  userRating = 4;
   searchQuery: string = '';
-  recentSearches: string[] = [];
+  recentSearches: any[] = []; // Changed to store full search data
   validSearch: boolean = false; 
   searchLawyers: any;
   img_url: any;
@@ -21,24 +21,23 @@ export class SearchPageComponent implements OnInit {
   constructor(
     private _router: Router,
     private _crud: CrudService,
-    private _shared:SharedService
+    private _shared: SharedService
   ) {
-    this._shared.img_url.subscribe(
-      (res:any)=>{
-        this.img_url=res
-      }
-    )
+    this._shared.img_url.subscribe((res: any) => {
+      this.img_url = res;
+    });
   }
 
   ionViewDidEnter() {
     this.searchbar.setFocus();
-    this.loadRecentSearches(); 
+    this.loadRecentSearches();
   }
 
   ngOnInit() {}
+
   onSearch(event: any) {
     this.searchQuery = event.target.value.trim();
-    
+
     if (this.searchQuery.length === 0) {
       this.loadRecentSearches();
     } else {
@@ -50,8 +49,8 @@ export class SearchPageComponent implements OnInit {
         (res: any) => {
           if (res.data && res.data.length > 0) {
             this.validSearch = true;
-            this.searchLawyers=res.data
-            this.saveRecentSearch(this.searchQuery); 
+            this.searchLawyers = res.data;
+            this.saveRecentSearch(this.searchLawyers); 
             console.log(res.data);
           } else {
             this.validSearch = false;
@@ -76,19 +75,28 @@ export class SearchPageComponent implements OnInit {
       this.recentSearches = JSON.parse(searches);
     }
   }
-  advocateProfile(){}
-  saveRecentSearch(search: string) {
-    if (!this.recentSearches.includes(search)) {
-      if (this.recentSearches.length >= 5) {
-        this.recentSearches.pop(); 
+
+  saveRecentSearch(searchData: any) {
+    searchData.forEach((search: any) => {
+      const existingIndex = this.recentSearches.findIndex(s => s.advocateName === search.advocateName);
+      
+      if (existingIndex === -1) {
+        if (this.recentSearches.length >= 10) {
+          this.recentSearches.pop();
+        }
+        this.recentSearches.unshift(search);
+        localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
       }
-      this.recentSearches.unshift(search);
-      localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
-    }
+    });
   }
 
-  onRecentSearch(search: string) {
-    this.searchQuery = search;
-    this.onSearch({ target: { value: search } }); 
+  advocateProfile(search: any) {
+    localStorage.setItem('vakilProfile', JSON.stringify(search.advId))
+    this._router.navigate(['/home/advocateportfolio'])
+  }
+
+  clearRecentSearches() {
+    this.recentSearches = [];
+    localStorage.removeItem('recentSearches');
   }
 }

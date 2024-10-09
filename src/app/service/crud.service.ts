@@ -202,4 +202,13 @@ export class CrudService {
   get_client_profile(clientId:any) {
     return this._http.get<any>(`${this.base_url}GetClientById?Id=${clientId}`);
   }
+  client_profile_update(data:any) {
+    return this._http.post<any>(`${this.base_url}updateClientProfile`, data);
+  }
+  get_client_total_case(clientId:any) {
+    return this._http.get<any>(`${this.base_url}getClientCase?clientId=${clientId}`);
+  }
+  get_nearest_lawyer(clientId:any) {
+    return this._http.get<any>(`${this.base_url}nearestLawyer?clientId=${clientId}`);
+  }
 }

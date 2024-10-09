@@ -20,7 +20,7 @@
         }
 
         span {
-            font-size: 20px;
+            font-size: 16px;
             margin: 0 auto;
         }
     }
@@ -28,11 +28,12 @@
 
 
 ion-content {
-    .menubar {
+     // for menu bar design on top 
+     .menubar {
         width: 100%;
         height: auto;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(165px, 4fr));
+        grid-template-columns: repeat(auto-fill, minmax(142px, 4fr));
         gap: 10px;
         padding: 10px;
 
@@ -40,25 +41,25 @@ ion-content {
             border-radius: 5px;
             background-color: var(--color-light);
             overflow: hidden;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
             .menuIcon {
                 width: 100%;
-                height: 70px;
+                height: 55px;
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
 
                 img {
-                    width: 50px;
-                    height: 50px;
+                    width: 40px;
+                    height: 40px;
                     padding: 10px;
                     border-radius: 50%;
                     background-color: var(--color-secondary);
                 }
 
                 span {
-                    font-size: 25px;
+                    font-size: 16px;
                     font-weight: 600;
                     color: var(--color-primary);
                     width: calc(100% - 100px);
@@ -71,12 +72,44 @@ ion-content {
 
             .menuInfo {
                 width: 100%;
-                height: calc(100% - 70px);
+                height: calc(100% - 55px);
                 text-align: center;
                 color: var(--color-primary);
-                padding: 10px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                padding: 5px;
+                font-size: 15px;
+                text-wrap: nowrap;
             }
 
         }
+
+        // for features menu design 
+        .featuremenu {
+            height: 85px;
+            border-radius: 7px;
+            background-color: var(--color-light);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px;
+            --background: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+            ion-icon {
+                border-radius: 50%;
+                background: var(--color-secondary);
+                padding: 7px;
+                color: crimson;
+                font-size: 20px;
+            }
+
+            span {
+                color: var(--color-primary);
+                width: calc(100% - 45px);
+                font-size: 15px;
+            }
+        }
     }
+
 }

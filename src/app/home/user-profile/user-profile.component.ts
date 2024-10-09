@@ -117,17 +117,17 @@ export class UserProfileComponent implements OnInit {
     console.log(this.client_profile_update.value);
 
     const formUpdate = new FormData();
-    formUpdate.append('vakilId', this.login_data.advId);
+    formUpdate.append('ClientId', this.login_data.id);
     formUpdate.append('clientName', this.client_profile_update.get('clientName')?.value);
-    formUpdate.append('contactNum', this.client_profile_update.get('contactNum')?.value);
     formUpdate.append('email', this.client_profile_update.get('email')?.value);
     formUpdate.append('state', this.client_profile_update.get('state')?.value);
     formUpdate.append('city', this.client_profile_update.get('city')?.value);
     formUpdate.append('gender', this.client_profile_update.get('gender')?.value);
-    formUpdate.append('DOB', this.client_profile_update.get('DOB')?.value);
+    formUpdate.append('address', this.client_profile_update.get('address')?.value);
+    formUpdate.append('profileImage', this.profile_select || null);
    
     if (this.client_profile_update.valid) {
-      this._crud.update_vakil_profile(formUpdate).subscribe(
+      this._crud.client_profile_update(formUpdate).subscribe(
         (res: any) => {
           console.log(res);
           if (res.status === true) {

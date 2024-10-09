@@ -1,6 +1,6 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon>
+    <ion-icon name="chevron-back" (click)="onBack()"></ion-icon>
     <span>Advocate Portfolio</span>
   </div>
 </div>
@@ -8,7 +8,7 @@
 <ion-content>
   <ion-item lines="none">
     <ion-thumbnail slot="start">
-      <img alt="Lawyer Profile" [src]="lawyer.profileImg" />
+      <img alt="Lawyer Profile" [src]="profile_data?.profilePath ? img_url + profile_data?.profilePath : '' " />
     </ion-thumbnail>
 
     <ion-label>
@@ -16,19 +16,21 @@
         <ion-button>
           <ion-icon slot="icon-only" name="star"></ion-icon>
         </ion-button>
-        <span>{{ lawyer.rating }}</span>
+        <span>{{ profile_data?.avgUserRating }}</span>
       </ion-row>
-      <ion-row class="ion-align-items-center">
+
+      <!-- <ion-row class="ion-align-items-center">
         <ion-button>
           <ion-icon slot="icon-only" name="person"></ion-icon>
         </ion-button>
         <span>{{ lawyer.reviews }}</span>
-      </ion-row>
-      <ion-row class="ion-align-items-center" (click)="makeCall(lawyer.phone)">
+      </ion-row> -->
+
+      <ion-row class="ion-align-items-center" (click)="makeCall(profile_data?.contactNum)">
         <ion-button>
           <ion-icon slot="icon-only" name="call"></ion-icon>
         </ion-button>
-        <p>{{ lawyer.phone }}</p>
+        <p>{{ profile_data?.contactNum }}</p>
       </ion-row>
       <ion-row class="ion-align-items-center" (click)="chatWithLawyer()">
         <ion-button>
@@ -41,7 +43,7 @@
 
   <ion-list>
     <ion-row>
-      <h2>{{ lawyer.name }}</h2>
+      <h2>{{ profile_data?.advocateName | titlecase }}</h2>
       <ion-row>
         <img src="../../../assets/icon/verified.png">
         <span>Verified</span>
@@ -51,34 +53,35 @@
 
   <ion-list>
     <span style="display: flex;">
-      <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>{{ lawyer.location }}
+      <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+      {{ profile_data?.offAddress }} {{ profile_data?.cityName }} {{ profile_data?.stateName }}
     </span>
   </ion-list>
 
-  <ion-list>
+  <ion-list *ngIf="profile_data?.adBio">
     <h3>About The Lawyer</h3>
-    <p>{{ lawyer.about }}</p>
+    <p>{{ profile_data?.adBio || 'N/A' }}</p>
   </ion-list>
 
   <ion-list>
     <h3>Awards & Achievement</h3>
     <ion-list>
-      <ion-chip *ngFor="let award of lawyer.awards">{{ award.name }}</ion-chip>
+      <ion-chip *ngFor="let award of awards">{{ award.name }}</ion-chip>
     </ion-list>
   </ion-list>
 
   <ion-list>
     <h3>Specialization</h3>
     <ion-list>
-      <ion-chip *ngFor="let spec of lawyer.specializations">{{ spec.name }}</ion-chip>
+      <ion-chip *ngFor="let spec of specializations">{{ spec.name }}</ion-chip>
     </ion-list>
   </ion-list>
 
-  <ion-list style="margin: 0;">
-    <h3 class="ion-padding">Gallery</h3>
+  <ion-list style="margin: 0;" *ngIf="image_banner?.length > 0">
+    <h3 class=" ion-padding">Gallery</h3>
     <div class="galleryList">
-      <div class="images" *ngFor="let image of lawyer.gallery">
-        <img [src]="image.src">
+      <div class="images" *ngFor="let image of image_banner">
+        <img alt="Lawyer Profile" [src]="image?.imageUrl ? img_url + image?.imageUrl : '' " />
       </div>
     </div>
   </ion-list>
@@ -86,7 +89,7 @@
   <ion-list style="margin: 0;">
     <h3 class="ion-padding">Legal Advice Videos</h3>
     <div class="videoList">
-      <div class="video" *ngFor="let video of lawyer.videos">
+      <div class="video" *ngFor="let video of videos">
         <img [src]="video.thumbnail">
       </div>
     </div>

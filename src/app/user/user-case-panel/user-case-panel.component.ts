@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { CrudService } from 'src/app/service/crud.service';
+import { SharedService } from 'src/app/service/shared.service';
+import { filter } from 'rxjs/operators';
 
 interface Case {
   title: string;
@@ -15,47 +18,67 @@ interface Case {
   styleUrls: ['./user-case-panel.component.scss'],
 })
 export class UserCasePanelComponent implements OnInit {
+  cases: any;
+  filter_data: any;
+  login_data: any;
+  login: any;
 
-
-  cases: Case[] = [];
-  filteredCases: Case[] = [];
   constructor(
-    private _router: Router
-  ) { }
+    private _router: Router,
+    private _shared: SharedService,
+    private _crud: CrudService
+  ) {
+    this.login = localStorage.getItem('userLoginData');
+    this.login_data = JSON.parse(this.login)
+  }
 
   ngOnInit() {
-    this.cases = [
-      { title: 'Property Dispute', lawyerName: 'John Doe', caseNumber: 'CN-PD1245', mobileNumber: '1234567890', nextDate: '12-Aug-2023 11:00AM' },
-      { title: 'Contract Violation', lawyerName: 'Jane Smith', caseNumber: 'CN-CV6789', mobileNumber: '2345678901', nextDate: '15-Sep-2023 09:30AM' },
-      { title: 'Employment Issue', lawyerName: 'Alice Johnson', caseNumber: 'CN-EI3421', mobileNumber: '3456789012', nextDate: '20-Jul-2023 10:00AM' },
-      { title: 'Personal Injury', lawyerName: 'Bob Brown', caseNumber: 'CN-PI0987', mobileNumber: '4567890123', nextDate: '25-Aug-2023 02:00PM' },
-      { title: 'Divorce Settlement', lawyerName: 'Carol White', caseNumber: 'CN-DS5678', mobileNumber: '5678901234', nextDate: '30-Jul-2023 03:00PM' },
-      { title: 'Property Transfer', lawyerName: 'David Green', caseNumber: 'CN-PT7890', mobileNumber: '6789012345', nextDate: '05-Aug-2023 12:00PM' },
-      { title: 'Debt Recovery', lawyerName: 'Eva Black', caseNumber: 'CN-DR2345', mobileNumber: '7890123456', nextDate: '10-Sep-2023 01:00PM' },
-      { title: 'Intellectual Property', lawyerName: 'Frank Blue', caseNumber: 'CN-IP9876', mobileNumber: '8901234567', nextDate: '15-Aug-2023 04:00PM' },
-      { title: 'Tenant Dispute', lawyerName: 'Grace Yellow', caseNumber: 'CN-TD4567', mobileNumber: '9012345678', nextDate: '20-Jul-2023 11:30AM' },
-      { title: 'Fraud Investigation', lawyerName: 'Harry Red', caseNumber: 'CN-FI1234', mobileNumber: '0123456789', nextDate: '25-Aug-2023 09:00AM' }
-    ];
-
-    this.filteredCases = this.cases;
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
   }
 
-
-
-  onSearchChange(event: any) {
-    const searchTerm = event.target.value.toLowerCase();
-    this.filteredCases = this.cases.filter(caseItem =>
-      Object.values(caseItem).some(value =>
-        value.toString().toLowerCase().includes(searchTerm)
+  loadData(): void {
+    this._crud.get_client_total_case(this.login_data.id).subscribe
+      ((res: any) => {
+        console.log(res, 'total case');
+        if (res.status === true) {
+          this.cases = res.data;
+          this.filter_data = res.data;
+        }
+      }
       )
-    );
   }
 
 
-
-  // for modal 
-  caseHearing() {
-    this._router.navigate(['/home/casehearing'])
+  addHearingDate(data: any) {
+    this._shared.sharedData.next(data)
+    // this._router.navigate(['/home/addhearingdate'])
   }
 
+  aboutCase(data: any) {
+    this._shared.sharedData.next(data);
+    // this._router.navigate(['/home/aboutcase'])
+  }
+
+  onSearch(event: any) {
+    const filter = event.target.value ? event.target.value.toLowerCase() : ''; // Handle empty input
+    if (!filter) {
+      this.cases = [...this.filter_data];
+      return;
+    }
+
+    this.cases = this.filter_data.filter((data: any) => {
+      return [
+        data?.caseTitle,
+        data?.vakilName,
+        data?.caseNo,
+        data?.contactNum,
+        data?.courtName,
+        data?.act
+      ].some(field =>
+        field?.toString().toLowerCase().includes(filter)
+      );
+    });
+  }
 }

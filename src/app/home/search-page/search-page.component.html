@@ -1,45 +1,40 @@
 <ion-searchbar #searchbar show-cancel-button="always" placeholder="Search" (ionInput)="onSearch($event)"
-  (ionCancel)="onCancel()">
-</ion-searchbar>
+  (ionCancel)="onCancel()"></ion-searchbar>
 
 <ion-content>
-
-  <ion-list *ngIf="recentSearches.length > 0">
-    <ion-item lines="full" *ngFor="let search of recentSearches" (click)="onRecentSearch(search)">
-      <ion-icon aria-hidden="true" name="search-outline" slot="start"></ion-icon>
-      <ion-label> {{ search }}</ion-label>
-      <ion-button slot="end" fill="clear">
-        <ion-icon slot="icon-only" name="arrow-forward-outline" style="rotate: -130deg;"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
-
-  <!-- search Lawyer Section -->
-  <ion-card *ngFor="let search of searchLawyers" (click)="advocateProfile()">
-    <ion-card-content class="profile-card">
-      <div class="profile-image">
-        <img [src]="search?.profilePath ? img_url+search?.profilePath :'../../../assets/icon/profile.png'"
-          alt="Profile Picture" />
-      </div>
-      <div class="profile-details">
-        <ion-card-title>{{search?.advocateName | titlecase}}</ion-card-title>
-        <ion-card-subtitle>{{search?.cityName}}, {{search?.stateName}}</ion-card-subtitle>
-        <div class="experience">
-          <strong>Experience:</strong> {{search?.experiance}} years
-        </div>
-        <div class="practice-area">
-          <strong>Skills:</strong> {{search?.advocateTypeName[0]}}
-        </div>
-        <div class="practice-area">
-          <strong>Court:</strong> {{search?.courtName[0]}}
-        </div>
-        <div class="ratings">
-          <ion-icon name="star" *ngFor="let star of [].constructor(5); let i = index"
-            [class.filled]="i < userRating"></ion-icon>
-          <span>{{ userRating }} | 200+ user ratings</span>
-        </div>
-      </div>
-    </ion-card-content>
-  </ion-card>
-  <p class="NoRecord" *ngIf="searchLawyers?.length === 0">No results found</p>
+  <div class="recent-header">
+    <h2>Recent Searches</h2>
+    <ion-button fill="clear" color="danger" (click)="clearRecentSearches()">Clear All</ion-button>
+  </div>
+  <div *ngIf="recentSearches.length > 0" class="recent-container">
+    <ion-list>
+      <ion-card *ngFor="let search of recentSearches" (click)="advocateProfile(search)">
+        <ion-card-content class="profile-card">
+          <div class="profile-image">
+            <img [src]="search?.profilePath ? img_url + search?.profilePath : '../../../assets/icon/profile.png'"
+              alt="Profile Picture" />
+          </div>
+          <div class="profile-details">
+            <ion-card-title>{{search?.advocateName | titlecase}}</ion-card-title>
+            <ion-card-subtitle>{{search?.cityName}}, {{search?.stateName}}</ion-card-subtitle>
+            <div class="experience">
+              <strong>Experience:</strong> {{search?.experience}} years
+            </div>
+            <div class="practice-area">
+              <strong>Skills:</strong> {{search?.advocateTypeName[0]}}
+            </div>
+            <div class="practice-area">
+              <strong>Court:</strong> {{search?.courtName[0]}}
+            </div>
+            <div class="ratings">
+              <ion-icon name="star" *ngFor="let star of [].constructor(5); let i = index"
+                [class.filled]="i < userRating"></ion-icon>
+              <span>{{ userRating }} | 200+ user ratings</span>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+  <p class="NoRecord" *ngIf="recentSearches?.length === 0">No results found</p>
 </ion-content>

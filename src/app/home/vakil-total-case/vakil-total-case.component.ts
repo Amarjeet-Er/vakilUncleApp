@@ -10,9 +10,6 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./vakil-total-case.component.scss'],
 })
 export class VakilTotalCaseComponent implements OnInit {
-addDocuments(_t21: any) {
-throw new Error('Method not implemented.');
-}
   cases: any;
   filter_data: any;
   login_data: any;
