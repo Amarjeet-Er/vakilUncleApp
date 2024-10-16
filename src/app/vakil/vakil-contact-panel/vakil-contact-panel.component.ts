@@ -45,8 +45,10 @@ export class VakilContactPanelComponent implements OnInit {
       }
     )
   }
-  chatRoute() {
-    this._router.navigate(['/home/chat'])
+  chatRoute(vakilChat: any) {
+    console.log(vakilChat);
+    localStorage.setItem('vakilChat', JSON.stringify(vakilChat))
+    this._router.navigate(['/home/chattingvakil'])
   }
 
   vakilProfile() {

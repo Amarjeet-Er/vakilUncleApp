@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SharedService } from './shared.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -226,5 +227,8 @@ export class CrudService {
 
   post_chatting_vakil_and_client(senderId: any, recieverId: any, sendby: any) {
     return this._http.get<any>(`${this.base_url}chat?senderId=${senderId}&recieverId=${recieverId}&sendby=${sendby}`);
+  }
+  getWebSocketUrl(): Observable<any> {
+    return this._http.get<any>('https://vakiluncle.in/api/chat?senderId=1&recieverId=1&sendby=Client');  // Replace with your actual API endpoint
   }
 }

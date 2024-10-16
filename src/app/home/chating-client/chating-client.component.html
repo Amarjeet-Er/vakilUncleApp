@@ -1,42 +1,31 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/user/home/contact"></ion-icon> <span>{{user_id?.name}}</span>
+    <ion-icon name="chevron-back" (click)="disconnect()"></ion-icon> <span>{{user_id?.name}}</span>
   </div>
-  <ion-thumbnail (click)="advocateProfile()">
-    <img [src]="user_id.profile? img_url+user_id.profile : '../../../assets/images/user.webp'" alt="User Avatar"
-      class="avatar">
+  <ion-thumbnail>
+    <img [src]="user_id?.profile ? img_url+user_id?.profile : '../../../assets/icon/profile.png'">
   </ion-thumbnail>
 </div>
 
 <ion-content>
-
-  <ion-list>
-    <ng-container *ngFor="let message of messages">
-      <ng-container *ngIf="message.date">
-        <p class="ion-text-center">{{ message.date }}</p>
-      </ng-container>
-      <ng-container *ngIf="!message.date">
-        <ion-item lines="none">
-          <ion-label [slot]="message.sender === 'me' ? 'end' : 'start'"
-            [class]="message.sender === 'me' ? 'meText' : 'otherText'">
-            <p>{{ message.text }}</p>
-            <span>{{ message.timestamp }}</span>
-          </ion-label>
-        </ion-item>
-      </ng-container>
+  <ion-list id="chatMessages">
+    <ng-container *ngFor="let message of chatMessages">
+      <ion-item lines="none">
+        <ion-label [slot]="message.sender === 'me' ? 'end' : 'start'"
+          [class]="message.sender === 'me' ? 'meText' : 'otherText'">
+          <p>{{ message.text }}</p>
+          <span>{{ message.timestamp | date:'shortTime' }}</span>
+        </ion-label>
+      </ion-item>
     </ng-container>
   </ion-list>
-
 </ion-content>
 
 <ion-footer>
   <ion-item lines="none">
-
-    <ion-input placeholder="Message"> </ion-input>
-
-    <ion-button shape="round">
+    <ion-input id="textInput" [(ngModel)]="messageContent" placeholder="Type your message"></ion-input>
+    <ion-button shape="round" (click)="sendMessage()">
       <ion-icon slot="icon-only" name="send"></ion-icon>
     </ion-button>
-
   </ion-item>
 </ion-footer>
