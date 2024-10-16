@@ -70,6 +70,8 @@ import { TotalClientComponent } from './home/total-client/total-client.component
 import { TodayHearingComponent } from './home/today-hearing/today-hearing.component';
 import { AddMembersComponent } from './home/add-members/add-members.component';
 import { UploadDocumentsComponent } from './home/upload-documents/upload-documents.component';
+import { ChatingClientComponent } from './home/chating-client/chating-client.component';
+import { ChatingVakilComponent } from './home/chating-vakil/chating-vakil.component';
 
 @NgModule({
   declarations: [
@@ -131,7 +133,9 @@ import { UploadDocumentsComponent } from './home/upload-documents/upload-documen
     TotalClientComponent,
     TodayHearingComponent,
     AddMembersComponent,
-    UploadDocumentsComponent
+    UploadDocumentsComponent,
+    ChatingClientComponent,
+    ChatingVakilComponent
   ],
   imports: [
     BrowserModule,

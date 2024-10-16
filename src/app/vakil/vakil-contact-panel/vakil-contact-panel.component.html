@@ -1,4 +1,4 @@
-<div class="header">
+<!-- <div class="header">
   <div class="navbar">
     <span class="ion-margin-start">Chat</span>
     <ion-thumbnail (click)="vakilProfile()">
@@ -59,6 +59,42 @@
       </div>
     </div>
 
+
+  </ion-list>
+
+</ion-content> -->
+
+
+
+
+<div class="header">
+  <div class="navbar">
+    <span class="ion-margin-start">Chat</span>
+    <ion-thumbnail (click)="vakilProfile()">
+      <img [src]="profile_data?.profilePath ? img_url+profile_data?.profilePath : '../../../assets/icon/profile.png'">
+    </ion-thumbnail>
+  </div>
+</div>
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+
+  <ion-list lines="none">
+
+    <div class="contactList" *ngFor="let chat of chat_list" (click)="chatRoute()">
+      <div class="userImg">
+        <img [src]="chat?.profile ? img_url+chat?.profile : '../../../assets/icon/profile.png'">
+      </div>
+      <div class="userInfo">
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>{{chat?.name}}</span>
+          <span>{{ chat?.MsgAt | date:'shortTime' }}</span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>{{chat?.sendBy}}</span>
+          <!-- <ion-icon name="checkmark-done"></ion-icon> -->
+        </ion-row>
+      </div>
+    </div>
 
   </ion-list>
 

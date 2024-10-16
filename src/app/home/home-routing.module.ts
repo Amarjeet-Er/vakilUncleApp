@@ -43,6 +43,8 @@ import { TotalClientComponent } from './total-client/total-client.component';
 import { TodayHearingComponent } from './today-hearing/today-hearing.component';
 import { AddMembersComponent } from './add-members/add-members.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
+import { ChatingClientComponent } from './chating-client/chating-client.component';
+import { ChatingVakilComponent } from './chating-vakil/chating-vakil.component';
 
 
 const routes: Routes = [
@@ -92,6 +94,8 @@ const routes: Routes = [
       { path: 'todayhearing', component: TodayHearingComponent },
       { path: 'addmembers', component: AddMembersComponent },
       { path: 'uploaddocuments', component: UploadDocumentsComponent },
+      { path: 'chatingclient', component: ChatingClientComponent },
+      { path: 'chattingvakil', component: ChatingVakilComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

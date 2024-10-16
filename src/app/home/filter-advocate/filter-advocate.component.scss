@@ -11,90 +11,65 @@
         display: flex;
         align-items: center;
         width: 100%;
-        position: relative;
-        
+        justify-content: space-between;
+
         ion-icon {
-            position: absolute;
             font-size: 24px;
-            left: 10px;
         }
-        
+
         span {
-            font-size: 20px;
-            margin: 0 auto;
+            font-size: 16px;
+        }
+
+        ion-button {
+            --background: var(--color-primary);
+            --box-shadow: none;
         }
     }
 }
 
 ion-content {
-    ion-list {
-        width: 100%;
-        display: grid;
-        padding: 10px;
-        grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-        gap: 10px;
+    .sidebar {
+        width: 35vw;
+        height: 100%;
+        float: left;
+        border-right: 2px solid var(--color-primary);
+        border-bottom: 2px solid var(--color-primary);
 
-        // for top advocate scss code here 
-        .lawyerCard {
-            height: auto;
-            border-radius: 7px;
-            background-color: var(--color-light);
-            overflow: hidden;
-            padding: 7px;
-            text-align: center;
-            flex: none;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-            scroll-snap-align: center;
+        ion-list {
+            padding: 0;
+            gap: 0;
+            display: block;
 
-
-            .cardImg {
-                width: 75px;
-                height: 75px;
-                border-radius: 50%;
-                overflow: hidden;
-                float: left;
-                background-color: lightblue;
-                margin: 0 0 10px;
-                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
+            .selected {
+                font-weight: 600;
+                color: var(--color-primary);
+                --background: var(--color-secondary);
             }
-
-            .cardInfo {
-                width: calc(100% - 110px);
-                height: 75px;
-                overflow: hidden;
-                margin: 0px 0px 0px 10px;
-                float: right;
-                text-align: left;
-
-                span {
-                    font-size: 16px;
-                    font-weight: 600;
-                    color: var(--color-primary);
-                }
-
-                p {
-                    font-size: 12px;
-                    margin: 4px 0;
-                    color: var(--color-dark);
-                }
-            }
-
-            ion-row {
-                clear: both;
-                margin: 10px 0 0;
-
-                span {
-                    font-size: 12px;
-                    font-weight: 600;
-                }
-            }
-
         }
     }
+
+    .main {
+        width: calc(100% - 35vw);
+        height: 100%;
+        float: right;
+        overflow: auto;
+        border-bottom: 2px solid var(--color-primary);
+
+
+        ion-list {
+            padding: 0;
+            gap: 0;
+            display: block;
+        }
+    }
+    ion-label{
+        font-size: 12px;
+    }
+}
+
+.applyBtn {
+    --background: var(--color-primary);
+    margin: 10px auto 20px;
+    width: calc(100% - 40px);
 }

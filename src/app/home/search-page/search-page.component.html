@@ -1,4 +1,4 @@
-<ion-searchbar #searchbar show-cancel-button="always" placeholder="Search" (ionInput)="onSearch($event)"
+<ion-searchbar #searchbar show-cancel-button="always" placeholder="Search" (keyup.enter)="onSearch($event)"
   (ionCancel)="onCancel()"></ion-searchbar>
 
 <ion-content>

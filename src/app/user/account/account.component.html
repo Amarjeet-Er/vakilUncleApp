@@ -8,19 +8,15 @@
 
   <div class="profile">
     <div class="profileImage">
-      <img src="../../../assets/icon/profile.jfif">
+      <img [src]="profile_data?.profile ? img_url + profile_data?.profile :   '../../../assets/icon/profile.png'">
     </div>
-    <ion-button shape="round" (click)="updatedProfile()">
-      <ion-icon slot="icon-only" name="pencil"></ion-icon>
-    </ion-button>
   </div>
 
 
   <div class="profileDetails">
 
     <div class="ion-text-center">
-      <h3>Abhishek Patel</h3>
-      <p>User-Id: VU-53278</p>
+      <h3>{{profile_data?.clientName}}</h3>
     </div>
 
     <!-- for law guides  -->

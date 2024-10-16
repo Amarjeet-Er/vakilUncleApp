@@ -1,33 +1,104 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon> <span>Advocates</span>
+    <ion-icon name="chevron-back" routerLink="/user/home/advocate"></ion-icon>
+    <span>Filter Advocate</span>
   </div>
 </div>
+
 <ion-content>
-  <ion-list>
-    <div class="lawyerCard" *ngFor="let lawyer of topLawyers" (click)="advocateProfile()">
-      <div class="cardImg">
-        <img [src]="lawyer.image">
-      </div>
-      <div class="cardInfo">
-        <span>{{ lawyer.name }}</span>
-        <p>{{ lawyer.description }}</p>
-      </div>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span style="display: flex;">
-          <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
-        </span>
-        <span style="display: flex;">
-          {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
-        </span>
-      </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Case<br>{{ lawyer.caseCount }}</span>
-        |
-        <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-        |
-        <span>Experience<br>{{ lawyer.experience }}yr.</span>
-      </ion-row>
-    </div>
-  </ion-list>
+  <div class="sidebar">
+    <ion-list lines="full">
+      <ion-item (click)="selectList('city')" [class.selected]="selectedList === 'city'">
+        <ion-label>City</ion-label>
+      </ion-item>
+      <ion-item (click)="selectList('advocate')" [class.selected]="selectedList === 'advocate'">
+        <ion-label>Advocate Type</ion-label>
+      </ion-item>
+      <ion-item (click)="selectList('courts')" [class.selected]="selectedList === 'courts'">
+        <ion-label>Courts</ion-label>
+      </ion-item>
+      <ion-item (click)="selectList('experience')" [class.selected]="selectedList === 'experience'">
+        <ion-label>Experience</ion-label>
+      </ion-item>
+      <ion-item (click)="selectList('gender')" [class.selected]="selectedList === 'gender'">
+        <ion-label>Gender</ion-label>
+      </ion-item>
+      <ion-item (click)="selectList('rating')" [class.selected]="selectedList === 'rating'">
+        <ion-label>Rating</ion-label>
+      </ion-item>
+      <ion-item (click)="selectList('activity')" [class.selected]="selectedList === 'activity'">
+        <ion-label>Activity</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="main">
+    <form [formGroup]="filter_form">
+      <ion-list lines="full" *ngIf="selectedList === 'city'">
+        <ion-radio-group formControlName="city">
+          <ion-item *ngFor="let city of city_list">
+            <ion-label>{{city?.name}}</ion-label>
+            <ion-radio slot="start" [value]="city?.Id"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-list lines="full" *ngIf="selectedList === 'advocate'">
+        <ion-radio-group formControlName="advType">
+          <ion-item *ngFor="let advocate of adv_list">
+            <ion-label>{{advocate?.name}}</ion-label>
+            <ion-radio slot="start" [value]="advocate?.Id"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-list lines="full" *ngIf="selectedList === 'courts'">
+        <ion-radio-group formControlName="court">
+          <ion-item *ngFor="let court of court_list">
+            <ion-label>{{court?.courtName}}</ion-label>
+            <ion-radio slot="start" [value]="court?.CourtId"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-list lines="full" *ngIf="selectedList === 'experience'">
+        <ion-radio-group formControlName="experience">
+          <ion-item *ngFor="let exp of experience_list">
+            <ion-label>{{exp?.experience}}</ion-label>
+            <ion-radio slot="start" [value]="exp?.experience"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-list lines="full" *ngIf="selectedList === 'gender'">
+        <ion-radio-group formControlName="gender">
+          <ion-item *ngFor="let gen of gender_list">
+            <ion-label>{{gen?.gender}}</ion-label>
+            <ion-radio slot="start" [value]="gen?.gender"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-list lines="full" *ngIf="selectedList === 'rating'">
+        <ion-radio-group formControlName="rating">
+          <ion-item *ngFor="let rating of rating_list">
+            <ion-label>{{rating?.rating}}</ion-label>
+            <ion-radio slot="start" [value]="rating?.rating"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-list lines="full" *ngIf="selectedList === 'activity'">
+        <ion-radio-group formControlName="activity">
+          <ion-item *ngFor="let act of activity_list">
+            <ion-label>{{act?.name}}</ion-label>
+            <ion-radio slot="start" [value]="act?.name"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </form>
+  </div>
+  
 </ion-content>
+
+<ion-button class="applyBtn" shape="round" (click)="onFilter()">Apply</ion-button>

@@ -10,6 +10,7 @@ ion-header {
 ion-content {
     --background: var(--color-primary);
 
+
     .profile {
         position: relative;
         z-index: 100;
@@ -24,7 +25,7 @@ ion-content {
             right: 50%;
             top: 5%;
             transform: translate(50%, 10%);
-            border: 5px solid var(--color-primary);
+            border: 3px solid var(--color-primary);
             overflow: hidden;
 
             img {
@@ -58,6 +59,17 @@ ion-content {
         padding-top: 70px;
         overflow: auto;
 
+        .ion-text-center{
+            h3{
+                margin: 3px;
+                font-size: 16px;
+            }
+            p{
+                margin: 3px;
+                font-size: 12px;
+            }
+        }
+
 
         ion-list {
 
@@ -68,15 +80,15 @@ ion-content {
 
             ion-item {
                 ion-icon:first-child {
-                    font-size: 30px;
+                    font-size: 24px;
                     margin: 0 10px 0 0;
                     color: var(--color-primary);
                 }
             }
+
         }
     }
 }
-
 
 ion-modal {
     .header {
@@ -87,21 +99,21 @@ ion-modal {
         padding: 10px;
         display: flex;
         align-items: center;
-    
+
         .navbar {
             display: flex;
             align-items: center;
             width: 100%;
             position: relative;
-            
+
             ion-icon {
                 position: absolute;
                 font-size: 24px;
                 left: 10px;
             }
-            
+
             span {
-                font-size: 20px;
+                font-size: 16px;
                 margin: 0 auto;
             }
         }
@@ -110,16 +122,17 @@ ion-modal {
     ion-content {
         --background: var(--color-light);
 
+
         ion-list {
 
             ion-title {
                 font-weight: 600;
-                font-size: 16px;
+                font-size: 12px;
             }
 
             ion-item {
                 ion-icon:first-child {
-                    font-size: 30px;
+                    font-size: 24px;
                     margin: 0 10px 0 0;
                     color: var(--color-primary);
                 }

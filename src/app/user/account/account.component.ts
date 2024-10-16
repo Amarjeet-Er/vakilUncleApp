@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
+import { CrudService } from 'src/app/service/crud.service';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-account',
@@ -11,11 +13,31 @@ export class AccountComponent implements OnInit {
   @ViewChild('law') law !: IonModal;
   @ViewChild('terms') terms !: IonModal;
   @ViewChild('contact') contact !: IonModal;
-
+  profile_data: any;
+  login: any;
+  login_data: any;
+  img_url: any;
 
   constructor(
-    private _router: Router
-  ) { }
+    private _router: Router,
+    private _crud: CrudService,
+    private _shared:SharedService
+  ) {
+    this.login = localStorage.getItem('userLoginData');
+    this.login_data = JSON.parse(this.login);
+    this._shared.img_url.subscribe(
+      (data) => {
+        this.img_url = data;
+      }
+    );
+    this._crud.get_client_profile(this.login_data.id).subscribe(
+      (res: any) => {
+        this.profile_data = res.data;
+        console.log(this.profile_data);
+        
+      }
+    );
+  }
 
   ngOnInit() { }
 

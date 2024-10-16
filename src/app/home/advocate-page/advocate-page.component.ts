@@ -31,9 +31,9 @@ export class AdvocatePageComponent  implements OnInit {
   advocateProfile() {
     this._router.navigate(['/home/advocateportfolio'])
   }
-
+  
   filterAdvocate(){
-    this.advocateFilter.present()
+    this._router.navigate(['/home/filteradvocate'])
   }
 
 

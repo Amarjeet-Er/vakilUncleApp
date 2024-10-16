@@ -1,31 +1,109 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CrudService } from 'src/app/service/crud.service';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-filter-advocate',
   templateUrl: './filter-advocate.component.html',
   styleUrls: ['./filter-advocate.component.scss'],
 })
-export class FilterAdvocateComponent   implements OnInit {
-  topLawyers = [
-    { name: 'Julia', description: `Family Lawyer ,Criminal Lawyer`, image: '../../../assets/Lawyers/lawyer_1.jpg', address: `Noida, Sector 64`, rating: 4.4, caseCount: 280, successRate: 80, experience: 6 },
-    { name: 'Fali Sam Nariman', description: `Media And Entertainment, Immigration Lawyer`, image: '../../../assets/Lawyers/lawyer_2.png', address: `Gurgaon, Sector 49`, rating: 4.0, caseCount: 590, successRate: 75, experience: 3 },
-    { name: 'Aditya', description: `Domestic Violence ,Corporate Lawyer`, image: '../../../assets/Lawyers/lawyer_3.jfif', address: `Hajipur, Patna, Bihar`, rating: 4.5, caseCount: 2964, successRate: 68, experience: 8 },
-    { name: 'Rohit', description: `Corporate Lawyer, Family Lawyer`, image: '../../../assets/Lawyers/lawyer_4.jfif', address: `GopalGunj, Sector 9`, rating: 4.0, caseCount: 300, successRate: 75, experience: 3 },
-    { name: 'Ricky Chopra', description: `Media And Entertainment ,Immigration Lawyer`, image: '../../../assets/Lawyers/lawyer_5.png', address: `Ashok Nagar, Sector 4`, rating: 4.0, caseCount: 285, successRate: 67, experience: 4 },
-    { name: 'Kavya Gandhi', description: `Corporate Lawyer, Immigration Lawyer`, image: '../../../assets/Lawyers/lawyer_6.jpg', address: `Sarita Vihar, Mumbai, Sector 11`, rating: 3.7, caseCount: 150, successRate: 59, experience: 4 },
-    { name: 'H Gouri Shankar', description: `Family Lawyer ,Criminal Lawyer`, image: '../../../assets/Lawyers/lawyer_7.jfif', address: `Gurgaon, Sector 49`, rating: 4.0, caseCount: 435, successRate: 75, experience: 6 },
-    { name: 'Madhuri Bakshi', description: `Cheque Bounce, Family Lawyer`, image: '../../../assets/Lawyers/lawyer_8.jpg', address: `Gopi Nagar, Pune`, rating: 3.5, caseCount: 257, successRate: 54, experience: 7 },
-    // Add more lawyer data as needed
+export class FilterAdvocateComponent implements OnInit {
+  selectedList: string = 'city';
+  city_list: any[] = [];
+  adv_list: any[] = [];
+  court_list: any[] = [];
+  filter_form!: FormGroup;
+
+  experience_list = [
+    { experience: 'Less than 5 Years' },
+    { experience: '5-10 Years' },
+    { experience: '10-15 Years' },
+    { experience: '15-20 Years' },
+    { experience: 'More Than 20 Years' },
+  ];
+
+  rating_list = [
+    { rating: '1-2' },
+    { rating: '2-3' },
+    { rating: '3-4' },
+    { rating: '4-5' },
+    { rating: '5' },
+  ];
+
+  gender_list = [
+    { gender: 'Male' },
+    { gender: 'Female' },
+    { gender: 'Other' },
+  ];
+
+  activity_list = [
+    { name: 'By Alphabetically' },
+    { name: 'By Experience' },
   ];
 
   constructor(
-    private _router:Router
-  ) { }
+    private _router: Router,
+    private _crud: CrudService,
+    private _shared: SharedService,
+    private _fb: FormBuilder
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.initializeForm();
+    this.fetchData();
+  }
 
-  advocateProfile() {
-    this._router.navigate(['/home/advocateportfolio'])
+  initializeForm() {
+    this.filter_form = this._fb.group({
+      city: [''],
+      advType: [''],
+      court: [''],
+      experience: [''],
+      gender: [''],
+      rating: [''],
+      activity: [''],
+    });
+  }
+
+  fetchData() {
+    this._crud.get_city_list().subscribe((res: any) => {
+      this.city_list = res.data;
+    });
+
+    this._crud.get_advocate_type().subscribe((res: any) => {
+      this.adv_list = res.data;
+    });
+
+    this._crud.get_court_list().subscribe((res: any) => {
+      this.court_list = res.data;
+    });
+  }
+
+  onFilter() {
+    const formData = new FormData();
+    formData.append('city', this.filter_form.get('city')?.value);    
+    formData.append('advType', this.filter_form.get('advType')?.value);    
+    formData.append('court', this.filter_form.get('court')?.value);
+    formData.append('experience', this.filter_form.get('experience')?.value);
+    formData.append('gender', this.filter_form.get('gender')?.value);
+    formData.append('rating', this.filter_form.get('rating')?.value);
+    formData.append('activity', this.filter_form.get('activity')?.value);
+
+    console.log(formData, 'form data');
+    
+    this._crud.post_filter_advocate(formData).subscribe(
+      (res: any) => {
+        console.log(res, 'filter result');
+      },
+      (error) => {
+        console.error('Error filtering data:', error);
+      }
+    );
+  }
+
+  selectList(list: string) {
+    this.selectedList = list;
   }
 }

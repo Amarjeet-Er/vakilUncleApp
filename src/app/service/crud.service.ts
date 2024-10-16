@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Geolocation } from '@capacitor/geolocation';
 import { SharedService } from './shared.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +18,8 @@ export class CrudService {
         this.base_url = res
       }
     )
-
   }
+
 
   //forgot password
   verify_email(email: string) {
@@ -32,7 +31,10 @@ export class CrudService {
 
   // for vakil 
   login(data: any) {
-    return this._http.post<any>(`${this.base_url}login`, data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this._http.post<any>(`${this.base_url}login`, data, { headers: headers });
   }
   otp_send(email: string) {
     return this._http.get<any>(`${this.base_url}SendOTP?email=${email}&name=ama`);
@@ -175,6 +177,9 @@ export class CrudService {
       }&memId=${memberId}&vakilId=${vakilId}&clientId=${clientId}`
     );
   }
+  get_vakil_chat_list(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}vakilChatList?vakilId=${vakilId}`);
+  }
 
 
 
@@ -196,19 +201,30 @@ export class CrudService {
   get_city_list() {
     return this._http.get<any>(`${this.base_url}allCityList`);
   }
-  post_ask_free_question(data:any) {
+  post_ask_free_question(data: any) {
     return this._http.post<any>(`${this.base_url}askFreeLegalQuestion`, data);
   }
-  get_client_profile(clientId:any) {
+  get_client_profile(clientId: any) {
     return this._http.get<any>(`${this.base_url}GetClientById?Id=${clientId}`);
   }
-  client_profile_update(data:any) {
+  client_profile_update(data: any) {
     return this._http.post<any>(`${this.base_url}updateClientProfile`, data);
   }
-  get_client_total_case(clientId:any) {
+  get_client_total_case(clientId: any) {
     return this._http.get<any>(`${this.base_url}getClientCase?clientId=${clientId}`);
   }
-  get_nearest_lawyer(clientId:any) {
+  get_nearest_lawyer(clientId: any) {
     return this._http.get<any>(`${this.base_url}nearestLawyer?clientId=${clientId}`);
+  }
+  get_client_chat_list(clientId: any) {
+    return this._http.get<any>(`${this.base_url}clientChatList?clientId=${clientId}`);
+  }
+  post_filter_advocate(data: any) {
+    console.log(data);
+    return this._http.post<any>(`${this.base_url}filterAdvocateData`, data);
+  }
+
+  post_chatting_vakil_and_client(senderId: any, recieverId: any, sendby: any) {
+    return this._http.get<any>(`${this.base_url}chat?senderId=${senderId}&recieverId=${recieverId}&sendby=${sendby}`);
   }
 }
