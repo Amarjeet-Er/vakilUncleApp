@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { SharedService } from 'src/app/service/shared.service';
 export class ChatingClientComponent implements OnDestroy, OnInit {
   private ws: WebSocket | null = null;
   connectionStatus: string = 'Disconnected';
-  chatMessages: Array<{ text: string; timestamp: string; sender: string }> = [];
+  chatMessages: Array<{ Message: string; MsgAt: string; sendBy: string }> = [];
   messageContent: string = '';
 
   senderId: any;
@@ -22,7 +23,8 @@ export class ChatingClientComponent implements OnDestroy, OnInit {
 
   constructor(
     private _router: Router,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _crud:CrudService
   ) {
     this.UserId = localStorage.getItem('clientChat');
     this.user_id = JSON.parse(this.UserId);
@@ -32,6 +34,12 @@ export class ChatingClientComponent implements OnDestroy, OnInit {
     this._shared.img_url.subscribe(
       (data) => {
         this.img_url = data;
+      }
+    )
+
+    this._crud.get_chating_data(this.senderId, this.receiverId).subscribe(
+      (res: any) => {
+        this.chatMessages = res.data;
       }
     )
   }
@@ -49,24 +57,14 @@ export class ChatingClientComponent implements OnDestroy, OnInit {
 
       this.ws.onmessage = (event) => {
         console.log(event);
-        
-        try {
-          const receivedData = event.data; 
-          console.log('Receive', receivedData); 
 
-          if (receivedData) {
-            this.chatMessages.push({
-              text: receivedData,
-              timestamp:  new Date().toISOString(), 
-              sender: 'other', 
-            });
-            this.autoScrollChat(); 
-          } else {
-            console.error('Received message format is incorrect:', receivedData);
-          }
-        } catch (error) {
-          console.error('Error parsing message:', error);
-        }
+        const receivedData = JSON.parse(event.data);
+        this.chatMessages.push({
+          Message: receivedData.Message,
+          MsgAt: receivedData.MsgAt,
+          sendBy: 'Reciver',
+        });
+        this.autoScrollChat();
       };
 
       this.ws.onerror = (event) => {
@@ -99,11 +97,11 @@ export class ChatingClientComponent implements OnDestroy, OnInit {
         try {
           this.ws.send(JSON.stringify(chatMessage));
           this.chatMessages.push({
-            text: trimmedMessage,
-            timestamp: chatMessage.MsgAt,
-            sender: 'me', // Indicating the sender of the message
+            Message: trimmedMessage,
+            MsgAt: chatMessage.MsgAt,
+            sendBy: 'Client',
           });
-          this.messageContent = ''; // Clear input after sending
+          this.messageContent = '';
           this.autoScrollChat();
         } catch (error) {
           console.error('Failed to send message:', error);
@@ -130,7 +128,7 @@ export class ChatingClientComponent implements OnDestroy, OnInit {
   autoScrollChat() {
     const chatContainer = document.getElementById('chatMessages');
     if (chatContainer) {
-      chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to the bottom
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     }
   }
 

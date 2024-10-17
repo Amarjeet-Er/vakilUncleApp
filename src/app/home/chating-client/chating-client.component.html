@@ -11,10 +11,10 @@
   <ion-list id="chatMessages">
     <ng-container *ngFor="let message of chatMessages">
       <ion-item lines="none">
-        <ion-label [slot]="message.sender === 'me' ? 'end' : 'start'"
-          [class]="message.sender === 'me' ? 'meText' : 'otherText'">
-          <p>{{ message.text }}</p>
-          <span>{{ message.timestamp | date:'shortTime' }}</span>
+        <ion-label [slot]="message.sendBy === 'Client' ? 'end' : 'start'"
+          [class]="message.sendBy === 'Client' ? 'meText' : 'otherText'">
+          <p>{{ message.Message }}</p>
+          <span>{{ message.MsgAt | date:'shortTime' }}</span>
         </ion-label>
       </ion-item>
     </ng-container>

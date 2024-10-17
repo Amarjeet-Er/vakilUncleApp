@@ -14,6 +14,7 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 export class DashboardComponent implements OnInit, OnDestroy {
   slider_data: any;
   top_Lawyers: any;
+  kanoon_list: any;
 
 
 
@@ -62,6 +63,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   login: any;
   login_data: any;
   nearest_Lawyers: any;
+  top_properity: any;
+  top_text: any;
+  top_criminal: any;
+  top_business_corporate: any;
+  top_civil: any;
+  top_family: any;
+  top_motor_accident: any;
+  top_divorce: any;
+  top_consumer_court: any;
+  top_cheque_bounce: any;
 
   constructor(
     private _router: Router,
@@ -77,6 +88,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     )
   }
+
 
   ngOnInit(): void {
     this.startPlaceholderRotation();
@@ -99,6 +111,106 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       }
     )
+    this._crud.top_properity_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_properity = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+    this._crud.top_text_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_text = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+    this._crud.top_criminal_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_criminal = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+    this._crud.top_business_corporate_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_business_corporate = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+    this._crud.top_civil_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_civil = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+    this._crud.top_family_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_family = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+    this._crud.top_motor_accident_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_motor_accident = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+    this._crud.top_divorce_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_divorce = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+    this._crud.top_consumer_court_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_consumer_court = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+    this._crud.top_cheque_bounce_lawyer().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.top_cheque_bounce = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
 
     this._crud.get_nearest_lawyer(this.login_data.id).subscribe(
       (response) => {
@@ -111,6 +223,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       }
     )
+
+    this._crud.get_kanoon_advocate().subscribe(
+      (response) => {
+        if (response.status === true) {
+          this.kanoon_list = response.data;
+        }
+        else {
+          this._shared.tostErrorTop('No Record Found')
+        }
+      }
+    )
+
 
     this._crud.get_advocate_type().subscribe(
       (response) => {

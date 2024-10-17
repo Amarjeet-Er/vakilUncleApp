@@ -46,9 +46,25 @@ ion-content {
                 flex-direction: column;
                 gap: 5px;
 
-                ion-row{
-                    ion-icon{
+                ion-row {
+                    ion-icon {
                         font-size: 20px;
+                    }
+
+                    .messagesDate {
+                        font-size: 12px;
+                        color: #667781;
+                    }
+
+                    .messages {
+                        display: block;
+                        width: 100%;
+                        text-wrap: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        text-align: start;
+                        font-size: 12px;
+                        color: #667781;
                     }
                 }
             }

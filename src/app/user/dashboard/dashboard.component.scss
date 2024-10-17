@@ -106,13 +106,17 @@ ion-list {
         scroll-behavior: smooth;
 
 
-        ion-chip {
+        .chipList {
             flex: none;
             scroll-snap-align: center;
-            --background: var(--color-primary);
-            color: var(--color-light);
-            font-size: 10px;
+
+            ion-chip {
+                font-size: 10px;
+                background: var(--color-primary);
+                color: var(--color-light);
+            }
         }
+
 
         // for menu scss code here 
         .menu {
@@ -220,8 +224,16 @@ ion-list {
                 span {
                     font-size: 12px;
                 }
-            }
 
+                .locations {
+                    display: block;
+                    width: 180px;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-align: start;
+                }
+            }
         }
 
         // for best advocate scss code here 

@@ -38,20 +38,21 @@ ion-content {
 
             .meText {
                 max-width: calc(100% - 65px);
-                margin: 10px 0px;
+                margin: 0px 0px;
                 padding: 5px 10px;
                 color: var(--color-light);
                 background-color: #264348;
                 border-radius: 15px 15px 0px 15px;
 
                 p {
-                    margin: 5px 0 10px;
-                    line-height: 24px;
+                    margin: 3px 0 6px;
+                    font-size: 12px;
+                    font-family: arial;
                     color: var(--color-light);
                 }
 
                 span {
-                    font-size: 12px;
+                    font-size: 7px;
                     display: block;
                     text-align: end;
                     color: var(--color-light);
@@ -60,7 +61,7 @@ ion-content {
 
             .otherText {
                 max-width: calc(100% - 65px);
-                margin: 10px 0px;
+                margin: 0px 0px;
                 padding: 5px 10px;
                 color: var(--color-light);
                 flex: none;
@@ -69,13 +70,14 @@ ion-content {
                 width: auto;
 
                 p {
-                    margin: 5px 0 10px;
-                    line-height: 24px;
+                    margin: 3px 0 6px;
+                    font-size: 12px;
+                    font-family: arial;
                     color: var(--color-light);
                 }
 
                 span {
-                    font-size: 12px;
+                    font-size: 7px;
                     display: block;
                     text-align: start;
                     color: var(--color-light);

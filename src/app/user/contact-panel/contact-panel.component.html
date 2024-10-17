@@ -18,15 +18,13 @@
       <div class="userInfo">
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>{{chat?.name}}</span>
-          <span>{{ chat?.MsgAt | date:'shortTime' }}</span>
+          <span class="messagesDate">{{ chat?.msgTime | date:'shortTime' }}</span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>{{chat?.sendBy}}</span>
-          <!-- <ion-icon name="checkmark-done"></ion-icon> -->
+          <span class="messages">{{chat?.Message}}</span>
         </ion-row>
       </div>
     </div>
-
   </ion-list>
 
 </ion-content>

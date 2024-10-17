@@ -181,6 +181,9 @@ export class CrudService {
   get_vakil_chat_list(vakilId: any) {
     return this._http.get<any>(`${this.base_url}vakilChatList?vakilId=${vakilId}`);
   }
+  get_chating_data(senderId: number, recieverId: number) {
+    return this._http.get<any>(`${this.base_url}getAlluserChat?senderId=${senderId}&recieverId=${recieverId}`);
+  }
 
 
 
@@ -222,13 +225,40 @@ export class CrudService {
   }
   post_filter_advocate(data: any) {
     console.log(data);
-    return this._http.post<any>(`${this.base_url}filterAdvocateData`, data);
+    return this._http.get<any>(`${this.base_url}filterAdvocateData`, data);
+  }
+  get_kanoon_advocate() {
+    return this._http.get<any>(`${this.base_url}bareActList`);
+  }
+  top_properity_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=21`);
+  }
+  top_text_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=5`);
+  }
+  top_criminal_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=6`);
+  }
+  top_business_corporate_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=3`);
+  }
+  top_civil_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=25`);
+  }
+  top_family_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=4`);
+  }
+  top_consumer_court_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=26`);
+  }
+  top_motor_accident_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=27`);
+  }
+  top_divorce_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=17`);
+  }
+  top_cheque_bounce_lawyer() {
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=14`);
   }
 
-  post_chatting_vakil_and_client(senderId: any, recieverId: any, sendby: any) {
-    return this._http.get<any>(`${this.base_url}chat?senderId=${senderId}&recieverId=${recieverId}&sendby=${sendby}`);
-  }
-  getWebSocketUrl(): Observable<any> {
-    return this._http.get<any>('https://vakiluncle.in/api/chat?senderId=1&recieverId=1&sendby=Client');  // Replace with your actual API endpoint
-  }
 }

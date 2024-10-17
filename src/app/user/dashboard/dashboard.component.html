@@ -64,16 +64,9 @@
       <ion-button size="small" fill="clear" shape="round" (click)="allKanoon()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <ion-chip>IPC Bare Act</ion-chip>
-      <ion-chip>Posh Bare Act</ion-chip>
-      <ion-chip>Income Tax Bare Act</ion-chip>
-      <ion-chip>Constitution of India Bare Act</ion-chip>
-      <ion-chip>CPC Bare Act</ion-chip>
-      <ion-chip>CrPC Bare Act</ion-chip>
-      <ion-chip>Domestic Violence Bare Act</ion-chip>
-      <ion-chip>HMA Bare Act</ion-chip>
-      <ion-chip>Juvenile Justice Bare Act</ion-chip>
-      <ion-chip>Transfer of Property Bare Act</ion-chip>
+      <div class="chipList" *ngFor="let kanoon of kanoon_list">
+        <ion-chip>{{kanoon?.bareType}}</ion-chip>
+      </div>
     </div>
   </ion-list>
 
@@ -117,28 +110,28 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of civilLawyer" (click)="advocateProfile()">
+      <div class="lawyerCard" *ngFor="let lawyer of top_properity" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
-          <img [src]="lawyer.image">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
         <div class="cardInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
         </div>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span style="display: flex;">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}}
+            {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Case<br>{{ lawyer.caseCount }}</span>
-          |
-          <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-          |
-          <span>Experience<br>{{ lawyer.experience }}yr.</span>
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
     </div>
@@ -152,32 +145,29 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-
-      <div class="advocateCard" *ngFor="let lawyer of nearest_Lawyers" (click)="advocateProfile()">
-        <div class="advocateImg">
+      <div class="lawyerCard" *ngFor="let lawyer of nearest_Lawyers" (click)="advocate_Profile(lawyer)">
+        <div class="cardImg">
           <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
-        <div class="advocateInfo">
+        <div class="cardInfo">
           <span>{{ lawyer?.advocateName }}</span>
           <p>{{ lawyer?.advocateTypeName }}</p>
-
-          <p style="display: flex;" class="highlight">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
-             {{lawyer?.cityName}}
-             {{lawyer?.stateName}}
-          </p>
-          <p style="display: flex;" class="highlight">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
-          </p>
-
-          <ion-row class="ion-justify-content-between ion-align-items-center">
-            <span>Case<br>{{ lawyer.caseCount }}</span>
-            |
-            <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-            |
-            <span>Experience<br>{{ lawyer?.experiance }}yr.</span>
-          </ion-row>
         </div>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span style="display: flex;">
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}}
+            {{lawyer?.stateName}}
+          </span>
+          <span style="display: flex;">
+            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+          </span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
+        </ion-row>
       </div>
     </div>
   </ion-list>
@@ -190,28 +180,27 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of topLawyers" (click)="advocateProfile()">
+      <div class="lawyerCard" *ngFor="let lawyer of top_text" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
-          <img [src]="lawyer.image">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
         <div class="cardInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
         </div>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span style="display: flex;">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+          <span class="locations">
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Case<br>{{ lawyer.caseCount }}</span>
-          |
-          <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-          |
-          <span>Experience<br>{{ lawyer.experience }}yr.</span>
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
     </div>
@@ -225,28 +214,27 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of civilLawyer" (click)="advocateProfile()">
+      <div class="lawyerCard" *ngFor="let lawyer of top_criminal" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
-          <img [src]="lawyer.image">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
         <div class="cardInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
         </div>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span style="display: flex;">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+          <span class="locations">
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Case<br>{{ lawyer.caseCount }}</span>
-          |
-          <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-          |
-          <span>Experience<br>{{ lawyer.experience }}yr.</span>
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
     </div>
@@ -260,33 +248,32 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-
-      <div class="advocateCard" *ngFor="let lawyer of topLawyers" (click)="advocateProfile()">
-        <div class="advocateImg">
-          <img [src]="lawyer.image">
+      <div class="lawyerCard" *ngFor="let lawyer of top_business_corporate" (click)="advocate_Profile(lawyer)">
+        <div class="cardImg">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
-        <div class="advocateInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
-
-          <p style="display: flex;" class="highlight">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
-          </p>
-          <p style="display: flex;" class="highlight">
+        <div class="cardInfo">
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
+        </div>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span class="locations">
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}} {{lawyer?.stateName}}
+          </span>
+          <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
-          </p>
-
-          <ion-row class="ion-justify-content-between ion-align-items-center">
-            <span>Case<br>{{ lawyer.caseCount }}</span>
-            |
-            <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-            |
-            <span>Experience<br>{{ lawyer.experience }}yr.</span>
-          </ion-row>
-        </div>
+          </span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
+        </ion-row>
       </div>
     </div>
   </ion-list>
+
 
 
   <!-- Top Consumer Court Lawyer Section -->
@@ -296,28 +283,27 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of properityLawyer" (click)="advocateProfile()">
+      <div class="lawyerCard" *ngFor="let lawyer of top_consumer_court" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
-          <img [src]="lawyer.image">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
         <div class="cardInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
         </div>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span style="display: flex;">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+          <span class="locations">
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Case<br>{{ lawyer.caseCount }}</span>
-          |
-          <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-          |
-          <span>Experience<br>{{ lawyer.experience }}yr.</span>
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
     </div>
@@ -331,28 +317,28 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of civilLawyer" (click)="advocateProfile()">
+      <div class="lawyerCard" *ngFor="let lawyer of top_divorce" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
-          <img [src]="lawyer.image">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
         <div class="cardInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
         </div>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span style="display: flex;">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}}
+            {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Case<br>{{ lawyer.caseCount }}</span>
-          |
-          <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-          |
-          <span>Experience<br>{{ lawyer.experience }}yr.</span>
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
     </div>
@@ -366,30 +352,29 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-
-      <div class="advocateCard" *ngFor="let lawyer of topLawyers" (click)="advocateProfile()">
-        <div class="advocateImg">
-          <img [src]="lawyer.image">
+      <div class="lawyerCard" *ngFor="let lawyer of top_civil" (click)="advocate_Profile(lawyer)">
+        <div class="cardImg">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
-        <div class="advocateInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
-
-          <p style="display: flex;" class="highlight">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
-          </p>
-          <p style="display: flex;" class="highlight">
+        <div class="cardInfo">
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
+        </div>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span style="display: flex;">
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}}
+            {{lawyer?.stateName}}
+          </span>
+          <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
-          </p>
-
-          <ion-row class="ion-justify-content-between ion-align-items-center">
-            <span>Case<br>{{ lawyer.caseCount }}</span>
-            |
-            <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-            |
-            <span>Experience<br>{{ lawyer.experience }}yr.</span>
-          </ion-row>
-        </div>
+          </span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
+        </ion-row>
       </div>
     </div>
   </ion-list>
@@ -403,28 +388,28 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of properityLawyer" (click)="advocateProfile()">
+      <div class="lawyerCard" *ngFor="let lawyer of top_family" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
-          <img [src]="lawyer.image">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
         <div class="cardInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
         </div>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span style="display: flex;">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}}
+            {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Case<br>{{ lawyer.caseCount }}</span>
-          |
-          <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-          |
-          <span>Experience<br>{{ lawyer.experience }}yr.</span>
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
     </div>
@@ -438,28 +423,28 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of civilLawyer" (click)="advocateProfile()">
+      <div class="lawyerCard" *ngFor="let lawyer of top_motor_accident" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
-          <img [src]="lawyer.image">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
         <div class="cardInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
         </div>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span style="display: flex;">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}}
+            {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Case<br>{{ lawyer.caseCount }}</span>
-          |
-          <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-          |
-          <span>Experience<br>{{ lawyer.experience }}yr.</span>
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
     </div>
@@ -473,30 +458,29 @@
       <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-
-      <div class="advocateCard" *ngFor="let lawyer of topLawyers" (click)="advocateProfile()">
-        <div class="advocateImg">
-          <img [src]="lawyer.image">
+      <div class="lawyerCard" *ngFor="let lawyer of top_cheque_bounce" (click)="advocate_Profile(lawyer)">
+        <div class="cardImg">
+          <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
-        <div class="advocateInfo">
-          <span>{{ lawyer.name }}</span>
-          <p>{{ lawyer.description }}</p>
-
-          <p style="display: flex;" class="highlight">
-            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer.address}}
-          </p>
-          <p style="display: flex;" class="highlight">
+        <div class="cardInfo">
+          <span>{{ lawyer?.advocateName }}</span>
+          <p>{{ lawyer?.advocateTypeName }}</p>
+        </div>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span style="display: flex;">
+            <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+            {{lawyer?.cityName}}
+            {{lawyer?.stateName}}
+          </span>
+          <span style="display: flex;">
             {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
-          </p>
-
-          <ion-row class="ion-justify-content-between ion-align-items-center">
-            <span>Case<br>{{ lawyer.caseCount }}</span>
-            |
-            <span>Success Rate<br>{{ lawyer.successRate }}%</span>
-            |
-            <span>Experience<br>{{ lawyer.experience }}yr.</span>
-          </ion-row>
-        </div>
+          </span>
+        </ion-row>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
+          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
+          <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
+        </ion-row>
       </div>
     </div>
   </ion-list>
