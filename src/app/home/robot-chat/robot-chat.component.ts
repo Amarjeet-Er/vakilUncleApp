@@ -43,6 +43,8 @@ export class RobotChatComponent implements OnInit {
   cities: any[] = [];
   selectedCityId: string = '';
   clientForm!: FormGroup;
+  cat_id: any;
+  sub_cat_id: any;
 
   constructor(
     private _crud: CrudService,
@@ -102,7 +104,7 @@ export class RobotChatComponent implements OnInit {
   // Handle selecting an area of law
   selectAreaOfLaw(issue: any) {
     console.log(issue);
-    
+    this.cat_id=issue?.catId
     this.addMessage(issue?.categoryName, 'me');
     this.showAreaOfLawList = false;
 
@@ -119,8 +121,11 @@ export class RobotChatComponent implements OnInit {
   }
 
   // Handle selecting a property issue
-  selectPropertyIssue(issue: string) {
-    this.addMessage(issue, 'me');
+  sub_cat_Issue(issue: any) {
+    console.log(issue);
+    
+    this.sub_cat_id=issue.id
+    this.addMessage(issue?.subcategoryName, 'me');
     this.showIssueList = false;
     setTimeout(() => {
       this.addMessage('I will send the details of right lawyers to you.', 'ai');
@@ -178,7 +183,10 @@ export class RobotChatComponent implements OnInit {
     }
   }
   onSubmit() {
-    console.log(this.clientForm.value.selectedCityId, 'sent message');
+    console.log(this.clientForm.value, 'sent message');
+    console.log(this.cat_id, 'cat id');
+    console.log(this.sub_cat_id, 'sub cat id');
+    console.log(this.selectedCityId, 'city id');
   }
 
   // Handle selecting a city

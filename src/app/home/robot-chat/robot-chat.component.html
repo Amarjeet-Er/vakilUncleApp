@@ -24,7 +24,7 @@
       [placeholder]="isAskingForPhoneNumber ? 'Enter your phone number' : emailId ? 'Enter email address' : 'Type your message'">
     </ion-input>
 
-    <ion-select label="City" fill="fill" label-placement="floating" interface="action-sheet" placeholder="Select City"
+    <ion-select label="Select city" fill="fill" label-placement="floating" interface="action-sheet" placeholder="Select City"
       *ngIf="showCityList" [(ngModel)]="selectedCityId" (ionChange)="selectCity()">
       <ion-select-option *ngFor="let city of cities" [value]="city.Id">
         {{city.name}}
@@ -45,7 +45,7 @@
 
   <!-- Property Issue List -->
   <ion-list lines="full" *ngIf="showIssueList" @footerListAnimation>
-    <ion-item *ngFor="let issue of propertyIssues" (click)="selectPropertyIssue(issue.subcategoryName)">
+    <ion-item *ngFor="let issue of propertyIssues" (click)="sub_cat_Issue(issue)">
       <ion-label>{{ issue?.subcategoryName }}</ion-label>
     </ion-item>
   </ion-list>
