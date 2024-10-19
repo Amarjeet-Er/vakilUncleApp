@@ -1,114 +1,22 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back"  (click)="backButton()"></ion-icon> <span>Kanoon</span>
+    <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>Constitution of India</span>
   </div>
 </div>
 
+<ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let article of articles; let i = index">
+      <ion-label>
+        <h2>{{ article.bareType }}</h2>
+        <!-- <p *ngIf="article.expanded">{{ article.bareType }}</p> -->
+      </ion-label>
+      <ion-button fill="clear" (click)="toggleExpand(article)">
+        <ion-icon [name]="article.expanded ? 'chevron-up' : 'chevron-down'"></ion-icon>
+      </ion-button>
+    </ion-item>
 
-    <div class="menubar">
-
-      <div class="menuBox" routerLink="/home/ipc">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/ipc.png">
-          <span>468</span>
-        </div>
-        <div class="menuInfo">
-          <span>IPC Bare Act</span>
-        </div>
-      </div>
-
-      <div class="menuBox">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/documents.png">
-          <span>48</span>
-        </div>
-        <div class="menuInfo">
-          <span>Constitution of India Bare Act</span>
-        </div>
-      </div>
-
-      <div class="menuBox">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/billing.png">
-          <span>5460</span>
-        </div>
-        <div class="menuInfo">
-          <span>CPC Bare Act</span>
-        </div>
-      </div>
-
-      <div class="menuBox">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/report.png">
-          <span>5460</span>
-        </div>
-        <div class="menuInfo">
-          <span>CrPC Bare Act</span>
-        </div>
-      </div>
-
-      <div class="menuBox">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/enquiry.png">
-          <span>5460</span>
-        </div>
-        <div class="menuInfo">
-          <span>Domestic Violence Bare Act</span>
-        </div>
-      </div>
-
-      <div class="menuBox">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/review.png">
-          <span>5460</span>
-        </div>
-        <div class="menuInfo">
-          <span>HMA Bare Act</span>
-        </div>
-      </div>
-
-      <div class="menuBox">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/review.png">
-          <span>5460</span>
-        </div>
-        <div class="menuInfo">
-          <span>Income Tax Bare Act</span>
-        </div>
-      </div>
-
-      <div class="menuBox">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/review.png">
-          <span>5460</span>
-        </div>
-        <div class="menuInfo">
-          <span>Juvenile Justice Bare Act</span>
-        </div>
-      </div>
-
-      <div class="menuBox">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/review.png">
-          <span>5460</span>
-        </div>
-        <div class="menuInfo">
-          <span>Posh Bare Act</span>
-        </div>
-      </div>
-
-      <div class="menuBox">
-        <div class="menuIcon">
-          <img src="../../../assets/menuIcon/review.png">
-          <span>5460</span>
-        </div>
-        <div class="menuInfo">
-          <span>Transfer of Property Bare Act</span>
-        </div>
-      </div>
-
-
-    </div>
+  </ion-list>
 </ion-content>

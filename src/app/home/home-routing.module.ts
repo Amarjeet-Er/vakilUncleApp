@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
-import { ChatPanelComponent } from './chat-panel/chat-panel.component';
 import { AboutCaseComponent } from './about-case/about-case.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AdvocatePageComponent } from './advocate-page/advocate-page.component';
 import { AdvocatePortfolioComponent } from './advocate-portfolio/advocate-portfolio.component';
-import { AdvocateCategoryComponent } from './advocate-category/advocate-category.component';
 import { FilterAdvocateComponent } from './filter-advocate/filter-advocate.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SearchPageComponent } from './search-page/search-page.component';
@@ -45,6 +43,7 @@ import { AddMembersComponent } from './add-members/add-members.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
 import { ChatingClientComponent } from './chating-client/chating-client.component';
 import { ChatingVakilComponent } from './chating-vakil/chating-vakil.component';
+import { ChangeLawyersListComponent } from './change-lawyers-list/change-lawyers-list.component';
 
 
 const routes: Routes = [
@@ -52,13 +51,10 @@ const routes: Routes = [
     path: '',
     component: HomePage,
     children: [
-      { path: '', component: ChatPanelComponent },
-      { path: 'chat', component: ChatPanelComponent },
       { path: 'aboutcase', component: AboutCaseComponent },
       { path: 'notification', component: NotificationComponent },
       { path: 'advocates', component: AdvocatePageComponent },
       { path: 'advocateportfolio', component: AdvocatePortfolioComponent },
-      { path: 'advocatecategory', component: AdvocateCategoryComponent },
       { path: 'filteradvocate', component: FilterAdvocateComponent },
       { path: 'userprofile', component: UserProfileComponent },
       { path: 'search', component: SearchPageComponent },
@@ -96,6 +92,7 @@ const routes: Routes = [
       { path: 'uploaddocuments', component: UploadDocumentsComponent },
       { path: 'chatingclient', component: ChatingClientComponent },
       { path: 'chattingvakil', component: ChatingVakilComponent },
+      { path: 'changelwayerslist', component: ChangeLawyersListComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

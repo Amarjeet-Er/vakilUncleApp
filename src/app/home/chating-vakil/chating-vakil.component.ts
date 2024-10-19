@@ -25,7 +25,7 @@ export class ChatingVakilComponent implements OnInit {
   constructor(
     private _router: Router,
     private _shared: SharedService,
-    private _crud:CrudService
+    private _crud: CrudService
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
@@ -42,7 +42,7 @@ export class ChatingVakilComponent implements OnInit {
     )
 
     this._crud.get_chating_data(this.senderId, this.receiverId).subscribe(
-      (res:any)=>{
+      (res: any) => {
         this.chatMessages = res.data;
       }
     )
@@ -64,11 +64,11 @@ export class ChatingVakilComponent implements OnInit {
       this.ws.onmessage = (event) => {
         console.log(event);
 
-        const receivedData = JSON.parse(event.data); 
+        const receivedData = JSON.parse(event.data);
         this.chatMessages.push({
           Message: receivedData.Message,
           MsgAt: receivedData.MsgAt,
-          sendBy: 'Reciver', 
+          sendBy: 'Reciver',
         });
         this.autoScrollChat();
       };
@@ -92,12 +92,15 @@ export class ChatingVakilComponent implements OnInit {
     if (this.ws && this.ws.readyState === WebSocket.OPEN) {
       const trimmedMessage = this.messageContent.trim();
       if (trimmedMessage) {
+        const now = new Date();
+        const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}.${now.getMilliseconds().toString().padStart(3, '0')}`;
+
         const chatMessage = {
           SenderUserId: this.senderId,
           ReceiverUserId: this.receiverId,
           Message: trimmedMessage,
           sendBy: 'Vakil',
-          MsgAt: new Date().toISOString(),
+          MsgAt: formattedDate,
         };
 
         try {
@@ -105,9 +108,11 @@ export class ChatingVakilComponent implements OnInit {
           this.chatMessages.push({
             Message: trimmedMessage,
             MsgAt: chatMessage.MsgAt,
-            sendBy: 'Vakil', // Indicating the sender of the message
+            sendBy: 'Vakil',
           });
-          this.messageContent = ''; // Clear input after sending
+          this.messageContent = '';
+          console.log(this.chatMessages, 'new mes');
+
           this.autoScrollChat();
         } catch (error) {
           console.error('Failed to send message:', error);

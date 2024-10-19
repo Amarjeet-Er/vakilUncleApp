@@ -89,9 +89,10 @@
   <ion-list style="margin: 0;">
     <h3 class="ion-padding">Legal Advice Videos</h3>
     <div class="videoList">
-      <div class="video" *ngFor="let video of videos">
-        <img [src]="video.thumbnail">
+      <div class="video" *ngFor="let video of video_data">
+        <iframe [src]="getSafeUrl(video?.videoUrl)" frameborder="0" allowfullscreen> </iframe>
       </div>
     </div>
   </ion-list>
+
 </ion-content>

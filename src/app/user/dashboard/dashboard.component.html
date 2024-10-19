@@ -1,7 +1,4 @@
 <div class="header">
-  <ion-buttons shape="round" routerLink="/user/case">
-    <ion-icon name="list"></ion-icon>
-  </ion-buttons>
   <ion-buttons shape="round" routerLink="/home/userprofile">
     <ion-icon name="person-circle"></ion-icon>
   </ion-buttons>
@@ -44,10 +41,9 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Type Of Lawyers</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="allCategory()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="menu" *ngFor="let lawyer of Lawyers_types" (click)="filterAdvocate()">
+      <div class="menu" *ngFor="let lawyer of Lawyers_types" (click)="filterAdvocate(lawyer.Id)">
         <div class="menuIcon">
           <img [src]="lawyer.icon">
         </div>
@@ -74,7 +70,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_Lawyers)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_Lawyers" (click)="advocate_Profile(lawyer)">
@@ -107,7 +103,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Properity Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_properity)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_properity" (click)="advocate_Profile(lawyer)">
@@ -137,12 +133,11 @@
     </div>
   </ion-list>
 
-
   <!-- nearest Lawyer Section -->
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Nearest Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(nearest_Lawyers)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of nearest_Lawyers" (click)="advocate_Profile(lawyer)">
@@ -177,7 +172,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Tax Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_text)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_text" (click)="advocate_Profile(lawyer)">
@@ -211,7 +206,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Criminal Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_criminal)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_criminal" (click)="advocate_Profile(lawyer)">
@@ -245,7 +240,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Business/Corporate Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_business_corporate)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_business_corporate" (click)="advocate_Profile(lawyer)">
@@ -280,7 +275,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Consumer Court Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_consumer_court)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_consumer_court" (click)="advocate_Profile(lawyer)">
@@ -314,7 +309,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Divorce Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_divorce)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_divorce" (click)="advocate_Profile(lawyer)">
@@ -349,7 +344,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Civil Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_civil)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_civil" (click)="advocate_Profile(lawyer)">
@@ -385,7 +380,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Family Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_family)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_family" (click)="advocate_Profile(lawyer)">
@@ -420,7 +415,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Motor Accident Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_motor_accident)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_motor_accident" (click)="advocate_Profile(lawyer)">
@@ -455,7 +450,7 @@
   <ion-list>
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Cheque Bounce Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="seeAll()">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_cheque_bounce)">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_cheque_bounce" (click)="advocate_Profile(lawyer)">

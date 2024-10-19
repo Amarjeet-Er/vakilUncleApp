@@ -91,7 +91,7 @@ export class FilterAdvocateComponent implements OnInit {
     formData.append('rating', this.filter_form.get('rating')?.value);
     formData.append('activity', this.filter_form.get('activity')?.value);
 
-    console.log(formData, 'form data');
+    console.log('city', this.filter_form.get('city')?.value);
     
     this._crud.post_filter_advocate(formData).subscribe(
       (res: any) => {

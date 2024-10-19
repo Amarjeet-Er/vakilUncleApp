@@ -1,8 +1,15 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home"></ion-icon>
+    <span>Live Chat</span>
+  </div>
+</div>
+
 <ion-content>
   <ion-list>
     <ion-item lines="none" *ngFor="let message of messages" @messageAnimation>
       <ion-label [slot]="message.sender === 'me' ? 'end' : 'start'"
-                 [class]="message.sender === 'me' ? 'meText' : 'aiText'">
+        [class]="message.sender === 'me' ? 'meText' : 'aiText'">
         <p>{{ message.text }}</p>
       </ion-label>
     </ion-item>
@@ -10,24 +17,36 @@
 </ion-content>
 
 <ion-footer>
-  <ion-item lines="none">
-    <ion-input [(ngModel)]="userInput" [disabled]="showAreaOfLawList || showIssueList"
-               [placeholder]="showAreaOfLawList || showIssueList ? 'Choose from the options given below' : 'Enter your name'">
+  <ion-item lines="none" *ngIf="finalSubmited">
+    <ion-input [(ngModel)]="userInput" *ngIf="!showCityList"
+      [disabled]="showAreaOfLawList || showIssueList || showCityList"
+      [type]="isAskingForPhoneNumber ? 'number' : 'text'"
+      [placeholder]="isAskingForPhoneNumber ? 'Enter your phone number' : emailId ? 'Enter email address' : 'Type your message'">
     </ion-input>
+
+    <ion-select label="City" fill="fill" label-placement="floating" interface="action-sheet" placeholder="Select City"
+      *ngIf="showCityList" [(ngModel)]="selectedCityId" (ionChange)="selectCity()">
+      <ion-select-option *ngFor="let city of cities" [value]="city.Id">
+        {{city.name}}
+      </ion-select-option>
+    </ion-select>
+
     <ion-button shape="round" (click)="sendMessage()" [disabled]="!userInput || showAreaOfLawList || showIssueList">
       <ion-icon slot="icon-only" name="send"></ion-icon>
     </ion-button>
   </ion-item>
 
-  <ion-list lines="full" *ngIf="showAreaOfLawList" @footerListAnimation id="areaOfLaw">
+  <!-- Area of Law List -->
+  <ion-list lines="full" *ngIf="showAreaOfLawList" @footerListAnimation>
     <ion-item *ngFor="let issue of areaOfLawIssues" (click)="selectAreaOfLaw(issue)">
-      <ion-label>{{ issue }}</ion-label>
+      <ion-label>{{ issue?.categoryName }}</ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-list lines="full" *ngIf="showIssueList" @footerListAnimation id="issue">
-    <ion-item *ngFor="let issue of propertyIssues" (click)="selectPropertyIssue(issue)">
-      <ion-label>{{ issue }}</ion-label>
+  <!-- Property Issue List -->
+  <ion-list lines="full" *ngIf="showIssueList" @footerListAnimation>
+    <ion-item *ngFor="let issue of propertyIssues" (click)="selectPropertyIssue(issue.subcategoryName)">
+      <ion-label>{{ issue?.subcategoryName }}</ion-label>
     </ion-item>
   </ion-list>
 </ion-footer>

@@ -13,13 +13,11 @@ import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { SwiperModule } from 'swiper/angular';
 import { UserCasePanelComponent } from './user/user-case-panel/user-case-panel.component';
 import { ContactPanelComponent } from './user/contact-panel/contact-panel.component';
-import { ChatPanelComponent } from './home/chat-panel/chat-panel.component';
 import { AccountComponent } from './user/account/account.component';
 import { AboutCaseComponent } from './home/about-case/about-case.component';
 import { NotificationComponent } from './home/notification/notification.component';
 import { AdvocatePageComponent } from './home/advocate-page/advocate-page.component';
 import { AdvocatePortfolioComponent } from './home/advocate-portfolio/advocate-portfolio.component';
-import { AdvocateCategoryComponent } from './home/advocate-category/advocate-category.component';
 import { FilterAdvocateComponent } from './home/filter-advocate/filter-advocate.component';
 import { UserProfileComponent } from './home/user-profile/user-profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -72,6 +70,7 @@ import { AddMembersComponent } from './home/add-members/add-members.component';
 import { UploadDocumentsComponent } from './home/upload-documents/upload-documents.component';
 import { ChatingClientComponent } from './home/chating-client/chating-client.component';
 import { ChatingVakilComponent } from './home/chating-vakil/chating-vakil.component';
+import { ChangeLawyersListComponent } from './home/change-lawyers-list/change-lawyers-list.component';
 
 @NgModule({
   declarations: [
@@ -81,13 +80,11 @@ import { ChatingVakilComponent } from './home/chating-vakil/chating-vakil.compon
     DashboardComponent,
     UserCasePanelComponent,
     ContactPanelComponent,
-    ChatPanelComponent,
     AccountComponent,
     AboutCaseComponent,
     NotificationComponent,
     AdvocatePageComponent,
     AdvocatePortfolioComponent,
-    AdvocateCategoryComponent,
     FilterAdvocateComponent,
     UserProfileComponent,
     ForgotPasswordComponent,
@@ -135,7 +132,8 @@ import { ChatingVakilComponent } from './home/chating-vakil/chating-vakil.compon
     AddMembersComponent,
     UploadDocumentsComponent,
     ChatingClientComponent,
-    ChatingVakilComponent
+    ChatingVakilComponent,
+    ChangeLawyersListComponent,
   ],
   imports: [
     BrowserModule,

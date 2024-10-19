@@ -223,8 +223,10 @@ export class CrudService {
   get_client_chat_list(clientId: any) {
     return this._http.get<any>(`${this.base_url}clientChatList?clientId=${clientId}`);
   }
+  get_total_advocate_list() {
+    return this._http.get<any>(`${this.base_url}filterAdvocateData`);
+  }
   post_filter_advocate(data: any) {
-    console.log(data);
     return this._http.get<any>(`${this.base_url}filterAdvocateData`, data);
   }
   get_kanoon_advocate() {
@@ -259,6 +261,12 @@ export class CrudService {
   }
   top_cheque_bounce_lawyer() {
     return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=14`);
+  }
+  get_robot_cat() {
+    return this._http.get<any>(`${this.base_url}issueCategory`);
+  }
+  get_robot_cat_id(catId:any) {
+    return this._http.get<any>(`${this.base_url}subCategory?catId=${catId}`);
   }
 
 }

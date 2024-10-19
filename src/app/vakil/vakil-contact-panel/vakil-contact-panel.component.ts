@@ -15,6 +15,7 @@ export class VakilContactPanelComponent implements OnInit {
   chat_list: any;
   img_url: any;
   profile_data: any;
+  filter_data: any;
 
   constructor(
     private _router: Router,
@@ -42,6 +43,7 @@ export class VakilContactPanelComponent implements OnInit {
       (response) => {
         console.log(response);
         this.chat_list = response?.data
+        this.filter_data = response?.data
       }
     )
   }
@@ -53,5 +55,17 @@ export class VakilContactPanelComponent implements OnInit {
 
   vakilProfile() {
     this._router.navigate(['/vakil/home/account'])
+  }
+
+
+  onSearch(event: any) {
+    const filter = event.target.value.toLowerCase();
+    this.chat_list = this.filter_data.filter((data: any) => {
+      if (data?.name.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        return true;
+      }
+      return false;
+    }
+    );
   }
 }

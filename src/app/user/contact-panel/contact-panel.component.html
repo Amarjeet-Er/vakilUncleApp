@@ -7,7 +7,7 @@
   </div>
 </div>
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
 
   <ion-list lines="none">
 
@@ -25,6 +25,9 @@
         </ion-row>
       </div>
     </div>
+
+    <p class="NoRecord" *ngIf="chat_list?.length === 0">No Record Found</p>
+
   </ion-list>
 
 </ion-content>

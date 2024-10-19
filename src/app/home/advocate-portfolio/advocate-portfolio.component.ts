@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
-import { forkJoin, Subscription } from 'rxjs';
+import { forkJoin } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-advocate-portfolio',
@@ -29,30 +29,19 @@ export class AdvocatePortfolioComponent implements OnInit {
     { name: 'Corporate Lawyer' }
   ]
 
-  videos = [
-    { thumbnail: '../../../assets/slider/slider_8.jpg' },
-    { thumbnail: '../../../assets/slider/slider_6.jfif' },
-    { thumbnail: '../../../assets/slider/slider_7.jfif' },
-    { thumbnail: '../../../assets/slider/slider_2.jpg' },
-    { thumbnail: '../../../assets/slider/slider_3.jpg' },
-    { thumbnail: '../../../assets/slider/slider_4.jfif' },
-    { thumbnail: '../../../assets/slider/slider_1.jpg' },
-    { thumbnail: '../../../assets/slider/slider_5.jfif' },
-    { thumbnail: '../../../assets/slider/slider_9.png' },
-    { thumbnail: '../../../assets/slider/slider_10.jfif' },
-  ]
-
   login: any;
   login_data: any;
   profile_data: any;
   img_url: any;
   image_banner: any;
   routerSubscription: any;
+  video_data: any;
 
   constructor(
     private _router: Router,
     private _crud: CrudService,
     private _shared: SharedService,
+    private sanitizer: DomSanitizer
   ) {
     this.login = localStorage.getItem('vakilProfile');
     this.login_data = JSON.parse(this.login);
@@ -74,9 +63,10 @@ export class AdvocatePortfolioComponent implements OnInit {
   loadData(): void {
     forkJoin({
       profile: this._crud.get_update_vakil_profile(this.login_data),
-      banner: this._crud.get_image_banner(this.login_data)
+      banner: this._crud.get_image_banner(this.login_data),
+      video: this._crud.get_video(this.login_data),
     }).subscribe(
-      ({ profile, banner }) => {
+      ({ profile, banner, video }) => {
         if (profile.status === true) {
           this.profile_data = profile.data;
           console.log(this.profile_data, 'profile');
@@ -85,12 +75,23 @@ export class AdvocatePortfolioComponent implements OnInit {
           this.image_banner = banner.data;
           console.log(this.image_banner, 'banner');
         }
+        if (video.status === true) {
+          this.video_data = video.data;
+          console.log(this.video_data, 'video data');
+        }
       },
       (error) => {
         console.error('Error fetching data:', error);
         this._shared.tostErrorTop('Error fetching data')
       }
     );
+  }
+
+
+  getSafeUrl(videoUrl: string): SafeResourceUrl {
+    const videoId = videoUrl.split('be/')[1] || videoUrl.split('v=')[1];
+    const url = `https://www.youtube.com/embed/${videoId.split('?')[0]}`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   ngOnDestroy() {
@@ -103,7 +104,7 @@ export class AdvocatePortfolioComponent implements OnInit {
     localStorage.removeItem('vakilProfile');
     this._router.navigate(['/user/home']);
   }
-  
+
   makeCall(phoneNumber: string) {
     const telLink = `tel:${phoneNumber}`;
     window.location.href = telLink;

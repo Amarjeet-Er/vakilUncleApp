@@ -1,15 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonModal } from '@ionic/angular';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
-  selector: 'app-advocate-page',
-  templateUrl: './advocate-page.component.html',
-  styleUrls: ['./advocate-page.component.scss'],
+  selector: 'app-change-lawyers-list',
+  templateUrl: './change-lawyers-list.component.html',
+  styleUrls: ['./change-lawyers-list.component.scss'],
 })
-export class AdvocatePageComponent implements OnInit {
+export class ChangeLawyersListComponent  implements OnInit {
   selectedList: string = 'city';
   advocated_list: any;
   img_url: any;
@@ -27,19 +26,22 @@ export class AdvocatePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._crud.get_total_advocate_list().subscribe(
+    this._shared.sharedData.subscribe(
       (response) => {
         console.log(response);
-        this.advocated_list = response.data
+        this.advocated_list = response
       }
     )
   }
 
-  advocateProfile() {
+  advocate_Profile(data: any) {
+    localStorage.setItem('vakilProfile', JSON.stringify(data.advId))
     this._router.navigate(['/home/advocateportfolio'])
   }
+
 
   filterAdvocate() {
     this._router.navigate(['/home/filteradvocate'])
   }
 }
+

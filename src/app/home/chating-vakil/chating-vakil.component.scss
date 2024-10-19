@@ -13,7 +13,8 @@
         align-items: center;
         gap: 20px;
         font-size: 24px;
-        span{
+
+        span {
             font-size: 16px;
         }
     }
@@ -38,49 +39,52 @@ ion-content {
 
             .meText {
                 max-width: calc(100% - 65px);
-                margin: 0px 0px;
-                padding: 5px 10px;
+                margin: 1px 0px;
+                padding: 3px 5px;
                 color: var(--color-light);
-                background-color: #264348;
-                border-radius: 15px 15px 0px 15px;
+                background-color: var(--color-primary);
+                border-radius: 10px 10px 0px 10px;
 
                 p {
-                    margin: 3px 0 6px;
+                    margin: -3px 0 -3px;
                     font-size: 12px;
+                    padding: 2px;
                     font-family: arial;
                     color: var(--color-light);
                 }
 
                 span {
-                    font-size: 7px;
+                    font-size: 10px;
                     display: block;
                     text-align: end;
-                    color: var(--color-light);
+                    margin: 0px 0px 0 12px;
+                    color: #b3b3b3;
                 }
             }
 
             .otherText {
                 max-width: calc(100% - 65px);
-                margin: 0px 0px;
-                padding: 5px 10px;
-                color: var(--color-light);
+                margin: 1px 0px;
+                padding: 3px 5px;
+                color: var(--color-dark);
                 flex: none;
-                background-color: var(--color-primary);
-                border-radius: 15px 15px 15px 0px;
+                background-color: var(--color-light);
+                border-radius: 10px 10px 10px 0px;
                 width: auto;
 
                 p {
-                    margin: 3px 0 6px;
+                    margin: -3px 0 -3px;
                     font-size: 12px;
+                    padding: 2px;
                     font-family: arial;
-                    color: var(--color-light);
+                    color: var(--color-dark);
                 }
 
                 span {
-                    font-size: 7px;
+                    font-size: 10px;
                     display: block;
                     text-align: start;
-                    color: var(--color-light);
+                    color: #667781;
                 }
             }
         }
