@@ -51,18 +51,18 @@ export class UserCasePanelComponent implements OnInit {
   }
 
 
-  addHearingDate(data: any) {
+  addHearing(data: any) {
     this._shared.sharedData.next(data)
-    // this._router.navigate(['/home/addhearingdate'])
+    this._router.navigate(['/home/clienthearinglist'])
   }
 
   aboutCase(data: any) {
     this._shared.sharedData.next(data);
-    // this._router.navigate(['/home/aboutcase'])
+    this._router.navigate(['/home/clientaboutcase'])
   }
 
   onSearch(event: any) {
-    const filter = event.target.value ? event.target.value.toLowerCase() : ''; // Handle empty input
+    const filter = event.target.value ? event.target.value.toLowerCase() : ''; 
     if (!filter) {
       this.cases = [...this.filter_data];
       return;

@@ -1,0 +1,42 @@
+
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home/picsection"></ion-icon> <span>IPC Section Details</span>
+  </div>
+</div>
+
+<ion-content>
+  <!-- Card for displaying act section and title -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ipc_details?.actSection }} - {{ ipc_details?.actTitle }}</ion-card-title>
+      <ion-card-subtitle>{{ ipc_details?.bareAct }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Act Type:</strong> {{ ipc_details?.actType }}</p>
+      <p><strong>Advocate Type:</strong> {{ ipc_details?.advType }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Punishments List -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Punishments</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p [innerHTML]="ipc_details?.punish"></p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Description -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Act Description</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p [innerHTML]=" ipc_details?.desc"></p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -70,6 +70,10 @@ ion-content {
 }
 
 ion-footer {
+    form {
+        display: contents;
+    }
+
     background: var(--color-secondary);
 
     ion-item {

@@ -1,0 +1,59 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/case"></ion-icon>
+    <span>High Court Hearing Details</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-card class="case-info-card" *ngFor="let caseData of hearing_list">
+    <!-- Client Information -->
+    <ion-card-header>
+      <ion-card-title>{{ caseData.clientName }}</ion-card-title>
+      <ion-card-subtitle>Case Title: {{ caseData.caseTitle }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <!-- Case Details -->
+        <ion-item>
+          <ion-label><strong>Case No:</strong> {{ caseData.caseNo }}</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><strong>Section (Act):</strong> {{ caseData.act }}</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><strong>Hearing Date:</strong> {{ caseData.hearingDate }}</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><strong>Court Name:</strong> {{ caseData.courtName || 'N/A' }}</ion-label>
+        </ion-item>
+
+        <!-- Additional Information -->
+        <ion-item>
+          <ion-label><strong>Extra Charges:</strong> ₹{{ caseData.extraCharge }}</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><strong>Charge Details:</strong> {{ caseData.chargeDetail }}</ion-label>
+        </ion-item>
+
+        <!-- Documents Section -->
+        <ion-item *ngIf="caseData.documentName">
+          <ion-icon name="document" slot="start"></ion-icon>
+          <ion-label>
+            Document Name: {{ caseData.documentName }}
+          </ion-label>
+        </ion-item>
+
+        <!-- Contact Number -->
+        <ion-item>
+          <ion-label><strong>Contact Number:</strong> {{ caseData.contactNum }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

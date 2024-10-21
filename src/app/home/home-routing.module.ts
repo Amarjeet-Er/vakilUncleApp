@@ -5,7 +5,6 @@ import { AboutCaseComponent } from './about-case/about-case.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AdvocatePageComponent } from './advocate-page/advocate-page.component';
 import { AdvocatePortfolioComponent } from './advocate-portfolio/advocate-portfolio.component';
-import { FilterAdvocateComponent } from './filter-advocate/filter-advocate.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { VakilProfileComponent } from './vakil-profile/vakil-profile.component';
@@ -44,6 +43,9 @@ import { UploadDocumentsComponent } from './upload-documents/upload-documents.co
 import { ChatingClientComponent } from './chating-client/chating-client.component';
 import { ChatingVakilComponent } from './chating-vakil/chating-vakil.component';
 import { ChangeLawyersListComponent } from './change-lawyers-list/change-lawyers-list.component';
+import { IpcDetailsComponent } from './ipc-details/ipc-details.component';
+import { ClientHearingListComponent } from './client-hearing-list/client-hearing-list.component';
+import { ClientCaseAboutComponent } from './client-case-about/client-case-about.component';
 
 
 const routes: Routes = [
@@ -55,7 +57,6 @@ const routes: Routes = [
       { path: 'notification', component: NotificationComponent },
       { path: 'advocates', component: AdvocatePageComponent },
       { path: 'advocateportfolio', component: AdvocatePortfolioComponent },
-      { path: 'filteradvocate', component: FilterAdvocateComponent },
       { path: 'userprofile', component: UserProfileComponent },
       { path: 'search', component: SearchPageComponent },
       { path: 'vakilprofile', component: VakilProfileComponent },
@@ -93,6 +94,9 @@ const routes: Routes = [
       { path: 'chatingclient', component: ChatingClientComponent },
       { path: 'chattingvakil', component: ChatingVakilComponent },
       { path: 'changelwayerslist', component: ChangeLawyersListComponent },
+      { path: 'ipcdetails', component: IpcDetailsComponent },
+      { path: 'clienthearinglist', component: ClientHearingListComponent },
+      { path: 'clientaboutcase', component: ClientCaseAboutComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

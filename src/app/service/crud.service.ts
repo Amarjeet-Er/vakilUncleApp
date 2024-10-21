@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SharedService } from './shared.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -223,12 +223,18 @@ export class CrudService {
   get_client_chat_list(clientId: any) {
     return this._http.get<any>(`${this.base_url}clientChatList?clientId=${clientId}`);
   }
-  get_total_advocate_list() {
-    return this._http.get<any>(`${this.base_url}filterAdvocateData`);
+
+
+  get_total_advocate_list(data: any) {
+    let params = new HttpParams();
+    for (const key in data) {
+      if (data[key]) {
+        params = params.append(key, data[key]);
+      }
+    }
+    return this._http.get<any>(`${this.base_url}filterAdvocateData`, { params });
   }
-  post_filter_advocate(data: any) {
-    return this._http.get<any>(`${this.base_url}filterAdvocateData`, data);
-  }
+
   get_kanoon_advocate() {
     return this._http.get<any>(`${this.base_url}bareActList`);
   }
@@ -265,8 +271,14 @@ export class CrudService {
   get_robot_cat() {
     return this._http.get<any>(`${this.base_url}issueCategory`);
   }
-  get_robot_cat_id(catId:any) {
+  get_robot_cat_id(catId: any) {
     return this._http.get<any>(`${this.base_url}subCategory?catId=${catId}`);
+  }
+  robot_find_lawyer(data: any) {
+    return this._http.post<any>(`${this.base_url}FindLawyer`, data);
+  }
+  get_ipc_section() {
+    return this._http.get<any>(`${this.base_url}bareActDetail?id=8`);
   }
 
 }

@@ -18,7 +18,6 @@ import { AboutCaseComponent } from './home/about-case/about-case.component';
 import { NotificationComponent } from './home/notification/notification.component';
 import { AdvocatePageComponent } from './home/advocate-page/advocate-page.component';
 import { AdvocatePortfolioComponent } from './home/advocate-portfolio/advocate-portfolio.component';
-import { FilterAdvocateComponent } from './home/filter-advocate/filter-advocate.component';
 import { UserProfileComponent } from './home/user-profile/user-profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
@@ -71,6 +70,9 @@ import { UploadDocumentsComponent } from './home/upload-documents/upload-documen
 import { ChatingClientComponent } from './home/chating-client/chating-client.component';
 import { ChatingVakilComponent } from './home/chating-vakil/chating-vakil.component';
 import { ChangeLawyersListComponent } from './home/change-lawyers-list/change-lawyers-list.component';
+import { IpcDetailsComponent } from './home/ipc-details/ipc-details.component';
+import { ClientHearingListComponent } from './home/client-hearing-list/client-hearing-list.component';
+import { ClientCaseAboutComponent } from './home/client-case-about/client-case-about.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,6 @@ import { ChangeLawyersListComponent } from './home/change-lawyers-list/change-la
     NotificationComponent,
     AdvocatePageComponent,
     AdvocatePortfolioComponent,
-    FilterAdvocateComponent,
     UserProfileComponent,
     ForgotPasswordComponent,
     ConfirmPasswordComponent,
@@ -134,6 +135,9 @@ import { ChangeLawyersListComponent } from './home/change-lawyers-list/change-la
     ChatingClientComponent,
     ChatingVakilComponent,
     ChangeLawyersListComponent,
+    IpcDetailsComponent,
+    ClientHearingListComponent,
+    ClientCaseAboutComponent
   ],
   imports: [
     BrowserModule,

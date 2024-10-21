@@ -1,107 +1,68 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon> 
+    <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon>
     <span>Talk To A Lawyer</span>
   </div>
 </div>
 <ion-content class="ion-padding">
-  <p>Just fill in your details to immediately get the best matched lawyers for legal issues. Every lawyer profile has
-    been verified, and you can contact them within minutes.</p>
-
+  <!-- <p>Just fill in your details to immediately get the best matched lawyers for legal issues. Every lawyer profile has
+    been verified, and you can contact them within minutes.</p> -->
   <ion-list>
-    <ion-input label="Your Name" label-placement="floating" fill="outline" placeholder="Enter your name"></ion-input>
+    <form [formGroup]="clientForm">
+      <ion-input label="Your Name" formControlName="clientName" label-placement="floating" fill="outline"
+        placeholder="Enter your name">
+      </ion-input>
 
-    <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
-      helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
-      placeholder="Enter mobile number" minlength="10" maxlength="10" pattern="\d{10}">
-    </ion-input>
+      <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
+        helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
+        placeholder="Enter mobile number" minlength="10" maxlength="10" pattern="\d{10}" formControlName="ContactNum">
+      </ion-input>
 
-    <ion-input type="email" label="Email Id" label-placement="floating" fill="outline" helperText="Enter a valid email"
-      placeholder="Enter your email" errorText="Invalid email" ngModel email></ion-input>
-
-
-    <ion-select label="Your City" label-placement="floating" fill="outline" interface="action-sheet"
-      placeholder="Select your city">
-      <ion-select-option value="Delhi">Delhi</ion-select-option>
-      <ion-select-option value="Bihar">Bihar</ion-select-option>
-      <ion-select-option value="Uttar Pardesh">Uttar Pardesh</ion-select-option>
-    </ion-select>
-
-    <ion-select label="Your issue" label-placement="floating" fill="outline" interface="action-sheet"
-      placeholder="Select your issue">
-      <ion-select-option value="Divorce/Matrimonial Issue">Divorce/Matrimonial Issue</ion-select-option>
-      <ion-select-option value="Property Issue">Property Issue</ion-select-option>
-      <ion-select-option value="Family & Inheritance Issue">Family & Inheritance Issue</ion-select-option>
-    </ion-select>
-
-    <ion-select label="Your issue facing" label-placement="floating" fill="outline" interface="action-sheet"
-      placeholder="Select your issue facing">
-      <ion-select-option value="Family Property Dispute">Family Property Dispute</ion-select-option>
-      <ion-select-option value="Transfer of Ancestral Property">Transfer of Ancestral Property</ion-select-option>
-      <ion-select-option value="Builder Delay / Fraud">Builder Delay / Fraud</ion-select-option>
-    </ion-select>
+      <ion-input type="email" label="Email Id" label-placement="floating" fill="outline"
+        helperText="Enter a valid email" placeholder="Enter your email" errorText="Invalid email" ngModel email
+        formControlName="email">
+      </ion-input>
 
 
-    <ion-textarea id="custom-input" label="Write Your Issue" label-placement="floating" fill="outline"
-      placeholder="Write your issue" [counter]="true" maxlength="500"
-      [counterFormatter]="customCounterFormatter"></ion-textarea>
+      <ion-select label="City" fill="outline" label-placement="floating" interface="action-sheet"
+        placeholder="Select City" formControlName="city">
+        <ion-select-option *ngFor="let city of city_list" [value]="city?.Id">
+          {{city?.name}}
+        </ion-select-option>
+      </ion-select>
+
+      <ion-select label="Category" fill="outline" label-placement="floating" interface="action-sheet"
+        placeholder="Select category" formControlName="catId" (ionChange)="sub_cat_Issue($event)">
+        <ion-select-option *ngFor="let cat of cat_list" [value]="cat?.catId">
+          {{cat?.categoryName}}
+        </ion-select-option>
+      </ion-select>
+
+      <ion-select label="Sub category" fill="outline" label-placement="floating" interface="action-sheet"
+        placeholder="Select sub category" formControlName="subCatId" (ionChange)="sub_cat_adv_type($event)">
+        <ion-select-option *ngFor="let cat of sub_cat_list" [value]="cat?.id">
+          {{cat?.subcategoryName}}
+        </ion-select-option>
+      </ion-select>
 
 
+      <ion-textarea id="custom-input" label="Write Your Issue" label-placement="floating" fill="outline"
+        placeholder="Write your issue" [counter]="true" maxlength="500" [counterFormatter]="customCounterFormatter"
+        formControlName="description">
+      </ion-textarea>
 
+      <!-- <ion-checkbox labelPlacement="end" [(ngModel)]="isChecked"><span
+        style="text-wrap: wrap;">I am interested in
+        talking to a lawyer for my legal issue</span>
+    </ion-checkbox> -->
 
-
-
-    <ion-checkbox [(ngModel)]="isChecked">I agree to the <a style="text-decoration: none;" href="#"
-        (click)="$event.stopPropagation()">terms and conditions</a></ion-checkbox>
-
-    <ion-button [disabled]="!isChecked" (click)="submit()">Find Lawyers</ion-button>
+      <ion-button [disabled]="isChecked" (click)="submit()">Find Lawyers</ion-button>
+    </form>
 
   </ion-list>
 
-  <h3>Get Legal Advice Over the Phone</h3>
 
-  <p>Going through a divorce? Launching a business? Hurt in a car accident? Writing a will? Facing a lawsuit? In any of
-    these situations, you may consider hiring a lawyer to advise you or represent your interests. While each state has
-    many lawyers to choose from, choosing the right lawyer can make the difference between a pleasant and a frustrating
-    experience. The phone advice received from legal experts can make one understand the intricacies involved in a
-    particular case and can help the party understand his or her legal journey.</p>
-
-  <p>It's important to understand that a good lawyer doesn't guarantee that you'll win your case. However, having a good
-    lawyer will give you the best chances for a favorable outcome and the comfort of knowing that you had the best legal
-    representation. The first step in hiring a lawyer is choosing one in the practice area that is related to your legal
-    matter because this will ensure that the lawyer is well versed in cases similar to yours.</p>
-
-  <p>lawrato.com makes it easier for you to get legal advice from Top Rated Lawyers across the country. Discuss your
-    legal
-    issue over phone, email, schedule an office meeting, or consult with any of the listed Lawyers at your home /
-    office.
-    We are ready to help you, as per your convenience.</p>
-
-
-
-  <h3>Frequently Asked Questions</h3>
-
-  <h5>What happens after I choose “Talk to a Lawyer"?</h5>
-  <p> A LawRato representative will get in touch with you, understand your need and will identify which lawyers in our
-    network can assist you.</p>
-
-  <h5>When I use “Talk to a Lawyer" service, is that information private?</h5>
-  <p>Yes. Your request is private. However, it is not a confidential communication between you and your lawyer, and
-    therefore is not covered by Attorney-Client privilege. This means you should not include any information in your
-    request that you would only feel comfortable sharing with the lawyer you end up working with. Confidentiality
-    matters,
-    so please err on the side of caution when you fill out the information to “Talk to a Lawyer”.</p>
-
-  <h5>How do I Search a lawyer?</h5>
-  <p>If you are looking for a lawyer, you can start by clicking on find a lawyer at the top of the page. This will take
-    you
-    to the Find a Lawyer page, where you can search based on expertise, location and a few other criteria like years of
-    experience, gender, languages spoken, etc. Expertise helps you find lawyers that are suitable for your requirement
-    and
-    location mentions where they practice.
-    75</p>
 </ion-content>
-
 
 
 
@@ -119,14 +80,20 @@
         <ion-card-header class="ion-text-center">
           <ion-title>Thank You!</ion-title>
         </ion-card-header>
-        <img alt="Silhouette of mountains" src="../../../assets/menuIcon/lawyer.png" />
+        <img alt="Silhouette of mountains"
+          [src]="find_lawyers?.profilePath ? img_url+find_lawyers?.profilePath : '../../../assets/menuIcon/lawyer.png'" />
         <ion-card-header>
-          <ion-card-title>Based on your legal issue,</ion-card-title>
-          <ion-card-subtitle>you may call Advocate Yuganshu Sharma at 9810801939.</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="find_lawyers?.advocateName">
+            You can contact <b>{{find_lawyers?.advocateName | titlecase}}</b> on <b>{{find_lawyers?.contactNum}}</b> for
+            your legal issue.
+          </ion-card-subtitle>
+          <ion-card-subtitle *ngIf="!find_lawyers?.advocateName">
+            Thank you for legal enquiry. our top advocate will contact you soon.
+          </ion-card-subtitle>
         </ion-card-header>
 
-        <ion-card-content>
-          Your legal query has been shared with the lawyers for further discussion.
+        <ion-card-content *ngIf="find_lawyers?.advocateName">
+          Lawyer details have been sent to your email id.
         </ion-card-content>
       </ion-card>
     </ion-content>

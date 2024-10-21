@@ -69,7 +69,12 @@ export class AdvocatePortfolioComponent implements OnInit {
       ({ profile, banner, video }) => {
         if (profile.status === true) {
           this.profile_data = profile.data;
-          console.log(this.profile_data, 'profile');
+          if (this.profile_data?.contactNum) {
+            const contactNumStr = String(this.profile_data?.contactNum); 
+            const firstPart = contactNumStr?.slice(0, 3);
+            const lastPart = contactNumStr?.slice(-2);
+            this.profile_data.maskedContactNum = `${firstPart}*****${lastPart}`;
+          }          
         }
         if (banner.status === true) {
           this.image_banner = banner.data;
@@ -86,7 +91,6 @@ export class AdvocatePortfolioComponent implements OnInit {
       }
     );
   }
-
 
   getSafeUrl(videoUrl: string): SafeResourceUrl {
     const videoId = videoUrl.split('be/')[1] || videoUrl.split('v=')[1];

@@ -34,7 +34,7 @@
 
     <div class="description">
       <h4>Summary</h4>
-      <p>{{case_hearing_details?.caseSummary || 'N/A'}}</p>
+      <p [innerHTML]="case_hearing_details?.caseSummary">/p>
     </div>
 
   </ion-list>

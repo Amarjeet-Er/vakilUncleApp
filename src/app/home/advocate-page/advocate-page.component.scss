@@ -21,7 +21,7 @@
             font-size: 16px;
         }
 
-        ion-button {
+        ion-button{
             --background: var(--color-primary);
             --box-shadow: none;
         }
@@ -75,7 +75,7 @@ ion-content {
                 text-align: left;
 
                 span {
-                    font-size: 16px;
+                    font-size: 15px;
                     font-weight: 600;
                     color: var(--color-primary);
                 }
@@ -100,3 +100,85 @@ ion-content {
         }
     }
 }
+
+
+ion-modal {
+    .header {
+        width: 100%;
+        height: 70px;
+        background: var(--color-primary);
+        color: var(--color-light);
+        padding: 10px;
+        display: flex;
+        align-items: center;
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+
+            ion-icon {
+                position: absolute;
+                font-size: 24px;
+                left: 10px;
+            }
+
+            span {
+                font-size: 16px;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    ion-content {
+        ion-label{
+            font-size: 13px;
+        }
+        .sidebar {
+            width: 35vw;
+            height: 100%;
+            float: left;
+            border-right: 2px solid var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
+
+            ion-list {
+                padding: 0;
+                gap: 0;
+                display: block;
+
+                .selected {
+                    font-weight: 600;
+                    color: var(--color-primary);
+                    --background: var(--color-secondary);
+                }
+            }
+        }
+
+        .main {
+            width: calc(100% - 35vw);
+            height: 100%;
+            float: right;
+            overflow: auto;
+            border-bottom: 2px solid var(--color-primary);
+
+
+            ion-list {
+                padding: 0;
+                gap: 0;
+                display: block;
+            }
+        }
+    }
+
+    .applyBtn {
+        --background: var(--color-primary);
+        margin: 10px auto 20px;
+        width: calc(100% - 40px);
+    }
+}
+
+.NoRecord {
+    padding: 20px;
+    margin: 0px;
+  }

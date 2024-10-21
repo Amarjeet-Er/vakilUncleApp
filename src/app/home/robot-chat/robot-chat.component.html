@@ -18,27 +18,45 @@
 
 <ion-footer>
   <ion-item lines="none" *ngIf="finalSubmited">
-    <ion-input [(ngModel)]="userInput" *ngIf="!showCityList"
-      [disabled]="showAreaOfLawList || showIssueList || showCityList"
-      [type]="isAskingForPhoneNumber ? 'number' : 'text'"
-      [placeholder]="isAskingForPhoneNumber ? 'Enter your phone number' : emailId ? 'Enter email address' : 'Type your message'">
-    </ion-input>
+    <form [formGroup]="clientForm">
+      <!-- Name input field -->
+      <ion-input formControlName="clientName" [(ngModel)]="userInput"
+        *ngIf="inputVisible && !isAskingForPhoneNumber && !emailId && !showCityList" type="text"
+        placeholder="Enter your name"></ion-input>
 
-    <ion-select label="Select city" fill="fill" label-placement="floating" interface="action-sheet" placeholder="Select City"
-      *ngIf="showCityList" [(ngModel)]="selectedCityId" (ionChange)="selectCity()">
-      <ion-select-option *ngFor="let city of cities" [value]="city.Id">
-        {{city.name}}
-      </ion-select-option>
-    </ion-select>
+      <!-- Phone number input field -->
+      <ion-input formControlName="ContactNum" [(ngModel)]="userInput"
+        *ngIf="isAskingForPhoneNumber && !emailId && !showCityList" type="number"
+        placeholder="Enter your phone number"></ion-input>
 
-    <ion-button shape="round" (click)="sendMessage()" [disabled]="!userInput || showAreaOfLawList || showIssueList">
-      <ion-icon slot="icon-only" name="send"></ion-icon>
-    </ion-button>
+      <!-- Email input field -->
+      <ion-input formControlName="email" [(ngModel)]="userInput" *ngIf="emailId && !showCityList" type="email"
+        placeholder="Enter your email address">
+      </ion-input>
+
+      <!-- City select field -->
+      <ion-select formControlName="city" label="Select city" fill="fill" label-placement="floating"
+        interface="action-sheet" placeholder="Select City" *ngIf="showCityList" [(ngModel)]="selectedCityId"
+        (ionChange)="selectCity()">
+        <ion-select-option *ngFor="let city of cities" [value]="city.Id">
+          {{city.name}}
+        </ion-select-option>
+      </ion-select>
+
+      <!-- description input field -->
+      <ion-input formControlName="description" [(ngModel)]="userInput" *ngIf="description && !showCityList" type="text"
+        placeholder="Enter your message">
+      </ion-input>
+
+      <ion-button shape="round" (click)="sendMessage()" [disabled]="!userInput">
+        <ion-icon slot="icon-only" name="send"></ion-icon>
+      </ion-button>
+    </form>
   </ion-item>
 
   <!-- Area of Law List -->
   <ion-list lines="full" *ngIf="showAreaOfLawList" @footerListAnimation>
-    <ion-item *ngFor="let issue of areaOfLawIssues" (click)="selectAreaOfLaw(issue)">
+    <ion-item *ngFor="let issue of areaOfLawIssues" (click)="category_select(issue)">
       <ion-label>{{ issue?.categoryName }}</ion-label>
     </ion-item>
   </ion-list>
