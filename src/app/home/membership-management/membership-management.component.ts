@@ -39,6 +39,20 @@ export class MembershipManagementComponent implements OnInit {
           if (response.status === true) {
             this.membershipDetail = response.data;
             console.log(this.membershipDetail, 'memeber');
+            this.membershipDetail.forEach((feature: any) => {
+              if (feature.featureName) {
+                feature.features_list = feature.featureName
+                  .split(',')
+                  .map((name: string, index: number) => ({
+                    id: index + 1,
+                    name: name.trim(),
+                  }));
+              } else {
+                feature.features_list = [];
+              }
+            });
+            console.log(this.membershipDetail, 'members');
+            
           } else {
             console.error('Failed to fetch membership details');
           }

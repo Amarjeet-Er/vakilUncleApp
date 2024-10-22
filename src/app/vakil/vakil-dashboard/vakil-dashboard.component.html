@@ -99,7 +99,7 @@
 
 
   <!-- upcoming court case  -->
-  <ion-list>
+  <ion-list *ngIf="upcoming_court?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Upcoming Court Date</span>
       <ion-button size="small" fill="clear" shape="round" routerLink="/home/upcomingcourtlist">See All</ion-button>
@@ -116,7 +116,7 @@
   </ion-list>
 
   <!-- recent client case  -->
-  <ion-list>
+  <ion-list *ngIf="recent_client?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Recent Client</span>
       <ion-button size="small" fill="clear" shape="round" routerLink="/home/recentclient">See All</ion-button>
@@ -135,7 +135,7 @@
 
 
   <!-- for features of memebership user  -->
-  <ion-list>
+  <ion-list *ngIf="memberships?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Features</span>
     </ion-row>
@@ -156,56 +156,8 @@
 
   </ion-list>
 
-  <!-- case overview  -->
-  <!-- <ion-list>
-    <ion-row class="ion-justify-content-between ion-align-items-center">
-      <span class="ion-margin-start">Case Overview</span>
-      <ion-button size="small" fill="clear" shape="round" routerLink="/home/vakiltotalcase">See All</ion-button>
-    </ion-row>
-
-    <div class="contentList">
-
-      <div class="caseCard" routerLink="/home/casehearing">
-        <h5>Walker vs. Young - Real Estate Dispute</h5>
-        <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Status</span>
-          <span>Pendding</span>
-        </ion-row>
-        <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Next Date</span>
-          <span>20-May-2023</span>
-        </ion-row>
-      </div>
-
-      <div class="caseCard" routerLink="/home/casehearing">
-        <h5>Walker vs. Young - Real Estate Dispute</h5>
-        <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Status</span>
-          <span>Pendding</span>
-        </ion-row>
-        <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Next Date</span>
-          <span>20-May-2023</span>
-        </ion-row>
-      </div>
-
-      <div class="caseCard" routerLink="/home/casehearing">
-        <h5>Walker vs. Young - Real Estate Dispute</h5>
-        <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Status</span>
-          <span>Pendding</span>
-        </ion-row>
-        <ion-row class="ion-justify-content-between ion-align-items-center">
-          <span>Next Date</span>
-          <span>20-May-2023</span>
-        </ion-row>
-      </div>
-
-    </div>
-  </ion-list> -->
-
   <!-- complete case deatils  -->
-  <ion-list>
+  <ion-list *ngIf="complete_case?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Complete Court Case</span>
       <ion-button size="small" fill="clear" shape="round" routerLink="/home/completecase">See All</ion-button>

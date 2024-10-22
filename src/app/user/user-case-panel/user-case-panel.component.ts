@@ -53,6 +53,8 @@ export class UserCasePanelComponent implements OnInit {
 
   addHearing(data: any) {
     this._shared.sharedData.next(data)
+    console.log(data);
+    
     this._router.navigate(['/home/clienthearinglist'])
   }
 

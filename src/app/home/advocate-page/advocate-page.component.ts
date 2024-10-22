@@ -152,4 +152,9 @@ export class AdvocatePageComponent implements OnInit {
       }
     );
   }
+
+  advocate_Profile(data: any) {
+    localStorage.setItem('vakilProfile', JSON.stringify(data.advId));
+    this._router.navigate(['/home/advocateportfolio']);
+  }
 }

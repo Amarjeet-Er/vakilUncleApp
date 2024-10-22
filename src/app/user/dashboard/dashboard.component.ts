@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
-
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
+import { filter } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
+
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 @Component({
@@ -15,15 +17,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   slider_data: any;
   top_Lawyers: any;
   kanoon_list: any;
-
-  placeholderTexts: string[] = ['"Top Lawyer"', '"Courts Name"', '"Lawyer Name"', '"City Name"'];
-  currentPlaceholder: string = this.placeholderTexts[0];
-  placeholderIndex: number = 0;
-  intervalId: any;
-  img_url: any;
   Lawyers_types: any;
-  login: any;
-  login_data: any;
   nearest_Lawyers: any;
   top_properity: any;
   top_text: any;
@@ -36,250 +30,167 @@ export class DashboardComponent implements OnInit, OnDestroy {
   top_consumer_court: any;
   top_cheque_bounce: any;
 
+  placeholderTexts: string[] = ['"Top Lawyer"', '"Courts Name"', '"Lawyer Name"', '"City Name"'];
+  currentPlaceholder: string = this.placeholderTexts[0];
+  placeholderIndex: number = 0;
+  intervalId: any;
+  img_url: any;
+  login_data: any;
+
   constructor(
     private _router: Router,
     private _shared: SharedService,
     private _crud: CrudService
   ) {
-    this.login = localStorage.getItem('userLoginData');
-    this.login_data = JSON.parse(this.login);
+    const login = localStorage.getItem('userLoginData');
+    this.login_data = login ? JSON.parse(login) : null;
 
-    this._shared.img_url.subscribe(
-      (res: any) => {
-        this.img_url = res
-      }
-    )
+    this._shared.img_url.subscribe((res: any) => {
+      this.img_url = res;
+    });
   }
-
 
   ngOnInit(): void {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
     this.startPlaceholderRotation();
-
-
-    this._crud.get_banner_slide().subscribe(
-      (response) => {
-        this.slider_data = response.data;
-      }
-    )
-    this._crud.get_top_advocated().subscribe(
-      (response) => {
-        if (response.status === true) {
-          console.log(response.data, 'top lawyers');
-
-          this.top_Lawyers = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_properity_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_properity = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_text_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_text = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_criminal_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_criminal = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_business_corporate_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_business_corporate = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_civil_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_civil = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_family_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_family = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_motor_accident_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_motor_accident = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_divorce_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_divorce = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_consumer_court_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_consumer_court = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-    this._crud.top_cheque_bounce_lawyer().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.top_cheque_bounce = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-
-    this._crud.get_nearest_lawyer(this.login_data.id).subscribe(
-      (response) => {
-        if (response.status === true) {
-          console.log(response.data, 'top nearest');
-          this.nearest_Lawyers = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-
-    this._crud.get_kanoon_advocate().subscribe(
-      (response) => {
-        if (response.status === true) {
-          this.kanoon_list = response.data;
-        }
-        else {
-          this._shared.tostErrorTop('No Record Found')
-        }
-      }
-    )
-
-
-    this._crud.get_advocate_type().subscribe(
-      (response) => {
-        if (response.status === true) {
-          console.log(response.data, 'types lawyers');
-          const LawyerTypes = [
-            { icon: '../../../assets/menuIcon/civil_lawyer.png' },
-            { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
-            { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
-            { icon: '../../../assets/menuIcon/property_lawyer.png' },
-            { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/tax_lawyer.png' },
-            { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
-            { icon: '../../../assets/menuIcon/civil_lawyer.png' },
-            { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
-            { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
-            { icon: '../../../assets/menuIcon/property_lawyer.png' },
-            { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/tax_lawyer.png' },
-            { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
-            { icon: '../../../assets/menuIcon/civil_lawyer.png' },
-            { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
-            { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
-            { icon: '../../../assets/menuIcon/property_lawyer.png' },
-            { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/tax_lawyer.png' },
-            { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
-            { icon: '../../../assets/menuIcon/civil_lawyer.png' },
-            { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
-            { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
-            { icon: '../../../assets/menuIcon/property_lawyer.png' },
-            { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/tax_lawyer.png' },
-            { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
-            { icon: '../../../assets/menuIcon/civil_lawyer.png' },
-            { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
-            { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
-            { icon: '../../../assets/menuIcon/property_lawyer.png' },
-            { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/tax_lawyer.png' },
-            { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
-            { icon: '../../../assets/menuIcon/civil_lawyer.png' },
-            { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
-            { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
-            { icon: '../../../assets/menuIcon/property_lawyer.png' },
-            { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/tax_lawyer.png' },
-            { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
-            { icon: '../../../assets/menuIcon/civil_lawyer.png' },
-            { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
-            { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
-            { icon: '../../../assets/menuIcon/property_lawyer.png' },
-            { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
-            { icon: '../../../assets/menuIcon/tax_lawyer.png' },
-            { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
-          ];
-          // Merging the icon paths with the response data
-          this.Lawyers_types = response.data.map((lawyer: any, index: any | number) => ({
-            ...lawyer,
-            icon: LawyerTypes[index]?.icon || ''  // Safeguard for missing icons
-          }));
-
-          console.log(this.Lawyers_types);
-        } else {
-          this._shared.tostErrorTop('No Record Found');
-        }
-      }
-    );
-
-
   }
 
-  ngOnDestroy() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+  loadData() {
+    const banner$ = this._crud.get_banner_slide();
+    const topLawyers$ = this._crud.get_top_advocated();
+    const nearestLawyers$ = this._crud.get_nearest_lawyer(this.login_data.id);
+    const kanoonList$ = this._crud.get_kanoon_advocate();
+    const lawyerTypes$ = this._crud.get_advocate_type();
+
+    const lawyerRequests = {
+      top_properity: this._crud.top_properity_lawyer(),
+      top_text: this._crud.top_text_lawyer(),
+      top_criminal: this._crud.top_criminal_lawyer(),
+      top_business_corporate: this._crud.top_business_corporate_lawyer(),
+      top_civil: this._crud.top_civil_lawyer(),
+      top_family: this._crud.top_family_lawyer(),
+      top_motor_accident: this._crud.top_motor_accident_lawyer(),
+      top_divorce: this._crud.top_divorce_lawyer(),
+      top_consumer_court: this._crud.top_consumer_court_lawyer(),
+      top_cheque_bounce: this._crud.top_cheque_bounce_lawyer(),
+    };
+
+    forkJoin({
+      banner: banner$,
+      topLawyers: topLawyers$,
+      nearestLawyers: nearestLawyers$,
+      kanoonList: kanoonList$,
+      lawyerTypes: lawyerTypes$,
+      ...lawyerRequests
+    }).subscribe(
+      (responses) => {
+        this.slider_data = responses.banner.data;
+        this.top_Lawyers = responses.topLawyers.status ? responses.topLawyers.data : this.showError('No Record Found for Top Lawyers');
+        this.nearest_Lawyers = responses.nearestLawyers.status ? responses.nearestLawyers.data : this.showError('No Record Found for Nearest Lawyers');
+        this.kanoon_list = responses.kanoonList.status ? responses.kanoonList.data : this.showError('No Record Found for Kanoon List');
+
+        const LawyerTypes = this.getLawyerIcons();
+        this.Lawyers_types = responses.lawyerTypes.status ?
+          responses.lawyerTypes.data.map((lawyer: any, index: any) => ({
+            ...lawyer,
+            icon: LawyerTypes[index]?.icon || ''
+          })) :
+          this.showError('No Record Found for Lawyer Types');
+
+        this.top_properity = responses.top_properity.status ? responses.top_properity.data : this.showError('No Record Found for Top Properity Lawyers');
+        this.top_text = responses.top_text.status ? responses.top_text.data : this.showError('No Record Found for Top Text Lawyers');
+        this.top_criminal = responses.top_criminal.status ? responses.top_criminal.data : this.showError('No Record Found for Top Criminal Lawyers');
+        this.top_business_corporate = responses.top_business_corporate.status ? responses.top_business_corporate.data : this.showError('No Record Found for Top Business Corporate Lawyers');
+        this.top_civil = responses.top_civil.status ? responses.top_civil.data : this.showError('No Record Found for Top Civil Lawyers');
+        this.top_family = responses.top_family.status ? responses.top_family.data : this.showError('No Record Found for Top Family Lawyers');
+        this.top_motor_accident = responses.top_motor_accident.status ? responses.top_motor_accident.data : this.showError('No Record Found for Top Motor Accident Lawyers');
+        this.top_divorce = responses.top_divorce.status ? responses.top_divorce.data : this.showError('No Record Found for Top Divorce Lawyers');
+        this.top_consumer_court = responses.top_consumer_court.status ? responses.top_consumer_court.data : this.showError('No Record Found for Top Consumer Court Lawyers');
+        this.top_cheque_bounce = responses.top_cheque_bounce.status ? responses.top_cheque_bounce.data : this.showError('No Record Found for Top Cheque Bounce Lawyers');
+      },
+      (error) => {
+        console.error('Error loading data', error);
+      }
+    );
+  }
+
+  showError(message: string) {
+    this._shared.tostErrorTop(message);
+    return [];
+  }
+
+  getLawyerIcons() {
+    return [
+      { icon: '../../../assets/menuIcon/civil_lawyer.png' },
+      { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
+      { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
+      { icon: '../../../assets/menuIcon/civil_lawyer.png' },
+      { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
+      { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
+      { icon: '../../../assets/menuIcon/property_lawyer.png' },
+      { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/tax_lawyer.png' },
+      { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
+      { icon: '../../../assets/menuIcon/civil_lawyer.png' },
+      { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
+      { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
+      { icon: '../../../assets/menuIcon/property_lawyer.png' },
+      { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/tax_lawyer.png' },
+      { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
+      { icon: '../../../assets/menuIcon/civil_lawyer.png' },
+      { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
+      { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
+      { icon: '../../../assets/menuIcon/property_lawyer.png' },
+      { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/tax_lawyer.png' },
+      { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
+      { icon: '../../../assets/menuIcon/civil_lawyer.png' },
+      { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
+      { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
+      { icon: '../../../assets/menuIcon/property_lawyer.png' },
+      { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/tax_lawyer.png' },
+      { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
+      { icon: '../../../assets/menuIcon/civil_lawyer.png' },
+      { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
+      { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
+      { icon: '../../../assets/menuIcon/property_lawyer.png' },
+      { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/tax_lawyer.png' },
+      { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
+      { icon: '../../../assets/menuIcon/civil_lawyer.png' },
+      { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
+      { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
+      { icon: '../../../assets/menuIcon/property_lawyer.png' },
+      { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/tax_lawyer.png' },
+      { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
+      { icon: '../../../assets/menuIcon/civil_lawyer.png' },
+      { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
+      { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
+      { icon: '../../../assets/menuIcon/property_lawyer.png' },
+      { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/tax_lawyer.png' },
+      { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
+      { icon: '../../../assets/menuIcon/civil_lawyer.png' },
+      { icon: '../../../assets/menuIcon/motor_accident_lawyer.png' },
+      { icon: '../../../assets/menuIcon/criminal_lawyer.png' },
+      { icon: '../../../assets/menuIcon/property_lawyer.png' },
+      { icon: '../../../assets/menuIcon/divorce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/cheque_bounce_lawyer.png' },
+      { icon: '../../../assets/menuIcon/tax_lawyer.png' },
+      { icon: '../../../assets/menuIcon/consumer_court_lawyer.png' },
+    ];
   }
 
   startPlaceholderRotation() {
@@ -289,42 +200,41 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }, 3000);
   }
 
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
   searchPage() {
-    this._router.navigate(['/home/search'])
+    this._router.navigate(['/home/search']);
   }
 
   allKanoon() {
-    this._router.navigate(['/home/kanoonlist'])
+    this._router.navigate(['/home/kanoonlist']);
+  }
+  kanoot_id(kanoon:any) {
+    console.log(kanoon);  
+    this._shared.sharedData.next(kanoon)  
+    this._router.navigate(['/home/ipc']);
   }
 
   see_All(data: any) {
-    this._shared.sharedData.next(data)
-    this._router.navigate(['/home/changelwayerslist'])
-  }
-  seeAll() {
-    this._router.navigate(['/home/advocates'])
+    this._shared.sharedData.next(data);
+    this._router.navigate(['/home/changelwayerslist']);
   }
 
   advocate_Profile(data: any) {
-    localStorage.setItem('vakilProfile', JSON.stringify(data.advId))
-    this._router.navigate(['/home/advocateportfolio'])
-  }
-
-  allCategory() {
-    this._router.navigate(['/home/advocatecategory'])
+    localStorage.setItem('vakilProfile', JSON.stringify(data.advId));
+    this._router.navigate(['/home/advocateportfolio']);
   }
 
   filterAdvocate(data: any) {
-    console.log(data);
-    this._shared.sharedData.next(data)
-    this._router.navigate(['/user/home/advocate'])
-  }
-
-  membership() {
-    this._router.navigate(['/home/membership'])
+    this._shared.sharedData.next(data);
+    this._router.navigate(['/user/home/advocate']);
   }
 
   robotChat() {
-    this._router.navigate(['/home/robotchat'])
+    this._router.navigate(['/home/robotchat']);
   }
 }

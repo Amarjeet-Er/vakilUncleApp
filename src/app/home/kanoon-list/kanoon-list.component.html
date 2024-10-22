@@ -8,15 +8,9 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let article of articles; let i = index">
-      <ion-label>
-        <h2>{{ article.bareType }}</h2>
-        <!-- <p *ngIf="article.expanded">{{ article.bareType }}</p> -->
-      </ion-label>
-      <ion-button fill="clear" (click)="toggleExpand(article)">
-        <ion-icon [name]="article.expanded ? 'chevron-up' : 'chevron-down'"></ion-icon>
-      </ion-button>
+    <ion-item *ngFor="let article of articles" (click)="kanoot_id(article)">
+      <ion-label>{{ article?.bareType }}</ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>
-
   </ion-list>
 </ion-content>

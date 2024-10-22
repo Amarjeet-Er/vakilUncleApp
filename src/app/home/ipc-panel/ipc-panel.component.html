@@ -1,15 +1,18 @@
 <div class="header">
   <div class="navbar">
-     <span>IPC Section</span>
+    <ion-icon name="chevron-back" routerLink="/user/home"></ion-icon> <span>{{section_id?.bareType || 'Top Lawyer'}}</span>
   </div>
 </div>
 
 <ion-content>
-  <ion-searchbar color="light" placeholder="Search"></ion-searchbar>
-  
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+
   <!-- Top Lawyer Section -->
   <ion-list>
-    
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Top Lawyer</span>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_Lawyers)">See All</ion-button>
+    </ion-row>
     <div class="menuList">
       <div class="lawyerCard" *ngFor="let lawyer of top_Lawyers" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
@@ -17,7 +20,7 @@
         </div>
         <div class="cardInfo">
           <span>{{ lawyer?.advocateName }}</span>
-          <p>{{ lawyer?.advocateType }}</p>
+          <p>{{ lawyer?.advocateType || lawyer?.advocateType}}</p>
         </div>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span style="display: flex;">
@@ -36,12 +39,12 @@
     </div>
   </ion-list>
 
-
   <ion-list>
-    <h3 class="ion-padding">IPC Section</h3>
+    <h5 class="ion-padding">{{section_id?.bareType}}</h5>
     <ion-item *ngFor="let section of ipc_list" (click)="onDetails(section)">
       <ion-label>{{ section?.actSection }}</ion-label>
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>
   </ion-list>
+  <p class="NoRecord" *ngIf="ipc_list?.length === 0">No Record Found</p>
 </ion-content>

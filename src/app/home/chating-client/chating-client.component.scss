@@ -47,7 +47,7 @@ ion-content {
 
                 p {
                     margin: -3px 0 -3px;
-                    font-size: 12px;
+                    font-size: 13px;
                     padding: 2px;
                     font-family: arial;
                     color: var(--color-light);
@@ -74,7 +74,7 @@ ion-content {
 
                 p {
                     margin: -3px 0 -3px;
-                    font-size: 12px;
+                    font-size: 13px;
                     padding: 2px;
                     font-family: arial;
                     color: var(--color-dark);
@@ -118,5 +118,19 @@ ion-footer {
             font-size: 16px;
             --background: #1D8348;
         }
+    }
+}
+
+.activedate {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    span {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 5px;
+        font-size: 14px;
+        border-radius: 5px;
+        background-color: #fff;
     }
 }

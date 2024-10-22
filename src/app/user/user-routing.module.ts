@@ -22,11 +22,10 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'contact', component: ContactPanelComponent },
       { path: 'account', component: AccountComponent },
-      { path: 'picsection', component: IpcPanelComponent },
-      { path: 'advocate', component: AdvocatePageComponent }
+      { path: 'advocate', component: AdvocatePageComponent },
+      { path: 'clientcase', component: UserCasePanelComponent },
     ]
   },
-  { path: 'case', component: UserCasePanelComponent },
 ];
 
 @NgModule({

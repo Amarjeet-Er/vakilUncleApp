@@ -1,3 +1,70 @@
-<p>
-  client-case-about works!
-</p>
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home/clientcase"></ion-icon> <span>About Case</span>
+  </div>
+</div>
+<ion-content>
+
+  <div class="caseInfo">
+    <h4 class="text_color" *ngIf="about_case?.caseTitle">{{about_case?.caseTitle || 'N/A' | titlecase}}</h4>
+    <ion-row class="ion-justify-content-between border" *ngIf="about_case?.caseNo">
+      <span class="highlight">Case Number</span>
+      <span class="highlight">{{about_case?.caseNo || 'N/A'}}</span>
+    </ion-row>
+  </div>
+
+  <div class="caseList">
+
+    <ion-list>
+      <ion-row *ngIf="about_case?.clientName">
+        <span class="highlight">Client Name</span>
+        <span class="highlight">{{about_case?.clientName || 'N/A'}}</span>
+      </ion-row>
+
+      <ion-row *ngIf="about_case?.email">
+        <span>Client Email</span>
+        <span>{{about_case?.email || 'N/A'}}</span>
+      </ion-row>
+
+      <ion-row *ngIf="about_case?.contactNum">
+        <span>Mobile Number</span>
+        <span>{{about_case?.contactNum || 'N/A'}}</span>
+      </ion-row>
+    </ion-list>
+
+    <ion-list *ngIf="about_case?.caseSummary">
+      <h4>Summary</h4>
+      <p [innerHTML]="about_case?.caseSummary"> </p>
+    </ion-list>
+
+    <ion-list *ngFor="let member of memberDetails let i = index">
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label>Members {{i + 1}}</ion-label>
+        </ion-item-divider>
+        <ion-row>
+          <span>Father Name</span>
+          <span>{{member?.fatherName || 'N/A'}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Member Name</span>
+          <span>{{member?.memberName || 'N/A'}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Member Contact No</span>
+          <span>{{member?.membercontactNum || 'N/A'}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Member Details</span>
+          <span>{{member?.memberDetails || 'N/A'}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Member Address</span>
+          <span>{{member?.memberaddress || 'N/A'}}</span>
+        </ion-row>
+
+        
+      </ion-item-group>
+    </ion-list>
+  </div>
+</ion-content>

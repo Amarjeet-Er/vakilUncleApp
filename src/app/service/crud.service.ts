@@ -38,7 +38,7 @@ export class CrudService {
     return this._http.post<any>(`${this.base_url}login`, data, { headers: headers });
   }
   otp_send(email: string) {
-    return this._http.get<any>(`${this.base_url}SendOTP?email=${email}&name=ama`);
+    return this._http.get<any>(`${this.base_url}SendOTP?email=${email}`);
   }
 
   get_state() {
@@ -142,10 +142,6 @@ export class CrudService {
 
   get_total_case_hearing_law_list(vakilId: any) {
     return this._http.get<any>(`${this.base_url}getCaseHearingDetailByAdvocate?vakilId=${vakilId}`);
-  }
-
-  get_case_hearing_law_list(vakilId: any, clientId: any) {
-    return this._http.get<any>(`${this.base_url}caseHearingDetail?vakilId=${vakilId}&clientId=${clientId}`);
   }
 
   post_hearing_date(data: any) {
@@ -277,8 +273,8 @@ export class CrudService {
   robot_find_lawyer(data: any) {
     return this._http.post<any>(`${this.base_url}FindLawyer`, data);
   }
-  get_ipc_section() {
-    return this._http.get<any>(`${this.base_url}bareActDetail?id=8`);
+  get_ipc_section(section_id: any) {
+    return this._http.get<any>(`${this.base_url}bareActDetail?id=${section_id}`);
   }
 
 }

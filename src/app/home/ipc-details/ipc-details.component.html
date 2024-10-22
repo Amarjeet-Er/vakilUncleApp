@@ -1,7 +1,7 @@
 
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/user/home/picsection"></ion-icon> <span>IPC Section Details</span>
+    <ion-icon name="chevron-back" routerLink="/home/ipc"></ion-icon> <span>{{ipc_details?.bareAct}}</span>
   </div>
 </div>
 
@@ -20,7 +20,7 @@
   </ion-card>
 
   <!-- Punishments List -->
-  <ion-card>
+  <ion-card *ngIf="ipc_details?.punish">
     <ion-card-header>
       <ion-card-title>Punishments</ion-card-title>
     </ion-card-header>

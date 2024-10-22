@@ -54,7 +54,7 @@ ion-content {
   }
 
   ion-card {
-    padding: 7px;
+    padding: 7px 7px 0px;
     margin-bottom: 10px;
     background-color: var(--color-light);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -105,9 +105,14 @@ ion-content {
     text-transform: capitalize;
     border-right: 1px solid gray;
     cursor: pointer;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
+    height: 24px;
+    /* line-height: 20px; */
+    /* text-align: center; */
+    display: flex;
+    background: gray;
+    margin: 1px 1px 0px;
+    align-items: center;
+    justify-content: center;
   }
 
   div:last-child {

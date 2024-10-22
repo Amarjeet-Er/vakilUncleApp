@@ -46,9 +46,13 @@
                 <p><strong>Discount: </strong> {{premium?.discount}}% (You save {{premium?.discountAmount |
                   currency:'INR'}})</p>
               </ion-item>
-              <ion-item>
-                <p><strong>Features:</strong> {{premium?.featureName}}</p>
-              </ion-item>
+
+              <div>
+                <h3>Features</h3>
+                <ion-item *ngFor="let featurs of premium?.features_list; let i=index">
+                  <p><b>{{i+1}} &nbsp; </b> {{featurs?.name}}</p>
+                </ion-item>
+              </div>
             </ion-list>
 
             <ion-button [ngClass]="(premium?.id % 2 === 0) ? 'btn-basic' : 'btn-premium'" expand="block"
@@ -62,44 +66,4 @@
     </ion-row>
   </ion-grid>
 
-  <div id="footer">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Instruction</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>
-          To ensure smooth transactions and a hassle-free experience, please complete your payment within the app.
-          Your cooperation is appreciated.
-        </p>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Have more queries?</ion-card-title>
-      </ion-card-header>
-    </ion-card>
-
-    <ion-card>
-      <ion-item button>
-        <ion-icon name="call" slot="start"></ion-icon>
-        <ion-label>Request a call back</ion-label>
-      </ion-item>
-    </ion-card>
-
-    <ion-card>
-      <ion-item href="mailto:{{'Email_Id'}}">
-        <ion-icon name="mail" slot="start"></ion-icon>
-        <ion-label>Email: {{'abc@gmail.com'}}</ion-label>
-      </ion-item>
-    </ion-card>
-
-    <ion-card>
-      <ion-item routerLink="#">
-        <ion-icon name="pricetags" slot="start"></ion-icon>
-        <ion-label>Privacy policy</ion-label>
-      </ion-item>
-    </ion-card>
-  </div>
 </ion-content>

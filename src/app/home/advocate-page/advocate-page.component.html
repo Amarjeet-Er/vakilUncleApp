@@ -10,7 +10,7 @@
 
 <ion-content>
   <ion-list>
-    <div class="lawyerCard" *ngFor="let lawyer of advocated_list">
+    <div class="lawyerCard" *ngFor="let lawyer of advocated_list" (click)="advocate_Profile(lawyer)">
       <div class="cardImg">
         <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
       </div>

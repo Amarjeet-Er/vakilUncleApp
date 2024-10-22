@@ -9,6 +9,9 @@
 
   <!-- Slider Section -->
   <div class="slider">
+    <span *ngIf="!slider_data?.length">
+      <img src="../../../assets/slider/slider_8.jpg" alt="" width="100%" height="215px">
+    </span>
     <swiper [spaceBetween]="10" [centeredSlides]="true" [autoplay]="{delay: 1000, disableOnInteraction: false}"
       [pagination]="{clickable: true, dynamicBullets: true}" [grabCursor]="true" [navigation]="true" class="sliderBox">
       <ng-template swiperSlide *ngFor="let slider of slider_data">
@@ -38,7 +41,7 @@
   </ion-list>
 
   <!-- Type Of Lawyers Section -->
-  <ion-list>
+  <ion-list *ngIf="Lawyers_types?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Type Of Lawyers</span>
     </ion-row>
@@ -54,20 +57,22 @@
     </div>
   </ion-list>
 
-  <ion-list>
+  <!-- Type Of kanoon Section -->
+
+  <ion-list *ngIf="kanoon_list?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Indian Kanoon</span>
       <ion-button size="small" fill="clear" shape="round" (click)="allKanoon()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="chipList" *ngFor="let kanoon of kanoon_list">
+      <div class="chipList" *ngFor="let kanoon of kanoon_list" (click)="kanoot_id(kanoon)">
         <ion-chip>{{kanoon?.bareType}}</ion-chip>
       </div>
     </div>
   </ion-list>
 
   <!-- Top Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_Lawyers?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_Lawyers)">See All</ion-button>
@@ -100,7 +105,7 @@
 
 
   <!-- Top Properity Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_properity?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Properity Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_properity)">See All</ion-button>
@@ -134,7 +139,7 @@
   </ion-list>
 
   <!-- nearest Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="nearest_Lawyers?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Nearest Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(nearest_Lawyers)">See All</ion-button>
@@ -169,7 +174,7 @@
 
 
   <!-- top tax Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_text?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Tax Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_text)">See All</ion-button>
@@ -203,7 +208,7 @@
 
 
   <!-- Top Criminal Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_criminal?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Criminal Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_criminal)">See All</ion-button>
@@ -237,7 +242,7 @@
 
 
   <!-- Top Business/Corporate Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_cheque_bounce?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Business/Corporate Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_business_corporate)">See All</ion-button>
@@ -272,7 +277,7 @@
 
 
   <!-- Top Consumer Court Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_consumer_court?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Consumer Court Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_consumer_court)">See All</ion-button>
@@ -306,7 +311,7 @@
 
 
   <!-- Top Divorce Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_divorce?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Divorce Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_divorce)">See All</ion-button>
@@ -341,7 +346,7 @@
 
 
   <!-- Top Civil Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_civil?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Civil Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_civil)">See All</ion-button>
@@ -377,7 +382,7 @@
 
 
   <!-- Top Family Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_family?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Family Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_family)">See All</ion-button>
@@ -412,7 +417,7 @@
 
 
   <!-- Top  Motor Accident  Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_motor_accident?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Motor Accident Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_motor_accident)">See All</ion-button>
@@ -447,7 +452,7 @@
 
 
   <!-- Top Cheque Bounce Lawyer Section -->
-  <ion-list>
+  <ion-list *ngIf="top_cheque_bounce?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Top Cheque Bounce Lawyer</span>
       <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_cheque_bounce)">See All</ion-button>

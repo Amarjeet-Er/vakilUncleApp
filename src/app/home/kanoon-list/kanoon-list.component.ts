@@ -31,9 +31,12 @@ export class KanoonListComponent implements OnInit {
     )
   }
 
-  toggleExpand(article: any) {
-    article.expanded = !article.expanded;
+  kanoot_id(kanoon: any) {
+    console.log(kanoon);
+    this._shared.sharedData.next(kanoon)
+    this._router.navigate(['/home/ipc']);
   }
+
   onSearch(event: any) {
     const filter = event.target.value.toLowerCase();
     this.articles = this.filter_data.filter((data: any) => {

@@ -1,7 +1,7 @@
 <ion-segment class="signUpInfo">
   <!-- User Segment -->
   <ion-segment-button class="active">
-    <ion-label>User Sign Up</ion-label>
+    <ion-label>Client Sign Up</ion-label>
   </ion-segment-button>
   <!-- Vakil Segment -->
   <ion-segment-button routerLink="/vakilregistration">
@@ -106,7 +106,8 @@
           formControlName="contactNum" minlength="10" maxlength="10" pattern="\d{10}" placeholder="Enter Mobile Number">
         </ion-input>
 
-        <ion-select label="Gender" label-placement="floating" placeholder="Select Gender" fill="outline" formControlName="gender">
+        <ion-select label="Gender" label-placement="floating" placeholder="Select Gender" fill="outline"
+          formControlName="gender">
           <ion-select-option value="Male"> Male </ion-select-option>
           <ion-select-option value="Female"> Female </ion-select-option>
           <ion-select-option value="Other"> Other </ion-select-option>

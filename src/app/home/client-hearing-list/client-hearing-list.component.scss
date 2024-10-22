@@ -26,34 +26,102 @@
     }
 }
 
+ion-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px;
 
-.case-info-card {
-    --ion-card-background: #ffffff;
-    --ion-card-border-radius: 12px;
-    --ion-card-box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    margin: 20px;
-  }
-  
-  .case-info-card ion-card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #1a73e8;
-  }
-  
-  .case-info-card ion-card-subtitle {
-    font-size: 1.2rem;
-    color: #555;
-  }
-  
-  .case-info-card ion-item {
-    --background: #f9f9f9;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .case-info-card ion-label {
-    font-size: 1rem;
-    color: #333;
-  }
-  
+    ion-button {
+        color: var(--color-light);
+        text-transform: capitalize;
+        --background: var(--color-primary);
+    }
+}
+
+ion-searchbar {
+    --border-radius: 50px !important;
+    --ion-color-base: var(--color-light) !important;
+}
+
+h3 {
+    color: var(--color-primary);
+    text-align: center;
+    margin: 7px 0 7px;
+    font-size: 15px;
+}
+.documentsclass{
+    padding: 2px;
+}
+
+ion-content {
+    --background: var(--color-light);
+    --padding-top: 10px;
+
+    ion-list {
+        ion-item {
+            margin: 10px 0;
+            --background: var(--color-secondary);
+            color: var(--color-primary);
+            font-weight: 500;
+            font-size: 12px;
+
+            ion-icon {
+                color: var(--color-primary);
+            }
+        }
+    }
+}
+
+
+ion-content {
+    --background: var(--color-light);
+
+    ion-row {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 7px;
+
+        ion-button {
+            color: var(--color-light);
+            text-transform: capitalize;
+            --background: var(--color-primary);
+        }
+    }
+
+    ion-list {
+        padding: 10px;
+        margin: 0px 10px 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+        ion-item {
+            --background: none;
+            margin: 0;
+            font-size: 12px;
+        }
+
+        ion-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin: 1px 0;
+            justify-content: space-between;
+            text-transform: capitalize;
+            font-size: 13px;
+        }
+
+        .description {
+            text-align: left;
+            padding-bottom: 7px;
+            text-transform: capitalize;
+            border-bottom: 2px dotted black;
+            font-size: 15px;
+
+            p {
+                font-size: 12px;
+                word-spacing: 2px;
+            }
+        }
+    }
+}

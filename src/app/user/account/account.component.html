@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <div class="profile">
+  <div class="profile" (click)="updatedProfile()">
     <div class="profileImage">
       <img [src]="profile_data?.profile ? img_url + profile_data?.profile :   '../../../assets/icon/profile.png'">
     </div>
@@ -21,26 +21,12 @@
 
     <!-- for law guides  -->
     <ion-list>
-      <ion-item (click)="openLaw()" lines="full">
-        <ion-icon name="newspaper-outline"></ion-icon>
-        <ion-label>Law Guides</ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-      <ion-item routerLink="/user/case" lines="full">
-        <ion-icon name="document-text-outline"></ion-icon>
-        <ion-label>Total Case</ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-
+      
       <ion-item lines="full">
         <ion-icon name="settings-outline"></ion-icon>
         <ion-label>Settings</ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
-
-
 
       <ion-item lines="full" (click)="openContact()">
         <ion-icon name="earth-outline"></ion-icon>
@@ -78,53 +64,6 @@
   </div>
 </ion-content>
 
-
-
-<!-- for term and policies desgin modal  -->
-
-<ion-modal #law>
-  <ng-template>
-
-    <div class="header">
-      <div class="navbar">
-        <ion-icon name="chevron-back" (click)="law.dismiss()"></ion-icon> <span>Law Guides</span>
-      </div>
-    </div>
-    <ion-content>
-      <ion-list>
-        <ion-item lines="full" (click)="lawRoute('/home/ipc')">
-          <ion-icon name="document-text-outline"></ion-icon>
-          <ion-label>IPC Section</ion-label>
-          <ion-icon name="chevron-forward"></ion-icon>
-        </ion-item>
-
-        <ion-item lines="full" (click)="lawRoute('/home/bns')">
-          <ion-icon name="earth"></ion-icon>
-          <ion-label>BNS Section</ion-label>
-          <ion-icon name="chevron-forward"></ion-icon>
-        </ion-item>
-
-        <ion-item lines="full" (click)="lawRoute('/home/incometax')">
-          <ion-icon name="cash-outline"></ion-icon>
-          <ion-label>Income Tax Act</ion-label>
-          <ion-icon name="chevron-forward"></ion-icon>
-        </ion-item>
-
-        <ion-item lines="full" (click)="lawRoute('/home/rti')">
-          <ion-icon name="information-circle-outline"></ion-icon>
-          <ion-label>RTI</ion-label>
-          <ion-icon name="chevron-forward"></ion-icon>
-        </ion-item>
-
-        <ion-item lines="full" (click)="lawRoute('/home/constitution')">
-          <ion-icon name="book-outline"></ion-icon>
-          <ion-label>Constitution</ion-label>
-          <ion-icon name="chevron-forward"></ion-icon>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ng-template>
-</ion-modal>
 
 
 <!-- for term and policies desgin modal  -->
