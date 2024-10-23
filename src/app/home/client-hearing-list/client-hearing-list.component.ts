@@ -43,10 +43,8 @@ export class ClientHearingListComponent implements OnInit {
         .subscribe(
           (res: any) => {
             if (res.status === true) {
-              this.case_hearing_details = res.data; // Expecting data to be an array
+              this.case_hearing_details = res.data; 
               this.filter_data = res.data; 
-
-              // Iterate over each case hearing detail and split document names
               this.case_hearing_details.forEach((hearing: any) => {
                 if (hearing.documentName) {
                   hearing.documents = hearing.documentName

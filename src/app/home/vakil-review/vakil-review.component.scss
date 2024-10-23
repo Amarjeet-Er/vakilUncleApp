@@ -12,13 +12,13 @@
         align-items: center;
         width: 100%;
         position: relative;
-        
+
         ion-icon {
             position: absolute;
             font-size: 24px;
             left: 10px;
         }
-        
+
         span {
             font-size: 20px;
             margin: 0 auto;
@@ -26,65 +26,39 @@
     }
 }
 
-ion-content{
-    .reviewCard{
+ion-content {
+  
+    .cardInfo {
         width: 100%;
-            height: auto;
-            border-radius: 7px;
-            background-color: var(--color-light);
-            overflow: hidden;
-            padding: 7px;
-            text-align: center;
-            margin: 0px 0px 20px;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        height: auto;
+        overflow: hidden;
+        float: right;
+        padding: 10px;
+        text-align: left;
+        text-overflow: ellipsis;
+        margin: 0 0 10px;
 
-        .cardImg {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            overflow: hidden;
-            float: left;
-            background-color: lightblue;
-            margin: 0 0 10px;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+        span {
+            font-size: 16px;
+            font-weight: 600;
+            text-wrap: nowrap;
+            color: var(--color-primary);
         }
 
-        .cardInfo {
-            width: calc(100% - 110px);
-            height: auto;
-            overflow: hidden;
-            margin: 0px 0px 0px 10px;
-            float: right;
-            text-align: left;
-            text-overflow: ellipsis;
-
-            span {
-                font-size: 16px;
-                font-weight: 600;
-                text-wrap: nowrap;
-                color: var(--color-primary);
-            }
-
-            p {
-                font-size: 12px;
-                margin: 3px 0;
-                color: var(--color-dark);
-            }
+        p {
+            font-size: 12px;
+            margin: 3px 0;
+            color: var(--color-dark);
         }
+    }
 
-        ion-row {
-            clear: both;
-            margin: 10px 0 0;
+    ion-row {
+        clear: both;
+        margin: 10px 0 0;
 
-            span {
-                font-size: 12px;
-            }
+        span {
+            font-size: 12px;
         }
     }
 }

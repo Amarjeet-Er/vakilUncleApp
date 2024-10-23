@@ -186,13 +186,13 @@ export class VakilDashboardComponent implements OnInit {
 
 	handleClick(member: any) {
 		switch (member?.servicePath) {
-			case '/vakil/addPublication':
+			case '/vakil/AddPublication':
 				this.addPublication();
 				break;
 			case '/vakil/AddImageBanner':
 				this.addImageBanner();
 				break;
-			case '/vakil/addVideo':
+			case '/vakil/AddVideo':
 				this.addVideo();
 				break;
 			case '/vakil/NewClientRegstration':

@@ -6,58 +6,12 @@
 
 <ion-content class="ion-padding">
   <ion-list>
-    
-    <div class="reviewCard">
-      <div class="cardImg">
-        <img src="../../../assets/Lawyers/lawyer_2.png">
-      </div>
-      <div class="cardInfo">
-        <span>Gautam Kapur</span>
-        <p>Thank you for delivering the document promptly. Your timely work is greatly appreciated.</p>
-        <ion-row>
-          4<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
-        </ion-row>
-      </div>
+    <div class="cardInfo" *ngFor="let review of review_list">
+      <span>{{review?.clientName}}</span>
+      <p>{{review?.review}}</p>
+      <ion-row>
+        {{review?.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+      </ion-row>
     </div>
-    
-    <div class="reviewCard">
-      <div class="cardImg">
-        <img src="../../../assets/Lawyers/lawyer_5.png">
-      </div>
-      <div class="cardInfo">
-        <span>Akshay Kumar</span>
-        <p>I appreciate your commercial awareness; the terms are both legally sound and commercially viable.</p>
-        <ion-row>
-          4<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
-        </ion-row>
-      </div>
-    </div>
-    
-    <div class="reviewCard">
-      <div class="cardImg">
-        <img src="../../../assets/Lawyers/lawyer_6.jpg">
-      </div>
-      <div class="cardInfo">
-        <span>Meera Khanna</span>
-        <p>Your meticulous attention to detail is impressive. The document is thorough and well-structured</p>
-        <ion-row>
-          4.5<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
-        </ion-row>
-      </div>
-    </div>
-    
-    <div class="reviewCard">
-      <div class="cardImg">
-        <img src="../../../assets/Lawyers/lawyer_1.jpg">
-      </div>
-      <div class="cardInfo">
-        <span>Nitu Bhatiya</span>
-        <p>The legal reasoning behind your clauses is solid and aligns well with current laws and regulations</p>
-        <ion-row>
-          3.5<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
-        </ion-row>
-      </div>
-    </div>
-
   </ion-list>
 </ion-content>

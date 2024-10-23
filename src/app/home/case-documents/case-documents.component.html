@@ -33,10 +33,9 @@
 
     <ion-content>
       <div class="docList">
-        <div class="docsBox" *ngFor="let doc of docs">
-          <img src="../../../assets/images/download.png" (click)="downloadDocument(img_url+docs)">
-          <p>Documents</p>
-          <span>{{ docs_content?.firdate | date: 'dd-MM-yyyy'}}</span>
+        <div class="docsBox" *ngFor="let doc of docs_content" (click)="downloadDocument(img_url+doc?.documentUrl)">
+          <img src="../../../assets/images/download.png">
+          <p>{{doc?.Document_Name}}</p>
         </div>
       </div>
     </ion-content>

@@ -144,10 +144,13 @@ ion-content {
                         color: var(--color-primary);
                         font-size: 15px;
                     }
-
+                    p{
+                        font-size: 12px;
+                        margin: 0px;
+                    }
                     span {
                         color: #27AE60;
-                        font-size: 12px;
+                        font-size: 11px;
                     }
                 }
             }

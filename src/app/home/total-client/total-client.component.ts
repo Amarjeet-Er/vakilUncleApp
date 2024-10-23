@@ -55,7 +55,11 @@ export class TotalClientComponent implements OnInit {
     )
   }
 
-
+  totalcase(clientId: any) {
+    console.log(clientId);
+    this._shared.sharedData.next(clientId)
+    this._router.navigate(['/home/vakilbyclienttotalcase'])
+  }
   onSearch(event: any) {
     const filter = event.target.value.toLowerCase();
     this.clients = this.filterData.filter((data: any) => {

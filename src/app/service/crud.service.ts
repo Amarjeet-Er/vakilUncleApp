@@ -177,6 +177,9 @@ export class CrudService {
   get_vakil_chat_list(vakilId: any) {
     return this._http.get<any>(`${this.base_url}vakilChatList?vakilId=${vakilId}`);
   }
+  get_review_list(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}topfourreviewList?vakilId=${vakilId}`);
+  }
   get_chating_data(senderId: number, recieverId: number) {
     return this._http.get<any>(`${this.base_url}getAlluserChat?senderId=${senderId}&recieverId=${recieverId}`);
   }

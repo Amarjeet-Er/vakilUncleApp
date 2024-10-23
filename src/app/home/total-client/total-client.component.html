@@ -8,7 +8,7 @@
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
 
   <ion-list id="client-list">
-    <ion-card *ngFor="let client of clients">
+    <ion-card *ngFor="let client of clients" (click)="totalcase(client?.id)">
       <div class="client-text">
         <ion-row>
           <span class="highlight">Name </span>

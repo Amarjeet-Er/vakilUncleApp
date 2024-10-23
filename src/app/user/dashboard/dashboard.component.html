@@ -46,13 +46,8 @@
       <span class="ion-margin-start">Type Of Lawyers</span>
     </ion-row>
     <div class="menuList">
-      <div class="menu" *ngFor="let lawyer of Lawyers_types" (click)="filterAdvocate(lawyer.Id)">
-        <div class="menuIcon">
-          <img [src]="lawyer.icon">
-        </div>
-        <div class="menuInfo">
-          <span>{{ lawyer.name }}</span>
-        </div>
+      <div class="chipList" *ngFor="let type of Lawyers_types" (click)="filterAdvocate(type.Id)">
+        <ion-chip>{{type?.name}}</ion-chip>
       </div>
     </div>
   </ion-list>

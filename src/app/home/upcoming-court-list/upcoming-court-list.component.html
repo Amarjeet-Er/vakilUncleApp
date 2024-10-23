@@ -18,8 +18,10 @@
   <div class="contentList">
     <ion-item lines="full" *ngFor="let data of upcuming_court" (click)="onUpcoming(data)">
       <ion-label>
-        <h3>{{data?.clientName || 'N/A' | titlecase}}</h3>
-        <span>{{data?.hearingDate}}</span>
+        <h3>Name:- {{data?.clientName || 'N/A' | titlecase}}</h3>
+        <p>Title:- {{data?.caseTitle}}</p>
+        <p>Case No:- {{data?.caseNo}}</p>
+        <span>Next Date:- {{data?.hearingDate}}</span>
       </ion-label>
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>

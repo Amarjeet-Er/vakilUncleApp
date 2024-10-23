@@ -47,10 +47,12 @@ ion-searchbar {
 h3 {
     color: var(--color-primary);
     text-align: center;
-    margin: 5px 0 15px;
+    margin: 7px 0 7px;
     font-size: 15px;
 }
-
+.documentsclass{
+    padding: 2px;
+}
 
 ion-content {
     --background: var(--color-light);
@@ -80,16 +82,18 @@ ion-content {
         justify-content: flex-end;
         align-items: center;
         padding: 7px;
-    
+
         ion-button {
             color: var(--color-light);
             text-transform: capitalize;
             --background: var(--color-primary);
         }
-    }    
+    }
 
     ion-list {
         padding: 10px;
+        margin: 0px 10px 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
         ion-item {
             --background: none;
@@ -101,10 +105,10 @@ ion-content {
             display: flex;
             gap: 10px;
             align-items: center;
-            margin: 5px 0;
+            margin: 1px 0;
             justify-content: space-between;
             text-transform: capitalize;
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .description {
@@ -113,7 +117,8 @@ ion-content {
             text-transform: capitalize;
             border-bottom: 2px dotted black;
             font-size: 15px;
-            p{
+
+            p {
                 font-size: 12px;
                 word-spacing: 2px;
             }

@@ -149,8 +149,13 @@ export class NewClientRegComponent implements OnInit {
               console.log(res);
               if (res.status === true) {
                 this._shared.tostSuccessTop('Client Registered Successfully');
-                this.clients.unshift(res.data);
-                this.filterData = [...this.clients];
+                this._crud.get_new_Client(this.login_data.advId).subscribe(
+                  (res: any) => {
+                    if (res.status === true) {
+                      this.clients = res.data;
+                    }
+                  }
+                )
                 this.modal.dismiss();
                 this.details.dismiss();
               }

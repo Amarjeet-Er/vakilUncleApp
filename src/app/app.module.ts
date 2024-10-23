@@ -73,6 +73,7 @@ import { ChangeLawyersListComponent } from './home/change-lawyers-list/change-la
 import { IpcDetailsComponent } from './home/ipc-details/ipc-details.component';
 import { ClientHearingListComponent } from './home/client-hearing-list/client-hearing-list.component';
 import { ClientCaseAboutComponent } from './home/client-case-about/client-case-about.component';
+import { VakilByClientTotalCaseComponent } from './home/vakil-by-client-total-case/vakil-by-client-total-case.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { ClientCaseAboutComponent } from './home/client-case-about/client-case-a
     ChangeLawyersListComponent,
     IpcDetailsComponent,
     ClientHearingListComponent,
-    ClientCaseAboutComponent
+    ClientCaseAboutComponent,
+    VakilByClientTotalCaseComponent
   ],
   imports: [
     BrowserModule,

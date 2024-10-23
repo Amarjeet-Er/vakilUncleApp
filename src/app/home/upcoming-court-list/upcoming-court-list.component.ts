@@ -16,7 +16,8 @@ export class UpcomingCourtListComponent implements OnInit {
   constructor(
     private router: Router,
     private sharedService: SharedService,
-    private crudService: CrudService
+    private crudService: CrudService,
+    private _shared: SharedService,
   ) {
     const login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(login!);
@@ -44,7 +45,7 @@ export class UpcomingCourtListComponent implements OnInit {
   }
 
   onUpcoming(data: any): void {
-    localStorage.setItem('CaseHearingNo', JSON.stringify(data));
+    this._shared.sharedData.next(data)
     this.router.navigate(['/home/upcominghearinglist']);
   }
 
@@ -53,7 +54,8 @@ export class UpcomingCourtListComponent implements OnInit {
     this.upcuming_court = this.filter_data.filter((data: any) => {
       return (
         data?.caseNo.toString().toLowerCase().includes(filter) ||
-        data?.hearingDate.toString().toLowerCase().includes(filter)
+        data?.hearingDate.toString().toLowerCase().includes(filter) ||
+        data?.clientName.toString().toLowerCase().includes(filter)
       );
     });
   }

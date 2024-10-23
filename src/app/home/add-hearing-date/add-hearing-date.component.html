@@ -7,10 +7,11 @@
 
 <ion-content>
   <form [formGroup]="caseForm">
-    
-    <ion-input label-placement="floating" type="date" fill="outline" label="Hearing Date"
-      placeholder="Enter Extra Charge" formControlName="hearingDate">
+
+    <ion-input label-placement="floating" type="datetime-local" fill="outline" label="Hearing Date & Time"
+      placeholder="Enter Hearing Date & Time" formControlName="hearingDate">
     </ion-input>
+
 
     <ion-input label-placement="floating" type="number" fill="outline" label="Extra Charge"
       placeholder="Enter Extra Charge" formControlName="extracharge">

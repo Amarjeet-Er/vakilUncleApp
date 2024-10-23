@@ -15,6 +15,8 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
   case_hearing_data: any;
   case_hearing_details: any;
   private navigationSubscription: Subscription = new Subscription;
+  filter_data: any;
+  hearing_id: any;
 
   constructor(
     private _router: Router,
@@ -22,6 +24,9 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
     private _crud: CrudService
   ) {
     this.initializeData();
+    this._shared.sharedData.subscribe((res: any) => {
+      this.hearing_id = res;
+    });
   }
 
   ngOnInit() {
@@ -46,41 +51,67 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
     }
   }
 
+
   private fetchCaseHearingDetails() {
-    // Ensure data exists before making the API call
-    if (this.login_data && this.case_hearing_data) {
-      this._crud.get_case_hearing_law_details(this.login_data.advId, this.case_hearing_data.caseNo).subscribe(
-        (res: any) => {
-          if (res.status === true) {
-            this.case_hearing_details = res.data;
-            const documentNames = this.case_hearing_details.documentName;
-            if (documentNames) {
-              this.case_hearing_details.documents = documentNames.split(',').map((name: string, index: number) => ({
-                id: index + 1,
-                name: name.trim(),
-              }));
-            } else {
-              this.case_hearing_details.documents = [];
+    if (this.hearing_id) {
+      this._crud
+        .get_case_hearing_law_details(this.login_data.advId, this.hearing_id.caseNo)
+        .subscribe(
+          (res: any) => {
+            if (res.status === true) {
+              this.case_hearing_details = res.data; 
+              this.filter_data = res.data; 
+              this.case_hearing_details.forEach((hearing: any) => {
+                if (hearing.documentName) {
+                  hearing.documents = hearing.documentName
+                    .split(',')
+                    .map((name: string, index: number) => ({
+                      id: index + 1,
+                      name: name.trim(),
+                    }));
+                } else {
+                  hearing.documents = [];
+                }
+              });
+
+              console.log(this.case_hearing_details, 'details');
             }
-            console.log(this.case_hearing_details, 'details');
+          },
+          (error) => {
+            console.error('Error fetching case hearing details', error);
           }
-        },
-        (error) => {
-          console.error('Error fetching case hearing details', error);
-        }
-      );
+        );
     }
   }
 
-  backButton() {
-    this._router.navigate(['/home/upcomingcourtlist']);
-    localStorage.removeItem('CaseHearingNo');
-  }
-
   ngOnDestroy() {
-    // Unsubscribe from navigation events to avoid memory leaks
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }
   }
+  onSearch(event: any) {
+    const filter = event.target.value ? event.target.value.toLowerCase() : ''; 
+    if (!filter) {
+      this.case_hearing_details = [...this.filter_data];
+      return;
+    }
+
+    this.case_hearing_details = this.filter_data.filter((data: any) => {
+      return [
+        data?.caseTitle,
+        data?.clientName,
+        data?.caseNo,
+        data?.contactNum,
+        data?.courtName,
+        data?.hearingDate,
+        data?.extraCharge,
+        data?.chargeDetail,
+        data?.documentName,
+        data?.caseSummary,
+      ].some(field =>
+        field?.toString().toLowerCase().includes(filter)
+      );
+    });
+  }
 }
+

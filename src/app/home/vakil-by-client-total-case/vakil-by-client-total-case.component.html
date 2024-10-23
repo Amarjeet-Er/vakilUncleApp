@@ -1,0 +1,43 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon slot="start" name="chevron-back" routerLink="/home/totalclientlist"></ion-icon>
+    <span>Total Client Case {{cases?.length}}</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+
+  <ng-container *ngFor="let case of cases">
+    <ion-card>
+      <div>
+        <ion-row>
+          <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Court Name </span>
+          <span class="highlight">{{ case?.courtName|| 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="person-outline"></ion-icon>&nbsp; Case Title </span>
+          <span>{{ case?.caseTitle || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="call-outline"></ion-icon>&nbsp; Case Number</span>
+          <span>{{ case?.caseNo || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Act</span>
+          <span>{{ case?.act || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Next Hearing</span>
+          <span>{{ case?.hearingDate || 'N/A' }}</span>
+        </ion-row>
+      </div>
+
+    </ion-card>
+  </ng-container>
+  <p class="NoRecord" *ngIf="cases?.length === 0">No Record Found</p>
+</ion-content>

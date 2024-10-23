@@ -1,50 +1,56 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" (click)="backButton()"></ion-icon>
+    <ion-icon name="chevron-back" routerLink="/home/upcomingcourtlist"></ion-icon>
     <span>Upcoming Court Hearing</span>
   </div>
 </div>
 
 <ion-content>
 
-  <!-- <ion-row>
-    <ion-button size="small" fill="clear" shape="round" (click)="AboutCase()">About Case</ion-button>
-  </ion-row> -->
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
 
-  <ion-list>
 
+  <ion-list *ngFor="let hearing of case_hearing_details">
     <ion-row>
       <span class="highlight">Client Name</span>
-      <span class="highlight">{{case_hearing_details?.clientName || 'N/A'}}</span>
+      <span class="highlight">{{ hearing?.clientName || 'N/A' }}</span>
     </ion-row>
 
     <ion-row>
       <span>Case Number</span>
-      <span>{{case_hearing_details?.caseNo || 'N/A'}}</span>
+      <span>{{ hearing?.caseNo || 'N/A' }}</span>
     </ion-row>
 
     <ion-row>
       <span>Mobile Number</span>
-      <span>{{case_hearing_details?.contactNum || 'N/A'}}</span>
+      <span>{{ hearing?.contactNum || 'N/A' }}</span>
     </ion-row>
+
+    <ion-row>
+      <span>Extra Charges</span>
+      <span>{{ hearing?.extraCharge || 'N/A' }}</span>
+    </ion-row>
+
     <ion-row>
       <span>Next Date</span>
-      <span style="color: green;">{{case_hearing_details?.hearingDate || 'N/A'}}</span>
+      <span style="color: green;">{{ hearing?.hearingDate || 'N/A' }}</span>
     </ion-row>
 
-    <div class="description">
-      <h4>Summary</h4>
-      <p [innerHTML]="case_hearing_details?.caseSummary">/p>
+    <div class="description" *ngIf="hearing?.chargeDetail">
+      <h4>charge Details</h4>
+      <p [innerHTML]="hearing?.chargeDetail"></p>
     </div>
 
-  </ion-list>
-  <ion-list>
-    <div class="description">
+    <div class="description" *ngIf="hearing?.caseSummary">
+      <h4>Summary</h4>
+      <p [innerHTML]="hearing?.caseSummary"></p> 
+    </div>
+
+    <div *ngIf="hearing?.documents?.length > 0;">
       <h3>Required Documents</h3>
-      <ion-item lines="none" *ngFor="let data of case_hearing_details?.documents">
-        <ion-icon name="ellipse" slot="start" size="small"></ion-icon>
-        <ion-label>{{data?.name | titlecase}}</ion-label>
-      </ion-item>
+      <div class="documentsclass" *ngFor="let doc of hearing?.documents; let i= index">
+        <ion-label>{{i+1}} &nbsp; {{ doc?.name | titlecase }}</ion-label>
+      </div>
     </div>
   </ion-list>
 </ion-content>

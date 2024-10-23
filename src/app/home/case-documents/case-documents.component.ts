@@ -52,6 +52,7 @@ export class CaseDocumentsComponent implements OnInit {
   }
 
   downloadDocument(url: string) {
+    console.log(url, 'url');    
     window.open(url, '_blank');
   }
 
@@ -60,8 +61,7 @@ export class CaseDocumentsComponent implements OnInit {
     this._crud.get_case_document(this.login_data.advId, case_doc.caseNo).subscribe(
       (response) => {
         if (response.status === true && response.data && response.data.length > 0) {
-          this.docs = response.data[0].documentUrl;
-          this.docs_content = response.data[0];
+          this.docs_content = response.data;
           console.log(this.docs_content, 'content');
           this.modal.present();
         } else if (response.data.length === 0) {

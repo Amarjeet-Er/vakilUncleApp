@@ -125,7 +125,7 @@ export class UserProfileComponent implements OnInit {
     formUpdate.append('gender', this.client_profile_update.get('gender')?.value);
     formUpdate.append('address', this.client_profile_update.get('address')?.value);
     formUpdate.append('profileImage', this.profile_select || null);
-   
+
     if (this.client_profile_update.valid) {
       this._crud.client_profile_update(formUpdate).subscribe(
         (res: any) => {
@@ -135,7 +135,12 @@ export class UserProfileComponent implements OnInit {
             this._router.navigate(['/user/home']);
           } else {
             this._shared.tostErrorTop(res.message);
+            this._shared.tostErrorTop('Not Update');
           }
+        },
+        (error: any) => {
+          console.log(error);
+          this._shared.tostErrorTop('Not Update');
         }
       );
     } else {

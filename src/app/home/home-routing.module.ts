@@ -46,6 +46,7 @@ import { ChangeLawyersListComponent } from './change-lawyers-list/change-lawyers
 import { IpcDetailsComponent } from './ipc-details/ipc-details.component';
 import { ClientHearingListComponent } from './client-hearing-list/client-hearing-list.component';
 import { ClientCaseAboutComponent } from './client-case-about/client-case-about.component';
+import { VakilByClientTotalCaseComponent } from './vakil-by-client-total-case/vakil-by-client-total-case.component';
 
 
 const routes: Routes = [
@@ -97,6 +98,7 @@ const routes: Routes = [
       { path: 'ipcdetails', component: IpcDetailsComponent },
       { path: 'clienthearinglist', component: ClientHearingListComponent },
       { path: 'clientaboutcase', component: ClientCaseAboutComponent },
+      { path: 'vakilbyclienttotalcase', component: VakilByClientTotalCaseComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },
