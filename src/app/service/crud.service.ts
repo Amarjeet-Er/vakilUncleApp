@@ -21,13 +21,12 @@ export class CrudService {
     )
   }
 
-
   //forgot password
   verify_email(email: string) {
     return this._http.post<any>(`${this.base_url}verifyEmail?email=${email}`, {});
   }
   forget_password(email: string, password: any) {
-    return this._http.post<any>(`${this.base_url}resetPassword?email=${email}$pass=${password}`, {});
+    return this._http.post<any>(`${this.base_url}resetPassword?email=${email}&pass=${password}`, {});
   }
 
   // for vakil 
@@ -38,7 +37,7 @@ export class CrudService {
     return this._http.post<any>(`${this.base_url}login`, data, { headers: headers });
   }
   otp_send(email: string) {
-    return this._http.get<any>(`${this.base_url}SendOTP?email=${email}`);
+    return this._http.get<any>(`${this.base_url}SendOTP?email=${email}&name=amar`);
   }
 
   get_state() {
@@ -180,8 +179,11 @@ export class CrudService {
   get_review_list(vakilId: any) {
     return this._http.get<any>(`${this.base_url}topfourreviewList?vakilId=${vakilId}`);
   }
-  get_chating_data(senderId: number, recieverId: number) {
-    return this._http.get<any>(`${this.base_url}getAlluserChat?senderId=${senderId}&recieverId=${recieverId}`);
+  get_review_total_list(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}allVakilReview?vakilId=${vakilId}`);
+  }
+  get_chating_data(senderId: number, recieverId: number, sendby: any) {
+    return this._http.get<any>(`${this.base_url}getAlluserChat?senderId=${senderId}&recieverId=${recieverId}&sendby=${sendby}`);
   }
 
 
@@ -278,6 +280,21 @@ export class CrudService {
   }
   get_ipc_section(section_id: any) {
     return this._http.get<any>(`${this.base_url}bareActDetail?id=${section_id}`);
+  }
+  add_review(data: any) {
+    return this._http.post<any>(`${this.base_url}addreview`, data);
+  }
+  add_achievement(data: any) {
+    return this._http.post<any>(`${this.base_url}InsertAchievement`, data);
+  }
+  add_rewards(data: any) {
+    return this._http.post<any>(`${this.base_url}InsertRewards`, data);
+  }
+  get_achievement(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}getAllAchivement?vakilId=${vakilId}`);
+  }
+  get_rewards(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}getAllRewards?vakilId=${vakilId}`);
   }
 
 }

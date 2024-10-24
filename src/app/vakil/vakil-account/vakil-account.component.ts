@@ -12,6 +12,7 @@ import { SharedService } from 'src/app/service/shared.service';
 export class VakilAccountComponent implements OnInit {
   @ViewChild('terms') terms !: IonModal;
   @ViewChild('contact') contact !: IonModal;
+  @ViewChild('help') help !: IonModal;
   profile_data: any;
   login: any;
   login_data: any
@@ -60,5 +61,9 @@ export class VakilAccountComponent implements OnInit {
 
   openContact() {
     this.contact.present();
+  }
+
+  openHelp() {
+    this.help.present();
   }
 }

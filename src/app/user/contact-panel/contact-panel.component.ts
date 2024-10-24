@@ -40,7 +40,7 @@ export class ContactPanelComponent implements OnInit {
   ngOnInit() {
     this._crud.get_client_chat_list(this.login_data?.id).subscribe(
       (response) => {
-        console.log(response);
+        console.log(response, 'res');
         this.chat_list = response?.data
         this.filter_data = response?.data
       }
@@ -48,7 +48,7 @@ export class ContactPanelComponent implements OnInit {
   }
 
   chatRoute(clientChat: any) {
-    console.log(clientChat);
+    console.log(clientChat, 'id');
     localStorage.setItem('clientChat', JSON.stringify(clientChat))
     this._router.navigate(['/home/chatingclient'])
   }

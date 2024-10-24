@@ -134,3 +134,8 @@ ion-footer {
         background-color: #fff;
     }
 }
+
+#chatMessages {
+    height: calc(100vh - 130px);
+    overflow: auto;
+}

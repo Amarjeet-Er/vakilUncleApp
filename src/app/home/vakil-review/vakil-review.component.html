@@ -10,7 +10,9 @@
       <span>{{review?.clientName}}</span>
       <p>{{review?.review}}</p>
       <ion-row>
-        {{review?.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+        <ion-icon *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" name="star"
+          [ngClass]="{'orange-star': i < review.rating, 'black-star': i >= review.rating}">
+        </ion-icon>
       </ion-row>
     </div>
   </ion-list>

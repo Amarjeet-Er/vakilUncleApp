@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
@@ -8,7 +8,7 @@ import { SharedService } from 'src/app/service/shared.service';
   templateUrl: './chating-vakil.component.html',
   styleUrls: ['./chating-vakil.component.scss'],
 })
-export class ChatingVakilComponent implements OnInit {
+export class ChatingVakilComponent implements OnInit, AfterViewChecked {
   private ws: WebSocket | null = null;
   connectionStatus: string = 'Disconnected';
   chatMessages: Array<{ Message: string; MsgAt: string; sendBy: string }> = [];
@@ -21,18 +21,19 @@ export class ChatingVakilComponent implements OnInit {
   login_data: any;
   user_id: any;
   img_url: any;
+  senId: any;
+  sendby: string = 'Vakil';
+
 
   constructor(
     private _router: Router,
     private _shared: SharedService,
     private _crud: CrudService
   ) {
-    this.login = localStorage.getItem('vakilLoginData');
-    this.login_data = JSON.parse(this.login);
 
     this.UserId = localStorage.getItem('vakilChat');
     this.user_id = JSON.parse(this.UserId);
-    this.senderId = this.login_data?.advId;
+    this.senderId = this.user_id?.SenderUserId;
     this.receiverId = this.user_id?.ReceiverUserId;
 
     this._shared.img_url.subscribe(
@@ -41,7 +42,7 @@ export class ChatingVakilComponent implements OnInit {
       }
     )
 
-    this._crud.get_chating_data(this.senderId, this.receiverId).subscribe(
+    this._crud.get_chating_data(this.senderId, this.receiverId, this.sendby).subscribe(
       (res: any) => {
         this.chatMessages = res.data;
       }
@@ -112,7 +113,6 @@ export class ChatingVakilComponent implements OnInit {
           });
           this.messageContent = '';
           console.log(this.chatMessages, 'new mes');
-
           this.autoScrollChat();
         } catch (error) {
           console.error('Failed to send message:', error);
@@ -136,10 +136,16 @@ export class ChatingVakilComponent implements OnInit {
     this._router.navigate(['/vakil/home/contact'])
   }
 
+  ngAfterViewChecked() {
+    this.autoScrollChat();
+  }
+
   autoScrollChat() {
     const chatContainer = document.getElementById('chatMessages');
     if (chatContainer) {
-      chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to the bottom
+      setTimeout(() => {
+        chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to the bottom
+      }, 10); // Delay to ensure content is rendered
     }
   }
 

@@ -74,6 +74,8 @@ import { IpcDetailsComponent } from './home/ipc-details/ipc-details.component';
 import { ClientHearingListComponent } from './home/client-hearing-list/client-hearing-list.component';
 import { ClientCaseAboutComponent } from './home/client-case-about/client-case-about.component';
 import { VakilByClientTotalCaseComponent } from './home/vakil-by-client-total-case/vakil-by-client-total-case.component';
+import { AchievementAddComponent } from './home/achievement-add/achievement-add.component';
+import { RewardsAddComponent } from './home/rewards-add/rewards-add.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +141,10 @@ import { VakilByClientTotalCaseComponent } from './home/vakil-by-client-total-ca
     IpcDetailsComponent,
     ClientHearingListComponent,
     ClientCaseAboutComponent,
-    VakilByClientTotalCaseComponent
+    VakilByClientTotalCaseComponent,
+    RewardsAddComponent,
+    AchievementAddComponent,
+
   ],
   imports: [
     BrowserModule,

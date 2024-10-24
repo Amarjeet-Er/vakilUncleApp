@@ -14,17 +14,10 @@
     <ion-label>
       <ion-row class="ion-align-items-center">
         <ion-button>
-          <ion-icon slot="icon-only" name="star"></ion-icon>
-        </ion-button>
-        <span>{{ profile_data?.avgUserRating }}</span>
-      </ion-row>
-
-      <!-- <ion-row class="ion-align-items-center">
-        <ion-button>
           <ion-icon slot="icon-only" name="person"></ion-icon>
         </ion-button>
-        <span>{{ lawyer.reviews }}</span>
-      </ion-row> -->
+        <p>{{profile_data?.advocateName | titlecase}}</p>
+      </ion-row>
 
       <ion-row class="ion-align-items-center" (click)="makeCall(profile_data?.contactNum)">
         <ion-button>
@@ -32,18 +25,26 @@
         </ion-button>
         <p>{{ profile_data?.maskedContactNum }}</p>
       </ion-row>
-      <ion-row class="ion-align-items-center" (click)="chatWithLawyer()">
+
+
+
+      <ion-row class="ion-align-items-center">
         <ion-button>
-          <ion-icon slot="icon-only" name="chatbubbles"></ion-icon>
+          <ion-icon slot="icon-only" name="star"></ion-icon>
         </ion-button>
-        <p>Chat</p>
+        <p>
+          {{ avg_total_review?.avgUserRating }} |
+          {{ avg_total_review?.totalUserRating }}
+          + user ratings
+        </p>
       </ion-row>
+
     </ion-label>
   </ion-item>
 
   <ion-list>
     <ion-row>
-      <h2>{{ profile_data?.advocateName | titlecase }}</h2>
+      <!-- <h2>{{ profile_data?.advocateName | titlecase }}</h2> -->
       <ion-row>
         <img src="../../../assets/icon/verified.png">
         <span>Verified</span>
@@ -77,6 +78,7 @@
     </ion-list>
   </ion-list>
 
+
   <ion-list style="margin: 0;" *ngIf="image_banner?.length > 0">
     <h3 class=" ion-padding">Gallery</h3>
     <div class="galleryList">
@@ -86,12 +88,43 @@
     </div>
   </ion-list>
 
-  <ion-list style="margin: 0;">
+  <ion-list style="margin: 0;" *ngIf="video_data?.length > 0">
     <h3 class="ion-padding">Legal Advice Videos</h3>
     <div class="videoList">
       <div class="video" *ngFor="let video of video_data">
         <iframe [src]="getSafeUrl(video?.videoUrl)" frameborder="0" allowfullscreen> </iframe>
       </div>
+    </div>
+  </ion-list>
+
+
+  <ion-list>
+    <h3>Add your review here</h3>
+    <ion-list>
+      <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+        <div id="starRating">
+          <span class="star" [ngClass]="{'selected': rating >= 1}" (click)="onStarClick(1)">★</span>
+          <span class="star" [ngClass]="{'selected': rating >= 2}" (click)="onStarClick(2)">★</span>
+          <span class="star" [ngClass]="{'selected': rating >= 3}" (click)="onStarClick(3)">★</span>
+          <span class="star" [ngClass]="{'selected': rating >= 4}" (click)="onStarClick(4)">★</span>
+          <span class="star" [ngClass]="{'selected': rating >= 5}" (click)="onStarClick(5)">★</span>
+        </div>
+        <textarea formControlName="review" placeholder="Your message" required></textarea>
+        &nbsp;
+        <ion-button type="submit">Submit</ion-button>
+      </form>
+    </ion-list>
+  </ion-list>
+
+  <ion-list>
+    <div class="cardInfo" *ngFor="let review of review_list">
+      <h4>{{ review?.clientName }}</h4>
+      <span>{{ review?.review }}</span>
+      <ion-row>
+        <ion-icon *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" name="star"
+          [ngClass]="{'orange-star': i < review.rating, 'black-star': i >= review.rating}">
+        </ion-icon>
+      </ion-row>
     </div>
   </ion-list>
 

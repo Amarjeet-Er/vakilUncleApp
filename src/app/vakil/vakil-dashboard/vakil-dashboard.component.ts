@@ -198,6 +198,12 @@ export class VakilDashboardComponent implements OnInit {
 			case '/vakil/NewClientRegstration':
 				this.registerNewClient();
 				break;
+			case '/vakil/Achievement':
+				this.addachievement();
+				break;
+			case '/vakil/vakilRewards':
+				this.addrewards();
+				break;
 			default:
 				this.disable();
 				break;
@@ -214,5 +220,11 @@ export class VakilDashboardComponent implements OnInit {
 	}
 	addPublication() {
 		this._router.navigate(['/home/publication'])
+	}
+	addachievement() {
+		this._router.navigate(['/home/achievementadd'])
+	}
+	addrewards() {
+		this._router.navigate(['/home/rewardsadd'])
 	}
 }

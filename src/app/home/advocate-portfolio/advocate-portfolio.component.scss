@@ -12,13 +12,13 @@
         align-items: center;
         width: 100%;
         position: relative;
-        
+
         ion-icon {
             position: absolute;
             font-size: 24px;
             left: 10px;
         }
-        
+
         span {
             font-size: 18px;
             margin: 0 auto;
@@ -59,6 +59,39 @@ ion-content {
     }
 
     ion-list {
+
+        textarea {
+            width: 100%;
+            padding: 7px;
+        }
+
+        .star {
+            font-size: 50px;
+            color: lightgray;
+            cursor: pointer;
+        }
+
+        .star.selected,
+        .star:hover {
+            color: gold;
+        }
+
+        .orange-star {
+            color: gold;
+        }
+
+        .black-star {
+            color: black;
+        }
+
+        .cardInfo {
+            margin: 0 0 10px;
+
+            h4 {
+                margin: 0 0 2px;
+            }
+        }
+
         margin: 0 15px;
 
         ion-row {

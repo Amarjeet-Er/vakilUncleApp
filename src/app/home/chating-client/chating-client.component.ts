@@ -20,6 +20,7 @@ export class ChatingClientComponent implements OnDestroy, OnInit {
   user_id: any;
   img_url: any;
   mrs: any;
+  sendby: string = 'Client';
 
   constructor(
     private _router: Router,
@@ -28,6 +29,8 @@ export class ChatingClientComponent implements OnDestroy, OnInit {
   ) {
     this.UserId = localStorage.getItem('clientChat');
     this.user_id = JSON.parse(this.UserId);
+    console.log(this.user_id, 'id');
+
     this.senderId = this.user_id?.SenderUserId;
     this.receiverId = this.user_id?.ReceiverUserId;
 
@@ -37,7 +40,7 @@ export class ChatingClientComponent implements OnDestroy, OnInit {
       }
     )
 
-    this._crud.get_chating_data(this.senderId, this.receiverId).subscribe(
+    this._crud.get_chating_data(this.senderId, this.receiverId, this.sendby).subscribe(
       (res: any) => {
         this.chatMessages = res.data;
       }
@@ -130,10 +133,16 @@ export class ChatingClientComponent implements OnDestroy, OnInit {
     this._router.navigate(['/user/home/contact']);
   }
 
+  ngAfterViewChecked() {
+    this.autoScrollChat();
+  }
+
   autoScrollChat() {
     const chatContainer = document.getElementById('chatMessages');
     if (chatContainer) {
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+      setTimeout(() => {
+        chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to the bottom
+      }, 10); // Delay to ensure content is rendered
     }
   }
 

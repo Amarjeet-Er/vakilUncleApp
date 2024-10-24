@@ -22,10 +22,10 @@ export class VakilReviewComponent implements OnInit {
     this.login_data = JSON.parse(this.login)
   }
   ngOnInit() {
-    this._crud.get_review_list(this.login_data.advId).subscribe(
+    this._crud.get_review_total_list(this.login_data.advId).subscribe(
       (response) => {
-        console.log(response);
-        if (response.status === true) {
+        console.log(response, 'review');
+        if (response.status === false) {
           this.review_list = response.data;
         }
       }

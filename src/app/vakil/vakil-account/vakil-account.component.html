@@ -6,9 +6,10 @@
 
 <ion-content>
 
-  <div class="profile">
+  <div class="profile" (click)="updatedProfile()">
     <div class="profileImage">
-      <img [src]="profile_data?.profilePath ? img_url + profile_data?.profilePath :   '../../../assets/icon/profile.png'">
+      <img
+        [src]="profile_data?.profilePath ? img_url + profile_data?.profilePath :   '../../../assets/icon/profile.png'">
     </div>
   </div>
 
@@ -27,6 +28,12 @@
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
 
+      <ion-item lines="full" (click)="openHelp()">
+        <ion-icon name="help-circle-outline"></ion-icon>
+        <ion-label>Help Panel</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
       <ion-item (click)="openContact()" lines="full">
         <ion-icon name="earth-outline"></ion-icon>
         <ion-label>Contact Us</ion-label>
@@ -39,9 +46,15 @@
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
 
-      <ion-item lines="full" routerLink="/home/paymenthistory">
+      <ion-item lines="full">
         <ion-icon name="card-outline"></ion-icon>
         <ion-label>Your Plan Validity</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="full" routerLink="/home/paymenthistory">
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        <ion-label>Payment History</ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
 
@@ -60,8 +73,6 @@
 
 
     </ion-list>
-
-
     <ion-list>
       <p class="ion-padding ion-no-margin">© 2020 Vakil Uncle| All Rights Reserved | Design & Development <span
           class="highlight">Macreel Infosoft Pvt . Ltd.</span></p>
@@ -154,6 +165,43 @@
 
       </ion-card>
 
+
+    </ion-content>
+  </ng-template>
+
+</ion-modal>
+
+
+<!-- for help us modal desgin  -->
+<ion-modal #help>
+  <ng-template>
+
+    <div class="header">
+      <div class="navbar">
+        <ion-icon name="chevron-back" (click)="help.dismiss()"></ion-icon> <span>Help Panel</span>
+      </div>
+    </div>
+    <ion-content>
+      <ion-item lines="full">
+        <ion-icon name="reader-outline"></ion-icon>
+        <ion-label>Report a problem</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <ion-label>Account status</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <ion-label>Support requests</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-icon name="pricetags-outline"></ion-icon>
+        <ion-label>Privacy and security help</ion-label>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-item>
 
     </ion-content>
   </ng-template>

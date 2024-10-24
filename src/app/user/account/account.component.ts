@@ -10,7 +10,7 @@ import { SharedService } from 'src/app/service/shared.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  @ViewChild('law') law !: IonModal;
+  @ViewChild('help') help !: IonModal;
   @ViewChild('terms') terms !: IonModal;
   @ViewChild('contact') contact !: IonModal;
   profile_data: any;
@@ -51,20 +51,11 @@ export class AccountComponent implements OnInit {
     this._router.navigate(['/login'])
   }
 
-
-  // for law gruides router 
-  lawRoute(loc: any) {
-    this._router.navigate([loc])
-    this.law.dismiss()
-  }
-
-  // for modal 
-  openLaw() {
-    this.law.present();
-  }
-
   openTerms() {
     this.terms.present();
+  }
+  openHelp() {
+    this.help.present();
   }
 
   openContact() {

@@ -57,6 +57,13 @@ export class VideoManagementComponent implements OnInit {
         (res: any) => {
           if (res.status === true) {
             this._shared.tostSuccessTop('Video Added Successfully')
+            this._crud.get_video(this.login_data.advId).subscribe(
+              (res: any) => {
+                if (res.status === true) {
+                  this.videoList = res.data;
+                }
+              },
+            )
             this.modal.dismiss();
           }
           else {
