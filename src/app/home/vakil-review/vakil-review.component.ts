@@ -25,7 +25,7 @@ export class VakilReviewComponent implements OnInit {
     this._crud.get_review_total_list(this.login_data.advId).subscribe(
       (response) => {
         console.log(response, 'review');
-        if (response.status === false) {
+        if (response.status === true) {
           this.review_list = response.data;
         }
       }
