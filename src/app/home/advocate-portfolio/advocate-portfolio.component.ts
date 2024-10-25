@@ -4,7 +4,6 @@ import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { forkJoin } from 'rxjs';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -13,15 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./advocate-portfolio.component.scss'],
 })
 export class AdvocatePortfolioComponent implements OnInit {
-
-  awards = [
-    { name: 'Legal Era Awards' },
-    { name: 'Forbes India Legal Powerlist' },
-    { name: 'India Business Law Journal (IBLJ) Awards' },
-    { name: 'Bar Council of India Awards' },
-    { name: 'Society of Indian Law Firms (SILF) Awards' },
-    { name: 'The Legal 500 India Awards' }
-  ]
 
   specializations = [
     { name: 'Family Lawyer' },
@@ -43,12 +33,12 @@ export class AdvocatePortfolioComponent implements OnInit {
   user: any;
   review_list: any;
   avg_total_review: any;
+  awards_list: any;
 
   constructor(
     private _router: Router,
     private _crud: CrudService,
     private _shared: SharedService,
-    private sanitizer: DomSanitizer,
     private _fb: FormBuilder
   ) {
     this.login = localStorage.getItem('vakilProfile');
@@ -92,8 +82,9 @@ export class AdvocatePortfolioComponent implements OnInit {
       banner: this._crud.get_image_banner(this.login_data),
       video: this._crud.get_video(this.login_data),
       review: this._crud.get_review_list(this.login_data),
+      award: this._crud.get_rewards(this.login_data),
     }).subscribe(
-      ({ profile, banner, video, review }) => {
+      ({ profile, banner, video, review, award }) => {
         if (profile.status === true) {
           this.profile_data = profile.data;
           console.log(this.profile_data, 'profile');
@@ -117,6 +108,10 @@ export class AdvocatePortfolioComponent implements OnInit {
           this.review_list = review.data;
           console.log(this.review_list, 'reating data');
         }
+        if (award.status === true) {
+          this.awards_list = award.data;
+          console.log(this.awards_list, 'award data');
+        }
       },
       (error) => {
         console.error('Error fetching data:', error);
@@ -124,13 +119,11 @@ export class AdvocatePortfolioComponent implements OnInit {
       }
     );
   }
-
-  getSafeUrl(videoUrl: string): SafeResourceUrl {
-    const videoId = videoUrl.split('be/')[1] || videoUrl.split('v=')[1];
-    const url = `https://www.youtube.com/embed/${videoId.split('?')[0]}`;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  onVideo(video: any) {
+    console.log(video?.videoUrl, 'video');
+    this._shared.sharedData.next(video?.videoUrl)
+    this._router.navigate(['/home/videoplay'])
   }
-
   ngOnDestroy() {
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();

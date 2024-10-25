@@ -49,6 +49,7 @@ import { ClientCaseAboutComponent } from './client-case-about/client-case-about.
 import { VakilByClientTotalCaseComponent } from './vakil-by-client-total-case/vakil-by-client-total-case.component';
 import { AchievementAddComponent } from './achievement-add/achievement-add.component';
 import { RewardsAddComponent } from './rewards-add/rewards-add.component';
+import { VideoPlayComponent } from './video-play/video-play.component';
 
 const routes: Routes = [
   {
@@ -102,6 +103,7 @@ const routes: Routes = [
       { path: 'vakilbyclienttotalcase', component: VakilByClientTotalCaseComponent },
       { path: 'achievementadd', component: AchievementAddComponent },
       { path: 'rewardsadd', component: RewardsAddComponent },
+      { path: 'videoplay', component: VideoPlayComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

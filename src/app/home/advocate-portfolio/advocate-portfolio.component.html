@@ -64,10 +64,10 @@
     <p>{{ profile_data?.adBio || 'N/A' }}</p>
   </ion-list>
 
-  <ion-list>
+  <ion-list  *ngIf="awards_list?.length > 0">
     <h3>Awards & Achievement</h3>
     <ion-list>
-      <ion-chip *ngFor="let award of awards">{{ award.name }}</ion-chip>
+      <ion-chip *ngFor="let award of awards_list">{{ award.title }}</ion-chip>
     </ion-list>
   </ion-list>
 
@@ -91,8 +91,8 @@
   <ion-list style="margin: 0;" *ngIf="video_data?.length > 0">
     <h3 class="ion-padding">Legal Advice Videos</h3>
     <div class="videoList">
-      <div class="video" *ngFor="let video of video_data">
-        <iframe [src]="getSafeUrl(video?.videoUrl)" frameborder="0" allowfullscreen> </iframe>
+      <div class="video" *ngFor="let video of video_data" (click)="onVideo(video)">
+        <img [src]="video?.videoUrl">
       </div>
     </div>
   </ion-list>

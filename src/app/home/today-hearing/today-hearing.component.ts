@@ -32,18 +32,18 @@ export class TodayHearingComponent implements OnInit {
       (res: any) => {
         console.log(res);
         if (res.status === true) {
-          const today = new Date(); 
+          const today = new Date();
           console.log(today, 'today');
-            this.upcuming_court = res.data.filter((item: any) => {
+          this.upcuming_court = res.data.filter((item: any) => {
             const hearingDate = new Date(item.hearingDate);
-          
+
             return (
               hearingDate.getFullYear() === today.getFullYear() &&
               hearingDate.getMonth() === today.getMonth() &&
               hearingDate.getDate() === today.getDate()
             );
           });
-  
+
           console.log(this.upcuming_court, 'Filtered hearings for today');
           this.filter_data = this.upcuming_court;
         }
@@ -53,7 +53,7 @@ export class TodayHearingComponent implements OnInit {
       }
     );
   }
-  
+
 
 
   onUpcoming(data: any): void {
@@ -66,7 +66,9 @@ export class TodayHearingComponent implements OnInit {
     this.upcuming_court = this.filter_data.filter((data: any) => {
       return (
         data?.caseNo.toString().toLowerCase().includes(filter) ||
-        data?.hearingDate.toString().toLowerCase().includes(filter)
+        data?.hearingDate.toString().toLowerCase().includes(filter) ||
+        data?.contactNum.toString().toLowerCase().includes(filter) ||
+        data?.clientName.toString().toLowerCase().includes(filter)
       );
     });
   }

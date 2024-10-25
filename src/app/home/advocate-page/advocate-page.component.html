@@ -16,12 +16,12 @@
       </div>
       <div class="cardInfo">
         <span>{{ lawyer?.advocateName }}</span>
-        <p>{{ lawyer?.advocateTypeName }}</p>
+        <p>{{ lawyer?.advocateTypeName || lawyer?.advocateType }}</p>
       </div>
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span class="locations">
           <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
-          {{ lawyer?.cityName }} {{ lawyer?.stateName }}
+          {{ lawyer?.cityName || lawyer?.offAddress }} {{ lawyer?.stateName }}
         </span>
         <span style="display: flex;">
           {{ lawyer.rating }}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating

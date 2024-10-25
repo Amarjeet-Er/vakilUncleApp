@@ -76,6 +76,7 @@ import { ClientCaseAboutComponent } from './home/client-case-about/client-case-a
 import { VakilByClientTotalCaseComponent } from './home/vakil-by-client-total-case/vakil-by-client-total-case.component';
 import { AchievementAddComponent } from './home/achievement-add/achievement-add.component';
 import { RewardsAddComponent } from './home/rewards-add/rewards-add.component';
+import { VideoPlayComponent } from './home/video-play/video-play.component';
 
 @NgModule({
   declarations: [
@@ -144,6 +145,7 @@ import { RewardsAddComponent } from './home/rewards-add/rewards-add.component';
     VakilByClientTotalCaseComponent,
     RewardsAddComponent,
     AchievementAddComponent,
+    VideoPlayComponent
 
   ],
   imports: [
