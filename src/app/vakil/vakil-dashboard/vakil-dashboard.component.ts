@@ -180,7 +180,7 @@ export class VakilDashboardComponent implements OnInit {
 	}
 
 	onUpcoming(data: any) {
-		localStorage.setItem('CaseHearingNo', JSON.stringify(data));
+		this._shared.sharedData.next(data)
 		this._router.navigate(['/home/upcominghearinglist']);
 	}
 

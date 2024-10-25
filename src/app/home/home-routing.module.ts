@@ -50,6 +50,8 @@ import { VakilByClientTotalCaseComponent } from './vakil-by-client-total-case/va
 import { AchievementAddComponent } from './achievement-add/achievement-add.component';
 import { RewardsAddComponent } from './rewards-add/rewards-add.component';
 import { VideoPlayComponent } from './video-play/video-play.component';
+import { ReportTotalClientComponent } from './report-total-client/report-total-client.component';
+import { ClientPaymentListComponent } from './client-payment-list/client-payment-list.component';
 
 const routes: Routes = [
   {
@@ -104,6 +106,9 @@ const routes: Routes = [
       { path: 'achievementadd', component: AchievementAddComponent },
       { path: 'rewardsadd', component: RewardsAddComponent },
       { path: 'videoplay', component: VideoPlayComponent },
+      { path: 'reporttotalclient', component: ReportTotalClientComponent },
+      { path: 'clientpaymentlist', component: ClientPaymentListComponent },
+
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

@@ -1,0 +1,63 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
+    <span>Payment {{cases?.length}}</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+
+  <ng-container *ngFor="let case of cases">
+    <ion-card>
+      <div>
+        <ion-row>
+          <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Client Name </span>
+          <span class="highlight">{{ case?.clientName|| 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span> <ion-icon name="barcode-outline"></ion-icon> &nbsp; Case Title </span>
+          <span>{{ case?.caseTitle || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="call-outline"></ion-icon>&nbsp; Mobile Number</span>
+          <span>{{ case?.contactNum || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Court</span>
+          <span>{{ case?.courtName || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Case Number</span>
+          <span>{{ case?.caseNo || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Dues</span>
+          <span>{{ '100' || 'N/A' }}</span>
+        </ion-row>
+        <ion-row>
+          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Status</span>
+          <span style="color: red;">{{'Pending' }}</span>
+        </ion-row>
+      </div>
+
+      <div class="actionButton">
+        <div (click)="pyamentDues(case)">
+          <ion-icon name="logo-alipay"></ion-icon>
+          <span>Dues Payment</span>
+        </div>
+        <div (click)="addPayment(case)">
+          <ion-icon name="add-circle"></ion-icon>
+          <span>Add Payment</span>
+        </div>
+      </div>
+
+    </ion-card>
+  </ng-container>
+  <p class="NoRecord" *ngIf="cases?.length === 0">No Record Found</p>
+</ion-content>

@@ -77,6 +77,8 @@ import { VakilByClientTotalCaseComponent } from './home/vakil-by-client-total-ca
 import { AchievementAddComponent } from './home/achievement-add/achievement-add.component';
 import { RewardsAddComponent } from './home/rewards-add/rewards-add.component';
 import { VideoPlayComponent } from './home/video-play/video-play.component';
+import { ReportTotalClientComponent } from './home/report-total-client/report-total-client.component';
+import { ClientPaymentListComponent } from './home/client-payment-list/client-payment-list.component';
 
 @NgModule({
   declarations: [
@@ -145,8 +147,9 @@ import { VideoPlayComponent } from './home/video-play/video-play.component';
     VakilByClientTotalCaseComponent,
     RewardsAddComponent,
     AchievementAddComponent,
-    VideoPlayComponent
-
+    VideoPlayComponent,
+    ReportTotalClientComponent,
+    ClientPaymentListComponent,
   ],
   imports: [
     BrowserModule,

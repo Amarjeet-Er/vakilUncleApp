@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <div class="menuBox" routerLink="/home/clientpaymenthistory">
+      <div class="menuBox" routerLink="/home/clientpaymentlist">
         <div class="menuIcon">
           <img src="../../../assets/menuIcon/billing.png">
           <span>{{dashboard?.totalPayment || '0'}}</span>
@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <div class="menuBox">
+      <div class="menuBox" routerLink="/home/reporttotalclient">
         <div class="menuIcon">
           <img src="../../../assets/menuIcon/report.png">
           <span>5460</span>
@@ -135,29 +135,6 @@
 
   </ion-list>
 
-
-  <!-- for features of memebership user  -->
-  <!-- <ion-list *ngIf="memberships?.length > 0">
-    <ion-row class="ion-justify-content-between ion-align-items-center">
-      <span class="ion-margin-start">Features</span>
-    </ion-row>
-    <div class="memberships" *ngFor="let member of memberships">
-      <div>
-        <div class="featuremenu" (click)="handleClick(member)">
-          <ion-icon *ngIf="member?.servicePath === '/vakil/addPublication'" name="book"></ion-icon>
-          <ion-icon *ngIf="member?.servicePath === '/vakil/AddImageBanner'" name="image"></ion-icon>
-          <ion-icon *ngIf="member?.servicePath === '/vakil/addVideo'" name="videocam"></ion-icon>
-          <ion-icon *ngIf="member?.servicePath === '/vakil/NewClientRegstration'" name="person-add"></ion-icon>
-          <ion-icon
-            *ngIf="!['/vakil/addPublication', '/vakil/AddImageBanner', '/vakil/addVideo', '/vakil/NewClientRegstration'].includes(member?.servicePath)"
-            name="help-circle"></ion-icon>
-          <span>{{member?.serviceName || 'N/A'}}</span>
-        </div>
-      </div>
-    </div>
-
-  </ion-list> -->
-
   <!-- for features of memebership user  -->
   <ion-list *ngIf="memberships?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -170,8 +147,10 @@
           <ion-icon *ngIf="member?.servicePath === '/vakil/AddImageBanner'" name="image"></ion-icon>
           <ion-icon *ngIf="member?.servicePath === '/vakil/AddVideo'" name="videocam"></ion-icon>
           <ion-icon *ngIf="member?.servicePath === '/vakil/NewClientRegstration'" name="person-add"></ion-icon>
+          <ion-icon *ngIf="member?.servicePath === '/vakil/vakilRewards'" name="trophy"></ion-icon>
+          <ion-icon *ngIf="member?.servicePath === '/vakil/Achievement'" name="ribbon"></ion-icon>
           <ion-icon
-            *ngIf="!['/vakil/AddPublication', '/vakil/AddImageBanner', '/vakil/AddVideo', '/vakil/NewClientRegstration'].includes(member?.servicePath)"
+            *ngIf="!['/vakil/AddPublication', '/vakil/AddImageBanner', '/vakil/AddVideo', '/vakil/NewClientRegstration', '/vakil/vakilRewards', '/vakil/Achievement'].includes(member?.servicePath)"
             name="help-circle"></ion-icon>
           <span>{{member?.serviceName || 'N/A'}}</span>
         </div>

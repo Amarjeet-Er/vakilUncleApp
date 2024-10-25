@@ -240,7 +240,7 @@ export class CrudService {
     return this._http.get<any>(`${this.base_url}bareActList`);
   }
   top_properity_lawyer() {
-    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=21`);
+    return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=68`);
   }
   top_text_lawyer() {
     return this._http.get<any>(`${this.base_url}topAdvocateListByType?adTyId=5`);

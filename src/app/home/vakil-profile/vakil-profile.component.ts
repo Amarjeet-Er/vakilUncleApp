@@ -94,6 +94,7 @@ export class VakilProfileComponent implements OnInit {
       advType: ['', Validators.required],
       experiance: ['', Validators.required],
       DOB: ['', Validators.required],
+      adBio: ['', Validators.required],
       llbRegistrationNum: ['', Validators.required],
       offAddress: ['', Validators.required],
       adhar: [''],
@@ -101,7 +102,6 @@ export class VakilProfileComponent implements OnInit {
       barCouncil: [''],
       llb: [''],
       profile: [''],
-      pass: ['', Validators.required],
     });
   }
 
@@ -209,8 +209,9 @@ export class VakilProfileComponent implements OnInit {
     formUpdate.append('email', this.vakil_profile_update.get('email')?.value);
     formUpdate.append('state', this.vakil_profile_update.get('state')?.value);
     formUpdate.append('city', this.vakil_profile_update.get('city')?.value);
-    formUpdate.append('pass', this.vakil_profile_update.get('pass')?.value);
+    formUpdate.append('pass', this.edit_profile_data?.pass);
     formUpdate.append('gender', this.vakil_profile_update.get('gender')?.value);
+    formUpdate.append('adBio', this.vakil_profile_update.get('adBio')?.value);
     formUpdate.append('DOB', this.vakil_profile_update.get('DOB')?.value);
     formUpdate.append('llbRegistrationNum', this.vakil_profile_update.get('llbRegistrationNum')?.value);
     formUpdate.append('offAddress', this.vakil_profile_update.get('offAddress')?.value);

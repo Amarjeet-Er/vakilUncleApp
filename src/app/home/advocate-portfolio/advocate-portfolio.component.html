@@ -64,7 +64,7 @@
     <p>{{ profile_data?.adBio || 'N/A' }}</p>
   </ion-list>
 
-  <ion-list  *ngIf="awards_list?.length > 0">
+  <ion-list *ngIf="awards_list?.length > 0">
     <h3>Awards & Achievement</h3>
     <ion-list>
       <ion-chip *ngFor="let award of awards_list">{{ award.title }}</ion-chip>
@@ -83,6 +83,7 @@
     <h3 class=" ion-padding">Gallery</h3>
     <div class="galleryList">
       <div class="images" *ngFor="let image of image_banner">
+        <p>{{image?.title}}</p>
         <img alt="Lawyer Profile" [src]="image?.imageUrl ? img_url + image?.imageUrl : '' " />
       </div>
     </div>
@@ -92,7 +93,8 @@
     <h3 class="ion-padding">Legal Advice Videos</h3>
     <div class="videoList">
       <div class="video" *ngFor="let video of video_data" (click)="onVideo(video)">
-        <img [src]="video?.videoUrl">
+        <img src="../../../assets/slider/slider_2.jpg">
+        <p>{{video?.title}}</p>
       </div>
     </div>
   </ion-list>

@@ -137,6 +137,8 @@ ion-content {
             // for upcoming case date 
             ion-item {
                 margin: 10px 0;
+                margin: 0px 10px 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
                 ion-label {
                     h3 {
@@ -144,10 +146,12 @@ ion-content {
                         color: var(--color-primary);
                         font-size: 15px;
                     }
-                    p{
+
+                    p {
                         font-size: 12px;
                         margin: 0px;
                     }
+
                     span {
                         color: #27AE60;
                         font-size: 11px;
