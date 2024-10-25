@@ -7,8 +7,10 @@
 <ion-content class="ion-padding">
   <ion-list>
     <div class="cardInfo" *ngFor="let review of review_list">
-      <span>{{review?.clientName}}</span>
-      <p>{{review?.review}}</p>
+      <span><ion-icon name="person"></ion-icon> &nbsp;{{review?.clientName}}</span>
+      <p><ion-icon name="call"></ion-icon> &nbsp; {{review?.contactNum}}</p>
+      <p><ion-icon name="mail"></ion-icon> &nbsp; {{review?.email}}</p>
+      <p><ion-icon name="chatbox"></ion-icon> &nbsp; {{review?.review}}</p>
       <ion-row>
         <ion-icon *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" name="star"
           [ngClass]="{'orange-star': i < review.rating, 'black-star': i >= review.rating}">
