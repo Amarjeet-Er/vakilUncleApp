@@ -1,0 +1,46 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" (click)="onBack()"></ion-icon>
+    <span>Payment History {{cases?.length}}</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+  <div class="addbutton" (click)="addPayment()">
+    <ion-row class="AddCase">
+      <ion-icon name="add-circle"></ion-icon>
+      <span>Add Payment</span>
+    </ion-row>
+  </div>
+  <h3>{{payHistory_data?.name}}</h3>
+  <ng-container *ngFor="let fee of cases">
+    <ion-card>
+      <div>
+        <ion-row>
+          <span class="highlight">
+            <ion-icon name="logo-alipay"></ion-icon>&nbsp; Fee
+          </span>
+          <span class="highlight">{{ fee?.fee|| 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span> <ion-icon name="wallet-outline"></ion-icon> &nbsp; Extra Charge </span>
+          <span>{{ fee?.extracharge || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="newspaper-outline"></ion-icon>&nbsp;Total Due</span>
+          <span>{{ fee?.due || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Date</span>
+          <span style="color: green;">{{ fee?.date || 'N/A' }}</span>
+        </ion-row>
+      </div>
+
+    </ion-card>
+  </ng-container>
+  <p class="NoRecord" *ngIf="cases?.length === 0">No Record Found</p>
+</ion-content>

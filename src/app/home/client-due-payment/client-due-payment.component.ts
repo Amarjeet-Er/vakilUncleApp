@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
-import { filter } from 'rxjs/operators';
+
 @Component({
-  selector: 'app-client-payment-list',
-  templateUrl: './client-payment-list.component.html',
-  styleUrls: ['./client-payment-list.component.scss'],
+  selector: 'app-client-due-payment',
+  templateUrl: './client-due-payment.component.html',
+  styleUrls: ['./client-due-payment.component.scss'],
 })
-export class ClientPaymentListComponent implements OnInit {
+export class ClientDuePaymentComponent  implements OnInit {
   cases: any;
   filter_data: any;
   login_data: any;
@@ -24,7 +25,7 @@ export class ClientPaymentListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+    this._router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe(() => {
       this.loadData();
     });
   }
@@ -37,7 +38,7 @@ export class ClientPaymentListComponent implements OnInit {
           if (Array.isArray(res.data)) {
             const ids: string[] = [];
             res.data.forEach((item: any) => {
-              if (item.due === 0) {
+              if (item.due) {
                 ids.push(item);
                 this.cases = ids ;
                 this.filter_data = ids ;
@@ -53,8 +54,12 @@ export class ClientPaymentListComponent implements OnInit {
       )
   }
 
+  pyamentDues(dues: any) {
+    localStorage.setItem('Paymenthistory', JSON.stringify(dues))
+    this._router.navigate(['/home/clientpaymenthistory'])
+  }
   pyament_Dues() {
-    this._router.navigate(['/home/clientduepayment'])
+    this._router.navigate(['/home/clientpaymentlist'])
   }
 
   onSearch(event: any) {
@@ -80,3 +85,4 @@ export class ClientPaymentListComponent implements OnInit {
     );
   }
 }
+

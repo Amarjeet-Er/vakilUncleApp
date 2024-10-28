@@ -9,15 +9,15 @@
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
 
   <div class="addbutton">
-    <ion-row class="AddCase">
+    <ion-row class="AddCase" (click)="pyament_Dues()">
       <span>Paid Payment</span>
     </ion-row>
-    <ion-row class="AddCase" (click)="pyament_Dues()">
+    <ion-row class="AddCase">
       <span>Due Payment</span>
     </ion-row>
   </div>
   <ng-container *ngFor="let case of cases">
-    <ion-card>
+    <ion-card (click)="pyamentDues(case)">
       <div>
         <ion-row>
           <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Client Name </span>
@@ -40,15 +40,10 @@
         </ion-row>
 
         <ion-row>
-          <span><ion-icon name="checkmark-done-circle-outline"></ion-icon>&nbsp; Received Pay</span>
-          <span>{{ case?.Clientpayment || 'N/A' }}</span>
-        </ion-row>
-
-        <ion-row [ngClass]="{'green-text': case?.due === 0, 'red-text': case?.due > 0}">
           <span>
             <ion-icon name="calendar-outline"></ion-icon>&nbsp; Total Dues
           </span>
-          <span>
+          <span [ngClass]="{'green-text': case?.due === 0, 'red-text': case?.due > 0}">
             {{ case?.due === 0 ? 'All Paid' : '' + case?.due }}
           </span>
         </ion-row>

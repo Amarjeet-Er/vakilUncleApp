@@ -1,0 +1,29 @@
+<!-- for add achievement form  -->
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>Add Payment</span>
+  </div>
+</div>
+<ion-content>
+  <form [formGroup]="achievement_form">
+    <ion-input label="Fee" readonly formControlName="title" label-placement="floating" fill="outline"
+      placeholder="Enter fee">
+    </ion-input>
+
+    <ion-input label="Extra Charge" formControlName="desc" label-placement="floating" fill="outline"
+      placeholder="Enter extra charge" readonly>
+    </ion-input>
+
+    <ion-input label="Due" formControlName="docs1" label-placement="floating" fill="outline" placeholder="Enter due"
+      readonly>
+    </ion-input>
+
+    <ion-input label="Client Payment" formControlName="docs2" label-placement="floating" fill="outline"
+      placeholder="Enter client payment">
+    </ion-input>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-button shape="round" (click)="onSubmit()">Add</ion-button>
+    </ion-row>
+  </form>
+</ion-content>

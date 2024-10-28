@@ -29,7 +29,6 @@ import { VakilReviewComponent } from './vakil-review/vakil-review.component';
 import { MembershipPremiumComponent } from './membership-premium/membership-premium.component';
 import { PaymentHistoryComponent } from './payment-history/payment-history.component';
 import { PaymentLockComponent } from '../payment-lock/payment-lock.component';
-import { ClientPaymentComponent } from './client-payment/client-payment.component';
 import { UpcomingCourtListComponent } from './upcoming-court-list/upcoming-court-list.component';
 import { UpcomingCourtHearingListComponent } from './upcoming-court-hearing-list/upcoming-court-hearing-list.component';
 import { RecentClientListComponent } from './recent-client-list/recent-client-list.component';
@@ -52,6 +51,10 @@ import { RewardsAddComponent } from './rewards-add/rewards-add.component';
 import { VideoPlayComponent } from './video-play/video-play.component';
 import { ReportTotalClientComponent } from './report-total-client/report-total-client.component';
 import { ClientPaymentListComponent } from './client-payment-list/client-payment-list.component';
+import { ClientPaymentHistoryComponent } from './client-payment-history/client-payment-history.component';
+import { ClientAddVakilPaymentComponent } from './client-add-vakil-payment/client-add-vakil-payment.component';
+import { ClientDuePaymentComponent } from './client-due-payment/client-due-payment.component';
+import { MembershipPlanValidityComponent } from './membership-plan-validity/membership-plan-validity.component';
 
 const routes: Routes = [
   {
@@ -84,7 +87,6 @@ const routes: Routes = [
       { path: 'enquiry', component: EnquiryComponent },
       { path: 'vakilreview', component: VakilReviewComponent },
       { path: 'paymenthistory', component: PaymentHistoryComponent },
-      { path: 'clientpaymenthistory', component: ClientPaymentComponent },
       { path: 'paymentlock', component: PaymentLockComponent },
       { path: 'upcomingcourtlist', component: UpcomingCourtListComponent },
       { path: 'upcominghearinglist', component: UpcomingCourtHearingListComponent },
@@ -108,6 +110,10 @@ const routes: Routes = [
       { path: 'videoplay', component: VideoPlayComponent },
       { path: 'reporttotalclient', component: ReportTotalClientComponent },
       { path: 'clientpaymentlist', component: ClientPaymentListComponent },
+      { path: 'clientpaymenthistory', component: ClientPaymentHistoryComponent },
+      { path: 'clientaddpayment', component: ClientAddVakilPaymentComponent },
+      { path: 'clientduepayment', component: ClientDuePaymentComponent },
+      { path: 'membershipplanvalidity', component: MembershipPlanValidityComponent },
 
     ]
   },

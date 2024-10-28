@@ -17,6 +17,7 @@ export class VideoManagementComponent implements OnInit {
   videoList: any;
   filter_data: any;
   video_form!: FormGroup;
+  banner_select: any;
 
   constructor(
     private _crud: CrudService,
@@ -31,6 +32,7 @@ export class VideoManagementComponent implements OnInit {
     this.video_form = this._fb.group({
       title: ['', Validators.required],
       url: ['', Validators.required],
+      banner: ['', Validators.required],
     }
     )
     this._crud.get_video(this.login_data.advId).subscribe(
@@ -46,12 +48,26 @@ export class VideoManagementComponent implements OnInit {
       }
     )
   }
-
+// for select banner Card
+onBanner(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      console.log('File content:', reader.result);
+      this.banner_select = file;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    console.log('No file selected');
+  }
+}
   onSubmit() {
     const formdata = new FormData();
     formdata.append('vakilId', this.login_data.advId);
     formdata.append('title', this.video_form.get('title')?.value);
     formdata.append('url', this.video_form.get('url')?.value);
+    formdata.append('banner', this.banner_select);
     if (this.video_form.valid) {
       this._crud.add_video(formdata).subscribe(
         (res: any) => {

@@ -1,0 +1,51 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home/account"> </ion-icon>
+    <span>Plan Validity</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-card class="membership-card">
+    <ion-card-header>
+      <ion-card-title class="member-name">{{ memberName }}</ion-card-title>
+      <ion-card-subtitle class="fee">Fee: {{ fee | currency:'INR' }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="date-row">
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-icon name="calendar-outline" slot="start"></ion-icon>
+              <ion-label class="date-label"><strong>Start Date:</strong></ion-label>
+            </ion-item>
+            <p class="date-value">{{ startDate | date: 'mediumDate' }}</p>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-icon name="calendar-outline" slot="start"></ion-icon>
+              <ion-label class="date-label"><strong>End Date:</strong></ion-label>
+            </ion-item>
+            <p class="date-value">{{ endDate | date: 'mediumDate' }}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none">
+              <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+              <ion-label><strong>Features</strong></ion-label>
+            </ion-item>
+            <ion-list>
+              <ion-item *ngFor="let feature of features" lines="none" class="feature-item">
+                <ion-icon name="star-outline" slot="start" color="primary"></ion-icon>
+                <ion-label>{{ feature }}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

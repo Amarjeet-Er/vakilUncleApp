@@ -1,0 +1,72 @@
+.header {
+    width: 100%;
+    height: 70px;
+    background: var(--color-primary);
+    color: var(--color-light);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        position: relative;
+
+        ion-icon {
+            position: absolute;
+            font-size: 24px;
+            left: 10px;
+        }
+
+        span {
+            font-size: 16px;
+            margin: 0 auto;
+        }
+    }
+}
+
+.membership-card {
+    --background: #ffffff;
+    --border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    .member-name {
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .fee {
+        font-size: 1.1em;
+        color: #4CAF50; // Customize as needed
+    }
+
+    .date-row {
+        padding: 0 0 10px;
+        border-bottom: 1px solid #ccc;
+        text-align: center
+    }
+
+    .date-label {
+        font-size: 0.9em;
+        color: #555;
+    }
+
+    .date-value {
+        font-size: 1em;
+        color: #000;
+        font-weight: 500;
+    }
+
+    .feature-item {
+        --padding-start: 0;
+        --inner-padding-end: 0;
+        font-size: 0.95em;
+        color: #555;
+    }
+
+    .feature-item ion-icon {
+        color: #ffcc00;
+    }
+}

@@ -56,7 +56,6 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } fro
 import { MembershipPremiumComponent } from './home/membership-premium/membership-premium.component';
 import { PaymentHistoryComponent } from './home/payment-history/payment-history.component';
 import { PaymentLockComponent } from './payment-lock/payment-lock.component';
-import { ClientPaymentComponent } from './home/client-payment/client-payment.component';
 import { UpcomingCourtListComponent } from './home/upcoming-court-list/upcoming-court-list.component';
 import { UpcomingCourtHearingListComponent } from './home/upcoming-court-hearing-list/upcoming-court-hearing-list.component';
 import { RecentClientListComponent } from './home/recent-client-list/recent-client-list.component';
@@ -79,6 +78,10 @@ import { RewardsAddComponent } from './home/rewards-add/rewards-add.component';
 import { VideoPlayComponent } from './home/video-play/video-play.component';
 import { ReportTotalClientComponent } from './home/report-total-client/report-total-client.component';
 import { ClientPaymentListComponent } from './home/client-payment-list/client-payment-list.component';
+import { ClientPaymentHistoryComponent } from './home/client-payment-history/client-payment-history.component';
+import { ClientAddVakilPaymentComponent } from './home/client-add-vakil-payment/client-add-vakil-payment.component';
+import { ClientDuePaymentComponent } from './home/client-due-payment/client-due-payment.component';
+import { MembershipPlanValidityComponent } from './home/membership-plan-validity/membership-plan-validity.component';
 
 @NgModule({
   declarations: [
@@ -127,7 +130,6 @@ import { ClientPaymentListComponent } from './home/client-payment-list/client-pa
     MembershipPremiumComponent,
     PaymentHistoryComponent,
     PaymentLockComponent,
-    ClientPaymentComponent,
     UpcomingCourtListComponent,
     UpcomingCourtHearingListComponent,
     RecentClientListComponent,
@@ -150,6 +152,10 @@ import { ClientPaymentListComponent } from './home/client-payment-list/client-pa
     VideoPlayComponent,
     ReportTotalClientComponent,
     ClientPaymentListComponent,
+    ClientPaymentHistoryComponent,
+    ClientAddVakilPaymentComponent,
+    ClientDuePaymentComponent,
+    MembershipPlanValidityComponent
   ],
   imports: [
     BrowserModule,

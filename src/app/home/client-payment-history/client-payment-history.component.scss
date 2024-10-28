@@ -31,7 +31,7 @@
       width: 100%;
       height: auto;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 2fr));
+      grid-template-columns: repeat(auto-fill, minmax(100%, 4fr));
       gap: 0px 10px;
       padding: 0px 10px;
     }
@@ -40,23 +40,18 @@
       padding: 10px;
       display: flex;
       align-items: center;
-      font-size: 12px;
-      justify-content:center;
+      font-size: 15px;
+      justify-content: space-between;
       background-color: var(--color-light);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       font-weight: 500;
       color: var(--color-dark);
-      border-radius: 50px;
   
       ion-icon {
         font-size: 24px;
         color: var(--color-primary);
       }
     }
-    .AddCase:first-child {
-      background-color: var(--color-primary);
-      color: #fff;
-  }
   
     ion-card {
       padding: 7px 7px 0px;
@@ -139,5 +134,9 @@
   
   .red-text {
     color: red;
+  }
+  h3{
+    padding: 0px 12px;
+    margin: 2px
   }
   
