@@ -30,9 +30,7 @@
           <span>{{client.caseNo || 'N/A'}}</span>
         </ion-row>
       </div>
-      <div class="cleint-profile">
-        <img [src]="detail?.profile ? img_url+detail.profile:  '../../../assets/icon/profile.png'" alt="">
-      </div>
+      
     </ion-card>
   </ion-list>
   <p class="NoRecord" *ngIf="clients?.length === 0">No Record Found</p>
@@ -220,20 +218,7 @@
               <span>{{detail?.advocateFee || 'N/A'}}</span>
             </p>
           </ion-row>
-          <ion-row>
-            <ion-icon name="documents"></ion-icon>
-            <p>
-              <span>Document </span>
-              <span>{{detail?.document || 'N/A'}}</span>
-            </p>
-          </ion-row>
-          <ion-row>
-            <ion-icon name="location"></ion-icon>
-            <p>
-              <span>Case Summary</span>
-              <span>{{detail?.caseSummary || 'N/A'}}</span>
-            </p>
-          </ion-row>
+        
           <ion-row>
             <ion-icon name="location"></ion-icon>
             <p>

@@ -60,7 +60,7 @@
       <ion-button size="small" fill="clear" shape="round" (click)="allKanoon()">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="chipList" *ngFor="let kanoon of kanoon_list" (click)="kanoot_id(kanoon)">
+      <div class="chipList" *ngFor="let kanoon of kanoon_list" (click)="kanoon_id(kanoon)">
         <ion-chip>{{kanoon?.bareType}}</ion-chip>
       </div>
     </div>
@@ -86,12 +86,11 @@
             <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer?.offAddress}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -121,12 +120,11 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp; <ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -155,12 +153,11 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp; <ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -189,12 +186,11 @@
             {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -223,12 +219,11 @@
             {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -257,12 +252,11 @@
             {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -292,12 +286,11 @@
             {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -327,12 +320,11 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -362,12 +354,11 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -398,12 +389,11 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -433,12 +423,11 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>
@@ -468,12 +457,11 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-            {{lawyer.rating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
           <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-          <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
           <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
         </ion-row>
       </div>

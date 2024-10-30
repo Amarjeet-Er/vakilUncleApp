@@ -189,11 +189,10 @@ export class CrudService {
     return this._http.get<any>(`${this.base_url}getAlluserChat?senderId=${senderId}&recieverId=${recieverId}&sendby=${sendby}`);
   }
   get_client_payment_history(vakilId: number, clientId: any, caseNuber: any) {
-    console.log(vakilId);
-    console.log(clientId);
-    console.log(caseNuber);
-    
     return this._http.get<any>(`${this.base_url}clientPaymentHistoryByAdvocate?vakilId=${vakilId}&clientId=${clientId}&caseNuber=${caseNuber}`);
+  }
+  post_change_password(data: any) {
+    return this._http.post<any>(`${this.base_url}changePassword`, data);
   }
 
 

@@ -83,7 +83,6 @@
     <h3 class=" ion-padding">Gallery</h3>
     <div class="galleryList">
       <div class="images" *ngFor="let image of image_banner">
-        <p>{{image?.title}}</p>
         <img alt="Lawyer Profile" [src]="image?.imageUrl ? img_url + image?.imageUrl : '' " />
       </div>
     </div>
@@ -93,7 +92,8 @@
     <h3 class="ion-padding">Legal Advice Videos</h3>
     <div class="videoList">
       <div class="video" *ngFor="let video of video_data" (click)="onVideo(video)">
-        <img src="../../../assets/slider/slider_2.jpg">
+        <img class="youtubelogo" src="https://www.iconpacks.net/icons/1/free-youtube-icon-141-thumb.png" alt="" style="width: 60px;">
+        <img class="videoBanner" [src]="video?.bannerUrl ? img_url + video?.bannerUrl : '../../../assets/slider/slider_2.jpg'">
         <p>{{video?.title}}</p>
       </div>
     </div>

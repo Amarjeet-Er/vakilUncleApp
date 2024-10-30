@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-vakil-dashboard',
@@ -118,13 +119,16 @@ export class VakilDashboardComponent implements OnInit {
 			}
 		);
 	}
-	disable() { }
 	ngOnInit() {
+		this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+			this.loadData();
+		});
+	}
+	loadData() {
 		this._crud.get_plan_details(this.vId).subscribe(
 			(res: any) => {
 				this.memberships = res.data
 				console.log(this.memberships);
-
 			},
 			(error) => this._shared.tostErrorTop('Error')
 		);
@@ -184,6 +188,7 @@ export class VakilDashboardComponent implements OnInit {
 		this._router.navigate(['/home/upcominghearinglist']);
 	}
 
+	disable() { }
 	handleClick(member: any) {
 		switch (member?.servicePath) {
 			case '/vakil/AddPublication':

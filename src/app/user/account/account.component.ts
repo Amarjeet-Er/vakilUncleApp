@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -21,7 +22,7 @@ export class AccountComponent implements OnInit {
   constructor(
     private _router: Router,
     private _crud: CrudService,
-    private _shared:SharedService
+    private _shared: SharedService
   ) {
     this.login = localStorage.getItem('userLoginData');
     this.login_data = JSON.parse(this.login);
@@ -30,16 +31,21 @@ export class AccountComponent implements OnInit {
         this.img_url = data;
       }
     );
+  }
+
+  ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+  }
+  loadData() {
     this._crud.get_client_profile(this.login_data.id).subscribe(
       (res: any) => {
         this.profile_data = res.data;
         console.log(this.profile_data);
-        
       }
     );
   }
-
-  ngOnInit() { }
 
 
   updatedProfile() {
@@ -54,11 +60,5 @@ export class AccountComponent implements OnInit {
   openTerms() {
     this.terms.present();
   }
-  openHelp() {
-    this.help.present();
-  }
 
-  openContact() {
-    this.contact.present();
-  }
 }

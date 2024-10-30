@@ -82,6 +82,11 @@ import { ClientPaymentHistoryComponent } from './home/client-payment-history/cli
 import { ClientAddVakilPaymentComponent } from './home/client-add-vakil-payment/client-add-vakil-payment.component';
 import { ClientDuePaymentComponent } from './home/client-due-payment/client-due-payment.component';
 import { MembershipPlanValidityComponent } from './home/membership-plan-validity/membership-plan-validity.component';
+import { UserChangePasswordComponent } from './user/user-change-password/user-change-password.component';
+import { VakilChangePasswordComponent } from './vakil/vakil-change-password/vakil-change-password.component';
+import { VakilAccountStatusComponent } from './home/vakil-account-status/vakil-account-status.component';
+import { VakilSettingComponent } from './home/vakil-setting/vakil-setting.component';
+import { ClientSettingComponent } from './home/client-setting/client-setting.component';
 
 @NgModule({
   declarations: [
@@ -155,7 +160,12 @@ import { MembershipPlanValidityComponent } from './home/membership-plan-validity
     ClientPaymentHistoryComponent,
     ClientAddVakilPaymentComponent,
     ClientDuePaymentComponent,
-    MembershipPlanValidityComponent
+    MembershipPlanValidityComponent,
+    UserChangePasswordComponent,
+    VakilChangePasswordComponent,
+    VakilAccountStatusComponent,
+    VakilSettingComponent,
+    ClientSettingComponent
   ],
   imports: [
     BrowserModule,

@@ -164,9 +164,19 @@ ion-content {
                 border-radius: 6px;
                 scroll-snap-align: center;
                 overflow: hidden;
+                position: relative;
+                cursor: pointer;
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-                img {
+                .youtubelogo {
+                    width: 60px;
+                    position: absolute;
+                    top: calc(50% - 18px);
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                .videoBanner {
                     width: 100%;
                     height: calc(100% - 30px);
                     object-fit: cover;

@@ -39,11 +39,11 @@
           <span>{{ case?.caseNumber || 'N/A' }}</span>
         </ion-row>
 
-        <ion-row>
+        <ion-row [ngClass]="{'green-text': case?.due === 0, 'red-text': case?.due > 0}">
           <span>
             <ion-icon name="calendar-outline"></ion-icon>&nbsp; Total Dues
           </span>
-          <span [ngClass]="{'green-text': case?.due === 0, 'red-text': case?.due > 0}">
+          <span>
             {{ case?.due === 0 ? 'All Paid' : '' + case?.due }}
           </span>
         </ion-row>

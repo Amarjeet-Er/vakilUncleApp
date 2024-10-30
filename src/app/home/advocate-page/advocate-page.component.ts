@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -49,6 +50,7 @@ export class AdvocatePageComponent implements OnInit {
   ];
   errorMes: any;
   advType: any;
+  filter_data: any;
 
   constructor(
     private _router: Router,
@@ -56,25 +58,14 @@ export class AdvocatePageComponent implements OnInit {
     private _shared: SharedService,
     private _fb: FormBuilder
   ) {
-    this._shared.sharedData.subscribe(
-      (res: any) => {
-        this.advType = res;
-        const parameter = {
-          advType: this.advType,
-        }
-        this._crud.get_total_advocate_list(parameter).subscribe(
-          (res: any) => {
-            console.log(res.data, 'filter result');
-            this.advocated_list = res.data
-          }
-        )
-      }
-    )
+
   }
 
   ngOnInit() {
     this.initializeForm();
-    this.fetchData();
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.fetchData();
+    });
   }
 
   initializeForm() {
@@ -90,6 +81,20 @@ export class AdvocatePageComponent implements OnInit {
   }
 
   fetchData() {
+    this._shared.sharedData.subscribe(
+      (res: any) => {
+        this.advType = res;
+        const parameter = {
+          advType: this.advType,
+        }
+        this._crud.get_total_advocate_list(parameter).subscribe(
+          (res: any) => {
+            console.log(res.data, 'filter result');
+            this.advocated_list = res.data
+          }
+        )
+      }
+    )
     this._crud.get_total_advocate_list(this.advType).subscribe(
       (res: any) => {
         console.log(res.data, 'filter result');
@@ -103,14 +108,17 @@ export class AdvocatePageComponent implements OnInit {
     )
     this._crud.get_city_list().subscribe((res: any) => {
       this.city_list = res.data;
+      this.filter_data = res.data;
     });
 
     this._crud.get_advocate_type().subscribe((res: any) => {
       this.adv_list = res.data;
+      this.filter_data = res.data;
     });
 
     this._crud.get_court_list().subscribe((res: any) => {
       this.court_list = res.data;
+      this.filter_data = res.data;
     });
   }
 
@@ -157,4 +165,5 @@ export class AdvocatePageComponent implements OnInit {
     localStorage.setItem('vakilProfile', JSON.stringify(data.advId));
     this._router.navigate(['/home/advocateportfolio']);
   }
+
 }

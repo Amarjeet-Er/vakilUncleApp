@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Account Status</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Account Status</ion-card-title>
+      <ion-label color="success" *ngIf="status === 'active'">Active</ion-label>
+      <ion-label color="danger" *ngIf="status === 'expired'">Expired</ion-label>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>Plan Type:</ion-label>
+        <ion-note>{{ planType }}</ion-note>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Renewal Date:</ion-label>
+        <ion-note>{{ renewalDate }}</ion-note>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Features:</ion-label>
+        <ion-note>{{ features }}</ion-note>
+      </ion-item>
+      
+      <ion-button expand="block" color="primary" *ngIf="status === 'expired'" (click)="renewPlan()">
+        Renew Plan
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -22,21 +22,9 @@
 
     <ion-list>
 
-      <ion-item lines="full">
+      <ion-item lines="full" routerLink="/home/vakilsetting">
         <ion-icon name="settings-outline"></ion-icon>
         <ion-label>Settings</ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-      <ion-item lines="full" (click)="openHelp()">
-        <ion-icon name="help-circle-outline"></ion-icon>
-        <ion-label>Help Panel</ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
-      <ion-item (click)="openContact()" lines="full">
-        <ion-icon name="earth-outline"></ion-icon>
-        <ion-label>Contact Us</ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
 
@@ -54,7 +42,7 @@
 
       <ion-item lines="full" routerLink="/home/paymenthistory">
         <ion-icon name="shield-checkmark-outline"></ion-icon>
-        <ion-label>Payment History</ion-label>
+        <ion-label>Transaction History</ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
 
@@ -63,7 +51,6 @@
         <ion-label>Terms, Policies and Licenses</ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
-
 
       <ion-item (click)="logout()" lines="full">
         <ion-icon name="power-outline"></ion-icon>
@@ -82,8 +69,6 @@
 </ion-content>
 
 
-
-
 <!-- for term and policies desgin modal  -->
 
 <ion-modal #terms>
@@ -95,6 +80,7 @@
       </div>
     </div>
     <ion-content>
+
       <ion-list>
         <ion-item lines="full">
           <ion-icon name="documents-outline"></ion-icon>
@@ -108,101 +94,7 @@
           <ion-icon name="chevron-forward"></ion-icon>
         </ion-item>
 
-        <ion-item lines="full">
-          <ion-icon name="help-circle-outline"></ion-icon>
-          <ion-label>Help & Support</ion-label>
-          <ion-icon name="chevron-forward"></ion-icon>
-        </ion-item>
       </ion-list>
-    </ion-content>
-  </ng-template>
-</ion-modal>
-
-
-<!-- for contact us modal desgin  -->
-<ion-modal #contact>
-  <ng-template>
-
-    <div class="header">
-      <div class="navbar">
-        <ion-icon name="chevron-back" (click)="contact.dismiss()"></ion-icon> <span>Contact Us</span>
-      </div>
-    </div>
-    <ion-content>
-      <ion-card>
-        <ion-item lines="full">
-          <ion-thumbnail slot="start">
-            <img alt="service" src="../../../assets/icon/service.png" />
-          </ion-thumbnail>
-          <ion-label>
-            <ion-card-title>Noida Office</ion-card-title>
-            <ion-card-subtitle>vakiluncle.in</ion-card-subtitle>
-          </ion-label>
-        </ion-item>
-        <ion-card-content>
-
-          <ion-item>
-            <ion-icon aria-hidden="true" name="globe-outline" slot="start"></ion-icon>
-            <ion-label>Macreel InfoSoft Pvt.Ltd</ion-label>
-          </ion-item>
-
-          <ion-item>
-            <ion-icon aria-hidden="true" name="location-outline" slot="start"></ion-icon>
-            <ion-label>H-221, Sector 63 Rd, Noida</ion-label>
-          </ion-item>
-
-          <ion-item>
-            <ion-icon aria-hidden="true" name="call-outline" slot="start"></ion-icon>
-            <ion-label>+(91) 8750900044</ion-label>
-          </ion-item>
-
-          <ion-item>
-            <ion-icon aria-hidden="true" name="mail-outline" slot="start"></ion-icon>
-            <ion-label>{{'sales@macreel.co.in'}}</ion-label>
-          </ion-item>
-
-        </ion-card-content>
-
-      </ion-card>
-
-
-    </ion-content>
-  </ng-template>
-
-</ion-modal>
-
-
-<!-- for help us modal desgin  -->
-<ion-modal #help>
-  <ng-template>
-
-    <div class="header">
-      <div class="navbar">
-        <ion-icon name="chevron-back" (click)="help.dismiss()"></ion-icon> <span>Help Panel</span>
-      </div>
-    </div>
-    <ion-content>
-      <ion-item lines="full">
-        <ion-icon name="reader-outline"></ion-icon>
-        <ion-label>Report a problem</ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-      <ion-item lines="full">
-        <ion-icon name="person-circle-outline"></ion-icon>
-        <ion-label>Account status</ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-      <ion-item lines="full">
-        <ion-icon name="information-circle-outline"></ion-icon>
-        <ion-label>Support requests</ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-      <ion-item lines="full">
-        <ion-icon name="pricetags-outline"></ion-icon>
-        <ion-label>Privacy and security help</ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
-      </ion-item>
-
     </ion-content>
   </ng-template>
 </ion-modal>

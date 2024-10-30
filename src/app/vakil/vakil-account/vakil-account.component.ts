@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -11,8 +12,7 @@ import { SharedService } from 'src/app/service/shared.service';
 })
 export class VakilAccountComponent implements OnInit {
   @ViewChild('terms') terms !: IonModal;
-  @ViewChild('contact') contact !: IonModal;
-  @ViewChild('help') help !: IonModal;
+
   profile_data: any;
   login: any;
   login_data: any
@@ -34,6 +34,11 @@ export class VakilAccountComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+  }
+  loadData() {
     this._crud.get_update_vakil_profile(this.login_data.advId).subscribe(
       (res: any) => {
         if (res.status === true) {
@@ -42,7 +47,6 @@ export class VakilAccountComponent implements OnInit {
       }
     );
   }
-
 
   updatedProfile() {
     this._router.navigate(['/home/vakilprofile'])
@@ -53,17 +57,8 @@ export class VakilAccountComponent implements OnInit {
     this._router.navigate(['/login'])
   }
 
-
   // for modal 
   openTerms() {
     this.terms.present();
-  }
-
-  openContact() {
-    this.contact.present();
-  }
-
-  openHelp() {
-    this.help.present();
   }
 }

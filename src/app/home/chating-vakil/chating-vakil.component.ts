@@ -143,9 +143,7 @@ export class ChatingVakilComponent implements OnInit, AfterViewChecked {
   autoScrollChat() {
     const chatContainer = document.getElementById('chatMessages');
     if (chatContainer) {
-      setTimeout(() => {
-        chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to the bottom
-      }, 10); // Delay to ensure content is rendered
+      chatContainer.scrollTop = chatContainer.scrollHeight; 
     }
   }
 

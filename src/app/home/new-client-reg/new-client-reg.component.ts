@@ -24,6 +24,7 @@ export class NewClientRegComponent implements OnInit {
   citys: any;
   court_list: any;
   filterData: any;
+  pro_img_url: any;
 
   constructor(
     private _router: Router,
@@ -37,6 +38,11 @@ export class NewClientRegComponent implements OnInit {
     this._shared.img_url.subscribe(
       (data: any) => {
         this.img_url = data;
+      }
+    )
+    this._shared.img_url.subscribe(
+      (data: any) => {
+        this.pro_img_url = data;
       }
     )
   }

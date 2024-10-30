@@ -76,6 +76,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     )
     this._crud.top_properity_lawyer().subscribe(
       (response) => {
+        console.log(response, 'proerty law');
+        
         if (response.status === true) {
           this.top_properity = response.data;
         }
@@ -227,7 +229,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   allKanoon() {
     this._router.navigate(['/home/kanoonlist']);
   }
-  kanoot_id(kanoon: any) {
+
+  kanoon_id(kanoon: any) {
     console.log(kanoon);
     this._shared.sharedData.next(kanoon)
     this._router.navigate(['/home/ipc']);

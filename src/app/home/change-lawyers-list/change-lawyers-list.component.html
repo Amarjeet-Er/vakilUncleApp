@@ -1,6 +1,6 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon> 
+    <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon>
     <span>Advocates</span>
     <ion-buttons size="small">
       <!-- <ion-icon slot="icon-only" name="options"></ion-icon> -->
@@ -25,12 +25,11 @@
           {{lawyer?.cityName || lawyer?.offAddress}} {{lawyer?.stateName}}
         </span>
         <span style="display: flex;">
-          {{lawyer.avgUserRating}}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+          {{lawyer.totalUserRating}} &nbsp; <ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
         </span>
       </ion-row>
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-        <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
         <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
       </ion-row>
     </div>

@@ -24,12 +24,11 @@
           {{ lawyer?.cityName || lawyer?.offAddress }} {{ lawyer?.stateName }}
         </span>
         <span style="display: flex;">
-          {{ lawyer.rating }}<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+          {{lawyer.totalUserRating}} &nbsp; <ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
         </span>
       </ion-row>
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span>Manage Case<br>{{ lawyer?.totalCase }}</span> |
-        <span>Success Rate<br>{{ lawyer?.avgUserRating }} %</span> |
         <span>Experience<br>{{ lawyer?.experiance }} yr.</span>
       </ion-row>
     </div>

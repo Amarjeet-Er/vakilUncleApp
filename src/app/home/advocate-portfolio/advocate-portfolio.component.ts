@@ -145,15 +145,14 @@ export class AdvocatePortfolioComponent implements OnInit {
     this.reviewForm.patchValue({ rating: value });
   }
 
-
   onSubmit() {
     if (this.reviewForm.valid) {
       const review = this.reviewForm.value;
       const data = {
         review: review.review,
         rating: review.rating,
-        clientId: this.login_data,
-        vakilId: this.user_id?.id
+        clientId: this.user_id?.id,
+        vakilId: this.login_data,
       };
       console.log('Review submitted:', data);
       this._crud.add_review(data).subscribe(

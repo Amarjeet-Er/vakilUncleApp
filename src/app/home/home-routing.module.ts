@@ -55,6 +55,13 @@ import { ClientPaymentHistoryComponent } from './client-payment-history/client-p
 import { ClientAddVakilPaymentComponent } from './client-add-vakil-payment/client-add-vakil-payment.component';
 import { ClientDuePaymentComponent } from './client-due-payment/client-due-payment.component';
 import { MembershipPlanValidityComponent } from './membership-plan-validity/membership-plan-validity.component';
+import { VakilAccountStatusComponent } from './vakil-account-status/vakil-account-status.component';
+import { VakilSettingComponent } from './vakil-setting/vakil-setting.component';
+import { VakilContactSupportComponent } from './vakil-contact-support/vakil-contact-support.component';
+import { VakilReportAProblemComponent } from './vakil-report-a-problem/vakil-report-a-problem.component';
+import { VakilPrivacyAndSecurityHelpComponent } from './vakil-privacy-and-security-help/vakil-privacy-and-security-help.component';
+import { VakilSupportRequestComponent } from './vakil-support-request/vakil-support-request.component';
+import { ClientSettingComponent } from './client-setting/client-setting.component';
 
 const routes: Routes = [
   {
@@ -114,6 +121,13 @@ const routes: Routes = [
       { path: 'clientaddpayment', component: ClientAddVakilPaymentComponent },
       { path: 'clientduepayment', component: ClientDuePaymentComponent },
       { path: 'membershipplanvalidity', component: MembershipPlanValidityComponent },
+      { path: 'vakilsetting', component: VakilSettingComponent },
+      { path: 'vakilcontactsupport', component: VakilContactSupportComponent },
+      { path: 'vakilreportaproblem', component: VakilReportAProblemComponent },
+      { path: 'vakilaccountstatus', component: VakilAccountStatusComponent },
+      { path: 'vakilsupportandreuest', component: VakilSupportRequestComponent },
+      { path: 'vakilprivacyandsecurity', component: VakilPrivacyAndSecurityHelpComponent },
+      { path: 'clientsetting', component: ClientSettingComponent },
 
     ]
   },

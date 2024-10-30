@@ -7,6 +7,7 @@ import { ContactPanelComponent } from './contact-panel/contact-panel.component';
 import { AccountComponent } from './account/account.component';
 import { IpcPanelComponent } from '../home/ipc-panel/ipc-panel.component';
 import { AdvocatePageComponent } from '../home/advocate-page/advocate-page.component';
+import { UserChangePasswordComponent } from './user-change-password/user-change-password.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'account', component: AccountComponent },
       { path: 'advocate', component: AdvocatePageComponent },
       { path: 'clientcase', component: UserCasePanelComponent },
+      { path: 'clientchangepassword', component: UserChangePasswordComponent },
     ]
   },
 ];
