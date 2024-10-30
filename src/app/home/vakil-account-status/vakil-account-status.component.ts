@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-vakil-account-status',
@@ -7,15 +8,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VakilAccountStatusComponent implements OnInit {
   ngOnInit(): void {
+
+  }
+  constructor(private alertController: AlertController) { }
+
+  async renewAccount() {
+    const alert = await this.alertController.create({
+      header: 'Renew Account',
+      message: 'Would you like to renew your account for another year?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Renew',
+          handler: () => {
+            // Handle renewal logic
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
-  status = 'active';  // Can be 'active' or 'expired'
-  planType = 'Premium';
-  renewalDate = '2024-12-31';
-  features = 'Access to all resources, priority support';
-
-  renewPlan() {
-    // Logic for renewing the plan
-    console.log('Plan renewal initiated');
+  async upgradeAccount() {
+    const alert = await this.alertController.create({
+      header: 'Upgrade Account',
+      message: 'Upgrade to Pro for additional benefits!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Upgrade',
+          handler: () => {
+            // Handle upgrade logic
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }

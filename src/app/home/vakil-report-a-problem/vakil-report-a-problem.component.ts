@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-vakil-report-a-problem',
@@ -7,8 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VakilReportAProblemComponent  implements OnInit {
 
-  constructor() { }
+  ngOnInit() { }
 
-  ngOnInit() {}
+  contactForm: FormGroup;
 
+  constructor(private fb: FormBuilder) {
+    this.contactForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      description: ['', Validators.required]
+    });
+  }
+
+  setTouched(controlName: string) {
+    this.contactForm.get(controlName)?.markAsTouched();
+  }
+
+  submitSupportRequest() {
+    if (this.contactForm.valid) {
+      const supportData = this.contactForm.value;
+      console.log('Support Request:', supportData);
+      // Add API call here if needed
+    }
+  }
 }

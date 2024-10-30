@@ -4,6 +4,7 @@ import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { Clipboard } from '@capacitor/clipboard';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-video-management',
@@ -18,14 +19,22 @@ export class VideoManagementComponent implements OnInit {
   filter_data: any;
   video_form!: FormGroup;
   banner_select: any;
+  img_url: any;
 
   constructor(
     private _crud: CrudService,
     private _shared: SharedService,
     private _fb: FormBuilder,
+    private _router: Router,
   ) {
     this.login = localStorage.getItem('vakilLoginData');
-    this.login_data = JSON.parse(this.login)
+    this.login_data = JSON.parse(this.login);
+
+    this._shared.img_url.subscribe(
+      (data: any) => {
+        this.img_url = data;
+      }
+    )
   }
 
   ngOnInit() {
@@ -37,6 +46,7 @@ export class VideoManagementComponent implements OnInit {
     )
     this._crud.get_video(this.login_data.advId).subscribe(
       (res: any) => {
+        console.log(res);
         if (res.status === true) {
           this.videoList = res.data;
           this.filter_data = res.data;
@@ -48,20 +58,27 @@ export class VideoManagementComponent implements OnInit {
       }
     )
   }
-// for select banner Card
-onBanner(event: any) {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      console.log('File content:', reader.result);
-      this.banner_select = file;
-    };
-    reader.readAsDataURL(file);
-  } else {
-    console.log('No file selected');
+  // for select banner Card
+  onBanner(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        console.log('File content:', reader.result);
+        this.banner_select = file;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      console.log('No file selected');
+    }
   }
-}
+
+  onVideo(video: any) {
+    console.log(video?.videoUrl, 'video');
+    this._shared.sharedData.next(video?.videoUrl)
+    this._router.navigate(['/home/vakilvideoplay'])
+  }
+
   onSubmit() {
     const formdata = new FormData();
     formdata.append('vakilId', this.login_data.advId);

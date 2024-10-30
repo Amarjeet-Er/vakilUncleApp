@@ -1,36 +1,34 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Account Status</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="header">
+  <div class="navbar">
+    <ion-icon slot="start" name="chevron-back" routerLink="/home/vakilsetting"></ion-icon>
+    <span>Account Status</span>
+  </div>
+</div>
 
-<ion-content class="ion-padding">
+
+<ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Account Status</ion-card-title>
-      <ion-label color="success" *ngIf="status === 'active'">Active</ion-label>
-      <ion-label color="danger" *ngIf="status === 'expired'">Expired</ion-label>
+      <ion-card-title>Account Information</ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
-      <ion-item lines="none">
-        <ion-label>Plan Type:</ion-label>
-        <ion-note>{{ planType }}</ion-note>
+      <ion-item>
+        <ion-label>Account Type</ion-label>
+        <ion-note slot="end" color="primary">Premium</ion-note>
       </ion-item>
-
-      <ion-item lines="none">
-        <ion-label>Renewal Date:</ion-label>
-        <ion-note>{{ renewalDate }}</ion-note>
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-note slot="end" color="success">Active</ion-note>
       </ion-item>
-
-      <ion-item lines="none">
-        <ion-label>Features:</ion-label>
-        <ion-note>{{ features }}</ion-note>
+      <ion-item>
+        <ion-label>Start Date</ion-label>
+        <ion-note slot="end">2024-01-01</ion-note>
       </ion-item>
-      
-      <ion-button expand="block" color="primary" *ngIf="status === 'expired'" (click)="renewPlan()">
-        Renew Plan
-      </ion-button>
+      <ion-item>
+        <ion-label>End Date</ion-label>
+        <ion-note slot="end">2024-12-31</ion-note>
+      </ion-item>
     </ion-card-content>
   </ion-card>
+
 </ion-content>

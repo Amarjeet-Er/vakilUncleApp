@@ -1,3 +1,33 @@
-<p>
-  vakil-report-a-problem works!
-</p>
+<div class="header">
+  <div class="navbar">
+    <ion-icon slot="start" name="chevron-back" routerLink="/home/vakilsetting"></ion-icon>
+    <span>Report a problem</span>
+  </div>
+</div>
+
+<ion-content>
+  <form [formGroup]="contactForm" (ngSubmit)="submitSupportRequest()" class="contact-form">
+
+    <ion-input formControlName="name" type="text" placeholder="Enter your name" fill="outline" label="Name"
+      label-placement="floating">
+    </ion-input>
+
+
+    <ion-input formControlName="email" type="email" placeholder="Enter your email" fill="outline" label="Email"
+      label-placement="floating">
+    </ion-input>
+
+    <ion-input formControlName="phone" type="number" placeholder="Enter your phone" fill="outline" label="Phone No"
+      label-placement="floating">
+    </ion-input>
+
+
+    <ion-textarea formControlName="description" placeholder="Describe your issue" fill="outline"
+      label="Issue Description" label-placement="floating">
+    </ion-textarea>
+
+    <ion-button expand="block" type="submit" [disabled]="contactForm.invalid">
+      Submit
+    </ion-button>
+  </form>
+</ion-content>

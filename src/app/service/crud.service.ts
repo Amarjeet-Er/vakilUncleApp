@@ -185,6 +185,9 @@ export class CrudService {
   get_total_client_payment(vakilId: any) {
     return this._http.get<any>(`${this.base_url}allClientPaymentList?vakilId=${vakilId}`);
   }
+  get_plan_validity(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}planValidity?vakilId=${vakilId}`);
+  }
   get_chating_data(senderId: number, recieverId: number, sendby: any) {
     return this._http.get<any>(`${this.base_url}getAlluserChat?senderId=${senderId}&recieverId=${recieverId}&sendby=${sendby}`);
   }
@@ -193,6 +196,9 @@ export class CrudService {
   }
   post_change_password(data: any) {
     return this._http.post<any>(`${this.base_url}changePassword`, data);
+  }
+  add_payment(data: any) {
+    return this._http.post<any>(`${this.base_url}addClientPayment`, data);
   }
 
 

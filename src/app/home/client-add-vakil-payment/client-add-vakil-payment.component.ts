@@ -41,13 +41,13 @@ export class ClientAddVakilPaymentComponent implements OnInit {
 
   ngOnInit() {
     this.achievement_form = this.formBuilder.group({
-      title: ['', Validators.required],
-      desc: [this.payHistory_data?.extracharge],
-      docs1: [this.payHistory_data?.due],
-      docs2: ['', [Validators.required]],
+      totalfee: [this.payHistory_data?.fee],
+      extracharge: [this.payHistory_data?.extracharge],
+      due: [this.payHistory_data?.due],
+      ClientPay: ['', [Validators.required]],
     });
 
-    this.achievement_form.get('docs2')?.valueChanges.subscribe(value => {
+    this.achievement_form.get('ClientPay')?.valueChanges.subscribe(value => {
       this.calculateDue(value);
     });
   }
@@ -58,20 +58,22 @@ export class ClientAddVakilPaymentComponent implements OnInit {
       this.dueAmount = this.payHistory_data?.due - paymentValue;
       console.log(this.dueAmount < 0 ? 0 : this.dueAmount, 'dueAmount');
     } else if (paymentValue > this.payHistory_data?.due) {
-      this.achievement_form.get('docs2')?.setValue(this.payHistory_data?.due);
+      this.achievement_form.get('ClientPay')?.setValue(this.payHistory_data?.due);
     }
   }
 
   onSubmit() {
     console.log(this.achievement_form.value);
     console.log(this.dueAmount < 0 ? 0 : this.dueAmount, 'dueAmount');
-    return
+
     const formdata = new FormData();
     formdata.append('vakilId', this.login_data.advId)
-    formdata.append('title', this.achievement_form.get('title')?.value)
-    formdata.append('desc', this.achievement_form.get('desc')?.value)
+    formdata.append('clientId', this.payHistory_data.id)
+    formdata.append('caseNumber', this.payHistory_data.caseNumber)
+    formdata.append('ClientPay', this.achievement_form.get('ClientPay')?.value)
+    formdata.append('due', this.dueAmount < 0 ? 0 : this.dueAmount)
     if (this.achievement_form.valid) {
-      this._crud.add_achievement(formdata).subscribe((res: any) => {
+      this._crud.add_payment(formdata).subscribe((res: any) => {
         console.log(res);
         if (res.status === true) {
           this._shared.tostSuccessTop('Add Success');

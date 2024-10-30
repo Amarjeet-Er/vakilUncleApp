@@ -1,3 +1,40 @@
-<p>
-  vakil-privacy-and-security-help works!
-</p>
+<div class="header">
+  <div class="navbar">
+    <ion-icon slot="start" name="chevron-back" routerLink="/home/vakilsetting"></ion-icon>
+    <span>Privacy & Security Help</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Privacy Policy</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Your privacy is important to us. We are committed to protecting your personal information and your right to
+        privacy.
+        Please read our privacy policy carefully to understand how we handle your information.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>FAQs</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item (click)="openFAQ('data-collection')">
+          <ion-label>What data do you collect?</ion-label>
+        </ion-item>
+        <ion-item (click)="openFAQ('data-security')">
+          <ion-label>How do you protect my data?</ion-label>
+        </ion-item>
+        <ion-item (click)="openFAQ('contact-support')">
+          <ion-label>How can I contact support?</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

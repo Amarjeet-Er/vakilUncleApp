@@ -1,0 +1,12 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" (click)="onBcak()"></ion-icon>
+    <span>Play Video</span>
+  </div>
+</div>
+
+<div id="videoarea">
+  <iframe [src]="video_url" frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen>
+  </iframe>
+</div>

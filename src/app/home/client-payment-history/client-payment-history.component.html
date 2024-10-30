@@ -32,12 +32,17 @@
 
         <ion-row>
           <span><ion-icon name="newspaper-outline"></ion-icon>&nbsp; Total Due</span>
-          <span>{{ fee?.due || 'N/A' }}</span>
+          <span style="color: #721c24;">{{ fee?.due || 'N/A' }}</span>
+        </ion-row>
+
+        <ion-row>
+          <span><ion-icon name="sunny-outline"></ion-icon>&nbsp; Client Paid</span>
+          <span style="color: #155724;">{{ fee?.Clientpayment || 'N/A' }}</span>
         </ion-row>
 
         <ion-row>
           <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Date</span>
-          <span style="color: green;">{{ fee?.date || 'N/A' }}</span>
+          <span style="color: #155724;">{{ fee?.date || 'N/A' }}</span>
         </ion-row>
       </div>
 

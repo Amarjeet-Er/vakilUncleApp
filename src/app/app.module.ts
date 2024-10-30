@@ -87,6 +87,11 @@ import { VakilChangePasswordComponent } from './vakil/vakil-change-password/vaki
 import { VakilAccountStatusComponent } from './home/vakil-account-status/vakil-account-status.component';
 import { VakilSettingComponent } from './home/vakil-setting/vakil-setting.component';
 import { ClientSettingComponent } from './home/client-setting/client-setting.component';
+import { VakilVideoPlayComponent } from './home/vakil-video-play/vakil-video-play.component';
+import { VakilContactSupportComponent } from './home/vakil-contact-support/vakil-contact-support.component';
+import { VakilReportAProblemComponent } from './home/vakil-report-a-problem/vakil-report-a-problem.component';
+import { VakilSupportRequestComponent } from './home/vakil-support-request/vakil-support-request.component';
+import { VakilPrivacyAndSecurityHelpComponent } from './home/vakil-privacy-and-security-help/vakil-privacy-and-security-help.component';
 
 @NgModule({
   declarations: [
@@ -165,7 +170,12 @@ import { ClientSettingComponent } from './home/client-setting/client-setting.com
     VakilChangePasswordComponent,
     VakilAccountStatusComponent,
     VakilSettingComponent,
-    ClientSettingComponent
+    ClientSettingComponent,
+    VakilVideoPlayComponent,
+    VakilContactSupportComponent,
+    VakilReportAProblemComponent,
+    VakilSupportRequestComponent,
+    VakilPrivacyAndSecurityHelpComponent
   ],
   imports: [
     BrowserModule,

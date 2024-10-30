@@ -10,20 +10,25 @@
     <ion-icon name="add-circle" (click)="AddVideo()"></ion-icon>
   </ion-row>
 
-  <ion-list>
-    <ion-card *ngFor="let video of videoList">
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span class="highlight">Title</span>
-        <span class="highlight">{{video?.title}}</span>
-      </ion-row>
-      <ion-row>
-        <span class="highlight">Link</span>
-        <ion-icon name="copy-outline" (click)="copyUrl(video?.videoUrl)"></ion-icon>
-      </ion-row>
-      <ion-card-content>
-        {{video?.videoUrl}}
-      </ion-card-content>
-    </ion-card>
+  <ion-list style="margin: 0;" *ngIf="videoList?.length > 0">
+    <h3 class="ion-padding">Legal Advice Videos</h3>
+    <div class="videoList">
+      <div class="video" *ngFor="let video of videoList">
+        <span (click)="onVideo(video)">
+          <img class="youtubelogo" src="https://www.iconpacks.net/icons/1/free-youtube-icon-141-thumb.png" alt=""
+            style="width: 60px;">
+          <img class="videoBanner"
+            [src]="video?.bannerUrl ? img_url + video?.bannerUrl : '../../../assets/slider/slider_2.jpg'">
+        </span>
+        <p>{{video?.title}}</p>
+        <div class="urlBox">
+          <span>
+            {{video?.videoUrl}}
+            <ion-icon name="copy-outline" (click)="copyUrl(video?.videoUrl)"></ion-icon>
+          </span>
+        </div>
+      </div>
+    </div>
   </ion-list>
   <p class="NoRecord" *ngIf="videoList?.length === 0">No Record Found</p>
 

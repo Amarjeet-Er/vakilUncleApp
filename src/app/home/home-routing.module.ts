@@ -62,6 +62,7 @@ import { VakilReportAProblemComponent } from './vakil-report-a-problem/vakil-rep
 import { VakilPrivacyAndSecurityHelpComponent } from './vakil-privacy-and-security-help/vakil-privacy-and-security-help.component';
 import { VakilSupportRequestComponent } from './vakil-support-request/vakil-support-request.component';
 import { ClientSettingComponent } from './client-setting/client-setting.component';
+import { VakilVideoPlayComponent } from './vakil-video-play/vakil-video-play.component';
 
 const routes: Routes = [
   {
@@ -128,6 +129,7 @@ const routes: Routes = [
       { path: 'vakilsupportandreuest', component: VakilSupportRequestComponent },
       { path: 'vakilprivacyandsecurity', component: VakilPrivacyAndSecurityHelpComponent },
       { path: 'clientsetting', component: ClientSettingComponent },
+      { path: 'vakilvideoplay', component: VakilVideoPlayComponent },
 
     ]
   },
