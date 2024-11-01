@@ -32,74 +32,99 @@ ion-content {
     ion-list {
         width: 100%;
         display: grid;
-        padding: 10px;
+        padding: 10px 10px 0px;
         grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-        gap: 10px;
 
-        // for top advocate scss code here 
-        .lawyerCard {
-            height: auto;
-            border-radius: 7px;
-            background-color: var(--color-light);
-            overflow: hidden;
-            padding: 7px;
-            text-align: center;
-            flex: none;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-            scroll-snap-align: center;
+        ion-card {
+            margin: 0px 5px 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
 
+        .profile-card {
+            display: flex;
+            align-items: center;
+        }
 
-            .cardImg {
-                width: 75px;
-                height: 75px;
+        .profile-image {
+            margin-right: 16px;
+
+            img {
+                width: 80px;
+                height: 80px;
                 border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #ccc;
+            }
+        }
+
+        .profile-details {
+            flex: 1;
+
+            ion-card-title {
+                margin: 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
                 overflow: hidden;
-                float: left;
-                background-color: lightblue;
-                margin: 0 0 10px;
-                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
+                text-overflow: ellipsis;
+                padding-right: 10px;
             }
 
-            .cardInfo {
-                width: calc(100% - 110px);
-                height: 75px;
+            ion-card-subtitle {
+                margin: 0;
+                margin-bottom: 8px;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
                 overflow: hidden;
-                margin: 0px 0px 0px 10px;
-                float: right;
-                text-align: left;
+                text-overflow: ellipsis;
+                padding-right: 10px;
+            }
 
-                span {
-                    font-size: 15px;
-                    font-weight: 600;
-                    color: var(--color-primary);
-                }
+            .experience {
+                font-size: 12px;
+                margin: 4px 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 10px;
+            }
 
-                p {
-                    font-size: 12px;
-                    margin: 4px 0;
-                    color: var(--color-dark);
-                    overflow: auto;
-                    max-height: -webkit-fill-available;
-                    padding: 0 0 15px;
+            .ratings {
+                display: flex;
+                align-items: center;
+                font-size: 12px;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 10px;
+
+                ion-row {
+                    .orange-star {
+                        color: gold;
+                    }
+
+                    .black-star {
+                        color: black;
+                    }
                 }
             }
 
-            ion-row {
-                clear: both;
-                margin: 10px 0 0;
-
-                span {
-                    font-size: 12px;
-                    font-weight: 600;
-                }
+            .practice-area {
+                font-size: 12px;
+                margin: 4px 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 10px;
             }
-
         }
     }
 }
@@ -183,6 +208,6 @@ ion-modal {
 }
 
 .NoRecord {
-    padding: 20px;
+    padding: 0 20px;
     margin: 0px;
 }

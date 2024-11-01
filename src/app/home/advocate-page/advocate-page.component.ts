@@ -45,8 +45,8 @@ export class AdvocatePageComponent implements OnInit {
   ];
 
   activity_list = [
-    { name: 'By Alphabetically' },
-    { name: 'By Experience' },
+    { name: 'By Alphabetically', id: '1' },
+    { name: 'By Experience', id: '2' },
   ];
   errorMes: any;
   advType: any;

@@ -26,19 +26,17 @@
         <p>{{ profile_data?.maskedContactNum }}</p>
       </ion-row>
 
-
-
       <ion-row class="ion-align-items-center">
         <ion-button>
           <ion-icon slot="icon-only" name="star"></ion-icon>
         </ion-button>
         <p>
-          {{ avg_total_review?.avgUserRating }} |
-          {{ avg_total_review?.totalUserRating }}
+          {{ avg_total_review?.avgUserRating || '0' }} |
+          {{ avg_total_review?.totalUserRating || '0' }}
           + user ratings
         </p>
       </ion-row>
-
+      
     </ion-label>
   </ion-item>
 
@@ -92,8 +90,10 @@
     <h3 class="ion-padding">Legal Advice Videos</h3>
     <div class="videoList">
       <div class="video" *ngFor="let video of video_data" (click)="onVideo(video)">
-        <img class="youtubelogo" src="https://www.iconpacks.net/icons/1/free-youtube-icon-141-thumb.png" alt="" style="width: 60px;">
-        <img class="videoBanner" [src]="video?.bannerUrl ? img_url + video?.bannerUrl : '../../../assets/slider/slider_2.jpg'">
+        <img class="youtubelogo" src="https://www.iconpacks.net/icons/1/free-youtube-icon-141-thumb.png" alt=""
+          style="width: 60px;">
+        <img class="videoBanner"
+          [src]="video?.bannerUrl ? img_url + video?.bannerUrl : '../../../assets/slider/slider_2.jpg'">
         <p>{{video?.title}}</p>
       </div>
     </div>

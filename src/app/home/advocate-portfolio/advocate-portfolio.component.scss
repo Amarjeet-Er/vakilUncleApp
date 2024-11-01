@@ -33,6 +33,11 @@ ion-content {
             height: 20vh;
             border-radius: 20px;
             overflow: hidden;
+
+            img {
+                border: 1px solid gray;
+                border-radius: 22px;
+            }
         }
 
         ion-label {

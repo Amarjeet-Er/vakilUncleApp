@@ -80,12 +80,13 @@ ion-content {
                 text-overflow: ellipsis;
                 padding-right: 10px;
 
-                ion-icon {
-                    color: #FFD700;
-                    margin-right: 4px;
+                ion-row {
+                    .orange-star {
+                        color: gold;
+                    }
 
-                    &.filled {
-                        color: #FFD700;
+                    .black-star {
+                        color: black;
                     }
                 }
             }
@@ -120,7 +121,8 @@ ion-content {
             font-weight: bold;
             font-size: 15px;
         }
-        ion-button{
+
+        ion-button {
             text-transform: capitalize;
             font-size: 12px;
         }

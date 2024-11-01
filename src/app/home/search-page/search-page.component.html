@@ -27,9 +27,13 @@
               <strong>Court:</strong> {{search?.courtName[0]}}
             </div>
             <div class="ratings">
-              <ion-icon name="star" *ngFor="let star of [].constructor(5); let i = index"
-                [class.filled]="i < userRating"></ion-icon>
-              <span>{{ userRating }} | 200+ user ratings</span>
+              <ion-row>
+                <ion-icon *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" name="star"
+                  [ngClass]="{'orange-star': i < search.avgUserRating, 'black-star': i >= search.avgUserRating}">
+                </ion-icon> &nbsp;
+                <span style="color: green;">{{search?.avgUserRating}} | {{search?.totalUserRating}}+ user
+                  ratings</span>
+              </ion-row>
             </div>
           </div>
         </ion-card-content>
