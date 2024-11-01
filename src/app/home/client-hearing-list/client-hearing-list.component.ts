@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class ClientHearingListComponent implements OnInit {
   login_data: any;
   case_hearing_data: any;
-  case_hearing_details: any[] = []; // Initialize as an array
+  case_hearing_details: any[] = [];
   private navigationSubscription: Subscription = new Subscription();
   hearing_id: any;
   filter_data: any;
@@ -43,8 +43,8 @@ export class ClientHearingListComponent implements OnInit {
         .subscribe(
           (res: any) => {
             if (res.status === true) {
-              this.case_hearing_details = res.data; 
-              this.filter_data = res.data; 
+              this.case_hearing_details = res.data;
+              this.filter_data = res.data;
               this.case_hearing_details.forEach((hearing: any) => {
                 if (hearing.documentName) {
                   hearing.documents = hearing.documentName
@@ -74,7 +74,7 @@ export class ClientHearingListComponent implements OnInit {
     }
   }
   onSearch(event: any) {
-    const filter = event.target.value ? event.target.value.toLowerCase() : ''; 
+    const filter = event.target.value ? event.target.value.toLowerCase() : '';
     if (!filter) {
       this.case_hearing_details = [...this.filter_data];
       return;

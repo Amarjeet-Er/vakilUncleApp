@@ -39,7 +39,6 @@ export class TotalClientComponent implements OnInit {
     this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
       this.loadData();
     });
-
     this.loadData();
   }
 

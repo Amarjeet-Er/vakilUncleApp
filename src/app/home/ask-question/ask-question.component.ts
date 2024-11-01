@@ -31,7 +31,6 @@ export class AskQuestionComponent implements OnInit {
         this.advocated_type = res.data
       }
     )
-
   }
 
   ngOnInit() {

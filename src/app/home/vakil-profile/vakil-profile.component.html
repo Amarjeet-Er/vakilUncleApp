@@ -220,12 +220,12 @@
         </div>
       </div>
 
-      <ion-input label="Bio" label-placement="floating" formControlName="adBio" type="text" placeholder="Enter Bio"
+      <ion-textarea label="About" label-placement="floating" formControlName="adBio" type="text" placeholder="Enter about"
         [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
-      </ion-input>
+      </ion-textarea>
 
       <div class="btn">
-        <ion-button shape="round" (click)="submit()" *ngIf="!isEdit">Submit</ion-button>
+        <ion-button shape="round" (click)="submit()" *ngIf="!isEdit">Update</ion-button>
       </div>
 
     </form>

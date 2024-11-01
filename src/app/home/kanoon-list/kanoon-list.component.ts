@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -16,8 +17,12 @@ export class KanoonListComponent implements OnInit {
     private _crud: CrudService,
     private _shared: SharedService,
   ) { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+  }
+  loadData() {
     this._crud.get_kanoon_advocate().subscribe(
       (response) => {
         if (response.status === true) {

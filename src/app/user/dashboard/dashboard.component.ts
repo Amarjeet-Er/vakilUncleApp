@@ -4,8 +4,6 @@ import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
 import { filter } from 'rxjs/operators';
-import { forkJoin } from 'rxjs';
-
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 @Component({
@@ -77,7 +75,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this._crud.top_properity_lawyer().subscribe(
       (response) => {
         console.log(response, 'proerty law');
-        
+
         if (response.status === true) {
           this.top_properity = response.data;
         }

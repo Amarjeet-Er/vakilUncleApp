@@ -79,7 +79,7 @@ ion-content {
         padding: 70px 0;
         overflow: auto;
 
-        .persinal{
+        .persinal {
             padding-left: 20px;
         }
 
@@ -95,6 +95,10 @@ ion-content {
             .btn {
                 width: 100%;
                 text-align: center;
+
+                ion-button {
+                    text-transform: capitalize;
+                }
             }
 
             .VakilDocuments {

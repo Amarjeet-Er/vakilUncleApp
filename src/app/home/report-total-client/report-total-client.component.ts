@@ -72,7 +72,7 @@ export class ReportTotalClientComponent implements OnInit {
   excel() {
     let serialNo = 1;
     const data = this.reg_data.map((reg: any) => ({
-      'Serial No.': serialNo++,
+      'S.N': serialNo++,
       'Name': reg.clientName,
       'Mobile': reg.contactNum,
       'Email': reg.email,
@@ -98,7 +98,7 @@ export class ReportTotalClientComponent implements OnInit {
       ws['A1'].s = { font: { bold: true }, alignment: { horizontal: 'center' }, fill: { fgColor: { rgb: 'FFFF00' } } };
       const now = new Date();
       const timestamp = `${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(now.getSeconds()).padStart(2, '0')}`;
-      const filename = `Registration_${timestamp}.xlsx`;
+      const filename = `Excel_${timestamp}.xlsx`;
       if (this._Platform.is('cordova') || this._Platform.is('mobile') || this._Platform.is('android')) {
         const excelBuffer = XLSX.write(wb, { type: 'array', bookType: 'xlsx' });
         const excelData: Blob = new Blob([excelBuffer], { type: this.EXCEL_TYPE });
@@ -151,7 +151,7 @@ export class ReportTotalClientComponent implements OnInit {
 
 
     const tableHeaders = [
-      { text: 'Serial No.', style: 'tableHeader' },
+      { text: 'S.N.', style: 'tableHeader' },
       { text: 'Name', style: 'tableHeader' },
       { text: 'Mobile', style: 'tableHeader' },
       { text: 'Email', style: 'tableHeader' },

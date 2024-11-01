@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 
 @Component({
@@ -12,12 +14,17 @@ export class PaymentHistoryComponent implements OnInit {
   pay_history: any;
   constructor(
     private _crud: CrudService,
+    private _router: Router
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login)
   }
-
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+  }
+  loadData() {
     this._crud.get_pay_history(this.login_data.advId).subscribe(
       (res: any) => {
         console.log(res);

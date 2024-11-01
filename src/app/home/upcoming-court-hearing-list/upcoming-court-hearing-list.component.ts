@@ -30,11 +30,10 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Subscribe to NavigationEnd event to fetch data on navigation change
     this.navigationSubscription = this._router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.initializeData();  // Ensure latest data from localStorage
+        this.initializeData();  
         this.fetchCaseHearingDetails();
       });
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -24,22 +25,13 @@ export class AddClientCaseComponent implements OnInit {
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
-
-    this.fetchDropdownData();
-  }
-
-  fetchDropdownData() {
-    this._crud.get_new_Client(this.login_data.advId).subscribe((res: any) => {
-      this.clientName = res.data;
-    });
-    this._crud.get_court_list().subscribe((res: any) => {
-      if (res.status === true) {
-        this.court_list = res.data;
-      }
-    });
   }
 
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+
     this.addCase_form = this._fb.group({
       clientId: ['', Validators.required],
       caseTitle: ['', Validators.required],
@@ -49,6 +41,17 @@ export class AddClientCaseComponent implements OnInit {
       firdate: ['', Validators.required],
       advocatefee: ['', Validators.required],
       aboutcase: ['', Validators.required],
+    });
+  }
+
+  loadData() {
+    this._crud.get_new_Client(this.login_data.advId).subscribe((res: any) => {
+      this.clientName = res.data;
+    });
+    this._crud.get_court_list().subscribe((res: any) => {
+      if (res.status === true) {
+        this.court_list = res.data;
+      }
     });
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -15,7 +16,6 @@ export class CompleteCaseListComponent implements OnInit {
   complete_case: any;
   filter_data: any;
 
-
   constructor(
     private _router: Router,
     private _crud: CrudService,
@@ -27,6 +27,11 @@ export class CompleteCaseListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+  }
+  loadData() {
     this._crud.get_complete_court_list(this.vId).subscribe(
       (res: any) => {
         console.log(res, 'dashboard');

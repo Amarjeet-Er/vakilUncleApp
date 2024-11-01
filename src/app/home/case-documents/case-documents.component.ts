@@ -3,6 +3,8 @@ import { IonModal } from '@ionic/angular';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-case-documents',
@@ -26,7 +28,7 @@ export class CaseDocumentsComponent implements OnInit {
   constructor(
     private _crud: CrudService,
     private _shared: SharedService,
-    private sanitizer: DomSanitizer
+    private _router: Router
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
@@ -39,6 +41,11 @@ export class CaseDocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.fetchData();
+    });
+  }
+  fetchData() {
     this._crud.get_total_case_list(this.login_data.advId).subscribe(
       (response) => {
         console.log(response, 'case documnet');
@@ -52,7 +59,7 @@ export class CaseDocumentsComponent implements OnInit {
   }
 
   downloadDocument(url: string) {
-    console.log(url, 'url');    
+    console.log(url, 'url');
     window.open(url, '_blank');
   }
 

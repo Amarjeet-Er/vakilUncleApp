@@ -81,6 +81,7 @@ export class ClientAddVakilPaymentComponent implements OnInit {
             (res: any) => {
               console.log(res, 'response');
               this.view_achivement = res.data;
+              this._router.navigate(['/home/clientduepayment'])
             },
           )
           this.achievement_form.reset();

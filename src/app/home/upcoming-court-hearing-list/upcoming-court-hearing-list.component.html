@@ -11,7 +11,7 @@
 
 
   <ion-list *ngFor="let hearing of case_hearing_details">
-    <ion-row>
+    <!-- <ion-row>
       <span class="highlight">Client Name</span>
       <span class="highlight">{{ hearing?.clientName || 'N/A' }}</span>
     </ion-row>
@@ -24,7 +24,7 @@
     <ion-row>
       <span>Mobile Number</span>
       <span>{{ hearing?.contactNum || 'N/A' }}</span>
-    </ion-row>
+    </ion-row> -->
 
     <ion-row>
       <span>Extra Charges</span>
@@ -33,7 +33,9 @@
 
     <ion-row>
       <span>Next Date</span>
-      <span style="color: green;">{{ hearing?.hearingDate || 'N/A' }}</span>
+      <span style="color: green;">
+        {{ hearing?.hearingDate | date:'dd/MM/yyyy h:mm a' || 'N/A' }}
+      </span>
     </ion-row>
 
     <div class="description" *ngIf="hearing?.chargeDetail">
@@ -43,7 +45,7 @@
 
     <div class="description" *ngIf="hearing?.caseSummary">
       <h4>Summary</h4>
-      <p [innerHTML]="hearing?.caseSummary"></p> 
+      <p [innerHTML]="hearing?.caseSummary"></p>
     </div>
 
     <div *ngIf="hearing?.documents?.length > 0;">

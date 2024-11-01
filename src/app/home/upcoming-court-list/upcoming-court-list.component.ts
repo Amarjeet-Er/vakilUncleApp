@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -14,17 +15,20 @@ export class UpcomingCourtListComponent implements OnInit {
   filter_data: any;
 
   constructor(
-    private router: Router,
+    private _router: Router,
     private sharedService: SharedService,
     private crudService: CrudService,
     private _shared: SharedService,
+
   ) {
     const login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(login!);
   }
 
-  ngOnInit(): void {
-    this.fetchUpcomingCourtList();
+  ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.fetchUpcomingCourtList();
+    });
   }
 
   private fetchUpcomingCourtList(): void {
@@ -46,7 +50,7 @@ export class UpcomingCourtListComponent implements OnInit {
 
   onUpcoming(data: any): void {
     this._shared.sharedData.next(data)
-    this.router.navigate(['/home/upcominghearinglist']);
+    this._router.navigate(['/home/upcominghearinglist']);
   }
 
   onSearch(event: any): void {

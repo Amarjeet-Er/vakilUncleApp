@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -39,6 +40,11 @@ export class VakilContactPanelComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+  }
+  loadData() {
     this._crud.get_vakil_chat_list(this.login_data?.advId).subscribe(
       (response) => {
         console.log(response);
@@ -56,7 +62,6 @@ export class VakilContactPanelComponent implements OnInit {
   vakilProfile() {
     this._router.navigate(['/vakil/home/account'])
   }
-
 
   onSearch(event: any) {
     const filter = event.target.value.toLowerCase();

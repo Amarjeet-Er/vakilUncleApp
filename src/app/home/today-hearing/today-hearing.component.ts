@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -17,16 +18,18 @@ export class TodayHearingComponent implements OnInit {
   constructor(
     private router: Router,
     private sharedService: SharedService,
-    private crudService: CrudService
+    private crudService: CrudService,
+    private _router: Router
   ) {
     const login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(login!);
   }
 
-  ngOnInit(): void {
-    this.fetchUpcomingCourtList();
+  ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.fetchUpcomingCourtList();
+    });
   }
-
   private fetchUpcomingCourtList(): void {
     this.crudService.get_upcoming_court_list(this.login_data.advId).subscribe(
       (res: any) => {

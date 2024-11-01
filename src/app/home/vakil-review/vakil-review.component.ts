@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -22,6 +23,11 @@ export class VakilReviewComponent implements OnInit {
     this.login_data = JSON.parse(this.login)
   }
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+  }
+  loadData() {
     this._crud.get_review_total_list(this.login_data.advId).subscribe(
       (response) => {
         console.log(response, 'review');
@@ -31,5 +37,4 @@ export class VakilReviewComponent implements OnInit {
       }
     )
   }
-
 }

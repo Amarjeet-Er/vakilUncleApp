@@ -32,7 +32,9 @@ export class ClientPaymentHistoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData();
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
   }
 
   loadData(): void {
@@ -47,7 +49,7 @@ export class ClientPaymentHistoryComponent implements OnInit {
       )
   }
 
-  addPayment(){
+  addPayment() {
     this._router.navigate(['/home/clientaddpayment'])
   }
   onBack() {

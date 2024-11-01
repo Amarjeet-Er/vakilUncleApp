@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -8,7 +9,7 @@ import { SharedService } from 'src/app/service/shared.service';
   templateUrl: './client-case-about.component.html',
   styleUrls: ['./client-case-about.component.scss'],
 })
-export class ClientCaseAboutComponent  implements OnInit {
+export class ClientCaseAboutComponent implements OnInit {
   login_data: any;
   login: any;
   about_case: any;
@@ -26,7 +27,14 @@ export class ClientCaseAboutComponent  implements OnInit {
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
+  }
 
+  ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.fetchData();
+    });
+  }
+  fetchData() {
     this._shared.sharedData.subscribe(
       (data) => {
         this.case_number = data;
@@ -40,11 +48,6 @@ export class ClientCaseAboutComponent  implements OnInit {
       }
     )
   }
-
-  ngOnInit() {
-    
-  }
-
 
 
   options: string[] = ['One', 'Two', 'Three'];
@@ -60,7 +63,7 @@ export class ClientCaseAboutComponent  implements OnInit {
 
   selectOption(option: string) {
     this.selectedOption = option;
-    this.filteredOptions = []; 
+    this.filteredOptions = [];
   }
 }
 

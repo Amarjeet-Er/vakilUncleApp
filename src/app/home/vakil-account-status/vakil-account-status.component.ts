@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { CrudService } from 'src/app/service/crud.service';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-vakil-account-status',
@@ -7,48 +10,38 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./vakil-account-status.component.scss'],
 })
 export class VakilAccountStatusComponent implements OnInit {
-  ngOnInit(): void {
+  login: any;
+  login_data: any;
+  plan_data: any;
 
-  }
-  constructor(private alertController: AlertController) { }
-
-  async renewAccount() {
-    const alert = await this.alertController.create({
-      header: 'Renew Account',
-      message: 'Would you like to renew your account for another year?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Renew',
-          handler: () => {
-            // Handle renewal logic
-          }
-        }
-      ]
-    });
-    await alert.present();
+  constructor(
+    private _router: Router,
+    private _crud: CrudService,
+    private _shared: SharedService
+  ) {
+    this.login = localStorage.getItem('vakilLoginData');
+    this.login_data = JSON.parse(this.login)
   }
 
-  async upgradeAccount() {
-    const alert = await this.alertController.create({
-      header: 'Upgrade Account',
-      message: 'Upgrade to Pro for additional benefits!',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Upgrade',
-          handler: () => {
-            // Handle upgrade logic
-          }
-        }
-      ]
+  ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
     });
-    await alert.present();
+  }
+  loadData() {
+    this._crud.get_plan_validity(this.login_data.advId).subscribe(
+      (res: any) => {
+        console.log(res.data);
+        if (res?.status === true) {
+          this.plan_data = res.data;
+        }
+        else {
+          console.log('No Data');
+        }
+      },
+      (error) => {
+        console.error('Error fetching plan validity:', error);
+      }
+    );
   }
 }

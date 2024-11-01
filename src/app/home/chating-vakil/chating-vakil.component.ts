@@ -1,5 +1,6 @@
 import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -41,15 +42,11 @@ export class ChatingVakilComponent implements OnInit, AfterViewChecked {
         this.img_url = data;
       }
     )
-
-    this._crud.get_chating_data(this.senderId, this.receiverId, this.sendby).subscribe(
-      (res: any) => {
-        this.chatMessages = res.data;
-      }
-    )
   }
-
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.fetchData();
+    });
     this.connectionStatus = 'Connecting...';
 
     const wsUrl = `wss://vakiluncle.in/api/chat?senderId=${this.senderId}&recieverId=${this.receiverId}&sendby=Vakil`;
@@ -143,11 +140,18 @@ export class ChatingVakilComponent implements OnInit, AfterViewChecked {
   autoScrollChat() {
     const chatContainer = document.getElementById('chatMessages');
     if (chatContainer) {
-      chatContainer.scrollTop = chatContainer.scrollHeight; 
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     }
   }
 
   ngOnDestroy(): void {
     this.disconnect();
+  }
+  fetchData() {
+    this._crud.get_chating_data(this.senderId, this.receiverId, this.sendby).subscribe(
+      (res: any) => {
+        this.chatMessages = res.data;
+      }
+    )
   }
 }

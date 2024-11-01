@@ -56,7 +56,7 @@
         talking to a lawyer for my legal issue</span>
     </ion-checkbox> -->
 
-      <ion-button [disabled]="isChecked" (click)="submit()">Find Lawyers</ion-button>
+      <ion-button [disabled]="isChecked" (click)="submit()" [disabled]="!clientForm.valid">Find Lawyers</ion-button>
     </form>
 
   </ion-list>

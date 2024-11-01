@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -21,13 +22,12 @@ export class AboutCaseComponent implements OnInit {
   add_members_form!: FormGroup;
   case_number: any;
 
-
   constructor(
     private _router: Router,
     private _shared: SharedService,
     private _crud: CrudService,
     private _fb: FormBuilder,
-    private alertController: AlertController
+    private alertController: AlertController,
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
@@ -40,6 +40,11 @@ export class AboutCaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
+  }
+  loadData() {
     this._crud.get_case_about_law_list(this.login_data.advId, this.case_number.caseNo).subscribe(
       (res: any) => {
         console.log(res);
@@ -96,7 +101,6 @@ export class AboutCaseComponent implements OnInit {
     this._router.navigate(['/home/vakiltotalcase'])
   }
 
-
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: string[] = [];
   selectedOption: string = '';
@@ -110,7 +114,7 @@ export class AboutCaseComponent implements OnInit {
 
   selectOption(option: string) {
     this.selectedOption = option;
-    this.filteredOptions = []; // Clear the filtered options after selection
+    this.filteredOptions = [];
   }
 }
 

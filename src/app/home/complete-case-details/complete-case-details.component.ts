@@ -14,7 +14,6 @@ export class CompleteCaseDetailsComponent implements OnInit {
   constructor(
     private _shared: SharedService
   ) {
-
   }
 
   ngOnInit() {

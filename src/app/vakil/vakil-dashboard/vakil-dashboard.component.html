@@ -65,7 +65,7 @@
       <div class="menuBox" routerLink="/home/reporttotalclient">
         <div class="menuIcon">
           <img src="../../../assets/menuIcon/report.png">
-          <span>5460</span>
+          <span>{{dashboard?.totalClient || '0'}}</span>
         </div>
         <div class="menuInfo">
           <span>Reports</span>
@@ -85,13 +85,12 @@
       <div class="menuBox" routerLink="/home/vakilreview">
         <div class="menuIcon">
           <img src="../../../assets/menuIcon/review.png">
-          <span>5460</span>
+          <span>{{dashboard?.totalUserRating || '0'}}</span>
         </div>
         <div class="menuInfo">
           <span>Review</span>
         </div>
       </div>
-
 
     </div>
   </ion-list>
@@ -179,11 +178,11 @@
 
 
   <!-- daily visitors data  -->
-  <ion-list>
+  <!-- <ion-list>
     <div>
       <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'300px'}"></canvasjs-chart>
     </div>
-  </ion-list>
+  </ion-list> -->
 
   <div class="chatBox" routerLink="/vakil/home/contact">
     <ion-icon name="chatbubble-ellipses"></ion-icon>

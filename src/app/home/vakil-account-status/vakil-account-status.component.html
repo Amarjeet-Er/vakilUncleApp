@@ -18,15 +18,17 @@
       </ion-item>
       <ion-item>
         <ion-label>Status</ion-label>
-        <ion-note slot="end" color="success">Active</ion-note>
+        <ion-note slot="end" [ngClass]="{'green-text': plan_data?.price !== 0, 'red-text': plan_data?.price == 0}">
+          {{ plan_data?.price !== 0 ? 'Active' : 'Inactive'}}
+        </ion-note>
       </ion-item>
       <ion-item>
         <ion-label>Start Date</ion-label>
-        <ion-note slot="end">2024-01-01</ion-note>
+        <ion-note slot="end">{{plan_data?.startDate}}</ion-note>
       </ion-item>
       <ion-item>
         <ion-label>End Date</ion-label>
-        <ion-note slot="end">2024-12-31</ion-note>
+        <ion-note slot="end">{{plan_data?.endDate}}</ion-note>
       </ion-item>
     </ion-card-content>
   </ion-card>

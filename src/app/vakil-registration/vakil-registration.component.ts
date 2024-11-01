@@ -24,7 +24,6 @@ export class VakilRegistrationComponent implements OnInit {
   vakilEmail: any;
   passwordsMatch: boolean = false;
 
-
   constructor(
     private _router: Router,
     private _formBuilder: FormBuilder,

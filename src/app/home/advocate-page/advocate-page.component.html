@@ -24,7 +24,7 @@
           {{ lawyer?.cityName || lawyer?.offAddress }} {{ lawyer?.stateName }}
         </span>
         <span style="display: flex;">
-          {{lawyer.totalUserRating}} &nbsp; <ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+          {{lawyer?.avgUserRating}} &nbsp; <ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
         </span>
       </ion-row>
       <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -106,7 +106,7 @@
             <ion-radio-group formControlName="experience">
               <ion-item *ngFor="let exp of experience_list">
                 <ion-label>{{ exp?.experience }}</ion-label>
-                <ion-radio slot="start" [value]="exp?.experience"></ion-radio>
+                <ion-radio slot="start" [value]="exp?.id"></ion-radio>
               </ion-item>
             </ion-radio-group>
           </ion-list>
@@ -124,7 +124,7 @@
             <ion-radio-group formControlName="rating">
               <ion-item *ngFor="let rating of rating_list">
                 <ion-label>{{ rating?.rating }}</ion-label>
-                <ion-radio slot="start" [value]="rating?.rating"></ion-radio>
+                <ion-radio slot="start" [value]="rating?.id"></ion-radio>
               </ion-item>
             </ion-radio-group>
           </ion-list>

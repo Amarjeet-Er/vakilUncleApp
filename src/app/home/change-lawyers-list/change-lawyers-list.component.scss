@@ -84,6 +84,9 @@ ion-content {
                     font-size: 12px;
                     margin: 4px 0;
                     color: var(--color-dark);
+                    overflow: auto;
+                    max-height: -webkit-fill-available;
+                    padding: 0 0 15px;
                 }
             }
 

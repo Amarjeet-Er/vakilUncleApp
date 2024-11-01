@@ -15,7 +15,6 @@ import { UserCasePanelComponent } from './user/user-case-panel/user-case-panel.c
 import { ContactPanelComponent } from './user/contact-panel/contact-panel.component';
 import { AccountComponent } from './user/account/account.component';
 import { AboutCaseComponent } from './home/about-case/about-case.component';
-import { NotificationComponent } from './home/notification/notification.component';
 import { AdvocatePageComponent } from './home/advocate-page/advocate-page.component';
 import { AdvocatePortfolioComponent } from './home/advocate-portfolio/advocate-portfolio.component';
 import { UserProfileComponent } from './home/user-profile/user-profile.component';
@@ -36,16 +35,11 @@ import { PublicationManagementComponent } from './home/publication-management/pu
 import { ImageBannerManagementComponent } from './home/image-banner-management/image-banner-management.component';
 import { VideoManagementComponent } from './home/video-management/video-management.component';
 import { IpcPanelComponent } from './home/ipc-panel/ipc-panel.component';
-import { RtiPanelComponent } from './home/rti-panel/rti-panel.component';
-import { ConstitutionPanelComponent } from './home/constitution-panel/constitution-panel.component';
-import { IncomeTaxPanelComponent } from './home/income-tax-panel/income-tax-panel.component';
-import { BnsPanelComponent } from './home/bns-panel/bns-panel.component';
 import { KanoonListComponent } from './home/kanoon-list/kanoon-list.component';
 import { NewClientRegComponent } from './home/new-client-reg/new-client-reg.component';
 import { TalkToLawyerComponent } from './home/talk-to-lawyer/talk-to-lawyer.component';
 import { AskQuestionComponent } from './home/ask-question/ask-question.component';
 import { RobotChatComponent } from './home/robot-chat/robot-chat.component';
-import { UserAddressComponent } from './home/user-address/user-address.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { VakilTotalCaseComponent } from './home/vakil-total-case/vakil-total-case.component';
 import { CaseDocumentsComponent } from './home/case-documents/case-documents.component';
@@ -103,7 +97,6 @@ import { VakilPrivacyAndSecurityHelpComponent } from './home/vakil-privacy-and-s
     ContactPanelComponent,
     AccountComponent,
     AboutCaseComponent,
-    NotificationComponent,
     AdvocatePageComponent,
     AdvocatePortfolioComponent,
     UserProfileComponent,
@@ -122,16 +115,11 @@ import { VakilPrivacyAndSecurityHelpComponent } from './home/vakil-privacy-and-s
     ImageBannerManagementComponent,
     VideoManagementComponent,
     IpcPanelComponent,
-    RtiPanelComponent,
-    ConstitutionPanelComponent,
-    IncomeTaxPanelComponent,
-    BnsPanelComponent,
     KanoonListComponent,
     NewClientRegComponent,
     TalkToLawyerComponent,
     AskQuestionComponent,
     RobotChatComponent,
-    UserAddressComponent,
     VakilTotalCaseComponent,
     CaseDocumentsComponent,
     EnquiryComponent,

@@ -13,7 +13,7 @@ export class SearchPageComponent implements OnInit {
   @ViewChild('searchbar', { static: false }) searchbar!: IonSearchbar;
   userRating = 4;
   searchQuery: string = '';
-  recentSearches: any[] = []; // Changed to store full search data
+  recentSearches: any[] = []; 
   validSearch: boolean = false; 
   searchLawyers: any;
   img_url: any;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -29,11 +30,13 @@ export class RecentClientListComponent implements OnInit {
     )
   }
 
-  ngOnInit(): void {
-    this.fetchUpcomingCourtList();
+  ngOnInit() {
+    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.loadData();
+    });
   }
 
-  private fetchUpcomingCourtList(): void {
+  private loadData(): void {
     this._crud.get_new_Client(this.login_data.advId).subscribe(
       (res: any) => {
         console.log(res, 'dashboard');

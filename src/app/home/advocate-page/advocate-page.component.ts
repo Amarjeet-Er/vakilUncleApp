@@ -23,19 +23,19 @@ export class AdvocatePageComponent implements OnInit {
   parameter: any;
 
   experience_list = [
-    { experience: 'Less than 5 Years' },
-    { experience: '5-10 Years' },
-    { experience: '10-15 Years' },
-    { experience: '15-20 Years' },
-    { experience: 'More Than 20 Years' },
+    { experience: 'Less than 5 Years', id: '1,5' },
+    { experience: '5-10 Years', id: '5,10' },
+    { experience: '10-15 Years', id: '10,15' },
+    { experience: '15-20 Years', id: '15,20' },
+    { experience: 'More Than 20 Years', id: '20,0' },
   ];
 
   rating_list = [
-    { rating: '1-2' },
-    { rating: '2-3' },
-    { rating: '3-4' },
-    { rating: '4-5' },
-    { rating: '5' },
+    { rating: '1-2', id: '1' },
+    { rating: '2-3', id: '2' },
+    { rating: '3-4', id: '3' },
+    { rating: '4-5', id: '4' },
+    { rating: '5', id: '5' },
   ];
 
   gender_list = [
@@ -137,7 +137,7 @@ export class AdvocatePageComponent implements OnInit {
       city: this.filter_form.get('city')?.value,
       advType: this.filter_form.get('advType')?.value,
       court: this.filter_form.get('court')?.value,
-      experience: this.filter_form.get('experience')?.value,
+      experiance: this.filter_form.get('experience')?.value,
       gender: this.filter_form.get('gender')?.value,
       rating: this.filter_form.get('rating')?.value,
       activity: this.filter_form.get('activity')?.value
@@ -149,6 +149,7 @@ export class AdvocatePageComponent implements OnInit {
         this.advocated_list = res.data;
         this.filter_form.reset()
         this.advocateFilter.dismiss()
+        this.errorMes = ''
       },
       (error) => {
         console.error('Error filtering data:', error);
