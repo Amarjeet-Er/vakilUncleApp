@@ -39,6 +39,7 @@ export class AddClientCaseComponent implements OnInit {
       court: ['', Validators.required],
       act: ['', Validators.required],
       firdate: ['', Validators.required],
+      hearingDate: ['', Validators.required],
       advocatefee: ['', Validators.required],
       aboutcase: ['', Validators.required],
     });
@@ -64,6 +65,7 @@ export class AddClientCaseComponent implements OnInit {
     formdata.append('court', this.addCase_form.get('court')?.value);
     formdata.append('act', this.addCase_form.get('act')?.value);
     formdata.append('firdate', this.addCase_form.get('firdate')?.value);
+    formdata.append('hearingDate', this.addCase_form.get('hearingDate')?.value);
     formdata.append('advocatefee', this.addCase_form.get('advocatefee')?.value);
     formdata.append('aboutcase', this.addCase_form.get('aboutcase')?.value);
 
