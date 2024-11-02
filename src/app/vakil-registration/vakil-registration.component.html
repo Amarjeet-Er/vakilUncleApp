@@ -1,7 +1,7 @@
 <ion-segment class="signUpInfo">
   <!-- User Segment -->
   <ion-segment-button routerLink="/signup">
-    <ion-label>User Sign Up</ion-label>
+    <ion-label>Client Sign Up</ion-label>
   </ion-segment-button>
 
   <!-- Vakil Segment -->
@@ -27,7 +27,7 @@
         helperText="Enter a valid email" errorText="Invalid email" ngModel email required formControlName="email">
       </ion-input>
     </form>
-    <ion-button shape="round" class="Btn" (click)="OnOtpSend()">Send</ion-button>
+    <ion-button shape="round" class="Btn" (click)="OnOtpSend()" [disabled]="!Send_OTP_Form.valid">Send</ion-button>
     <p>Alredy have an account?<b (click)="Login()">Sign In</b></p>
 
     <div class="footer">
@@ -105,7 +105,8 @@
           formControlName="contactNum" minlength="10" maxlength="10" pattern="\d{10}">
         </ion-input>
 
-        <ion-select label="Gender" label-placement="floating" placeholder="Select Gender" fill="outline" formControlName="gender">
+        <ion-select label="Gender" label-placement="floating" placeholder="Select Gender" fill="outline"
+          formControlName="gender">
           <ion-select-option value="Male"> Male </ion-select-option>
           <ion-select-option value="Female"> Female </ion-select-option>
           <ion-select-option value="Other"> Other </ion-select-option>
