@@ -14,7 +14,9 @@
     <ion-card-content>
       <ion-item>
         <ion-label>Account Type</ion-label>
-        <ion-note slot="end" color="primary">Premium</ion-note>
+        <ion-note slot="end" color="primary">
+          {{ plan_data?.price !== 0 ? 'Premium' : 'Free User'}}
+        </ion-note>
       </ion-item>
       <ion-item>
         <ion-label>Status</ion-label>
@@ -22,11 +24,11 @@
           {{ plan_data?.price !== 0 ? 'Active' : 'Inactive'}}
         </ion-note>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="plan_data?.startDate">
         <ion-label>Start Date</ion-label>
         <ion-note slot="end">{{plan_data?.startDate}}</ion-note>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="plan_data?.endDate">
         <ion-label>End Date</ion-label>
         <ion-note slot="end">{{plan_data?.endDate}}</ion-note>
       </ion-item>

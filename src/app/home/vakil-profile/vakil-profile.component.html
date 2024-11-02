@@ -44,9 +44,9 @@
 
       <ion-select label="Gender" label-placement="floating" placeholder="Select Gender" formControlName="gender"
         [disabled]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
-        <ion-select-option value="Male"> Male </ion-select-option>
-        <ion-select-option value="Female"> Female </ion-select-option>
-        <ion-select-option value="Other"> Other </ion-select-option>
+        <ion-select-option value="male"> Male </ion-select-option>
+        <ion-select-option value="female"> Female </ion-select-option>
+        <ion-select-option value="other"> Other </ion-select-option>
       </ion-select><br>
 
       <ion-select label="State" label-placement="floating" placeholder="Select State" (ionChange)="onCityChange($event)"
@@ -83,8 +83,9 @@
       </ion-input>
 
       <ion-input type="date" label="Date Of Birth" label-placement="floating" required formControlName="DOB"
-        [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
+        [readonly]="isEdit" [fill]="isEdit ? 'solid' : 'outline'" [max]="maxDate" (ionBlur)="validateAge()">
       </ion-input>
+
 
       <ion-input type="text" label="LLB Registration No" label-placement="floating"
         placeholder="Enter LLB Registration No" required formControlName="llbRegistrationNum" [readonly]="isEdit"
@@ -220,8 +221,8 @@
         </div>
       </div>
 
-      <ion-textarea label="About" label-placement="floating" formControlName="adBio" type="text" placeholder="Enter about"
-        [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
+      <ion-textarea label="About" label-placement="floating" formControlName="adBio" type="text"
+        placeholder="Enter about" [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
       </ion-textarea>
 
       <div class="btn">

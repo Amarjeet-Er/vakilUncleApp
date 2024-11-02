@@ -125,6 +125,8 @@ export class UserProfileComponent implements OnInit {
     formUpdate.append('gender', this.client_profile_update.get('gender')?.value);
     formUpdate.append('address', this.client_profile_update.get('address')?.value);
     formUpdate.append('profileImage', this.profile_select || null);
+    formUpdate.append('profile', this.edit_profile_data.profile);
+    console.log(this.edit_profile_data.profile);
 
     if (this.client_profile_update.valid) {
       this._crud.client_profile_update(formUpdate).subscribe(

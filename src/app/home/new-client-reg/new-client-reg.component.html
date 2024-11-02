@@ -5,9 +5,9 @@
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
 
-  <ion-row>
+  <ion-row (click)="AddClientReg()">
     <span>New Registration </span>
-    <ion-icon name="add-circle" (click)="AddClientReg()"></ion-icon>
+    <ion-icon name="add-circle"></ion-icon>
   </ion-row>
 
   <ion-list id="client-list">
@@ -30,7 +30,7 @@
           <span>{{client.caseNo || 'N/A'}}</span>
         </ion-row>
       </div>
-      
+
     </ion-card>
   </ion-list>
   <p class="NoRecord" *ngIf="clients?.length === 0">No Record Found</p>
@@ -53,8 +53,9 @@
             formControlName="clientName">
           </ion-input>
 
-          <ion-input label="Email" label-placement="floating" fill="outline" placeholder="Enter email"
-            formControlName="email"></ion-input>
+          <ion-input label="Email" label-placement="floating" type="email" fill="outline" placeholder="Enter email"
+            formControlName="email" helperText="Enter a valid email" errorText="Invalid email" ngModel email required>
+          </ion-input>
 
           <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
             helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
@@ -101,8 +102,8 @@
           <ion-input label="FIR Date" type="date" label-placement="floating" fill="outline" formControlName="firDate">
           </ion-input>
 
-          <ion-input label="Hearing Date" type="date" label-placement="floating" fill="outline"
-            formControlName="HearingDate">
+          <ion-input label-placement="floating" type="datetime-local" fill="outline" label="Hearing Date & Time"
+            placeholder="Enter Hearing Date & Time" formControlName="HearingDate">
           </ion-input>
 
           <ion-input label="Advocate Fee" type="number" placeholder="Enter advocate Fee" label-placement="floating"
@@ -121,7 +122,7 @@
           </ion-input>
 
           <ion-row class="ion-justify-content-center">
-            <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+            <ion-button shape="round" (click)="onSubmit()" [disabled]="!newRegistartion_form.valid">Submit</ion-button>
           </ion-row>
 
         </ion-list>
@@ -218,7 +219,7 @@
               <span>{{detail?.advocateFee || 'N/A'}}</span>
             </p>
           </ion-row>
-        
+
           <ion-row>
             <ion-icon name="location"></ion-icon>
             <p>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
@@ -55,13 +56,14 @@ export class VakilProfileComponent implements OnInit {
   stateId: any;
   profile_data: any;
   edit_profile_data: any;
-
+  maxDate: string = '';
 
   constructor(
     private _router: Router,
     private _crud: CrudService,
     private _shared: SharedService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private alertController: AlertController
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
@@ -103,7 +105,24 @@ export class VakilProfileComponent implements OnInit {
       llb: [''],
       profile: [''],
     });
+
+    const today = new Date();
+    const year = today.getFullYear() - 18;
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    this.maxDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
   }
+
+  async validateAge() {
+    const dob = this.vakil_profile_update.get('DOB')?.value;
+    if (dob) {
+      const age = 18
+      if (age < 18) {
+        this.vakil_profile_update.get('DOB')?.setValue('');
+      }
+    }
+  }
+
 
   patchProfileForm() {
     if (this.edit_profile_data) {
