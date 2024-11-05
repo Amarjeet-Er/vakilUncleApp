@@ -1,7 +1,7 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/user/home/clientcase"></ion-icon>
-    <span>Upcoming Court Hearing</span>
+    <span>Hearing History</span>
   </div>
 </div>
 
@@ -36,15 +36,10 @@
       <span style="color: green;">{{ hearing?.hearingDate || 'N/A' }}</span>
     </ion-row>
 
-    <div class="description" *ngIf="hearing?.chargeDetail">
-      <h4>charge Details</h4>
-      <p [innerHTML]="hearing?.chargeDetail"></p>
-    </div>
-
-    <div class="description" *ngIf="hearing?.caseSummary">
-      <h4>Summary</h4>
-      <p [innerHTML]="hearing?.caseSummary"></p> 
-    </div>
+    <ion-row *ngIf="hearing?.chargeDetail">
+      <span>Charge Details</span>
+      <span>{{hearing?.chargeDetail || 'N/A'}}</span>
+    </ion-row>
 
     <div *ngIf="hearing?.documents?.length > 0;">
       <h3>Required Documents</h3>
@@ -53,4 +48,6 @@
       </div>
     </div>
   </ion-list>
+  <p class="NoRecord" *ngIf="case_hearing_details?.length === 0">No Record Found</p>
+
 </ion-content>

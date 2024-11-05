@@ -20,7 +20,7 @@
         }
 
         span {
-            font-size: 20px;
+            font-size: 16px;
             margin: 0 auto;
         }
     }
@@ -29,15 +29,14 @@
 ion-content {
 
     .cardInfo {
-        width: 100%;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        height: auto;
-        overflow: hidden;
-        float: right;
-        padding: 10px;
-        text-align: left;
-        text-overflow: ellipsis;
         margin: 0 0 10px;
+        padding: 0px 0px 10px;
+        border-bottom: 1px dotted gray;
+
+        ion-row {
+            font-size: 12px;
+            margin: 1px 0px;
+        }
 
         .orange-star {
             color: gold;
@@ -47,11 +46,27 @@ ion-content {
             color: black;
         }
 
+        h4 {
+            margin: 0 0 10px;
+            display: flex;
+            font-size: 18px;
+            align-items: center;
+
+            .reviewProfile {
+                font-size: 18px;
+                color: var(--color-dark);
+                width: 30px;
+                height: 30px;
+                border-radius: 50px;
+                background-color: var(--color-primary);
+                color: var(--color-light);
+                text-align: center;
+                line-height: 30px;
+            }
+        }
+
         span {
-            font-size: 16px;
-            font-weight: 600;
-            text-wrap: nowrap;
-            color: var(--color-primary);
+            font-size: 12px;
         }
 
         p {
@@ -60,13 +75,9 @@ ion-content {
             color: var(--color-dark);
         }
     }
+}
 
-    ion-row {
-        clear: both;
-        margin: 10px 0 0;
-
-        span {
-            font-size: 12px;
-        }
-    }
+.NoRecord {
+    padding: 0px;
+    margin: 0px;
 }

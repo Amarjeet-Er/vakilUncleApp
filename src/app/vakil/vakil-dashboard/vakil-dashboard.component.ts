@@ -93,9 +93,7 @@ export class VakilDashboardComponent implements OnInit {
 			]
 		}]
 	};
-	login: any;
-	login_data: any;
-	vId: any;
+
 	dashboard: any;
 	upcoming_court: any;
 	recent_client: any;
@@ -103,6 +101,9 @@ export class VakilDashboardComponent implements OnInit {
 	complete_case: any;
 	plan_name: any;
 	memberships: any;
+	login: string | null;
+	login_data: { advId: number } | null;
+	vId: number | undefined
 
 	constructor(
 		private _router: Router,
@@ -176,11 +177,6 @@ export class VakilDashboardComponent implements OnInit {
 			},
 			(error) => this._shared.tostErrorTop('Error')
 		);
-	}
-
-	onCompleteCase(data: any) {
-		this._shared.sharedData.next(data);
-		this._router.navigate(['/home/completecasedetails']);
 	}
 
 	onUpcoming(data: any) {

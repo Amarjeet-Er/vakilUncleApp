@@ -18,6 +18,7 @@ export class ClientCaseAboutComponent implements OnInit {
   case_data: any;
   clientName: any;
   case_number: any;
+  img_url: any;
 
 
   constructor(
@@ -27,6 +28,12 @@ export class ClientCaseAboutComponent implements OnInit {
   ) {
     this.login = localStorage.getItem('vakilLoginData');
     this.login_data = JSON.parse(this.login);
+
+    this._shared.img_url.subscribe(
+      (data: any) => {
+        this.img_url = data;
+      }
+    )
   }
 
   ngOnInit() {
@@ -65,5 +72,10 @@ export class ClientCaseAboutComponent implements OnInit {
     this.selectedOption = option;
     this.filteredOptions = [];
   }
+
+  downloadDocument(url: string) {
+    window.open(url, '_blank');
+  }
+
 }
 

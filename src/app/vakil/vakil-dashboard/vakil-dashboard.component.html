@@ -109,7 +109,7 @@
           <h3>Name:- {{data?.clientName || 'N/A' | titlecase}}</h3>
           <p>Title:- {{data?.caseTitle}}</p>
           <p>Case No:- {{data?.caseNo}}</p>
-          <span>Next Date:- {{data?.hearingDate}}</span>
+          <span>Next Date:- {{data?.hearingDate | date:'dd MMM yyyy, h:m a'}}</span>
         </ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
@@ -161,15 +161,15 @@
   <ion-list *ngIf="complete_case?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Complete Court Case</span>
-      <ion-button size="small" fill="clear" shape="round" routerLink="/home/completecase">See All</ion-button>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/home/vakiltotalcompletecase">See All</ion-button>
     </ion-row>
     <div class="contentList">
-      <ion-item lines="full" *ngFor="let data of complete_case" (click)="onCompleteCase(data)">
+      <ion-item lines="full" *ngFor="let data of complete_case">
         <ion-label>
           <h3>Name:- {{data?.clientName || 'N/A' | titlecase}}</h3>
           <p>Title:- {{data?.caseTitle}}</p>
           <p>Case No:- {{data?.caseNo}}</p>
-          <span>Next Date:- {{data?.hearingDate}}</span>
+          <span style="color: brown;">Last Hearing :- {{data?.hearingDate | date:'dd MMM yyyy, h:m a'}}</span>
         </ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>

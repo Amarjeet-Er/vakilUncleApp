@@ -40,10 +40,12 @@
                 font-weight: 600;
                 color: var(--color-primary);
             }
-            p{
+
+            p {
                 font-size: 12px;
                 margin: 0px;
             }
+
             span {
                 color: #27AE60;
                 font-size: 11px;
@@ -69,15 +71,12 @@
     }
 }
 
-ion-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-items: center;
-    padding: 5px 10px 0px;
-}
-
 ion-searchbar {
     --border-radius: 50px !important;
     --ion-color-base: var(--color-light) !important;
+}
+
+.NoRecord {
+    padding: 20px;
+    margin: 0px;
 }

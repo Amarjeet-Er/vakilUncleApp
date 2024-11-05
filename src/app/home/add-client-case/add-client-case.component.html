@@ -13,7 +13,8 @@
       <ion-select label="Client Name" fill="outline" label-placement="floating" interface="action-sheet"
         placeholder="Select Client Name" formControlName="clientId">
         <ion-select-option *ngFor="let client of clientName" [value]="client?.id">
-          {{client?.clientName}}
+          {{client?.clientName}} &nbsp;
+          [ {{client?.contactNum}} ]
         </ion-select-option>
       </ion-select>
 

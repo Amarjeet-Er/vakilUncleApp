@@ -62,8 +62,13 @@
           <span>Member Address</span>
           <span>{{member?.memberaddress || 'N/A'}}</span>
         </ion-row>
+        <ion-row (click)="downloadDocument(img_url + member?.memberDocsUrl)">
+          <span>Document</span>
+          <span>
+            <ion-icon name="cloud-download"></ion-icon>
+          </span>
+        </ion-row>
 
-        
       </ion-item-group>
     </ion-list>
   </div>

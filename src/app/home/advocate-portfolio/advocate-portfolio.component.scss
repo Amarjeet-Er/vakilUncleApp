@@ -44,6 +44,11 @@ ion-content {
             ion-row {
                 gap: 10px;
                 margin: 0px 0;
+                width: 200px;
+                text-wrap: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: start;
 
                 ion-button {
                     --background: #2C3333;
@@ -95,7 +100,22 @@ ion-content {
             border-bottom: 1px dotted gray;
 
             h4 {
-                margin: 0 0 2px;
+                margin: 0 0 10px;
+                display: flex;
+                font-size: 18px;
+                align-items: center;
+
+                .reviewProfile {
+                    font-size: 18px;
+                    color: var(--color-dark);
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50px;
+                    background-color: var(--color-primary);
+                    color: var(--color-light);
+                    text-align: center;
+                    line-height: 30px;
+                }
             }
         }
 

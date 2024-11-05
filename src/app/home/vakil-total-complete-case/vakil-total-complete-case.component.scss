@@ -50,40 +50,13 @@ ion-content {
   }
 
   .actionCase:first-child {
-    background-color: #650202;
-    color: #f1f1f1;
+    border: 1px solid #650202;
+    color: #650202;
   }
 
   .actionCase:last-child {
-    border: 1px solid #10c245;
-    color: #10c245;
-  }
-
-  .addbutton {
-    width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100%, 4fr));
-    gap: 0px 10px;
-    padding: 0px 10px;
-  }
-
-  .AddCase {
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-    justify-content: space-between;
-    background-color: #3c595d;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    font-weight: 500;
-    border-radius: 24px;
-    color: var(--color-light);
-
-    ion-icon {
-      font-size: 24px;
-      color: var(--color-light);
-    }
+    background-color: #10c245;
+    color: #f1f1f1;
   }
 
   ion-card {
@@ -124,37 +97,4 @@ ion-content {
 .NoRecord {
   padding: 20px;
   margin: 0px;
-}
-
-.actionButton {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  width: calc(100% - 4px);
-  overflow: auto;
-
-  div {
-    flex-grow: 1;
-    font-size: 12px;
-    color: #000;
-    text-transform: capitalize;
-    cursor: pointer;
-    height: 24px;
-    display: flex;
-    margin: 1px 2px 5px;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--color-primary);
-    padding: 0 5px;
-    border-radius: 25px;
-
-    span {
-      margin: 0px 5px;
-    }
-  }
-
-  div:hover {
-    background-color: var(--color-primary);
-    color: #fff;
-  }
 }

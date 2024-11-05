@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
@@ -36,7 +36,7 @@ export class AddMembersComponent implements OnInit {
   ngOnInit() {
     this.add_members_form = this._fb.group({
       memberName: [''],
-      membercontactNum: [''],
+      membercontactNum: ['', [Validators.pattern('\\d{10}')]],
       memberDetails: [''],
       memberaddress: [''],
       fatherName: [''],

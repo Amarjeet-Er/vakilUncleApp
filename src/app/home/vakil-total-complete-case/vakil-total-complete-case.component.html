@@ -1,26 +1,19 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
-    <span>Pending Case {{cases?.length}}</span>
+    <span>Complete Case {{cases?.length}}</span>
   </div>
 </div>
 
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
 
-  <div class="actionbtn">
+  <div class="actionbtn" routerLink="/home/vakiltotalcase">
     <ion-row class="actionCase">
       <span>Pending Case</span>
     </ion-row>
-    <ion-row class="actionCase" routerLink="/home/vakiltotalcompletecase">
+    <ion-row class="actionCase">
       <span>Complete Case</span>
-    </ion-row>
-  </div>
-
-  <div class="addbutton">
-    <ion-row class="AddCase" (click)="addClientCase()">
-      <ion-icon name="add-circle"></ion-icon>
-      <span>Add Another Case</span>
     </ion-row>
   </div>
 
@@ -43,11 +36,6 @@
         </ion-row>
 
         <ion-row>
-          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Court</span>
-          <span>{{ case?.courtName || 'N/A' }}</span>
-        </ion-row>
-
-        <ion-row>
           <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Case Number</span>
           <span>{{ case?.caseNo || 'N/A' }}</span>
         </ion-row>
@@ -58,28 +46,14 @@
         </ion-row>
 
         <ion-row style="color: green;">
-          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Next Hearing</span>
-          <span>{{ case?.hearingDate | date: 'dd MMM yyyy, h:mm a' || 'N/A' }}</span>
+          <span><ion-icon name="sunny-sharp"></ion-icon>&nbsp; Status</span>
+          <span>{{'Success'}}</span>
         </ion-row>
-      </div>
 
-      <div class="actionButton">
-        <div (click)="addMember(case)">
-          <ion-icon name="add-circle"></ion-icon>
-          <span>Member</span>
-        </div>
-        <div (click)="Documents(case)">
-          <ion-icon name="add-circle"></ion-icon>
-          <span>Documents</span>
-        </div>
-        <div (click)="addHearingDate(case)">
-          <ion-icon name="add-circle"></ion-icon>
-          <span>Hearing</span>
-        </div>
-        <div (click)="aboutCase(case)">
-          <ion-icon name="newspaper"></ion-icon>
-          <span>About</span>
-        </div>
+        <ion-row style="color: brown;">
+          <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Last Hearing</span>
+          <span>{{ case?.hearingDate ? (case.hearingDate | date: 'dd MMM yyyy, h:mm a') : 'N/A' }}</span>
+        </ion-row>
       </div>
 
     </ion-card>

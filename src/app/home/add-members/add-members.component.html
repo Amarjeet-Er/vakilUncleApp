@@ -16,8 +16,9 @@
       formControlName="memberName">
     </ion-input>
 
-    <ion-input label-placement="floating" type="number" fill="outline" label="Contact No" placeholder="Enter contact no"
-      formControlName="membercontactNum">
+    <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
+      helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
+      formControlName="membercontactNum" minlength="10" maxlength="10" pattern="\d{10}" placeholder="Enter mobile no">
     </ion-input>
 
     <ion-input label-placement="floating" type="text" fill="outline" label="Member Address"
@@ -34,7 +35,7 @@
   </form>
 
   <ion-row class="ion-justify-content-center">
-    <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+    <ion-button shape="round" (click)="onSubmit()" [disabled]="!add_members_form.valid">Submit</ion-button>
   </ion-row>
 
 </ion-content>

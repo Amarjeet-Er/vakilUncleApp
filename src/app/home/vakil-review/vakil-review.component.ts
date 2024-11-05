@@ -13,6 +13,7 @@ export class VakilReviewComponent implements OnInit {
   login_data: any;
   login: any;
   review_list: any;
+  filter_data: any;
 
   constructor(
     private _router: Router,
@@ -33,8 +34,35 @@ export class VakilReviewComponent implements OnInit {
         console.log(response, 'review');
         if (response.status === true) {
           this.review_list = response.data;
+          this.filter_data = response.data;
         }
       }
     )
+  }
+  getFisrtName(name: string) {
+    return name.slice(0, 1)
+  }
+
+  onSearch(event: any) {
+    const filter = event.target.value.toLowerCase();
+    this.review_list = this.filter_data.filter((data: any) => {
+      if (data?.clientName.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        return true;
+      }
+      if (data?.contactNum.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        return true;
+      }
+      if (data?.email.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        return true;
+      }
+      if (data?.review.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        return true;
+      }
+      if (data?.reviewDate.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        return true;
+      }
+      return false;
+    }
+    );
   }
 }

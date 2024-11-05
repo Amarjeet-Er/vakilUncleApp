@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
-import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-vakil-total-case',
-  templateUrl: './vakil-total-case.component.html',
-  styleUrls: ['./vakil-total-case.component.scss'],
+  selector: 'app-vakil-total-complete-case',
+  templateUrl: './vakil-total-complete-case.component.html',
+  styleUrls: ['./vakil-total-complete-case.component.scss'],
 })
-export class VakilTotalCaseComponent implements OnInit {
+export class VakilTotalCompleteCaseComponent implements OnInit {
+
   cases: any;
   filter_data: any;
   login_data: any;
@@ -38,7 +39,7 @@ export class VakilTotalCaseComponent implements OnInit {
           if (Array.isArray(res.data)) {
             const ids: string[] = [];
             res.data.forEach((item: any) => {
-              if (item.status === false) {
+              if (item.status === true) {
                 ids.push(item);
                 this.cases = ids;
                 this.filter_data = ids;
@@ -52,28 +53,6 @@ export class VakilTotalCaseComponent implements OnInit {
         }
       }
       )
-  }
-
-  // for add case 
-  addClientCase() {
-    this._router.navigate(['/home/addclientcase'])
-  }
-
-  Documents(data: any) {
-    this._shared.sharedData.next(data)
-    this._router.navigate(['/home/uploaddocuments'])
-  }
-  addHearingDate(data: any) {
-    this._shared.sharedData.next(data)
-    this._router.navigate(['/home/addhearingdate'])
-  }
-  addMember(data: any) {
-    this._shared.sharedData.next(data)
-    this._router.navigate(['/home/addmembers'])
-  }
-  aboutCase(data: any) {
-    this._shared.sharedData.next(data);
-    this._router.navigate(['/home/aboutcase'])
   }
 
   onSearch(event: any) {
@@ -102,3 +81,4 @@ export class VakilTotalCaseComponent implements OnInit {
     );
   }
 }
+

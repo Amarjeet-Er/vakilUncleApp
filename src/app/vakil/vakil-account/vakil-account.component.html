@@ -28,7 +28,7 @@
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>
 
-      <ion-item lines="full">
+      <ion-item lines="full" routerLink="/home/vakilaboutus">
         <ion-icon name="information-circle-outline"></ion-icon>
         <ion-label>About Us</ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
@@ -82,13 +82,13 @@
     <ion-content>
 
       <ion-list>
-        <ion-item lines="full">
+        <ion-item lines="full" (click)="termsConditions()">
           <ion-icon name="documents-outline"></ion-icon>
           <ion-label>Terms & Conditions</ion-label>
           <ion-icon name="chevron-forward"></ion-icon>
         </ion-item>
 
-        <ion-item lines="full">
+        <ion-item lines="full" (click)="privacyPolicy()">
           <ion-icon name="document-lock-outline"></ion-icon>
           <ion-label>Privacy Policy</ion-label>
           <ion-icon name="chevron-forward"></ion-icon>

@@ -33,7 +33,7 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
     this.navigationSubscription = this._router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.initializeData();  
+        this.initializeData();
         this.fetchCaseHearingDetails();
       });
   }
@@ -58,8 +58,8 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
         .subscribe(
           (res: any) => {
             if (res.status === true) {
-              this.case_hearing_details = res.data; 
-              this.filter_data = res.data; 
+              this.case_hearing_details = res.data;
+              this.filter_data = res.data;
               this.case_hearing_details.forEach((hearing: any) => {
                 if (hearing.documentName) {
                   hearing.documents = hearing.documentName
@@ -89,7 +89,7 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
     }
   }
   onSearch(event: any) {
-    const filter = event.target.value ? event.target.value.toLowerCase() : ''; 
+    const filter = event.target.value ? event.target.value.toLowerCase() : '';
     if (!filter) {
       this.case_hearing_details = [...this.filter_data];
       return;
@@ -97,16 +97,10 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
 
     this.case_hearing_details = this.filter_data.filter((data: any) => {
       return [
-        data?.caseTitle,
-        data?.clientName,
-        data?.caseNo,
-        data?.contactNum,
-        data?.courtName,
         data?.hearingDate,
         data?.extraCharge,
         data?.chargeDetail,
         data?.documentName,
-        data?.caseSummary,
       ].some(field =>
         field?.toString().toLowerCase().includes(filter)
       );

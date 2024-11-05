@@ -5,18 +5,26 @@
 </div>
 
 <ion-content class="ion-padding">
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+
   <ion-list>
     <div class="cardInfo" *ngFor="let review of review_list">
-      <span><ion-icon name="person"></ion-icon> &nbsp;{{review?.clientName}}</span>
-      <p><ion-icon name="call"></ion-icon> &nbsp; {{review?.contactNum}}</p>
-      <p><ion-icon name="mail"></ion-icon> &nbsp; {{review?.email}}</p>
-      <p><ion-icon name="chatbox"></ion-icon> &nbsp; {{review?.review}}</p>
+      <h4>
+        <div class="reviewProfile">
+          {{getFisrtName(review?.clientName)}}
+        </div>
+        &nbsp; {{ review?.clientName }}
+      </h4>
+      <p> {{review?.contactNum}}</p>
+      <p> {{review?.email}}</p>
       <ion-row>
         <ion-icon *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" name="star"
           [ngClass]="{'orange-star': i < review.rating, 'black-star': i >= review.rating}">
-        </ion-icon>
+        </ion-icon> &nbsp; {{review?.reviewDate | date:'dd/MM/yyyy'}}
       </ion-row>
+      <span>{{ review?.review }}</span>
     </div>
-    <p *ngIf="review_list?.length===0">No Record Found</p>
   </ion-list>
+  <p class="NoRecord" *ngIf="review_list?.length === 0">No Record Found</p>
+
 </ion-content>

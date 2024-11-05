@@ -53,8 +53,6 @@ import { PaymentLockComponent } from './payment-lock/payment-lock.component';
 import { UpcomingCourtListComponent } from './home/upcoming-court-list/upcoming-court-list.component';
 import { UpcomingCourtHearingListComponent } from './home/upcoming-court-hearing-list/upcoming-court-hearing-list.component';
 import { RecentClientListComponent } from './home/recent-client-list/recent-client-list.component';
-import { CompleteCaseListComponent } from './home/complete-case-list/complete-case-list.component';
-import { CompleteCaseDetailsComponent } from './home/complete-case-details/complete-case-details.component';
 import { AddHearingDateComponent } from './home/add-hearing-date/add-hearing-date.component';
 import { TotalClientComponent } from './home/total-client/total-client.component';
 import { TodayHearingComponent } from './home/today-hearing/today-hearing.component';
@@ -86,6 +84,11 @@ import { VakilContactSupportComponent } from './home/vakil-contact-support/vakil
 import { VakilReportAProblemComponent } from './home/vakil-report-a-problem/vakil-report-a-problem.component';
 import { VakilSupportRequestComponent } from './home/vakil-support-request/vakil-support-request.component';
 import { VakilPrivacyAndSecurityHelpComponent } from './home/vakil-privacy-and-security-help/vakil-privacy-and-security-help.component';
+import { VakilTermsAndConditionsComponent } from './home/vakil-terms-and-conditions/vakil-terms-and-conditions.component';
+import { VakilPrivacyPolicyComponent } from './home/vakil-privacy-policy/vakil-privacy-policy.component';
+import { VakilAboutUsComponent } from './home/vakil-about-us/vakil-about-us.component';
+import { ClientWithEnquiryComponent } from './home/client-with-enquiry/client-with-enquiry.component';
+import { VakilTotalCompleteCaseComponent } from './home/vakil-total-complete-case/vakil-total-complete-case.component';
 
 @NgModule({
   declarations: [
@@ -131,8 +134,6 @@ import { VakilPrivacyAndSecurityHelpComponent } from './home/vakil-privacy-and-s
     UpcomingCourtListComponent,
     UpcomingCourtHearingListComponent,
     RecentClientListComponent,
-    CompleteCaseListComponent,
-    CompleteCaseDetailsComponent,
     AddHearingDateComponent,
     TotalClientComponent,
     TodayHearingComponent,
@@ -163,7 +164,12 @@ import { VakilPrivacyAndSecurityHelpComponent } from './home/vakil-privacy-and-s
     VakilContactSupportComponent,
     VakilReportAProblemComponent,
     VakilSupportRequestComponent,
-    VakilPrivacyAndSecurityHelpComponent
+    VakilPrivacyAndSecurityHelpComponent,
+    VakilTermsAndConditionsComponent,
+    VakilPrivacyPolicyComponent,
+    VakilAboutUsComponent,
+    ClientWithEnquiryComponent,
+    VakilTotalCompleteCaseComponent
   ],
   imports: [
     BrowserModule,

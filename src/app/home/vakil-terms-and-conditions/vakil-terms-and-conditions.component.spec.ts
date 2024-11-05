@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CompleteCaseDetailsComponent } from './complete-case-details.component';
+import { VakilTermsAndConditionsComponent } from './vakil-terms-and-conditions.component';
 
-describe('CompleteCaseDetailsComponent', () => {
-  let component: CompleteCaseDetailsComponent;
-  let fixture: ComponentFixture<CompleteCaseDetailsComponent>;
+describe('VakilTermsAndConditionsComponent', () => {
+  let component: VakilTermsAndConditionsComponent;
+  let fixture: ComponentFixture<VakilTermsAndConditionsComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompleteCaseDetailsComponent ],
+      declarations: [ VakilTermsAndConditionsComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CompleteCaseDetailsComponent);
+    fixture = TestBed.createComponent(VakilTermsAndConditionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

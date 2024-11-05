@@ -26,8 +26,6 @@ import { PaymentLockComponent } from '../payment-lock/payment-lock.component';
 import { UpcomingCourtListComponent } from './upcoming-court-list/upcoming-court-list.component';
 import { UpcomingCourtHearingListComponent } from './upcoming-court-hearing-list/upcoming-court-hearing-list.component';
 import { RecentClientListComponent } from './recent-client-list/recent-client-list.component';
-import { CompleteCaseListComponent } from './complete-case-list/complete-case-list.component';
-import { CompleteCaseDetailsComponent } from './complete-case-details/complete-case-details.component';
 import { AddHearingDateComponent } from './add-hearing-date/add-hearing-date.component';
 import { TotalClientComponent } from './total-client/total-client.component';
 import { TodayHearingComponent } from './today-hearing/today-hearing.component';
@@ -57,6 +55,11 @@ import { VakilPrivacyAndSecurityHelpComponent } from './vakil-privacy-and-securi
 import { VakilSupportRequestComponent } from './vakil-support-request/vakil-support-request.component';
 import { ClientSettingComponent } from './client-setting/client-setting.component';
 import { VakilVideoPlayComponent } from './vakil-video-play/vakil-video-play.component';
+import { VakilTermsAndConditionsComponent } from './vakil-terms-and-conditions/vakil-terms-and-conditions.component';
+import { VakilPrivacyPolicyComponent } from './vakil-privacy-policy/vakil-privacy-policy.component';
+import { VakilAboutUsComponent } from './vakil-about-us/vakil-about-us.component';
+import { ClientWithEnquiryComponent } from './client-with-enquiry/client-with-enquiry.component';
+import { VakilTotalCompleteCaseComponent } from './vakil-total-complete-case/vakil-total-complete-case.component';
 
 const routes: Routes = [
   {
@@ -87,8 +90,6 @@ const routes: Routes = [
       { path: 'upcomingcourtlist', component: UpcomingCourtListComponent },
       { path: 'upcominghearinglist', component: UpcomingCourtHearingListComponent },
       { path: 'recentclient', component: RecentClientListComponent },
-      { path: 'completecase', component: CompleteCaseListComponent },
-      { path: 'completecasedetails', component: CompleteCaseDetailsComponent },
       { path: 'addhearingdate', component: AddHearingDateComponent },
       { path: 'totalclientlist', component: TotalClientComponent },
       { path: 'todayhearing', component: TodayHearingComponent },
@@ -118,7 +119,11 @@ const routes: Routes = [
       { path: 'vakilprivacyandsecurity', component: VakilPrivacyAndSecurityHelpComponent },
       { path: 'clientsetting', component: ClientSettingComponent },
       { path: 'vakilvideoplay', component: VakilVideoPlayComponent },
-
+      { path: 'vakiltermsandconditions', component: VakilTermsAndConditionsComponent },
+      { path: 'vakilprivacypolicy', component: VakilPrivacyPolicyComponent },
+      { path: 'vakilaboutus', component: VakilAboutUsComponent },
+      { path: 'clientwithenquiry', component: ClientWithEnquiryComponent },
+      { path: 'vakiltotalcompletecase', component: VakilTotalCompleteCaseComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

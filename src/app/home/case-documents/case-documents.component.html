@@ -33,9 +33,10 @@
 
     <ion-content>
       <div class="docList">
-        <div class="docsBox" *ngFor="let doc of docs_content" (click)="downloadDocument(img_url+doc?.documentUrl)">
+        <div class="docsBox" *ngFor="let doc of docs_content, let i = index"
+          (click)="downloadDocument(img_url+doc?.documentUrl)">
           <img src="../../../assets/images/download.png">
-          <p>{{doc?.Document_Name}}</p>
+          <p> {{i+1}}. {{doc?.Document_Name}}</p>
         </div>
       </div>
     </ion-content>

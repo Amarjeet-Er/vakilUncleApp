@@ -46,8 +46,8 @@ export class VakilByClientTotalCaseComponent implements OnInit {
             res.data.forEach((item: any) => {
               if (this.clientId === item.id) {
                 ids.push(item);
-                this.cases = ids ;
-                this.filter_data = ids ;
+                this.cases = ids;
+                this.filter_data = ids;
               }
             });
           } else {
@@ -63,8 +63,6 @@ export class VakilByClientTotalCaseComponent implements OnInit {
     );
   }
 
-
-
   onSearch(event: any) {
     const filter = event.target.value ? event.target.value.toLowerCase() : '';
     if (!filter) {
@@ -77,7 +75,6 @@ export class VakilByClientTotalCaseComponent implements OnInit {
         data?.courtName,
         data?.caseTitle,
         data?.caseNo,
-        data?.hearingDate,
         data?.act
       ].some(field =>
         field?.toString().toLowerCase().includes(filter)
@@ -85,5 +82,3 @@ export class VakilByClientTotalCaseComponent implements OnInit {
     });
   }
 }
-
-

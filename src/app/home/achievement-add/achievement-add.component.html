@@ -19,10 +19,6 @@
         <span class="highlight">Title</span>
         <span class="highlight">{{data?.title}}</span>
       </ion-row>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <span>Description</span>
-        <span>{{data?.desc}}</span>
-      </ion-row>
 
       <ion-row class="ion-justify-content-between ion-align-items-center" *ngIf="data?.doc1Path">
         <span>Document 1</span>
@@ -35,6 +31,12 @@
         <ion-icon name="document-attach" (click)="downloadDocument(img_url + data?.doc2Path)" style="cursor: pointer;">
         </ion-icon>
       </ion-row>
+
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <span>Description</span>
+        <span>{{data?.desc}}</span>
+      </ion-row>
+
     </ion-card>
     <p class="NoRecord" *ngIf="view_achivement?.length === 0">No Record Found</p>
   </ion-list>

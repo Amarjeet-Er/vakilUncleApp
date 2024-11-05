@@ -1,19 +1,15 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
-    <span>Upcoming Court Date</span>
+    <span>Upcoming Hearing {{upcuming_court?.length || '0'}}</span>
   </div>
 </div>
 
 <ion-content>
 
-
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
   </ion-searchbar>
 
-  <ion-row>
-    <span>Total Hearing : {{upcuming_court?.length || '0'}}</span><br>
-  </ion-row>
   <!-- upcoming court case  -->
   <div class="contentList">
     <ion-item lines="full" *ngFor="let data of upcuming_court" (click)="onUpcoming(data)">
@@ -21,9 +17,11 @@
         <h3>Name:- {{data?.clientName || 'N/A' | titlecase}}</h3>
         <p>Title:- {{data?.caseTitle}}</p>
         <p>Case No:- {{data?.caseNo}}</p>
-        <span>Next Date:- {{data?.hearingDate}}</span>
+        <span>Next Date:- {{data?.hearingDate | date:'dd MMM yyyy, h:m a'}}</span>
       </ion-label>
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>
+    <p class="NoRecord" *ngIf="upcuming_court?.length === 0">No Record Found</p>
+
   </div>
 </ion-content>

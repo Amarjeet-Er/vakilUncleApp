@@ -1,7 +1,7 @@
 <div class="header">
   <div class="navbar">
     <ion-icon slot="start" name="chevron-back" routerLink="/home/totalclientlist"></ion-icon>
-    <span>Total Client Case {{cases?.length}}</span>
+    <span>Client Case Profile {{cases?.length}}</span>
   </div>
 </div>
 
@@ -31,10 +31,6 @@
           <span>{{ case?.act || 'N/A' }}</span>
         </ion-row>
 
-        <ion-row>
-          <span><ion-icon name="code-working-outline"></ion-icon>&nbsp; Next Hearing</span>
-          <span style="color: green;">{{ case?.hearingDate || 'N/A' }}</span>
-        </ion-row>
       </div>
 
     </ion-card>

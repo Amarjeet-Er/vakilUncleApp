@@ -1,0 +1,33 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/home/advocateportfolio"></ion-icon>
+    <span>Enquiry</span>
+  </div>
+</div>
+
+<!-- client-enquiry.component.html -->
+<ion-content>
+  <form [formGroup]="enquiryForm" (ngSubmit)="submitForm()">
+    <ion-input formControlName="name" label="Name" placeholder="Enter name" label-placement="floating" fill="outline">
+    </ion-input>
+
+    <ion-input formControlName="contact" label="Contact Number" type="tel" label-placement="floating"
+      placeholder="Enter contact number" fill="outline">
+    </ion-input>
+
+    <ion-input formControlName="email" label="Email" type="Enter email" label-placement="floating" placeholder="Email"
+      fill="outline">
+    </ion-input>
+
+    <ion-select formControlName="city" placeholder="Select City" fill="outline" interface="action-sheet">
+      <ion-select-option *ngFor="let city of cities" [value]="city">
+        {{ city }}
+      </ion-select-option>
+    </ion-select>
+
+    <ion-button expand="block" type="submit" [disabled]="enquiryForm.invalid">
+      Submit
+    </ion-button>
+
+  </form>
+</ion-content>

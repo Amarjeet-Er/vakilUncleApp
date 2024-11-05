@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CompleteCaseListComponent } from './complete-case-list.component';
+import { VakilPrivacyPolicyComponent } from './vakil-privacy-policy.component';
 
-describe('CompleteCaseListComponent', () => {
-  let component: CompleteCaseListComponent;
-  let fixture: ComponentFixture<CompleteCaseListComponent>;
+describe('VakilPrivacyPolicyComponent', () => {
+  let component: VakilPrivacyPolicyComponent;
+  let fixture: ComponentFixture<VakilPrivacyPolicyComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompleteCaseListComponent ],
+      declarations: [ VakilPrivacyPolicyComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CompleteCaseListComponent);
+    fixture = TestBed.createComponent(VakilPrivacyPolicyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

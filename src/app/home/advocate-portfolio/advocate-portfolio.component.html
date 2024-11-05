@@ -19,7 +19,7 @@
         <p>{{profile_data?.advocateName | titlecase}}</p>
       </ion-row>
 
-      <ion-row class="ion-align-items-center" (click)="makeCall(profile_data?.contactNum)">
+      <ion-row class="ion-align-items-center">
         <ion-button>
           <ion-icon slot="icon-only" name="call"></ion-icon>
         </ion-button>
@@ -36,13 +36,20 @@
           + user ratings
         </p>
       </ion-row>
-      
+
+      <ion-row class="ion-align-items-center" routerLink="/home/clientwithenquiry">
+        <ion-button>
+          <ion-icon name="help-circle" slot="icon-only"></ion-icon>
+        </ion-button>
+        <p>{{ 'Enquiry' }}</p>
+      </ion-row>
+
+
     </ion-label>
   </ion-item>
 
   <ion-list>
     <ion-row>
-      <!-- <h2>{{ profile_data?.advocateName | titlecase }}</h2> -->
       <ion-row>
         <img src="../../../assets/icon/verified.png">
         <span>Verified</span>
@@ -120,13 +127,18 @@
 
   <ion-list>
     <div class="cardInfo" *ngFor="let review of review_list">
-      <h4>{{ review?.clientName }}</h4>
-      <span>{{ review?.review }}</span>
+      <h4>
+        <div class="reviewProfile">
+          {{getFisrtName(review?.clientName)}}
+        </div>
+        &nbsp; {{ review?.clientName }}
+      </h4>
       <ion-row>
         <ion-icon *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" name="star"
           [ngClass]="{'orange-star': i < review.rating, 'black-star': i >= review.rating}">
-        </ion-icon>
+        </ion-icon> &nbsp; {{review?.reviewDate | date:'dd/MM/yyyy'}}
       </ion-row>
+      <span>{{ review?.review }}</span>
     </div>
   </ion-list>
 

@@ -21,6 +21,7 @@ export class AboutCaseComponent implements OnInit {
   clientName: any;
   add_members_form!: FormGroup;
   case_number: any;
+  img_url: any;
 
   constructor(
     private _router: Router,
@@ -35,6 +36,12 @@ export class AboutCaseComponent implements OnInit {
     this._shared.sharedData.subscribe(
       (data) => {
         this.case_number = data;
+      }
+    )
+
+    this._shared.img_url.subscribe(
+      (data: any) => {
+        this.img_url = data;
       }
     )
   }
@@ -116,5 +123,10 @@ export class AboutCaseComponent implements OnInit {
     this.selectedOption = option;
     this.filteredOptions = [];
   }
+
+  downloadDocument(url: string) {
+    window.open(url, '_blank');
+  }
+
 }
 

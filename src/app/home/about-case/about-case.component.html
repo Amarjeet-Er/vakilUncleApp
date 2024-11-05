@@ -63,6 +63,13 @@
           <span>{{member?.memberaddress || 'N/A'}}</span>
         </ion-row>
 
+        <ion-row (click)="downloadDocument(img_url + member?.memberDocsUrl)">
+          <span>Document</span>
+          <span>
+            <ion-icon name="cloud-download"></ion-icon>
+          </span>
+        </ion-row>
+
         <ion-button shape="round" size="small" (click)="removeMember(member)">
           <span>Remove</span>
         </ion-button>

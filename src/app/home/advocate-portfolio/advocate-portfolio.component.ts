@@ -135,10 +135,6 @@ export class AdvocatePortfolioComponent implements OnInit {
     this._router.navigate(['/user/home']);
   }
 
-  makeCall(phoneNumber: string) {
-    const telLink = `tel:${phoneNumber}`;
-    window.location.href = telLink;
-  }
 
   onStarClick(value: number) {
     this.rating = value;
@@ -176,4 +172,7 @@ export class AdvocatePortfolioComponent implements OnInit {
     this.rating = 0;
   }
 
+  getFisrtName(name: string) {
+    return name.slice(0, 1)
+  }
 }
