@@ -52,6 +52,15 @@ export class AccountComponent implements OnInit {
     this._router.navigate(['/home/userprofile'])
   }
 
+  termsConditions() {
+    this.terms.dismiss();
+    this._router.navigate(['/home/vakiltermsandconditions'])
+  }
+
+  privacyPolicy() {
+    this.terms.dismiss();
+    this._router.navigate(['/home/vakilprivacypolicy'])
+  }
 
   logout() {
     this._router.navigate(['/login'])

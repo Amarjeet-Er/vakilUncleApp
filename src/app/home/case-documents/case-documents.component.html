@@ -6,7 +6,7 @@
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
   <ion-row>
-    <span>Case Documents : {{total_case_docs?.length || '0'}}</span>
+    <h6 style="margin: 5px 10px;">Total : {{total_case_docs?.length || '0'}}</h6>
   </ion-row>
   <ion-list>
     <ion-item lines="full" *ngFor="let case_doc of total_case_docs" (click)="caseDocs(case_doc)">

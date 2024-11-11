@@ -60,6 +60,7 @@ import { VakilPrivacyPolicyComponent } from './vakil-privacy-policy/vakil-privac
 import { VakilAboutUsComponent } from './vakil-about-us/vakil-about-us.component';
 import { ClientWithEnquiryComponent } from './client-with-enquiry/client-with-enquiry.component';
 import { VakilTotalCompleteCaseComponent } from './vakil-total-complete-case/vakil-total-complete-case.component';
+import { ClientAboutUsComponent } from './client-about-us/client-about-us.component';
 
 const routes: Routes = [
   {
@@ -124,6 +125,7 @@ const routes: Routes = [
       { path: 'vakilaboutus', component: VakilAboutUsComponent },
       { path: 'clientwithenquiry', component: ClientWithEnquiryComponent },
       { path: 'vakiltotalcompletecase', component: VakilTotalCompleteCaseComponent },
+      { path: 'clientaboutus', component: ClientAboutUsComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

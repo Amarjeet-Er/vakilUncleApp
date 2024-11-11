@@ -13,7 +13,7 @@
     </ion-row>
   </div>
 
-  <div class="caseList">
+  <div class="caseList" *ngIf="about_case?.clientName">
 
     <ion-list>
       <ion-row *ngIf="about_case?.clientName">
@@ -42,27 +42,28 @@
         <ion-item-divider>
           <ion-label>Members {{i + 1}}</ion-label>
         </ion-item-divider>
-        <ion-row>
+        <ion-row *ngIf="member?.fatherName">
           <span>Father Name</span>
           <span>{{member?.fatherName || 'N/A'}}</span>
         </ion-row>
-        <ion-row>
+        <ion-row *ngIf="member?.memberName">
           <span>Member Name</span>
           <span>{{member?.memberName || 'N/A'}}</span>
         </ion-row>
-        <ion-row>
+        <ion-row *ngIf="member?.membercontactNum">
           <span>Member Contact No</span>
           <span>{{member?.membercontactNum || 'N/A'}}</span>
         </ion-row>
-        <ion-row>
+        <ion-row *ngIf="member?.memberDetails">
           <span>Member Details</span>
           <span>{{member?.memberDetails || 'N/A'}}</span>
         </ion-row>
-        <ion-row>
+        <ion-row *ngIf="member?.memberaddress">
           <span>Member Address</span>
           <span>{{member?.memberaddress || 'N/A'}}</span>
         </ion-row>
-        <ion-row (click)="downloadDocument(img_url + member?.memberDocsUrl)">
+
+        <ion-row *ngIf="member?.memberDocsUrl" (click)="downloadDocument(img_url + member?.memberDocsUrl)">
           <span>Document</span>
           <span>
             <ion-icon name="cloud-download"></ion-icon>
@@ -72,4 +73,5 @@
       </ion-item-group>
     </ion-list>
   </div>
+  <p class="NoRecord" *ngIf="memberDetails?.length === 0">No Record Found</p>
 </ion-content>

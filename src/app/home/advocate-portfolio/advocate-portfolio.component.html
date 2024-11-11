@@ -79,7 +79,7 @@
   <ion-list>
     <h3>Specialization</h3>
     <ion-list>
-      <ion-chip *ngFor="let spec of specializations">{{ spec.name }}</ion-chip>
+      <ion-chip *ngFor="let spec of profile_data?.advocateTypeName">{{ spec }}</ion-chip>
     </ion-list>
   </ion-list>
 
@@ -120,7 +120,7 @@
         </div>
         <textarea formControlName="review" placeholder="Your message" required></textarea>
         &nbsp;
-        <ion-button type="submit">Submit</ion-button>
+        <ion-button type="submit" [disabled]="!reviewForm.valid">Submit</ion-button>
       </form>
     </ion-list>
   </ion-list>

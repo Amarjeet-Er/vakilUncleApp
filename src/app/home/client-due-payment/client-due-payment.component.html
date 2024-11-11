@@ -1,7 +1,7 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
-    <span>Payment {{cases?.length}}</span>
+    <span>Due Payment</span>
   </div>
 </div>
 
@@ -16,6 +16,8 @@
       <span>Due Payment</span>
     </ion-row>
   </div>
+  <h6 style="margin: 5px 10px;">Total : {{cases?.length || '0'}}</h6>
+
   <ng-container *ngFor="let case of cases">
     <ion-card (click)="pyamentDues(case)">
       <div>

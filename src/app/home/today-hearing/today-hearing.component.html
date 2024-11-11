@@ -10,9 +10,8 @@
 
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)" class="custom-searchbar">
   </ion-searchbar>
-  <ion-row>
-    <span>Total Hearing: {{ upcuming_court?.length || '0' }}</span>
-  </ion-row>
+
+  <h6 style="margin: 5px 10px;">Total : {{upcuming_court?.length || '0'}}</h6>
 
   <div class="contentList">
     <ion-list>

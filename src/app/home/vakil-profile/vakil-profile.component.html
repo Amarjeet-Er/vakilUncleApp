@@ -12,7 +12,7 @@
     </div>
     <div class="profileImage" [hidden]="profileSelect">
       <img [src]="profile_url" alt="">
-      <input type="file" #fileInput (change)="onProfile(fileInput.files)">
+      <input type="file" #fileInput (change)="onProfile(fileInput.files)" accept=".jpg,.png,.jpeg,">
     </div>
 
     <ion-button shape="round" (click)="fileInput.click()" *ngIf="!isEdit">
@@ -102,7 +102,7 @@
           <span>Aadhar</span>
           <img
             [src]="edit_profile_data?.adharUrl? img_url+edit_profile_data?.adharUrl: '../../../assets/images/document.png'"
-            alt="" width="100%" height="100%">
+            alt="" width="100%" height="100%" accept=".jpg,.png,.jpeg,">
         </div>
       </div>
 
@@ -133,7 +133,7 @@
           <span>Pan Card</span>
           <img
             [src]="edit_profile_data?.panUrl? img_url+edit_profile_data?.panUrl: '../../../assets/images/document.png'"
-            alt="" width="100%" height="100%">
+            alt="" width="100%" height="100%" accept=".jpg,.png,.jpeg,">
         </div>
       </div>
 
@@ -164,7 +164,7 @@
           <span>Bar Counselling Certificate</span>
           <img
             [src]="edit_profile_data?.barcouncilUrl? img_url+edit_profile_data?.barcouncilUrl: '../../../assets/images/document.png'"
-            alt="" width="100%" height="100%">
+            alt="" width="100%" height="100%" accept=".jpg,.png,.jpeg,">
         </div>
       </div>
 
@@ -196,7 +196,7 @@
           <span>LLB Certificate</span>
           <img
             [src]="edit_profile_data?.llbUrl? img_url+edit_profile_data?.llbUrl: '../../../assets/images/document.png'"
-            alt="" width="100%" height="100%">
+            alt="" width="100%" height="100%" accept=".jpg,.png,.jpeg,">
         </div>
       </div>
 

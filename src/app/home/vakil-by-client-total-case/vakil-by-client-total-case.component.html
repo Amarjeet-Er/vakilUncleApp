@@ -1,12 +1,14 @@
 <div class="header">
   <div class="navbar">
     <ion-icon slot="start" name="chevron-back" routerLink="/home/totalclientlist"></ion-icon>
-    <span>Client Case Profile {{cases?.length}}</span>
+    <span>Client Case Profile</span>
   </div>
 </div>
 
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+
+  <h6 style="margin: 5px 10px;">Total : {{cases?.length || '0'}}</h6>
 
   <ng-container *ngFor="let case of cases">
     <ion-card>

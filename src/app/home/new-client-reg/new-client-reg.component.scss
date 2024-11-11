@@ -36,6 +36,7 @@ ion-content {
     }
 
     #client-list {
+        padding: 0;
         ion-card {
             width: calc(100% - 20px);
             display: flex;

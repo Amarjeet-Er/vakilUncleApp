@@ -44,6 +44,7 @@ ion-content {
     }
 
     #client-list {
+        padding: 0px;
         ion-card {
             width: calc(100% - 20px);
             display: flex;

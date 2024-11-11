@@ -13,7 +13,10 @@
       <span>Add Payment</span>
     </ion-row>
   </div>
-  <h3>{{payHistory_data?.name}}</h3>
+  <h6 style="margin: 5px 10px;  display: flex;  justify-content: space-between;">
+    <span> Total : {{cases?.length || '0'}} </span>
+    <span style="text-align: end;">{{payHistory_data?.name}}</span>
+  </h6>
   <ng-container *ngFor="let fee of cases">
     <ion-card>
       <div>

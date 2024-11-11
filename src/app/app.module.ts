@@ -89,6 +89,7 @@ import { VakilPrivacyPolicyComponent } from './home/vakil-privacy-policy/vakil-p
 import { VakilAboutUsComponent } from './home/vakil-about-us/vakil-about-us.component';
 import { ClientWithEnquiryComponent } from './home/client-with-enquiry/client-with-enquiry.component';
 import { VakilTotalCompleteCaseComponent } from './home/vakil-total-complete-case/vakil-total-complete-case.component';
+import { ClientAboutUsComponent } from './home/client-about-us/client-about-us.component';
 
 @NgModule({
   declarations: [
@@ -169,7 +170,8 @@ import { VakilTotalCompleteCaseComponent } from './home/vakil-total-complete-cas
     VakilPrivacyPolicyComponent,
     VakilAboutUsComponent,
     ClientWithEnquiryComponent,
-    VakilTotalCompleteCaseComponent
+    VakilTotalCompleteCaseComponent,
+    ClientAboutUsComponent
   ],
   imports: [
     BrowserModule,

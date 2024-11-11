@@ -1,5 +1,5 @@
 <div class="header">
-  <span>Total Client {{clients?.length || '0'}}</span>
+  <span>Clients</span>
 </div>
 
 <ion-content>
@@ -9,6 +9,8 @@
     <span>New Registration </span>
     <ion-icon name="add-circle"></ion-icon>
   </ion-row>
+
+  <h6 style="margin: 5px 10px;">Total : {{clients?.length || '0'}}</h6>
 
   <ion-list id="client-list">
     <ion-card (click)="onClientDetails(client)" *ngFor="let client of clients">
@@ -67,17 +69,19 @@
           </ion-input>
 
           <ion-select label="Gender" label-placement="floating" fill="outline" placeholder="Select Gender"
-            formControlName="gender">
+            formControlName="gender" interface="action-sheet">
             <ion-select-option value="Male"> Male </ion-select-option>
             <ion-select-option value="Female"> Female </ion-select-option>
             <ion-select-option value="Other"> Other </ion-select-option>
           </ion-select>
 
-          <ion-input label="Case No" label-placement="floating" type="number" fill="outline" placeholder="Enter case no"
-            formControlName="caseNo"></ion-input>
+          <ion-input label="Case No" label-placement="floating" type="text" fill="outline" placeholder="Enter case no"
+            formControlName="caseNo">
+          </ion-input>
 
           <ion-input label="Case Title " label-placement="floating" fill="outline" placeholder="Enter Case Title "
-            formControlName="caseTitle"></ion-input>
+            formControlName="caseTitle">
+          </ion-input>
 
           <ion-input label="Act" label-placement="floating" fill="outline" placeholder="Enter act"
             formControlName="act"></ion-input>
@@ -103,7 +107,7 @@
             </ion-select-option>
           </ion-select>
 
-          <ion-input label="FIR Date" type="date" label-placement="floating" fill="outline" formControlName="firDate">
+          <ion-input label="FIR Date" type="datetime-local" label-placement="floating" fill="outline" formControlName="firDate">
           </ion-input>
 
           <ion-input label-placement="floating" type="datetime-local" fill="outline" label="Hearing Date & Time"

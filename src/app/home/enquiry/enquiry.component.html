@@ -1,51 +1,41 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon> <span>Enquiries</span>
+    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon> <span>Enquiry</span>
   </div>
 </div>
 
 <ion-content>
-  <ion-list>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
 
-    <ion-item lines="full" (click)="enquiry()">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_1.jpg" />
-      </ion-avatar>
-      <ion-label>Gautum Singh</ion-label>
-      <ion-icon name="alert-circle" color="success"></ion-icon>
-    </ion-item>
+  <ion-list id="client-list">
+    <ion-card *ngFor="let client of enquiry_list">
+      <div class="client-text">
+        <ion-row>
+          <span class="highlight">Name </span>
+          <span class="highlight">{{client.clientName || 'N/A' | titlecase}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Contact No</span>
+          <span>{{client.contactNum || 'N/A'}} </span>
+        </ion-row>
+        <ion-row>
+          <span>Email Id </span>
+          <span>{{client.email || 'N/A'}} </span>
+        </ion-row>
+        <ion-row>
+          <span>City</span>
+          <span>{{client.caseTitle || 'N/A' | titlecase}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Date</span>
+          <span>{{client.caseNo || 'N/A'}}</span>
+        </ion-row>
+      </div>
 
-    <ion-item lines="full" (click)="enquiry()">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_2.png" />
-      </ion-avatar>
-      <ion-label>Sushant Kumar</ion-label>
-      <ion-icon name="alert-circle" color="success"></ion-icon>
-    </ion-item>
-
-    <ion-item lines="full" (click)="enquiry()">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_8.jpg" />
-      </ion-avatar>
-      <ion-label>Rahul Patel</ion-label>
-    </ion-item>
-
-    <ion-item lines="full" (click)="enquiry()">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_5.png" />
-      </ion-avatar>
-      <ion-label>Virender Bhola</ion-label>
-    </ion-item>
-
-    <ion-item lines="full" (click)="enquiry()">
-      <ion-avatar aria-hidden="true" slot="start">
-        <img alt="" src="../../../assets/Lawyers/lawyer_3.jfif" />
-      </ion-avatar>
-      <ion-label>Abhishek Kumar</ion-label>
-    </ion-item>
+    </ion-card>
   </ion-list>
+  <p class="NoRecord" *ngIf="enquiry_list?.length === 0">No Record Found</p>
 </ion-content>
-
 
 
 <ion-modal #enquirydetails>
@@ -60,21 +50,27 @@
       <h1>Scroll the content and notice that the text goes behind the header and footer.</h1>
 
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed tellus nec mauris auctor dignissim fermentum in
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed tellus nec mauris auctor dignissim fermentum
+        in
         risus. Sed nec convallis sapien, id tincidunt enim. Mauris ornare eleifend nunc id mattis. Fusce augue diam,
-        sagittis nec posuere at, consectetur tempor lectus. Nulla at lectus eget mauris iaculis malesuada mollis sed neque.
-        Curabitur et risus tristique, malesuada mauris finibus, elementum massa. Proin lacinia mauris quis ligula blandit
-        ullamcorper. Donec ut posuere lorem. In volutpat magna vitae tellus posuere pulvinar. Nam varius ligula justo, nec
+        sagittis nec posuere at, consectetur tempor lectus. Nulla at lectus eget mauris iaculis malesuada mollis sed
+        neque.
+        Curabitur et risus tristique, malesuada mauris finibus, elementum massa. Proin lacinia mauris quis ligula
+        blandit
+        ullamcorper. Donec ut posuere lorem. In volutpat magna vitae tellus posuere pulvinar. Nam varius ligula justo,
+        nec
         placerat lacus pharetra ac. Aenean massa orci, tristique in nisl ut, aliquet consectetur libero. Etiam luctus
-        placerat vulputate. Aliquam ipsum massa, porttitor at mollis ut, pretium sit amet mi. In neque mauris, placerat et
+        placerat vulputate. Aliquam ipsum massa, porttitor at mollis ut, pretium sit amet mi. In neque mauris, placerat
+        et
         neque vel, tempor interdum dolor. Suspendisse gravida malesuada tellus, vel dapibus nisl dignissim vel. Cras ut
         nulla sit amet erat malesuada euismod vel a nulla.
       </p>
 
-      <ion-textarea label="About Case" labelPlacement="floating"  fill="outline" placeholder="Write about the case"></ion-textarea>
+      <ion-textarea label="About Case" labelPlacement="floating" fill="outline"
+        placeholder="Write about the case"></ion-textarea>
 
       <ion-button>Submit</ion-button>
-      
+
     </ion-content>
   </ng-template>
 </ion-modal>

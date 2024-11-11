@@ -200,6 +200,9 @@ export class CrudService {
   add_payment(data: any) {
     return this._http.post<any>(`${this.base_url}addClientPayment`, data);
   }
+  get_enquiry_list(vakilId: any) {
+    return this._http.get<any>(`${this.base_url}planValidity?vakilId=${vakilId}`);
+  }
 
 
 

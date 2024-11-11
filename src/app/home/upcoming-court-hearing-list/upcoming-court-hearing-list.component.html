@@ -1,13 +1,14 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/home/upcomingcourtlist"></ion-icon>
-    <span>Client Hearing History {{case_hearing_details?.length}}</span>
+    <span>Hearing History</span>
   </div>
 </div>
 
 <ion-content>
 
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+  <h6 style="margin: 5px 10px;">Total : {{case_hearing_details?.length || '0'}}</h6>
 
   <ion-list *ngFor="let hearing of case_hearing_details">
     <ion-row *ngIf="hearing?.extraCharge">

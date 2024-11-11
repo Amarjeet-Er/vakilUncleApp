@@ -104,6 +104,7 @@ export class VakilDashboardComponent implements OnInit {
 	login: string | null;
 	login_data: { advId: number } | null;
 	vId: number | undefined
+	profile_data: any;
 
 	constructor(
 		private _router: Router,
@@ -126,6 +127,15 @@ export class VakilDashboardComponent implements OnInit {
 		});
 	}
 	loadData() {
+		this._crud.get_update_vakil_profile(this.vId).subscribe(
+			(res: any) => {
+				if (res.status === true) {
+					this.profile_data = res.data;
+					console.log(this.profile_data, 'profile');
+					
+				}
+			}
+		);
 		this._crud.get_plan_details(this.vId).subscribe(
 			(res: any) => {
 				this.memberships = res.data

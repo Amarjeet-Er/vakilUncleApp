@@ -1,7 +1,7 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
-    <span>Pending Case {{cases?.length}}</span>
+    <span>Pending Case</span>
   </div>
 </div>
 
@@ -13,7 +13,7 @@
       <span>Pending Case</span>
     </ion-row>
     <ion-row class="actionCase" routerLink="/home/vakiltotalcompletecase">
-      <span>Complete Case</span>
+      <span>Completed Case</span>
     </ion-row>
   </div>
 
@@ -23,6 +23,8 @@
       <span>Add Another Case</span>
     </ion-row>
   </div>
+
+  <h6 style="margin: 5px 10px;">Total : {{cases?.length || '0'}}</h6>
 
   <ng-container *ngFor="let case of cases">
     <ion-card>

@@ -1,7 +1,7 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
-    <span>Upcoming Hearing {{upcuming_court?.length || '0'}}</span>
+    <span>Upcoming Hearing</span>
   </div>
 </div>
 
@@ -9,6 +9,7 @@
 
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
   </ion-searchbar>
+  <h6 style="margin: 5px 10px;">Total : {{upcuming_court?.length || '0'}}</h6>
 
   <!-- upcoming court case  -->
   <div class="contentList">

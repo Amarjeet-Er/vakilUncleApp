@@ -12,7 +12,7 @@
     </div>
     <div class="profileImage" [hidden]="profileSelect">
       <img [src]="profile_url" alt="">
-      <input type="file" #fileInput (change)="onProfile(fileInput.files)">
+      <input type="file" #fileInput (change)="onProfile(fileInput.files)" accept=".jpg,.png,.jpeg,">
     </div>
 
     <ion-button shape="round" (click)="fileInput.click()" *ngIf="!isEdit">

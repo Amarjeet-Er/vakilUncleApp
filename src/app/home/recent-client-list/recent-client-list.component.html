@@ -1,7 +1,7 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
-    <span>Recent Client List</span>
+    <span>Recent Client</span>
   </div>
 </div>
 
@@ -10,7 +10,7 @@
 
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
   <ion-row>
-    <span>Recent Client : {{recent_client?.length || '0'}}</span>
+    <h6 style="margin: 5px 10px;">Total : {{recent_client?.length || '0'}}</h6>
   </ion-row>
   <ion-item lines="full" *ngFor="let data of recent_client">
     <ion-avatar aria-hidden="true" slot="start">
