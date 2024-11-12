@@ -7,7 +7,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 10px;
 
     ion-buttons {
         color: var(--color-light);
@@ -329,4 +328,7 @@ ion-list:last-child {
     color: #f4f4f4;
     background-blend-mode: color-dodge;
     opacity: 0 !important;
+}
+ion-searchbar{
+    margin: 10px 0 0;
 }

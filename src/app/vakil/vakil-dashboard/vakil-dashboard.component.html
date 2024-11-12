@@ -176,9 +176,9 @@
           <h3>Name:- {{data?.clientName || 'N/A' | titlecase}}</h3>
           <p>Title:- {{data?.caseTitle}}</p>
           <p>Case No:- {{data?.caseNo}}</p>
-          <span style="color: brown;">Last Hearing :- {{data?.hearingDate | date:'dd MMM yyyy, h:m a'}}</span>
+          <span style="color: green;">Last Hearing :- {{ data?.hearingDate ? (data.hearingDate | date: 'dd MMM yyyy, h:mm a') : 'N/A' }}</span>
         </ion-label>
-        <ion-icon name="chevron-forward"></ion-icon>
+        <!-- <ion-icon name="chevron-forward"></ion-icon> -->
       </ion-item>
     </div>
   </ion-list>

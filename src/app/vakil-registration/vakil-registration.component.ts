@@ -208,8 +208,20 @@ export class VakilRegistrationComponent implements OnInit {
         this._crud.vakil_registartion(formdata).subscribe(
           (response) => {
             console.log(response);
-            this._router.navigate(['/login']);
-            this._shared.tostSuccessTop('Registration successful!');
+            if (response.status === true) {
+              console.log(response);
+              this._router.navigate(['/login']);
+              this._shared.tostSuccessTop('Registration successful!');
+              return
+            }
+            else if (response.status === false) {
+              this._shared.tostErrorTop('Already Register Mobile Number');
+              return
+            }
+          },
+          (error) => {
+            console.log(error);
+            this._shared.tostWrraingTop(error);
           }
         )
       } catch (error) {

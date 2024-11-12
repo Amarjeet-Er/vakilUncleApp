@@ -32,7 +32,7 @@ export class EnquiryComponent implements OnInit {
     });
   }
   loadData() {
-    this._crud.get_new_Client(this.login_data?.advId).subscribe(
+    this._crud.get_enquiry_list(this.login_data?.advId).subscribe(
       (response: any) => {
         console.log(response);
         this.enquiry_list = response.data;
@@ -52,7 +52,10 @@ export class EnquiryComponent implements OnInit {
       if (data?.contactNum.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
         return true;
       }
-      if (data?.caseNo.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+      if (data?.email.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        return true;
+      }
+      if (data?.cityName.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
         return true;
       }
       return false;

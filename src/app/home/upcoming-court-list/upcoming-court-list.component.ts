@@ -34,7 +34,7 @@ export class UpcomingCourtListComponent implements OnInit {
   private fetchUpcomingCourtList(): void {
     this.crudService.get_upcoming_court_list(this.login_data.advId).subscribe(
       (res: any) => {
-        console.log(res, 'dashboard');
+        console.log(res, 'upcomming');
         if (res.status) {
           this.upcuming_court = res.data;
           this.filter_data = res.data;
@@ -50,6 +50,7 @@ export class UpcomingCourtListComponent implements OnInit {
 
   onUpcoming(data: any): void {
     this._shared.sharedData.next(data)
+    console.log(data);    
     this._router.navigate(['/home/upcominghearinglist']);
   }
 

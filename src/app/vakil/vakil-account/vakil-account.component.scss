@@ -59,12 +59,13 @@ ion-content {
         padding-top: 70px;
         overflow: auto;
 
-        .ion-text-center{
-            h3{
+        .ion-text-center {
+            h3 {
                 margin: 3px;
                 font-size: 16px;
             }
-            p{
+
+            p {
                 margin: 3px;
                 font-size: 12px;
             }
@@ -72,6 +73,9 @@ ion-content {
 
 
         ion-list {
+            p {
+                font-size: 12px;
+            }
 
             ion-title {
                 font-weight: 600;

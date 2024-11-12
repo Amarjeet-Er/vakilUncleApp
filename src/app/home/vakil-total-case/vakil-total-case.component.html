@@ -35,7 +35,7 @@
         </ion-row>
 
         <ion-row>
-          <span> <ion-icon name="barcode-outline"></ion-icon> &nbsp; Case Title </span>
+          <span> <ion-icon name="barcode-outline"></ion-icon>&nbsp; Case Title </span>
           <span>{{ case?.caseTitle || 'N/A' }}</span>
         </ion-row>
 
@@ -61,7 +61,7 @@
 
         <ion-row style="color: green;">
           <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Next Hearing</span>
-          <span>{{ case?.hearingDate | date: 'dd MMM yyyy, h:mm a' || 'N/A' }}</span>
+          <span>{{ case?.hearingDate ? (case?.hearingDate | date: 'dd MMM yyyy, h:mm a') : 'N/A' }}</span>
         </ion-row>
       </div>
 

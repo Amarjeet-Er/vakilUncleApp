@@ -92,7 +92,7 @@ export class SignUpComponent implements OnInit {
     this._crud.verify_email(email).subscribe(
       (res: any) => {
         if (res.status === false) {
-          localStorage.setItem('vakilEmail', JSON.stringify(email));
+          localStorage.setItem('userEmail', JSON.stringify(email));
           this._crud.otp_send(email).subscribe(
             (otpRes: any) => {
               if (otpRes.status === true && otpRes.OTP) {
@@ -170,9 +170,21 @@ export class SignUpComponent implements OnInit {
       try {
         this._crud.user_registartion(formdata).subscribe(
           (response) => {
-            console.log(response);
-            this._router.navigate(['/login']);
-            this._shared.tostSuccessTop('Registration successful!');
+            if (response.status === true) {
+              console.log(response);
+              this._router.navigate(['/login']);
+              this._shared.tostSuccessTop('Registration successful!');
+              return
+            }
+            else if (response.status === false) {
+              this._shared.tostErrorTop('Already Register Mobile Number');
+              this.userRegistration.present();
+              return
+            }
+          },
+          (error) => {
+            console.log(error);
+            this._shared.tostWrraingTop(error);
           }
         )
       } catch (error) {

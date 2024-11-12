@@ -1,8 +1,21 @@
-<div class="header">
+<!-- <div class="header">
   <ion-buttons shape="round" routerLink="/home/userprofile">
     <ion-icon name="person-circle"></ion-icon>
   </ion-buttons>
+</div> -->
+
+<div class="header">
+  <ion-buttons shape="round" routerLink="/home/userprofile">
+    <ng-container *ngIf="profile_data?.profile; else iconTemplate">
+      <img [src]="img_url + profile_data?.profile" alt="Profile Image"
+        style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50px;">
+    </ng-container>
+    <ng-template #iconTemplate>
+      <ion-icon name="person-circle" style="font-size: 40px; color: white;"></ion-icon>
+    </ng-template>
+  </ion-buttons>
 </div>
+
 
 <ion-content>
   <ion-searchbar color="light" [placeholder]="'Search for '+currentPlaceholder" (click)="searchPage()"></ion-searchbar>
@@ -86,7 +99,7 @@
             <ion-icon name="location" style="color: var(--color-primary);"></ion-icon> {{lawyer?.offAddress}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -153,7 +166,7 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp; <ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp; <ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -186,7 +199,7 @@
             {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -219,7 +232,7 @@
             {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -252,7 +265,7 @@
             {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -286,7 +299,7 @@
             {{lawyer?.cityName}} {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -320,7 +333,7 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -354,7 +367,7 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -389,7 +402,7 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -423,7 +436,7 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">
@@ -457,7 +470,7 @@
             {{lawyer?.stateName}}
           </span>
           <span style="display: flex;">
-           {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
+            {{lawyer.totalUserRating}} &nbsp;<ion-icon name="star" style="color: green;"></ion-icon> &nbsp; rating
           </span>
         </ion-row>
         <ion-row class="ion-justify-content-between ion-align-items-center">

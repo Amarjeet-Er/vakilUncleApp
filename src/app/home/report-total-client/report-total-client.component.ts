@@ -11,7 +11,6 @@ import { FileOpener } from '@awesome-cordova-plugins/file-opener';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 const pdfMakeX = require('pdfmake/build/pdfmake');
 const pdfFontsX = require('pdfmake/build/vfs_fonts');
-pdfMakeX.vfs = pdfFontsX.pdfMake.vfs;
 
 @Component({
   selector: 'app-report-total-client',

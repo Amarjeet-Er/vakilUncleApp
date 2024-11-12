@@ -33,7 +33,8 @@
 
     <ion-row>
       <span>Next Date</span>
-      <span style="color: green;">{{ hearing?.hearingDate || 'N/A' }}</span>
+      <span style="color: green;">{{ hearing?.hearingDate ? (hearing?.hearingDate | date:'dd MMM yyyy, h:mm a') : 'N/A'
+        }}</span>
     </ion-row>
 
     <ion-row *ngIf="hearing?.chargeDetail">

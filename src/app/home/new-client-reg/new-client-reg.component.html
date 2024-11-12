@@ -107,7 +107,8 @@
             </ion-select-option>
           </ion-select>
 
-          <ion-input label="FIR Date" type="datetime-local" label-placement="floating" fill="outline" formControlName="firDate">
+          <ion-input label="FIR Date" type="datetime-local" label-placement="floating" fill="outline"
+            formControlName="firDate">
           </ion-input>
 
           <ion-input label-placement="floating" type="datetime-local" fill="outline" label="Hearing Date & Time"
@@ -209,7 +210,7 @@
             <ion-icon name="calendar"></ion-icon>
             <p>
               <span>Fir Date</span>
-              <span>{{detail?.firdate || 'N/A'}}</span>
+              <span>{{detail?.firdate ? (detail?.firdate | date: 'dd MMM yyyy, h:mm a') : 'N/A'}}</span>
             </p>
           </ion-row>
 
@@ -217,7 +218,7 @@
             <ion-icon name="calendar-number"></ion-icon>
             <p>
               <span> Hearing Date</span>
-              <span>{{detail?.hearingDate || 'N/A'}}</span>
+              <span>{{detail?.hearingDate ? (detail?.hearingDate | date: 'dd MMM yyyy, h:mm a') : 'N/A'}}</span>
             </p>
           </ion-row>
           <ion-row>

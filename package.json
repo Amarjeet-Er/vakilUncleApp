@@ -24,7 +24,6 @@
 		"@angular/router": "^18.0.0",
 		"@awesome-cordova-plugins/file": "^6.9.0",
 		"@awesome-cordova-plugins/file-opener": "^6.9.0",
-		"@canvasjs/angular-charts": "^1.2.0",
 		"@capacitor/android": "^6.1.1",
 		"@capacitor/app": "6.0.0",
 		"@capacitor/camera": "^6.0.2",

@@ -5,9 +5,9 @@
 </div>
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
-  <ion-row>
+  <ion-row (click)="AddVideo()">
     <span>Add Video</span>
-    <ion-icon name="add-circle" (click)="AddVideo()"></ion-icon>
+    <ion-icon name="add-circle"></ion-icon>
   </ion-row>
 
   <ion-list style="margin: 0;" *ngIf="videoList?.length > 0">

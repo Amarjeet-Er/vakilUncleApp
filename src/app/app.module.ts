@@ -28,7 +28,6 @@ import { VakilAccountComponent } from './vakil/vakil-account/vakil-account.compo
 import { VakilProfileComponent } from './home/vakil-profile/vakil-profile.component';
 import { VakilContactPanelComponent } from './vakil/vakil-contact-panel/vakil-contact-panel.component';
 import { VakilDashboardComponent } from './vakil/vakil-dashboard/vakil-dashboard.component';
-import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { AddClientCaseComponent } from './home/add-client-case/add-client-case.component';
 import { MembershipManagementComponent } from './home/membership-management/membership-management.component';
 import { PublicationManagementComponent } from './home/publication-management/publication-management.component';
@@ -180,7 +179,6 @@ import { ClientAboutUsComponent } from './home/client-about-us/client-about-us.c
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
-    CanvasJSAngularChartsModule,
     HttpClientModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule.forRoot({

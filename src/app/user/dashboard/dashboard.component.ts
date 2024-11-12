@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   intervalId: any;
   img_url: any;
   login_data: any;
+  profile_data: any;
 
   constructor(
     private _router: Router,
@@ -205,6 +206,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       }
     )
+    this._crud.get_client_profile(this.login_data.id).subscribe(
+      (res: any) => {
+        this.profile_data = res.data;
+        console.log(this.profile_data);
+      }
+    );
   }
 
   startPlaceholderRotation() {

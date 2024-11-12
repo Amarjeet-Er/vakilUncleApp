@@ -47,12 +47,12 @@
           <span>{{ case?.act || 'N/A' }}</span>
         </ion-row>
 
-        <ion-row style="color: green;">
+        <ion-row style="color: #007222;">
           <span><ion-icon name="sunny-sharp"></ion-icon>&nbsp; Status</span>
           <span>{{'Success'}}</span>
         </ion-row>
 
-        <ion-row style="color: brown;">
+        <ion-row style="color: #007222;">
           <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Last Hearing</span>
           <span>{{ case?.hearingDate ? (case.hearingDate | date: 'dd MMM yyyy, h:mm a') : 'N/A' }}</span>
         </ion-row>
