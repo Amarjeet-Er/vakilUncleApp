@@ -9,7 +9,7 @@
   <form [formGroup]="caseForm">
 
     <ion-input label-placement="floating" type="datetime-local" fill="outline" label="Hearing Date & Time"
-      placeholder="Enter Hearing Date & Time" formControlName="hearingDate">
+      placeholder="Enter Hearing Date & Time" formControlName="hearingDate" [min]="minDate">
     </ion-input>
 
 

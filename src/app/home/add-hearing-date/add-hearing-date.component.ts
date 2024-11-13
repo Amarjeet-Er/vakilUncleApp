@@ -15,6 +15,7 @@ export class AddHearingDateComponent implements OnInit {
   caseData: any;
   clientName: any;
   case_number: any;
+  minDate: string='';
 
   constructor(private fb: FormBuilder,
     private _crud: CrudService,
@@ -30,6 +31,8 @@ export class AddHearingDateComponent implements OnInit {
   }
 
   ngOnInit() {
+    const today = new Date();
+    this.minDate = today.toISOString().slice(0, 16);
     this.caseForm = this.fb.group({
       hearingDate: ['', Validators.required],
       extracharge: ['', Validators.required],

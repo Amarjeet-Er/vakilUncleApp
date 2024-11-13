@@ -24,7 +24,7 @@
         </ion-row>
 
         <ion-row>
-          <span><ion-icon name="call-outline"></ion-icon>&nbsp; Case Number</span>
+          <span><ion-icon name="call-outline"></ion-icon>&nbsp; Case No</span>
           <span>{{ case?.caseNo || 'N/A' }}</span>
         </ion-row>
 
@@ -33,8 +33,15 @@
           <span>{{ case?.act || 'N/A' }}</span>
         </ion-row>
 
-      </div>
+        <ion-row [ngStyle]="{'color': case?.status ? 'green' : 'red'}">
+          <span *ngIf="case?.status === true"><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp; Status</span>
+          <span *ngIf="case?.status === false"><ion-icon name="close-circle-outline"></ion-icon>&nbsp; Status</span>
+          <span>
+            {{ case?.status ? 'Completed' : 'Pending'}}
+          </span>
+        </ion-row>
 
+      </div>
     </ion-card>
   </ng-container>
   <p class="NoRecord" *ngIf="cases?.length === 0">No Record Found</p>
