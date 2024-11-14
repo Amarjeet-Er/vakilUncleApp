@@ -61,6 +61,7 @@ import { VakilAboutUsComponent } from './vakil-about-us/vakil-about-us.component
 import { ClientWithEnquiryComponent } from './client-with-enquiry/client-with-enquiry.component';
 import { VakilTotalCompleteCaseComponent } from './vakil-total-complete-case/vakil-total-complete-case.component';
 import { ClientAboutUsComponent } from './client-about-us/client-about-us.component';
+import { TotalAdvocateTypeComponent } from './total-advocate-type/total-advocate-type.component';
 
 const routes: Routes = [
   {
@@ -126,6 +127,7 @@ const routes: Routes = [
       { path: 'clientwithenquiry', component: ClientWithEnquiryComponent },
       { path: 'vakiltotalcompletecase', component: VakilTotalCompleteCaseComponent },
       { path: 'clientaboutus', component: ClientAboutUsComponent },
+      { path: 'totaladvocatetype', component: TotalAdvocateTypeComponent },
     ]
   },
   { path: 'membershipPremium', component: MembershipPremiumComponent },

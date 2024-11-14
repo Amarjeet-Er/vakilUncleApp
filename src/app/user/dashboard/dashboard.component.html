@@ -51,6 +51,7 @@
   <ion-list *ngIf="Lawyers_types?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
       <span class="ion-margin-start">Type Of Lawyers</span>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/home/totaladvocatetype">See All</ion-button>
     </ion-row>
     <div class="menuList">
       <div class="chipList" *ngFor="let type of Lawyers_types" (click)="filterAdvocate(type.Id)">

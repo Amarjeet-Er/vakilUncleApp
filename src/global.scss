@@ -70,8 +70,16 @@ ion-content {
     ion-searchbar::part(input) {
         transition: all 0.5s ease-in-out;
     }
-
 }
+
+// ion input height set
+// .input-fill-outline.sc-ion-input-md-h {
+//     --border-color: var(--ion-color-step-300, var(--ion-background-color-step-300, #b3b3b3));
+//     --border-radius: 4px;
+//     --padding-start: 16px;
+//     --padding-end: 16px;
+//     min-height: 45px;
+// }
 
 
 // for input type number appearance hide/none 

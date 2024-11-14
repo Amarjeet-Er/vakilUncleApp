@@ -43,13 +43,13 @@
         </ion-row>
 
         <ion-row>
-          <span><ion-icon name="checkmark-done-circle-outline"></ion-icon>&nbsp; Received Pay</span>
+          <span><ion-icon name="checkmark-done-circle-outline"></ion-icon>&nbsp; Received</span>
           <span>{{ case?.Clientpayment || 'N/A' }}</span>
         </ion-row>
 
         <ion-row [ngClass]="{'green-text': case?.due === 0, 'red-text': case?.due > 0}">
           <span>
-            <ion-icon name="calendar-outline"></ion-icon>&nbsp; Total Dues
+            <ion-icon name="calendar-outline"></ion-icon>&nbsp; Payment
           </span>
           <span>
             {{ case?.due === 0 ? 'All Paid' : '' + case?.due }}

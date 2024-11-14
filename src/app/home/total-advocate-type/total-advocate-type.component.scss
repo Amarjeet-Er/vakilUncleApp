@@ -31,10 +31,10 @@ ion-content {
   h2{
     font-size: 15px;
   }
-  ion-searchbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: var(--color-light);
-}
+   ion-searchbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: var(--color-light);
+    }
 }

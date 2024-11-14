@@ -48,10 +48,10 @@ export class VakilDashboardComponent implements OnInit {
 				if (res.status === true) {
 					this.profile_data = res.data;
 					console.log(this.profile_data, 'profile');
-
 				}
 			}
 		);
+
 		this._crud.get_plan_details(this.vId).subscribe(
 			(res: any) => {
 				this.memberships = res.data
@@ -110,7 +110,6 @@ export class VakilDashboardComponent implements OnInit {
 		this._router.navigate(['/home/upcominghearinglist']);
 	}
 
-	disable() { }
 	handleClick(member: any) {
 		switch (member?.servicePath) {
 			case '/vakil/AddPublication':
@@ -154,4 +153,5 @@ export class VakilDashboardComponent implements OnInit {
 	addrewards() {
 		this._router.navigate(['/home/rewardsadd'])
 	}
+	disable() { }
 }

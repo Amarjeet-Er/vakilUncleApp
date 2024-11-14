@@ -1,6 +1,6 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>Constitution of India</span>
+    <ion-icon name="chevron-back" (click)="backButton()"></ion-icon> <span>Advocate Type</span>
   </div>
 </div>
 
@@ -8,10 +8,9 @@
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
   <h6 style="margin: 5px 10px;">Total : {{articles?.length || '0'}}</h6>
-
   <ion-list>
-    <ion-item *ngFor="let article of articles" (click)="kanoot_id(article)">
-      <ion-label>{{ article?.bareType }}</ion-label>
+    <ion-item *ngFor="let type of articles" (click)="filterAdvocate(type?.Id)">
+      <ion-label>{{ type?.name }}</ion-label>
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>
   </ion-list>

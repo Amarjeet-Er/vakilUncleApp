@@ -54,7 +54,10 @@ ion-content {
             grid-template-columns: repeat(auto-fill, minmax(142px, 4fr));
             gap: 10px;
             padding: 10px;
-
+            ion-card {
+                margin: 0px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
             .menuBox {
                 border-radius: 5px;
                 background-color: var(--color-light);

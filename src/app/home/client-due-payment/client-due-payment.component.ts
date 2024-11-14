@@ -55,6 +55,7 @@ export class ClientDuePaymentComponent  implements OnInit {
   }
 
   pyamentDues(dues: any) {
+    console.log(dues);
     localStorage.setItem('Paymenthistory', JSON.stringify(dues))
     this._router.navigate(['/home/clientpaymenthistory'])
   }
@@ -78,6 +79,9 @@ export class ClientDuePaymentComponent  implements OnInit {
         return true;
       }
       if (data?.due.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
+        return true;
+      }
+      if (data?.Clientpayment.toString().toLowerCase().indexOf(filter.toLowerCase()) !== -1) {
         return true;
       }
       return false;

@@ -13,7 +13,7 @@
   <h6 style="margin: 5px 10px;">Total : {{clients?.length || '0'}}</h6>
 
   <ion-list id="client-list">
-    <ion-card (click)="onClientDetails(client)" *ngFor="let client of clients">
+    <ion-card (click)="onClientDetails(client)" *ngFor="let client of clients" [button]="true">
       <div class="client-text">
         <ion-row>
           <span class="highlight">Name </span>
@@ -147,7 +147,7 @@
 
     <div class="header">
       <ion-icon name="chevron-back" (click)="backButton()"></ion-icon>
-      <span>Client Details</span>
+      <span>Client Profile</span>
     </div>
     <ion-content>
       <ion-list>

@@ -26,6 +26,12 @@
           <span>Case No</span>
           <span>{{client.caseNo || 'N/A'}}</span>
         </ion-row>
+        <ion-row style="color: green;">
+          <span>Total Case</span>
+          <span>
+           <b> {{client.TotalCase || 'N/A'}}</b>
+          </span>
+        </ion-row>
       </div>
       <div class="cleint-profile">
         <img [src]="client?.profile ? img_url+client.profile:  '../../../assets/icon/profile.png'" alt="">

@@ -19,7 +19,7 @@
   <h6 style="margin: 5px 10px;">Total : {{cases?.length || '0'}}</h6>
 
   <ng-container *ngFor="let case of cases">
-    <ion-card (click)="pyamentDues(case)">
+    <ion-card [button]="true" (click)="pyamentDues(case)">
       <div>
         <ion-row>
           <span class="highlight"><ion-icon name="person-outline"></ion-icon>&nbsp; Client Name </span>
@@ -41,9 +41,14 @@
           <span>{{ case?.caseNumber || 'N/A' }}</span>
         </ion-row>
 
+        <ion-row style="color: green;">
+          <span><ion-icon name="logo-alipay"></ion-icon>&nbsp; Received</span>
+          <span>{{ case?.Clientpayment || 'N/A' }}</span>
+        </ion-row>
+
         <ion-row [ngClass]="{'green-text': case?.due === 0, 'red-text': case?.due > 0}">
           <span>
-            <ion-icon name="calendar-outline"></ion-icon>&nbsp; Total Dues
+            <ion-icon name="wallet-outline"></ion-icon>&nbsp; Dues
           </span>
           <span>
             {{ case?.due === 0 ? 'All Paid' : '' + case?.due }}

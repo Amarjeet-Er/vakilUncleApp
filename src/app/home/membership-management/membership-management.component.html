@@ -32,9 +32,9 @@
           </ion-card-header>
 
           <ion-card-content>
+            <p class="description">{{premium?.description}}</p>
             <ion-list>
-              <ion-item>
-                <p class="description">{{premium?.description}}</p>
+              <!-- <ion-item *ngIf="premium?.description">
               </ion-item>
               <ion-item>
                 <p><strong>Old Price: </strong> <del> {{premium?.oldPrice | currency:'INR'}} </del></p>
@@ -45,7 +45,7 @@
               <ion-item>
                 <p><strong>Discount: </strong> {{premium?.discount}}% (You save {{premium?.discountAmount |
                   currency:'INR'}})</p>
-              </ion-item>
+              </ion-item> -->
 
               <div>
                 <h3>Features</h3>
@@ -53,6 +53,13 @@
                   <p><b>{{i+1}} &nbsp; </b> {{featurs?.name}}</p>
                 </ion-item>
               </div>
+
+              <ion-item>
+                <span style="color: green;"><ion-icon name="arrow-down-sharp"></ion-icon>{{premium?.discount}}%
+                </span> &nbsp;
+                <del>{{ premium?.oldPrice | number:'1.2-2' }}</del>&nbsp;&nbsp;
+                <b>{{premium?.newPrice | currency:'INR'}}</b>
+              </ion-item>
             </ion-list>
 
             <ion-button [ngClass]="(premium?.id % 2 === 0) ? 'btn-basic' : 'btn-premium'" expand="block"
