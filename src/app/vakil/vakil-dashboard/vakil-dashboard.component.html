@@ -2,7 +2,7 @@
   <ion-buttons shape="round" routerLink="/home/vakilprofile">
     <ng-container *ngIf="profile_data?.profilePath; else iconTemplate">
       <img [src]="img_url + profile_data?.profilePath" alt="Profile Image"
-        style="width: 40px; height: 40px; border: 1px solid white; border-radius: 50px;">
+        style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50px;">
     </ng-container>
     <ng-template #iconTemplate>
       <ion-icon name="person-circle" style="font-size: 40px; color: white;"></ion-icon>
