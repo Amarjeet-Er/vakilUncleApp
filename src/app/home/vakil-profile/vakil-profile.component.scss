@@ -30,7 +30,6 @@
 ion-content {
     --background: var(--color-primary);
 
-
     .profile {
         position: relative;
         z-index: 100;
@@ -85,8 +84,9 @@ ion-content {
 
         form {
             height: auto;
-            width: calc(100% - 40px);
-            margin: 10px 20px;
+            width: calc(100% - 20px);
+            margin: 10px;
+            font-size: 13px;
 
             ion-input {
                 margin-bottom: 10px;
@@ -140,7 +140,6 @@ ion-content {
                     }
                 }
             }
-
         }
     }
 }

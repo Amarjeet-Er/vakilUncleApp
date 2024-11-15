@@ -28,15 +28,27 @@
 
 ion-content {
     form {
-        width: calc(100% - 30px);
-        margin: 15px;
+        width: calc(100% - 20px);
+        margin: 10px;
+        font-size: 13px;
     }
 
     ion-input {
-        margin: 0 0 15px;
+        margin: 0 0 10px;
     }
 
     ion-select {
-        margin: 0 0 15px;
+        margin: 0 0 10px;
+    }
+
+    ion-row {
+        background: none;
+        display: flex;
+        justify-content: center;
+
+        ion-button {
+            text-transform: capitalize;
+            --background: var(--color-primary)
+        }
     }
 }

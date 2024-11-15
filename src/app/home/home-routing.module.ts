@@ -27,7 +27,6 @@ import { UpcomingCourtListComponent } from './upcoming-court-list/upcoming-court
 import { UpcomingCourtHearingListComponent } from './upcoming-court-hearing-list/upcoming-court-hearing-list.component';
 import { RecentClientListComponent } from './recent-client-list/recent-client-list.component';
 import { AddHearingDateComponent } from './add-hearing-date/add-hearing-date.component';
-import { TotalClientComponent } from './total-client/total-client.component';
 import { TodayHearingComponent } from './today-hearing/today-hearing.component';
 import { AddMembersComponent } from './add-members/add-members.component';
 import { UploadDocumentsComponent } from './upload-documents/upload-documents.component';
@@ -62,6 +61,7 @@ import { ClientWithEnquiryComponent } from './client-with-enquiry/client-with-en
 import { VakilTotalCompleteCaseComponent } from './vakil-total-complete-case/vakil-total-complete-case.component';
 import { ClientAboutUsComponent } from './client-about-us/client-about-us.component';
 import { TotalAdvocateTypeComponent } from './total-advocate-type/total-advocate-type.component';
+import { NewClientRegComponent } from './new-client-reg/new-client-reg.component';
 
 const routes: Routes = [
   {
@@ -93,7 +93,6 @@ const routes: Routes = [
       { path: 'upcominghearinglist', component: UpcomingCourtHearingListComponent },
       { path: 'recentclient', component: RecentClientListComponent },
       { path: 'addhearingdate', component: AddHearingDateComponent },
-      { path: 'totalclientlist', component: TotalClientComponent },
       { path: 'todayhearing', component: TodayHearingComponent },
       { path: 'addmembers', component: AddMembersComponent },
       { path: 'uploaddocuments', component: UploadDocumentsComponent },
@@ -128,9 +127,10 @@ const routes: Routes = [
       { path: 'vakiltotalcompletecase', component: VakilTotalCompleteCaseComponent },
       { path: 'clientaboutus', component: ClientAboutUsComponent },
       { path: 'totaladvocatetype', component: TotalAdvocateTypeComponent },
+      { path: 'membershipPremium', component: MembershipPremiumComponent },
+      { path: 'newclientreg', component: NewClientRegComponent },
     ]
   },
-  { path: 'membershipPremium', component: MembershipPremiumComponent },
 ];
 
 @NgModule({

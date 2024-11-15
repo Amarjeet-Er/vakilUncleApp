@@ -12,13 +12,13 @@
         align-items: center;
         width: 100%;
         position: relative;
-        
+
         ion-icon {
             position: absolute;
             font-size: 24px;
             left: 10px;
         }
-        
+
         span {
             font-size: 16px;
             margin: 0 auto;
@@ -31,7 +31,8 @@ ion-content {
         padding: 10px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 10px;
+        font-size: 13px;
 
         ion-row {
             padding: 10px;
@@ -51,16 +52,15 @@ ion-content {
 
         ion-textarea {
             min-height: 200px;
-            margin-top: 20px;
+            margin: 2px 0;
         }
     }
 
-    ion-button{
-        --background: var(--color-primary);
-    }
-}
-.members{
-    ion-input{
-        margin: 20px 0px;
+    ion-row {
+        margin-bottom: 5px;
+
+        ion-button {
+            --background: var(--color-primary);
+        }
     }
 }

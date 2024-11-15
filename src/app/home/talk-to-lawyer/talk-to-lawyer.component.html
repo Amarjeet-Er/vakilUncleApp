@@ -9,58 +9,47 @@
     been verified, and you can contact them within minutes.</p> -->
   <ion-list>
     <form [formGroup]="clientForm">
-      <ion-input label="Your Name" formControlName="clientName" label-placement="floating" fill="outline"
-        placeholder="Enter your name">
+      <ion-input formControlName="clientName" fill="outline" placeholder="Enter your name">
       </ion-input>
 
-      <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
-        helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
-        placeholder="Enter mobile number" minlength="10" maxlength="10" pattern="\d{10}" formControlName="ContactNum">
+      <ion-input type="tel" fill="outline" helperText="Enter a valid mobile number" errorText="Invalid mobile number"
+        required placeholder="Enter mobile number" minlength="10" maxlength="10" pattern="\d{10}"
+        formControlName="ContactNum">
       </ion-input>
 
-      <ion-input type="email" label="Email Id" label-placement="floating" fill="outline"
-        helperText="Enter a valid email" placeholder="Enter your email" errorText="Invalid email" ngModel email
-        formControlName="email">
+      <ion-input type="email" fill="outline" helperText="Enter a valid email" placeholder="Enter your email"
+        errorText="Invalid email" ngModel email formControlName="email">
       </ion-input>
 
-
-      <ion-select label="City" fill="outline" label-placement="floating" interface="action-sheet"
-        placeholder="Select City" formControlName="city">
+      <ion-select fill="outline" interface="action-sheet" placeholder="Select City" formControlName="city">
         <ion-select-option *ngFor="let city of city_list" [value]="city?.Id">
           {{city?.name}}
         </ion-select-option>
       </ion-select>
 
-      <ion-select label="Category" fill="outline" label-placement="floating" interface="action-sheet"
-        placeholder="Select category" formControlName="catId" (ionChange)="sub_cat_Issue($event)">
+      <ion-select fill="outline" interface="action-sheet" placeholder="Select category" formControlName="catId"
+        (ionChange)="sub_cat_Issue($event)">
         <ion-select-option *ngFor="let cat of cat_list" [value]="cat?.catId">
           {{cat?.categoryName}}
         </ion-select-option>
       </ion-select>
 
-      <ion-select label="Sub category" fill="outline" label-placement="floating" interface="action-sheet"
-        placeholder="Select sub category" formControlName="subCatId" (ionChange)="sub_cat_adv_type($event)">
+      <ion-select fill="outline" interface="action-sheet" placeholder="Select sub category" formControlName="subCatId"
+        (ionChange)="sub_cat_adv_type($event)">
         <ion-select-option *ngFor="let cat of sub_cat_list" [value]="cat?.id">
           {{cat?.subcategoryName}}
         </ion-select-option>
       </ion-select>
 
 
-      <ion-textarea id="custom-input" label="Write Your Issue" label-placement="floating" fill="outline"
-        placeholder="Write your issue" [counter]="true" maxlength="500" [counterFormatter]="customCounterFormatter"
-        formControlName="description">
+      <ion-textarea id="custom-input" fill="outline" placeholder="Write your issue" [counter]="true" maxlength="500"
+        [counterFormatter]="customCounterFormatter" formControlName="description">
       </ion-textarea>
-
-      <!-- <ion-checkbox labelPlacement="end" [(ngModel)]="isChecked"><span
-        style="text-wrap: wrap;">I am interested in
-        talking to a lawyer for my legal issue</span>
-    </ion-checkbox> -->
 
       <ion-button [disabled]="isChecked" (click)="submit()" [disabled]="!clientForm.valid">Find Lawyers</ion-button>
     </form>
 
   </ion-list>
-
 
 </ion-content>
 

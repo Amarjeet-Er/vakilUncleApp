@@ -19,6 +19,6 @@ export class VakilHomePageComponent implements OnInit {
 
   ngOnInit() { }
   newClientAdd() {
-    this._router.navigate(['/home/totalclientlist']);
+    this._router.navigate(['/vakil/home/totalclientlist']);
   }
 }

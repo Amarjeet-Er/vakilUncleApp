@@ -136,7 +136,7 @@ export class VakilDashboardComponent implements OnInit {
 		}
 	}
 	registerNewClient() {
-		this._router.navigate(['/vakil/home/newclientreg'])
+		this._router.navigate(['/home/newclientreg'])
 	}
 	addVideo() {
 		this._router.navigate(['/home/videomanagement'])

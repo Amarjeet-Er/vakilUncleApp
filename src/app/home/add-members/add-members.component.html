@@ -8,29 +8,27 @@
 <ion-content>
   <form [formGroup]="add_members_form">
 
-    <ion-input label-placement="floating" type="text" fill="outline" label="Father Name" placeholder="Enter father name"
-      formControlName="fatherName">
+    <ion-input type="text" fill="outline" placeholder="Enter father name" formControlName="fatherName">
     </ion-input>
 
-    <ion-input label-placement="floating" type="text" fill="outline" label="Member Name" placeholder="Enter member name"
-      formControlName="memberName">
+    <ion-input type="text" fill="outline" placeholder="Enter member name" formControlName="memberName">
     </ion-input>
 
-    <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
-      helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
-      formControlName="membercontactNum" minlength="10" maxlength="10" pattern="\d{10}" placeholder="Enter mobile no">
+    <ion-input type="tel" fill="outline" helperText="Enter a valid mobile number" errorText="Invalid mobile number"
+      required formControlName="membercontactNum" minlength="10" maxlength="10" pattern="\d{10}"
+      placeholder="Enter mobile no">
     </ion-input>
 
-    <ion-input label-placement="floating" type="text" fill="outline" label="Member Address"
-      placeholder="Enter member details" formControlName="memberaddress">
+    <ion-input type="text" fill="outline" placeholder="Enter member details" formControlName="memberaddress">
     </ion-input>
 
-    <ion-input type="file" label="Document" label-placement="floating" fill="outline" formControlName="memberDocument"
-      (change)="onAadhar($event)" accept=".jpg,.png,.jpeg,.pdf">
+    <ion-text>Document</ion-text>
+    <ion-input type="file" fill="outline" formControlName="memberDocument" (change)="onAadhar($event)"
+      accept=".jpg,.png,.jpeg,.pdf">
     </ion-input>
 
-    <ion-textarea class="memberDetails" label="Member Details" labelPlacement="floating" fill="outline"
-      placeholder="Write about the member" formControlName="memberDetails">
+    <ion-textarea class="memberDetails" fill="outline" placeholder="Write about the member"
+      formControlName="memberDetails">
     </ion-textarea>
   </form>
 

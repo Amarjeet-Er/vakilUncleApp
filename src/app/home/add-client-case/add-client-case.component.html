@@ -10,54 +10,46 @@
   <form [formGroup]="addCase_form">
     <ion-list>
 
-      <ion-select label="Client Name" fill="outline" label-placement="floating" interface="action-sheet"
-        placeholder="Select Client Name" formControlName="clientId">
+      <ion-select fill="outline" interface="action-sheet" placeholder="Select client name" formControlName="clientId">
         <ion-select-option *ngFor="let client of clientName" [value]="client?.id">
           {{client?.clientName}} &nbsp;
           [ {{client?.contactNum}} ]
         </ion-select-option>
       </ion-select>
 
-      <ion-input label="Case Title" label-placement="floating" fill="outline" placeholder="Enter case title"
-        formControlName="caseTitle">
+      <ion-input fill="outline" placeholder="Enter case title" formControlName="caseTitle">
       </ion-input>
 
-      <ion-input label="Case Number" label-placement="floating" type="text" fill="outline"
-        placeholder="Enter case number" formControlName="caseno">
+      <ion-input type="text" fill="outline" placeholder="Enter case number" formControlName="caseno">
       </ion-input>
 
-      <ion-select label="Court" label-placement="floating" fill="outline" interface="action-sheet"
-        placeholder="Select Court" formControlName="court">
+      <ion-select fill="outline" interface="action-sheet" placeholder="Select court name" formControlName="court">
         <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
           {{court?.courtName}}
         </ion-select-option>
       </ion-select>
 
-      <ion-input label="Act" label-placement="floating" type="number" fill="outline" placeholder="Enter act"
-        formControlName="act">
+      <ion-input type="number" fill="outline" placeholder="Enter act" formControlName="act">
       </ion-input>
 
-      <ion-input label="FIR Date" type="date" label-placement="floating" fill="outline" placeholder="Enter fir date"
-        formControlName="firdate">
+      <ion-input type="date" label-placement="floating" label="Fir Date" fill="outline" formControlName="firdate">
       </ion-input>
 
-      <ion-input label-placement="floating" type="datetime-local" fill="outline" label="Hearing Date & Time"
-        placeholder="Enter Hearing Date & Time" formControlName="hearingDate">
+      <ion-input type="datetime-local" fill="outline" label-placement="floating" label="Hearing Date & Time"
+        formControlName="hearingDate">
       </ion-input>
 
-      <ion-input label="Advocate Fee" type="text" label-placement="floating" fill="outline"
-        placeholder="Enter advocate fee" formControlName="advocatefee">
+      <ion-input type="text" fill="outline" placeholder="Enter advocate fee" formControlName="advocatefee">
       </ion-input>
 
-      <ion-textarea label="About Case" labelPlacement="floating" fill="outline" placeholder="Write about the case"
-        formControlName="aboutcase">
+      <ion-textarea fill="outline" placeholder="Write about the case" formControlName="aboutcase">
       </ion-textarea>
     </ion-list>
 
   </form>
 
   <ion-row class="ion-justify-content-center">
-    <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+    <ion-button shape="round" (click)="onSubmit()" [disabled]="!addCase_form.valid">Submit</ion-button>
   </ion-row>
 
 </ion-content>

@@ -27,11 +27,20 @@
 }
 
 ion-content {
+    ion-searchbar {
+        padding: 0 0 0px;
+    }
+
+    ion-list {
+        width: 100%;
+        margin: 10px 0px 10px;
+        padding: 5px;
+    }
 
     .cardInfo {
-        margin: 0 0 10px;
-        padding: 0px 0px 10px;
         border-bottom: 1px dotted gray;
+        margin: 0 0 10px;
+        padding: 0 0 5px;
 
         ion-row {
             font-size: 12px;

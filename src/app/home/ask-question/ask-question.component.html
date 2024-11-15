@@ -6,15 +6,14 @@
 <ion-content class="ion-padding">
   <ion-list>
     <form [formGroup]="ask_free_question_form">
-      <ion-select label="Area Of Law" fill="outline" label-placement="floating" interface="action-sheet"
-        placeholder="Select area of law" formControlName="LawType">
+      <ion-select fill="outline" interface="action-sheet" placeholder="Select area of law" formControlName="LawType">
         <ion-select-option *ngFor="let type of advocated_type" [value]="type?.Id">
           {{type?.name}}
         </ion-select-option>
       </ion-select>
 
-      <ion-input [(ngModel)]="cityName" label="Select City" placeholder="Search City" type="text"
-        label-placement="floating" fill="outline" (keyup)="onSearch($event)" formControlName="city">
+      <ion-input [(ngModel)]="cityName" placeholder="Search City" type="text" fill="outline" (keyup)="onSearch($event)"
+        formControlName="city">
       </ion-input>
 
       <ion-list *ngIf="city_list.length > 0">
@@ -23,28 +22,24 @@
         </ion-item>
       </ion-list>
 
-      <ion-input label="Write Subject" label-placement="floating" fill="outline" placeholder="Write your subject"
-        formControlName="subject">
+      <ion-input fill="outline" placeholder="Write your subject" formControlName="subject">
       </ion-input>
 
-      <ion-textarea id="custom-input" label="Write Your Question" label-placement="floating" fill="outline"
-        placeholder="Write your question" [counter]="true" maxlength="500" [counterFormatter]="customCounterFormatter"
-        formControlName="Question">
+      <ion-textarea id="custom-input" fill="outline" placeholder="Write your question" [counter]="true" maxlength="500"
+        [counterFormatter]="customCounterFormatter" formControlName="Question">
       </ion-textarea>
 
       <h3>Your Contact Details</h3>
 
-      <ion-input label="Your Name" label-placement="floating" fill="outline" placeholder="Enter your name"
-        formControlName="cn_name"></ion-input>
+      <ion-input fill="outline" placeholder="Enter your name" formControlName="cn_name"></ion-input>
 
-      <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
-        helperText="Enter a valid mobile number" errorText="Invalid mobile number" required formControlName="cn_phone"
-        minlength="10" maxlength="10" pattern="\d{10}">
+      <ion-input type="tel" placeholder="Enter mobile number" fill="outline" helperText="Enter a valid mobile number"
+        errorText="Invalid mobile number" required formControlName="cn_phone" minlength="10" maxlength="10"
+        pattern="\d{10}">
       </ion-input>
 
-      <ion-input type="email" label="Email Id" label-placement="floating" fill="outline"
-        helperText="Enter a valid email" placeholder="Enter your email" errorText="Invalid email" ngModel email
-        formControlName="cn_email"></ion-input>
+      <ion-input type="email" fill="outline" helperText="Enter a valid email" placeholder="Enter your email"
+        errorText="Invalid email" ngModel email formControlName="cn_email"></ion-input>
 
       <ion-checkbox labelPlacement="end" [(ngModel)]="isChecked" formControlName="IsInterested"><span
           style="text-wrap: wrap;">I am interested in

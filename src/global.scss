@@ -73,14 +73,14 @@ ion-content {
 }
 
 // ion input height set
-// .input-fill-outline.sc-ion-input-md-h {
-//     --border-color: var(--ion-color-step-300, var(--ion-background-color-step-300, #b3b3b3));
-//     --border-radius: 4px;
-//     --padding-start: 16px;
-//     --padding-end: 16px;
-//     min-height: 45px;
-// }
+.input-fill-outline.sc-ion-input-md-h {
+    min-height: 45px;
+}
 
+ion-select {
+    max-height: 45px;
+    min-height: 45px;
+}
 
 // for input type number appearance hide/none 
 /* Chrome, Safari, Edge, Opera */

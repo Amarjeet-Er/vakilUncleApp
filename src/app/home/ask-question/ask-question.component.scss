@@ -29,19 +29,20 @@
 
 ion-content {
     ion-list {
-
+        padding: 0px;
+        font-size: 13px;
         ion-input,
         ion-select {
-            margin: 15px 0;
+            margin: 0px 0 10px;
         }
 
         ion-button {
-            margin: 15px 0;
+            margin: 10px 0;
             --background: var(--color-primary);
         }
 
         ion-textarea {
-            margin: 15px 0 30px;
+            margin: 10px 0 10px;
             height: 200px;
         }
 

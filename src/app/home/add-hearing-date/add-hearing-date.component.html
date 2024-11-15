@@ -8,23 +8,20 @@
 <ion-content>
   <form [formGroup]="caseForm">
 
-    <ion-input label-placement="floating" type="datetime-local" fill="outline" label="Hearing Date & Time"
-      placeholder="Enter Hearing Date & Time" formControlName="hearingDate" [min]="minDate">
+    <ion-text>Hearing Date & Time</ion-text>
+    <ion-input type="datetime-local" fill="outline" placeholder="Hearing Date & Time"
+      formControlName="hearingDate" [min]="minDate">
     </ion-input>
 
-
-    <ion-input label-placement="floating" type="number" fill="outline" label="Extra Charge"
-      placeholder="Enter Extra Charge" formControlName="extracharge">
+    <ion-input type="number" fill="outline" placeholder="Extra Charge" formControlName="extracharge">
     </ion-input>
 
-    <ion-textarea class="ChargeDetails" label="Member Details" labelPlacement="floating" fill="outline"
-      placeholder="Enter details..." formControlName="chargeDetail">
+    <ion-input type="text" fill="outline" placeholder="Document Name" formControlName="documentName">
+    </ion-input>
+
+    <ion-textarea fill="outline" placeholder="Enter details" formControlName="chargeDetail">
     </ion-textarea>
 
-    <ion-input label-placement="floating" type="text" fill="outline" label="Document Name"
-      placeholder="Enter Document Name" formControlName="documentName">
-    </ion-input>
-
-    <ion-button expand="block" type="submit" (click)="onSubmit()">Submit</ion-button>
+    <ion-button expand="block" type="submit" (click)="onSubmit()" [disabled]="!caseForm.valid">Submit</ion-button>
   </form>
 </ion-content>

@@ -27,10 +27,15 @@
 }
 
 ion-content {
-
+    font-size: 13px;
     ion-input {
-        width: calc(100% - 30px);
-        padding: 10px;
-        margin: 15px;
+        width: calc(100% - 20px);
+        margin: 10px;
+    }
+    ion-row{
+        margin: 10px;
+        ion-button{
+            --background: var(--color-primary);
+        }
     }
 }

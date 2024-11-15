@@ -1,5 +1,8 @@
 <div class="header">
-  <span>Clients</span>
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home"></ion-icon>
+    <span>Clients</span>
+  </div>
 </div>
 
 <ion-content>
@@ -55,79 +58,69 @@
       <form [formGroup]="newRegistartion_form">
         <ion-list>
 
-          <ion-input label="Name" label-placement="floating" fill="outline" placeholder="Enter name"
-            formControlName="clientName">
+          <ion-input fill="outline" placeholder="Enter name" formControlName="clientName">
           </ion-input>
 
-          <ion-input label="Email" label-placement="floating" type="email" fill="outline" placeholder="Enter email"
-            formControlName="email" helperText="Enter a valid email" errorText="Invalid email" ngModel email required>
+          <ion-input type="email" fill="outline" placeholder="Enter email" formControlName="email"
+            helperText="Enter a valid email" errorText="Invalid email" ngModel email required>
           </ion-input>
 
-          <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
+          <ion-input type="tel" fill="outline" placeholder="Enter mobile number"
             helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
             formControlName="contactNum" minlength="10" maxlength="10" pattern="\d{10}">
           </ion-input>
 
-          <ion-select label="Gender" label-placement="floating" fill="outline" placeholder="Select Gender"
-            formControlName="gender" interface="action-sheet">
+          <ion-select fill="outline" placeholder="Select Gender" formControlName="gender" interface="action-sheet">
             <ion-select-option value="Male"> Male </ion-select-option>
             <ion-select-option value="Female"> Female </ion-select-option>
             <ion-select-option value="Other"> Other </ion-select-option>
           </ion-select>
 
-          <ion-input label="Case No" label-placement="floating" type="text" fill="outline" placeholder="Enter case no"
-            formControlName="caseNo">
+          <ion-input type="text" fill="outline" placeholder="Enter case no" formControlName="caseNo">
           </ion-input>
 
-          <ion-input label="Case Title " label-placement="floating" fill="outline" placeholder="Enter Case Title "
-            formControlName="caseTitle">
+          <ion-input fill="outline" placeholder="Enter Case Title " formControlName="caseTitle">
           </ion-input>
 
-          <ion-input label="Act" label-placement="floating" fill="outline" placeholder="Enter act"
-            formControlName="act"></ion-input>
+          <ion-input fill="outline" placeholder="Enter act" formControlName="act"></ion-input>
 
-          <ion-select label="State" label-placement="floating" fill="outline" interface="action-sheet"
-            placeholder="Select State" (ionChange)="onCityChange($event)" formControlName="state">
+          <ion-select fill="outline" interface="action-sheet" placeholder="Select State"
+            (ionChange)="onCityChange($event)" formControlName="state">
             <ion-select-option *ngFor="let state of states" [value]="state?.Id">
               {{ state?.name}}
             </ion-select-option>
           </ion-select><br>
 
-          <ion-select label="City" label-placement="floating" fill="outline" interface="action-sheet"
-            placeholder="Select City" formControlName="city">
+          <ion-select fill="outline" interface="action-sheet" placeholder="Select City" formControlName="city">
             <ion-select-option *ngFor="let city of citys" [value]="city?.Id">
               {{city?.name}}
             </ion-select-option>
           </ion-select><br>
 
-          <ion-select label="Court" label-placement="floating" fill="outline" interface="action-sheet"
-            placeholder="Select Court" formControlName="court">
+          <ion-select fill="outline" interface="action-sheet" placeholder="Select Court" formControlName="court">
             <ion-select-option *ngFor="let court of court_list" [value]="court?.CourtId">
               {{court?.courtName}}
             </ion-select-option>
           </ion-select>
 
-          <ion-input label="FIR Date" type="datetime-local" label-placement="floating" fill="outline"
-            formControlName="firDate">
+          <ion-text>FIR Date</ion-text>
+          <ion-input type="datetime-local" fill="outline" formControlName="firDate">
           </ion-input>
 
-          <ion-input label-placement="floating" type="datetime-local" fill="outline" label="Hearing Date & Time"
-            placeholder="Enter Hearing Date & Time" formControlName="HearingDate">
+          <ion-text>Hearing Date & Time</ion-text>
+          <ion-input type="datetime-local" fill="outline" formControlName="HearingDate">
           </ion-input>
 
-          <ion-input label="Advocate Fee" type="number" placeholder="Enter advocate Fee" label-placement="floating"
-            fill="outline" formControlName="advocateFee"></ion-input>
+          <ion-input type="number" placeholder="Enter advocate Fee" fill="outline"
+            formControlName="advocateFee"></ion-input>
 
-          <ion-input label="Address " placeholder="Enter Address" label-placement="floating" fill="outline"
-            formControlName="address">
+          <ion-input placeholder="Enter Address" fill="outline" formControlName="address">
           </ion-input>
 
-          <ion-textarea label="Case Summary " placeholder="Enter Summary" label-placement="floating" fill="outline"
-            formControlName="caseSummary">
+          <ion-textarea placeholder="Enter Summary" fill="outline" formControlName="caseSummary">
           </ion-textarea>
 
-          <ion-input label="Password " placeholder="Enter password" label-placement="floating" fill="outline"
-            formControlName="password">
+          <ion-input placeholder="Enter password" fill="outline" formControlName="password">
           </ion-input>
 
           <ion-row class="ion-justify-content-center">

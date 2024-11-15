@@ -9,16 +9,17 @@
 
   <form [formGroup]="upload_docs_form">
     <ion-list>
-      <ion-input label="Document Name" label-placement="floating" fill="outline" required formControlName="Document_Name">
+      <ion-input fill="outline" required formControlName="Document_Name" placeholder="Document name">
       </ion-input>
 
-      <ion-input type="file" label="Document Upload" label-placement="floating" fill="outline" formControlName="document"
-        (change)="onAadhar($event)" accept=".jpg,.png,.jpeg">
+      <ion-text>Document Upload</ion-text>
+      <ion-input type="file" fill="outline" formControlName="document" (change)="onAadhar($event)"
+        accept=".jpg,.png,.jpeg">
       </ion-input>
 
     </ion-list>
   </form>
   <ion-row class="ion-justify-content-center">
-    <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+    <ion-button shape="round" (click)="onSubmit()" [disabled]="!upload_docs_form.valid">Submit</ion-button>
   </ion-row>
 </ion-content>

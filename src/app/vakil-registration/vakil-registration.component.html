@@ -23,8 +23,8 @@
 
   <div class="actionBox">
     <form [formGroup]="Send_OTP_Form">
-      <ion-input type="email" label="Email Id" label-placement="floating" fill="outline"
-        helperText="Enter a valid email" errorText="Invalid email" ngModel email required formControlName="email">
+      <ion-input type="email" placeholder="Enter email id" fill="outline" helperText="Enter a valid email"
+        errorText="Invalid email" ngModel email required formControlName="email">
       </ion-input>
     </form>
     <ion-button shape="round" class="Btn" (click)="OnOtpSend()" [disabled]="!Send_OTP_Form.valid">Send</ion-button>
@@ -36,7 +36,7 @@
   </div>
 </ion-content>
 
-<!-- for otp page modal, here user enter otp --> 
+<!-- for otp page modal, here user enter otp -->
 <ion-modal #veryotp>
   <ng-template>
     <ion-header>
@@ -97,45 +97,44 @@
     <ion-content class="ion-padding">
       <!-- form design input fileds, button design start  here  -->
       <form [formGroup]="vakil_Registration_Form">
-        <ion-input label="Full Name" label-placement="floating" fill="outline" required
-          formControlName="advocateName"></ion-input>
+        <ion-input placeholder="Enter name" fill="outline" required formControlName="advocateName"></ion-input>
 
-        <ion-input type="tel" label="Mobile Number" label-placement="floating" fill="outline"
-          helperText="Enter a valid mobile number" errorText="Invalid mobile number" required
-          formControlName="contactNum" minlength="10" maxlength="10" pattern="\d{10}">
+        <ion-input type="tel" placeholder="Enter mobile number" fill="outline" helperText="Enter a valid mobile number"
+          errorText="Invalid mobile number" required formControlName="contactNum" minlength="10" maxlength="10"
+          pattern="\d{10}">
         </ion-input>
 
-        <ion-select label="Gender" label-placement="floating" placeholder="Select Gender" fill="outline"
-          formControlName="gender">
+        <ion-select placeholder="Select Gender" fill="outline" formControlName="gender">
           <ion-select-option value="Male"> Male </ion-select-option>
           <ion-select-option value="Female"> Female </ion-select-option>
           <ion-select-option value="Other"> Other </ion-select-option>
-        </ion-select><br>
+        </ion-select>
 
-        <ion-select label="State" fill="outline" label-placement="floating" interface="action-sheet"
-          placeholder="Select State" (ionChange)="onCityChange($event)" formControlName="state">
+        <ion-select fill="outline" interface="action-sheet" placeholder="Select State"
+          (ionChange)="onCityChange($event)" formControlName="state">
           <ion-select-option *ngFor="let state of states" [value]="state?.Id">
             {{ state?.name}}
           </ion-select-option>
-        </ion-select><br>
+        </ion-select>
 
-        <ion-select label="City" fill="outline" label-placement="floating" interface="action-sheet"
-          placeholder="Select City" formControlName="city">
+        <ion-select fill="outline" interface="action-sheet" placeholder="Select City" formControlName="city">
           <ion-select-option *ngFor="let city of citys" [value]="city?.Id">
             {{city?.name}}
           </ion-select-option>
         </ion-select>
 
-        <ion-input type="file" label="Aadhar Card" label-placement="floating" fill="outline" formControlName="adhar"
-          (change)="onAadhar($event)" accept=".jpg,.png,.jpeg">
+        <ion-text>Aadhar Card</ion-text>
+        <ion-input type="file" fill="outline" formControlName="adhar" (change)="onAadhar($event)"
+          accept=".jpg,.png,.jpeg">
         </ion-input>
 
-        <ion-input type="file" label="Bar Counselling Certificate" label-placement="floating" fill="outline"
-          formControlName="barCouncil" (change)="onBarCouncil($event)" accept=".jpg,.png,.jpeg">
+        <ion-text>Bar Counselling Certificate</ion-text>
+        <ion-input type="file" fill="outline" formControlName="barCouncil" (change)="onBarCouncil($event)"
+          accept=".jpg,.png,.jpeg">
         </ion-input>
 
-        <ion-input label="Password" label-placement="floating" fill="outline" formControlName="pass" type="password"
-          placeholder="Abc@123"></ion-input>
+        <ion-input fill="outline" formControlName="pass" type="password" placeholder="Enter strong password">
+        </ion-input>
 
         <div *ngIf="vakil_Registration_Form.get('pass')?.errors?.['required']">Password is required</div>
         <ion-text color="danger"
@@ -152,7 +151,7 @@
           </ng-container>
         </ion-text>
 
-        <ion-input label="Confirm Password" label-placement="floating" fill="outline" formControlName="ConfirmPassword"
+        <ion-input label-placement="floating" fill="outline" formControlName="ConfirmPassword"
           placeholder="Enter Confirm Password"></ion-input>
         <div *ngIf="passwordsMatch" class="error-message">
           <ion-text color="danger">
