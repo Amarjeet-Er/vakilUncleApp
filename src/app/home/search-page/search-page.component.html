@@ -1,4 +1,6 @@
 <div class="header">
+  
+  <ion-icon name="chevron-back" routerLink="/user/home"></ion-icon>
   <ion-buttons shape="round" routerLink="/home/userprofile">
     <ng-container *ngIf="profile_data?.profile; else iconTemplate">
       <img [src]="img_url + profile_data?.profile" alt="Profile Image"

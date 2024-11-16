@@ -62,6 +62,7 @@ import { VakilTotalCompleteCaseComponent } from './vakil-total-complete-case/vak
 import { ClientAboutUsComponent } from './client-about-us/client-about-us.component';
 import { TotalAdvocateTypeComponent } from './total-advocate-type/total-advocate-type.component';
 import { NewClientRegComponent } from './new-client-reg/new-client-reg.component';
+import { AdvocateFilterComponent } from './advocate-filter/advocate-filter.component';
 
 const routes: Routes = [
   {
@@ -129,6 +130,7 @@ const routes: Routes = [
       { path: 'totaladvocatetype', component: TotalAdvocateTypeComponent },
       { path: 'membershipPremium', component: MembershipPremiumComponent },
       { path: 'newclientreg', component: NewClientRegComponent },
+      { path: 'advocatefilter', component: AdvocateFilterComponent },
     ]
   },
 ];

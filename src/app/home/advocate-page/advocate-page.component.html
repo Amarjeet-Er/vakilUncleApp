@@ -2,7 +2,7 @@
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon>
     <span>Advocates</span>
-    <ion-button size="small" (click)="filterAdvocate()">
+    <ion-button size="small" (click)="filterAdvocate()" routerLink="/home/advocatefilter">
       <ion-icon slot="icon-only" name="options"></ion-icon>
     </ion-button>
   </div>
@@ -43,7 +43,8 @@
 </ion-content>
 
 <!-- Filter Advocate Modal -->
-<ion-modal #advocateFilter>
+<!-- <ion-modal #advocateFilter>
+
   <ng-template>
     <div class="header">
       <div class="navbar">
@@ -53,6 +54,7 @@
     </div>
 
     <ion-content>
+
       <div class="sidebar">
         <ion-list lines="full">
           <ion-item (click)="selectList('city')" [class.selected]="selectedList === 'city'">
@@ -81,6 +83,8 @@
 
       <div class="main">
         <form [formGroup]="filter_form">
+          <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
+
           <ion-list lines="full" *ngIf="selectedList === 'city'">
             <ion-radio-group formControlName="city">
               <ion-item *ngFor="let city of city_list">
@@ -149,4 +153,4 @@
 
     <ion-button class="applyBtn" shape="round" (click)="onFilter()">Apply</ion-button>
   </ng-template>
-</ion-modal>
+</ion-modal> -->

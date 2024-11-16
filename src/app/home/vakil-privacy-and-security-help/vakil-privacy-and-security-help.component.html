@@ -6,35 +6,81 @@
 </div>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Privacy Policy</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>
-        Your privacy is important to us. We are committed to protecting your personal information and your right to
-        privacy.
-        Please read our privacy policy carefully to understand how we handle your information.
-      </p>
-    </ion-card-content>
-  </ion-card>
+  <div>
+    <h4>Last updated: 04.11.2024</h4>
+    <p>
+      Macreel Infosoft Pvt. Ltd. operates [www.macreel.co.in]. This page informs you of our policies regarding the
+      collection, use, and disclosure of Personal Information we receive from users of the Site. We use your Personal
+      Information only for providing and improving the Site. By using the Site, you agree to the collection and use of
+      information in accordance with this policy.
+    </p>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>FAQs</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item (click)="openFAQ('data-collection')">
-          <ion-label>What data do you collect?</ion-label>
-        </ion-item>
-        <ion-item (click)="openFAQ('data-security')">
-          <ion-label>How do you protect my data?</ion-label>
-        </ion-item>
-        <ion-item (click)="openFAQ('contact-support')">
-          <ion-label>How can I contact support?</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+    <h4>Information Collection and Use</h4>
+    <p>
+      While using our Site, we may ask you to provide us with certain personally identifiable information that can be
+      used to contact or identify you. Personally identifiable information may include, but is not limited to your
+      name, email address, postal address, and phone number ("Personal Information").
+    </p>
+    <h4>FAQs</h4>
+  </div>
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>1. What services does Macreel Infosoft Pvt. Ltd. offer?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        We provide a range of IT solutions including website design
+        and development, custom software solutions, mobile app development, and digital
+        marketing services. Our goal is to help businesses establish a strong online
+        presence and achieve their digital objectives.
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>2. What is the process for starting a website development project with Macreel
+          Infosoft?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Our website development process involves an initial
+        consultation to understand your needs, followed by planning and design phases. We
+        then develop and test the website before launching it. Throughout the process, we
+        keep you informed and involved to ensure the final product meets your expectations.
+      </div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header" color="light">
+        <ion-label>3. Can you help with website maintenance and updates?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Yes, we offer ongoing website maintenance and support
+        services. Whether you need regular updates, security enhancements, or
+        troubleshooting, our team is here to ensure your website remains functional and up
+        to date.
+      </div>
+    </ion-accordion>
+    <ion-accordion value="fourth">
+      <ion-item slot="header" color="light">
+        <ion-label>4. Do you offer custom software solutions?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Absolutely! We specialize in creating custom software
+        tailored to your specific business needs. Whether you require a new application or
+        modifications to an existing one, our developers will work closely with you to
+        deliver a solution that fits your requirements.
+      </div>
+    </ion-accordion>
+    <ion-accordion value="fifth">
+      <ion-item slot="header" color="light">
+        <ion-label>5. What is digital marketing, and how can it benefit my business?</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        Digital marketing encompasses various strategies to promote
+        your business online, such as SEO, social media marketing, and PPC advertising.
+        Effective digital marketing helps increase your online visibility, attract more
+        customers, and drive growth.
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
 </ion-content>

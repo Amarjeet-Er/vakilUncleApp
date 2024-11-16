@@ -63,7 +63,7 @@
             </ion-list>
 
             <ion-button [ngClass]="(premium?.id % 2 === 0) ? 'btn-basic' : 'btn-premium'" expand="block"
-               (click)="onPayment(premium)">
+              [disabled]="premium?.id == memberships?.planId" (click)="onPayment(premium)">
               {{ premium?.id == memberships?.planId ? 'purchased' : 'BUY NOW' }}
             </ion-button>
 

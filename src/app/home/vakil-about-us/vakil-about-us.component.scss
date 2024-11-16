@@ -26,26 +26,23 @@
     }
 }
 
-.about-section {
+ion-content {
+    text-align: justify;
 
-    h2,
-    h3 {
-        color: #3c595d;
-        margin: 0;
-        font-size: 15px;
-        font-weight: 600;
-    }
+    .about-section {
+        margin: 10px;
+        padding: 0;
 
-    p {
-        font-size: 12px;
-    }
+        h3 {
+            color: #3c595d;
+            margin: 0;
+            font-size: 15px;
+            font-weight: 600;
+        }
 
-    li {
-        font-size: 12px;
-    }
+        p {
+            font-size: 12px;
+        }
 
-    ul {
-        list-style-type: disc;
-        margin-left: 5px;
     }
 }
