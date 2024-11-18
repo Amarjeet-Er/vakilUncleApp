@@ -75,11 +75,17 @@ ion-content {
         border-radius: 50px 50px 0 0;
         background-color: var(--color-light);
         margin-top: 80px;
-        padding: 70px 0;
+        padding: 70px 0 0;
         overflow: auto;
 
         .persinal {
-            padding-left: 20px;
+            padding-left: 10px;
+            background: none;
+
+            ion-button {
+                text-transform: capitalize;
+                --background: var(--color-primary)
+            }
         }
 
         form {
@@ -94,10 +100,13 @@ ion-content {
 
             .btn {
                 width: 100%;
-                text-align: center;
+                display: flex;
+                justify-content: center;
+                margin: 10px 0;
 
                 ion-button {
                     text-transform: capitalize;
+                    --background: var(--color-primary)
                 }
             }
 

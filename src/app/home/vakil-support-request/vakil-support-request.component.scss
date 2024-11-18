@@ -25,7 +25,9 @@
     }
   }
 }
-ion-input, ion-textarea {
+
+ion-input,
+ion-textarea {
   --padding-start: 10px;
   --padding-end: 10px;
   --border-radius: 8px;
@@ -35,16 +37,23 @@ ion-input, ion-textarea {
 }
 
 .contact-form {
-  padding: 20px;
+  padding: 10px 15px;
 }
 
 .error-message {
-  color: #eb445a; /* Standard Ionic danger color */
+  color: #eb445a;
   font-size: 0.9em;
   margin-top: 4px;
   margin-left: 2px;
 }
 
-ion-button {
-  margin-top: 20px;
+ion-row {
+  background: none;
+  display: flex;
+  justify-content: center;
+
+  ion-button {
+    text-transform: capitalize;
+    --background: var(--color-primary)
+  }
 }

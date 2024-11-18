@@ -22,11 +22,11 @@
 
   <div class="profileDetails">
 
-    <div class="persinal">
+    <ion-row class="persinal">
       <ion-button (click)="onEdit()">{{isEdit?
         'Edit' : 'View'}}
       </ion-button>
-    </div>
+    </ion-row>
 
     <form [formGroup]="client_profile_update">
 
@@ -68,9 +68,9 @@
         formControlName="address" [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
-      <div class="btn">
+      <ion-row class="btn">
         <ion-button shape="round" (click)="submit()" *ngIf="!isEdit">Update</ion-button>
-      </div>
+      </ion-row>
 
     </form>
   </div>
