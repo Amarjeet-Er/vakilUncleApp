@@ -166,8 +166,12 @@ ion-modal {
     }
 
     ion-content {
+        ion-item {
+            cursor: pointer;
+        }
+
         ion-label {
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .sidebar {
@@ -183,9 +187,9 @@ ion-modal {
                 display: block;
 
                 .selected {
-                    font-weight: 600;
-                    color: var(--color-primary);
-                    --background: var(--color-secondary);
+                    color: var(--color-light);
+                    --background: var(--color-primary);
+                    border-top: 1px solid var(--color-light);
                 }
             }
         }
@@ -197,7 +201,6 @@ ion-modal {
             overflow: auto;
             border-bottom: 2px solid var(--color-primary);
 
-
             ion-list {
                 padding: 0;
                 gap: 0;
@@ -205,13 +208,14 @@ ion-modal {
             }
         }
     }
-
-    .applyBtn {
-        --background: var(--color-primary);
-        margin: 10px auto 20px;
-        width: calc(100% - 40px);
-    }
 }
+
+.applyBtn {
+    --background: var(--color-primary);
+    margin: 10px auto 20px;
+    width: calc(100% - 40px);
+}
+
 
 .NoRecord {
     padding: 0 20px;

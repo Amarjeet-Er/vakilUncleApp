@@ -80,6 +80,15 @@ export class AdvocatePageComponent implements OnInit {
     });
   }
 
+  filterAdvocate() {
+    this.advocateFilter.present();
+    this.fetchData();
+  }
+  selectList(list: string) {
+    this.selectedList = list;
+    this.fetchData();
+  }
+
   fetchData() {
     this._shared.sharedData.subscribe(
       (res: any) => {
@@ -123,15 +132,6 @@ export class AdvocatePageComponent implements OnInit {
   }
 
 
-  filterAdvocate() {
-    this.advocateFilter.present();
-  }
-
-  selectList(list: string) {
-    this.selectedList = list;
-  }
-
-
   onFilter() {
     const parameter = {
       city: this.filter_form.get('city')?.value,
@@ -165,6 +165,26 @@ export class AdvocatePageComponent implements OnInit {
   advocate_Profile(data: any) {
     localStorage.setItem('vakilProfile', JSON.stringify(data.advId));
     this._router.navigate(['/home/advocateportfolio']);
+  }
+  citySearch(event: any) {
+    const filter = event.target.value.toLowerCase();
+
+    this.city_list = this.filter_data.filter((data: any) =>
+      data?.name?.toString().toLowerCase().includes(filter)
+    );
+  }
+  advtypSearch(event: any) {
+    const filter = event.target.value.toLowerCase();
+    this.adv_list = this.filter_data.filter((data: any) =>
+      data?.name?.toString().toLowerCase().includes(filter)
+    );
+  }
+  coutSearch(event: any) {
+    const filter = event.target.value.toLowerCase();
+
+    this.court_list = this.filter_data.filter((data: any) =>
+      data?.courtName?.toString().toLowerCase().includes(filter)
+    );
   }
 
 }

@@ -8,7 +8,7 @@
             <ion-icon name="people"></ion-icon>
             Advocates
         </ion-tab-button>
-        <ion-tab-button tab="clientcase">
+        <ion-tab-button tab="clientcase" *ngIf="cases.length > 0">
             <ion-icon name="newspaper"></ion-icon>
             Total Case
         </ion-tab-button>

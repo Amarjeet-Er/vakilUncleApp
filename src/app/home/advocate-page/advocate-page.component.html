@@ -2,7 +2,7 @@
   <div class="navbar">
     <ion-icon name="chevron-back" routerLink="/user/home/dashboard"></ion-icon>
     <span>Advocates</span>
-    <ion-button size="small" (click)="filterAdvocate()" routerLink="/home/advocatefilter">
+    <ion-button size="small" (click)="filterAdvocate()">
       <ion-icon slot="icon-only" name="options"></ion-icon>
     </ion-button>
   </div>
@@ -39,11 +39,11 @@
       </ion-card-content>
     </ion-card>
   </ion-list>
-  <div class="NoRecord">{{errorMes}}</div>
+  <!-- <div class="NoRecord">{{errorMes}}</div> -->
 </ion-content>
 
 <!-- Filter Advocate Modal -->
-<!-- <ion-modal #advocateFilter>
+<ion-modal #advocateFilter>
 
   <ng-template>
     <div class="header">
@@ -83,9 +83,9 @@
 
       <div class="main">
         <form [formGroup]="filter_form">
-          <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
 
           <ion-list lines="full" *ngIf="selectedList === 'city'">
+            <ion-searchbar color="light" placeholder="Search" (ionInput)="citySearch($event)"> </ion-searchbar>
             <ion-radio-group formControlName="city">
               <ion-item *ngFor="let city of city_list">
                 <ion-label>{{ city?.name }}</ion-label>
@@ -95,6 +95,7 @@
           </ion-list>
 
           <ion-list lines="full" *ngIf="selectedList === 'advocate'">
+            <ion-searchbar color="light" placeholder="Search" (ionInput)="advtypSearch($event)"> </ion-searchbar>
             <ion-radio-group formControlName="advType">
               <ion-item *ngFor="let advocate of adv_list">
                 <ion-label>{{ advocate?.name }}</ion-label>
@@ -104,6 +105,7 @@
           </ion-list>
 
           <ion-list lines="full" *ngIf="selectedList === 'courts'">
+            <ion-searchbar color="light" placeholder="Search" (ionInput)="coutSearch($event)"> </ion-searchbar>
             <ion-radio-group formControlName="court">
               <ion-item *ngFor="let court of court_list">
                 <ion-label>{{ court?.courtName }}</ion-label>
@@ -153,4 +155,4 @@
 
     <ion-button class="applyBtn" shape="round" (click)="onFilter()">Apply</ion-button>
   </ng-template>
-</ion-modal> -->
+</ion-modal>

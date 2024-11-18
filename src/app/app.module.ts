@@ -90,7 +90,6 @@ import { ClientWithEnquiryComponent } from './home/client-with-enquiry/client-wi
 import { VakilTotalCompleteCaseComponent } from './home/vakil-total-complete-case/vakil-total-complete-case.component';
 import { ClientAboutUsComponent } from './home/client-about-us/client-about-us.component';
 import { TotalAdvocateTypeComponent } from './home/total-advocate-type/total-advocate-type.component';
-import { AdvocateFilterComponent } from './home/advocate-filter/advocate-filter.component';
 
 @NgModule({
   declarations: [
@@ -174,7 +173,6 @@ import { AdvocateFilterComponent } from './home/advocate-filter/advocate-filter.
     VakilTotalCompleteCaseComponent,
     ClientAboutUsComponent,
     TotalAdvocateTypeComponent,
-    AdvocateFilterComponent
   ],
   imports: [
     BrowserModule,
