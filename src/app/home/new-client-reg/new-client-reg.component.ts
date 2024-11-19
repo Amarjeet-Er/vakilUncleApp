@@ -25,6 +25,8 @@ export class NewClientRegComponent implements OnInit {
   court_list: any;
   filterData: any;
   pro_img_url: any;
+  minDate: string='';
+  maxDate: string='';
 
   constructor(
     private _router: Router,
@@ -47,6 +49,10 @@ export class NewClientRegComponent implements OnInit {
     )
   }
   ngOnInit() {
+    const today = new Date();
+    this.minDate = today.toISOString().slice(0, 16);
+    this.maxDate = today.toISOString().split('T')[0]; 
+
     this.newRegistartion_form = this._fb.group({
       clientName: ['', Validators.required],
       email: ['', Validators.required],
@@ -154,7 +160,7 @@ export class NewClientRegComponent implements OnInit {
             (res: any) => {
               console.log(res);
               if (res.status === true) {
-                this._shared.tostSuccessTop('Client Registered Successfully');
+                this._shared.tostSuccessTop(res.message);
                 this._crud.get_new_Client(this.login_data.advId).subscribe(
                   (res: any) => {
                     if (res.status === true) {
@@ -165,17 +171,17 @@ export class NewClientRegComponent implements OnInit {
                 this.modal.dismiss();
                 this.details.dismiss();
               }
+              else if (res.status === false) {
+                this._shared.tostErrorTop(res.message);
+              }
               else {
-                this._shared.tostErrorTop('Please try after sometime or maybe email or contact Number are duplicate');
+                this._shared.tostErrorTop(res.message);
               }
             },
             (error: any) => {
-              this._shared.tostErrorTop('An error has occurred')
+              this._shared.tostErrorTop(error)
             }
           )
-        }
-        else {
-          this._shared.tostErrorTop('Please fill all the fields');
         }
       }
     )

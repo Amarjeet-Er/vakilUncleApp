@@ -1,7 +1,7 @@
 <div class="header">
   <div class="navbar">
     <ion-icon name="chevron-back" (click)="onBack()"></ion-icon>
-    <span>Payment History {{cases?.length}}</span>
+    <span>Payment History</span>
   </div>
 </div>
 
@@ -20,33 +20,35 @@
   <ng-container *ngFor="let fee of cases">
     <ion-card>
       <div>
-        <ion-row>
+        <ion-row *ngIf="fee?.fee">
           <span class="highlight">
             <ion-icon name="logo-alipay"></ion-icon>&nbsp;
             Fee
           </span>
-          <span class="highlight">{{ fee?.fee|| 'N/A' }}</span>
+          <span class="highlight">{{ fee?.fee || 'N/A' }}</span>
         </ion-row>
 
-        <ion-row>
+        <ion-row *ngIf="fee?.extracharge">
           <span> <ion-icon name="wallet-outline"></ion-icon>&nbsp; Extra Charge </span>
           <span>{{ fee?.extracharge || 'N/A' }}</span>
         </ion-row>
 
-        <ion-row>
+        <ion-row style="color: red;" *ngIf="fee?.due">
           <span><ion-icon name="newspaper-outline"></ion-icon>&nbsp; Total Due</span>
-          <span style="color: #721c24;">{{ fee?.due || 'N/A' }}</span>
+          <span>{{ fee?.due || 'N/A' }}</span>
         </ion-row>
 
-        <ion-row>
+
+        <ion-row style="color: green;" *ngIf="fee?.Clientpayment">
           <span><ion-icon name="sunny-outline"></ion-icon>&nbsp; Client Paid</span>
-          <span style="color: #155724;">{{ fee?.Clientpayment || 'N/A' }}</span>
+          <span>{{ fee?.Clientpayment || 'N/A' }}</span>
         </ion-row>
 
-        <ion-row>
+        <ion-row [ngStyle]="{'color': fee?.Clientpayment ? 'green' : 'red'}">
           <span><ion-icon name="calendar-outline"></ion-icon>&nbsp; Date</span>
-          <span style="color: #155724;">{{ fee?.date || 'N/A' }}</span>
+          <span>{{ fee?.date || 'N/A' }}</span>
         </ion-row>
+
       </div>
 
     </ion-card>

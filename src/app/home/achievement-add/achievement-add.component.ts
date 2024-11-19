@@ -95,7 +95,7 @@ export class AchievementAddComponent implements OnInit {
       this._crud.add_achievement(formdata).subscribe((res: any) => {
         console.log(res);
         if (res.status === true) {
-          this._shared.tostSuccessTop('Add Success');
+          this._shared.tostSuccessTop(res.message);
           this._crud.get_achievement(this.login_data.advId).subscribe(
             (res: any) => {
               console.log(res, 'response');
@@ -107,17 +107,13 @@ export class AchievementAddComponent implements OnInit {
           this.modal.dismiss();
         }
         else {
-          this._shared.tostErrorTop('Not Add');
+          this._shared.tostErrorTop(res.message);
         }
       },
         (error: any) => {
-          console.log(error);
-          this._shared.tostErrorTop('Not Add');
+          this._shared.tostErrorTop(error);
         }
       );
-    }
-    else {
-      this._shared.tostErrorTop('Please fill all the fields');
     }
   }
 
@@ -133,7 +129,7 @@ export class AchievementAddComponent implements OnInit {
     const filter = event.target.value.toLowerCase();
     this.view_achivement = this.filter_data.filter((data: any) =>
       data.title.toLowerCase().includes(filter) ||
-      data.desc.toLowerCase().includes(filter) 
+      data.desc.toLowerCase().includes(filter)
     );
   }
 }

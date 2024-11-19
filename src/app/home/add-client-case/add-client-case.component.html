@@ -32,11 +32,12 @@
       <ion-input type="number" fill="outline" placeholder="Enter act" formControlName="act">
       </ion-input>
 
-      <ion-input type="date" label-placement="floating" label="Fir Date" fill="outline" formControlName="firdate">
+      <ion-input type="date" type="datetime-local" label-placement="floating" label="Fir Date" fill="outline"
+        formControlName="firdate" [max]="maxDate">
       </ion-input>
 
       <ion-input type="datetime-local" fill="outline" label-placement="floating" label="Hearing Date & Time"
-        formControlName="hearingDate">
+        formControlName="hearingDate" [min]="minDate">
       </ion-input>
 
       <ion-input type="text" fill="outline" placeholder="Enter advocate fee" formControlName="advocatefee">

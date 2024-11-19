@@ -100,16 +100,13 @@ export class VideoManagementComponent implements OnInit {
             this.modal.dismiss();
           }
           else {
-            this._shared.tostErrorTop('Not Add Video')
+            this._shared.tostErrorTop(res.message)
           }
         },
         (error: any) => {
-          this._shared.tostErrorTop('Not Add Video')
+          this._shared.tostErrorTop(error)
         }
       )
-    }
-    else {
-      this._shared.tostWrraingTop('plz all field required')
     }
   }
 

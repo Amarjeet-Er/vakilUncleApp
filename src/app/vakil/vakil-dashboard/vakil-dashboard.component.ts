@@ -62,6 +62,8 @@ export class VakilDashboardComponent implements OnInit {
 
 		this._crud.vakil_dashboard(this.vId).subscribe(
 			(res: any) => {
+				console.log(res, 'dashboard');
+				
 				if (res.status === true) {
 					this.dashboard = res.data?.[0] || {};
 				} else {

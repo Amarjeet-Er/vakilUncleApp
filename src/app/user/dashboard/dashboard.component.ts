@@ -55,7 +55,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     this.startPlaceholderRotation();
   }
-
+ // formattypes(type: string) {
+  // const parts = type.split(',').map((item) => item.trim());
+  // if (parts.length >= 3) {
+  //   return `${parts[0]}, ${parts[1]}, ${parts[2]}`;
+  // }
+  // return parts.join(', ');   
+  // }
   loadData() {
     this._crud.get_banner_slide().subscribe(
       (response) => {

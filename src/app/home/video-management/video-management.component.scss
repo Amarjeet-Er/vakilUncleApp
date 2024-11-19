@@ -105,15 +105,15 @@ ion-content {
 ion-modal {
     ion-content {
         ion-list {
-            padding: 0px 20px 10px;
+            padding: 0px 10px 10px;
 
             ion-input {
-                margin: 20px 0;
+                margin: 10px 0;
             }
 
             ion-row {
                 background: none;
-
+                padding: 0;
                 ion-button {
                     text-transform: capitalize;
                     --background: var(--color-primary)

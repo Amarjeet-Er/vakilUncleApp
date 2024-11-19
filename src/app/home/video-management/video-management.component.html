@@ -48,20 +48,19 @@
       <ion-list>
 
         <form [formGroup]="video_form">
-          <ion-input label="Title" label-placement="floating" fill="outline" placeholder="Enter title"
-            formControlName="title">
+          <ion-input fill="outline" placeholder="Enter title" formControlName="title">
           </ion-input>
 
-          <ion-input label="Banner" (change)="onBanner($event)" accept=".jpg,.png,.jpeg" label-placement="floating"
-            type="file" fill="outline" formControlName="banner">
+          <ion-text>Upload Banner</ion-text>
+          <ion-input (change)="onBanner($event)" accept=".jpg,.png,.jpeg" type="file" fill="outline"
+            formControlName="banner">
           </ion-input>
 
-          <ion-input label="Link" label-placement="floating" fill="outline" placeholder="Enter Video Link"
-            formControlName="url">
+          <ion-input fill="outline" placeholder="Enter Video Link" formControlName="url">
           </ion-input>
 
           <ion-row class="ion-justify-content-center">
-            <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+            <ion-button shape="round" (click)="onSubmit()" [disabled]="!video_form.valid">Submit</ion-button>
           </ion-row>
         </form>
       </ion-list>

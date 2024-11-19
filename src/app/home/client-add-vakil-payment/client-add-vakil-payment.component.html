@@ -22,7 +22,7 @@
     </ion-input>
 
     <ion-row class="ion-justify-content-center">
-      <ion-button shape="round" (click)="onSubmit()">Add</ion-button>
+      <ion-button shape="round" (click)="onSubmit()" [disabled]="!achievement_form.valid">Add</ion-button>
     </ion-row>
   </form>
 </ion-content>

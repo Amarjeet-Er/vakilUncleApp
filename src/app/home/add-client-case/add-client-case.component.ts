@@ -16,6 +16,8 @@ export class AddClientCaseComponent implements OnInit {
   login_data: any;
   clientName: any;
   court_list: any;
+  minDate: string='';
+  maxDate: string='';
 
   constructor(
     private _fb: FormBuilder,
@@ -28,6 +30,10 @@ export class AddClientCaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    const today = new Date();
+    this.minDate = today.toISOString().slice(0, 16);
+    this.maxDate = today.toISOString().split('T')[0]; 
+
     this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
       this.loadData();
     });
@@ -72,28 +78,25 @@ export class AddClientCaseComponent implements OnInit {
     this._crud.get_case_duplicate_number(this.login_data.advId, this.addCase_form.value?.caseno).subscribe(
       (res: any) => {
         if (res.status === true) {
-          this._shared.tostErrorTop('Case Number Already Exists');
+          this._shared.tostErrorTop(res.message);
           return;
         }
         if (this.addCase_form.valid) {
           this._crud.post_add_case(formdata).subscribe(
             (res: any) => {
               if (res.status === true) {
-                this._shared.tostSuccessTop('Add Case Successfully...');
+                this._shared.tostSuccessTop(res.message);
                 this.addCase_form.reset();
                 this._router.navigate(['/home/vakiltotalcase']);
               } else {
-                this._shared.tostErrorTop('Not Add Case');
+                this._shared.tostErrorTop(res.Message);
               }
             },
             (error: any) => {
               console.error(error);
-              this._shared.tostErrorTop('Not Add Case');
+              this._shared.tostErrorTop(error);
             }
           );
-        }
-        else {
-          this._shared.tostErrorTop('Please fill all the fields');
         }
       }
     );

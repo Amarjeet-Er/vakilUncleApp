@@ -76,7 +76,7 @@ export class ClientAddVakilPaymentComponent implements OnInit {
       this._crud.add_payment(formdata).subscribe((res: any) => {
         console.log(res);
         if (res.status === true) {
-          this._shared.tostSuccessTop('Add Success');
+          this._shared.tostSuccessTop(res.message);
           this._crud.get_achievement(this.login_data.advId).subscribe(
             (res: any) => {
               console.log(res, 'response');
@@ -87,17 +87,14 @@ export class ClientAddVakilPaymentComponent implements OnInit {
           this.achievement_form.reset();
         }
         else {
-          this._shared.tostErrorTop('Not Add');
+          this._shared.tostErrorTop(res.message);
         }
       },
         (error: any) => {
           console.log(error);
-          this._shared.tostErrorTop('Not Add');
+          this._shared.tostErrorTop(error);
         }
       );
-    }
-    else {
-      this._shared.tostErrorTop('Please fill all the fields');
     }
   }
 

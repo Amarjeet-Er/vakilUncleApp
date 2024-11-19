@@ -103,12 +103,12 @@
             </ion-select-option>
           </ion-select>
 
-          <ion-text>FIR Date</ion-text>
-          <ion-input type="datetime-local" fill="outline" formControlName="firDate">
+          <ion-input type="date" type="datetime-local" label-placement="floating" label="Fir Date" fill="outline"
+            formControlName="firdate" [max]="maxDate">
           </ion-input>
 
-          <ion-text>Hearing Date & Time</ion-text>
-          <ion-input type="datetime-local" fill="outline" formControlName="HearingDate">
+          <ion-input type="datetime-local" fill="outline" label-placement="floating" label="Hearing Date & Time"
+            formControlName="hearingDate" [min]="minDate">
           </ion-input>
 
           <ion-input type="number" placeholder="Enter advocate Fee" fill="outline"
