@@ -82,6 +82,7 @@ export class AdvocatePageComponent implements OnInit {
 
   filterAdvocate() {
     this.advocateFilter.present();
+    this.filter_form.reset()
     this.fetchData();
   }
   selectList(list: string) {
@@ -99,7 +100,7 @@ export class AdvocatePageComponent implements OnInit {
         this._crud.get_total_advocate_list(parameter).subscribe(
           (res: any) => {
             console.log(res.data, 'filter result');
-            this.advocated_list = res.data
+            this.advocated_list = res?.data
           }
         )
       }
@@ -147,7 +148,6 @@ export class AdvocatePageComponent implements OnInit {
       (res: any) => {
         console.log(res.data, 'filter result');
         this.advocated_list = res.data;
-        this.filter_form.reset()
         this.advocateFilter.dismiss()
         this.errorMes = ''
       },

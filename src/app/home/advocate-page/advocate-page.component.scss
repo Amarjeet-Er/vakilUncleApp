@@ -29,15 +29,64 @@
 }
 
 ion-content {
+    .ionBox {
+        width: calc(100% - 20px);
+        margin: 10px 10px 0px;
+    }
+
+    .filters-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-start;
+        overflow: auto;
+
+        .filter-icon-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #c4c4c4;
+            border-radius: 8px;
+            background-color: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 30px;
+        }
+
+        .filter-icon-button ion-icon {
+            font-size: 20px;
+            color: #333;
+        }
+
+        ion-select {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 30px;
+            padding: 0 12px;
+            border: 1px solid #c4c4c4;
+            border-radius: 8px;
+            background-color: transparent;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            gap: 8px;
+            transition: all 0.3s;
+            min-height: 30px;
+        }
+    }
+
     ion-list {
         width: 100%;
         display: grid;
-        padding: 10px 10px 0px;
+        padding: 10px 0px 0px;
         grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
 
         ion-card {
             margin: 0px 5px 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             border-radius: 10px;
         }
 
