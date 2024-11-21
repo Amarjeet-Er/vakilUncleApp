@@ -81,7 +81,7 @@ export class PublicationManagementComponent implements OnInit {
       this._crud.add_publication(formdata).subscribe((res: any) => {
         console.log(res);
         if (res.status === true) {
-          this._shared.tostSuccessTop('Publication Add Success');
+          this._shared.tostSuccessTop(res.message);
           this._crud.get_publication(this.login_data.advId).subscribe(
             (res: any) => {
               console.log(res, 'response');

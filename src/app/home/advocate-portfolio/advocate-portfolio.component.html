@@ -69,8 +69,15 @@
     <p>{{ profile_data?.adBio || 'N/A' }}</p>
   </ion-list>
 
+  <ion-list *ngIf="achievement_list?.length > 0">
+    <h3>Achievement</h3>
+    <ion-list>
+      <ion-chip *ngFor="let award of achievement_list">{{ award.title }}</ion-chip>
+    </ion-list>
+  </ion-list>
+
   <ion-list *ngIf="awards_list?.length > 0">
-    <h3>Awards & Achievement</h3>
+    <h3>Awards</h3>
     <ion-list>
       <ion-chip *ngFor="let award of awards_list">{{ award.title }}</ion-chip>
     </ion-list>

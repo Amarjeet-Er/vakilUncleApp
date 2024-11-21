@@ -74,7 +74,6 @@ main {
   background: linear-gradient(135deg, #b4afa4, #b8b8b8, #a8a9ad);
 }
 
-
 .card-default {
   height: 5rem;
   text-transform: uppercase;
@@ -101,4 +100,11 @@ main {
 
 ion-card {
   margin: 10px 0px;
+}
+
+ion-card-content {
+  ion-button {
+    text-transform: capitalize;
+    --background: var(--color-primary)
+  }
 }

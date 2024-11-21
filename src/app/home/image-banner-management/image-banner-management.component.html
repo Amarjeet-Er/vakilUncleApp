@@ -6,9 +6,9 @@
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
 
-  <ion-row>
+  <ion-row (click)="AddImage()">
     <span>Add Image & Banner</span>
-    <ion-icon name="add-circle" (click)="AddImage()"></ion-icon>
+    <ion-icon name="add-circle"></ion-icon>
   </ion-row>
 
   <ion-list *ngFor="let image of image_banner">
@@ -38,17 +38,16 @@
     <ion-content>
       <ion-list>
         <form [formGroup]="addImage_form">
-          <ion-input type="text" label="Image title" label-placement="floating" fill="outline" placeholder="Image title"
-            formControlName="title">
+          <ion-input type="text" fill="outline" placeholder="Image title" formControlName="title">
           </ion-input>
 
-
-          <ion-input type="file" label="Image & Banner" label-placement="floating" fill="outline" formControlName="image"
-            (change)="onBanner($event)" accept=".jpg,.png,.jpeg">
+          <ion-text>Upload Image & Banner</ion-text>
+          <ion-input type="file" fill="outline" formControlName="image" (change)="onBanner($event)"
+            accept=".jpg,.png,.jpeg">
           </ion-input>
 
           <ion-row class="ion-justify-content-center">
-            <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+            <ion-button shape="round" (click)="onSubmit()" [disabled]="!addImage_form.valid">Submit</ion-button>
           </ion-row>
         </form>
       </ion-list>

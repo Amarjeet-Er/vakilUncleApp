@@ -8,9 +8,9 @@
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)">
   </ion-searchbar>
 
-  <ion-row>
+  <ion-row (click)="AddReward()">
     <span>Add Reward</span>
-    <ion-icon name="add-circle" (click)="AddReward()"></ion-icon>
+    <ion-icon name="add-circle"></ion-icon>
   </ion-row>
 
   <ion-list>
@@ -26,13 +26,15 @@
 
       <ion-row class="ion-justify-content-between ion-align-items-center" *ngIf="data?.doc1Path">
         <span>Document 1</span>
-        <ion-icon name="document-attach" (click)="downloadDocument(img_url + data?.doc1Path)" style="cursor: pointer;">
+        <ion-icon name="cloud-download-sharp" (click)="downloadDocument(img_url + data?.doc1Path)"
+          style="cursor: pointer;">
         </ion-icon>
       </ion-row>
 
       <ion-row class="ion-justify-content-between ion-align-items-center" *ngIf="data?.doc2Path">
         <span>Document 2</span>
-        <ion-icon name="document-attach" (click)="downloadDocument(img_url + data?.doc2Path)" style="cursor: pointer;">
+        <ion-icon name="cloud-download-sharp" (click)="downloadDocument(img_url + data?.doc2Path)"
+          style="cursor: pointer;">
         </ion-icon>
       </ion-row>
     </ion-card>
@@ -54,24 +56,24 @@
     <ion-content>
       <ion-list>
         <form [formGroup]="rewared_form">
-          <ion-input label="Title" formControlName="title" label-placement="floating" fill="outline"
-            placeholder="Enter title">
+          <ion-input formControlName="title" fill="outline" placeholder="Enter title">
           </ion-input>
 
-          <ion-input type="file" label="Document 1" label-placement="floating" fill="outline" formControlName="docs1"
-            (change)="onDocument($event)" accept=".jpg,.png,.jpeg">
+          <ion-text>Document 1</ion-text>
+          <ion-input type="file" fill="outline" formControlName="docs1" (change)="onDocument($event)"
+            accept=".jpg,.png,.jpeg">
           </ion-input>
 
-          <ion-input type="file" label="Document 2" label-placement="floating" fill="outline" formControlName="docs2"
-            (change)="onDocument1($event)" accept=".jpg,.png,.jpeg">
+          <ion-text>Document 2</ion-text>
+          <ion-input type="file" fill="outline" formControlName="docs2" (change)="onDocument1($event)"
+            accept=".jpg,.png,.jpeg">
           </ion-input>
 
-          <ion-input label="Description" formControlName="desc" label-placement="floating" fill="outline"
-            placeholder="Enter Description">
+          <ion-input formControlName="desc" fill="outline" placeholder="Enter Description">
           </ion-input>
 
           <ion-row class="ion-justify-content-center">
-            <ion-button shape="round" (click)="onSubmit()">Submit</ion-button>
+            <ion-button shape="round" (click)="onSubmit()" [disabled]="!rewared_form.valid">Submit</ion-button>
           </ion-row>
         </form>
       </ion-list>

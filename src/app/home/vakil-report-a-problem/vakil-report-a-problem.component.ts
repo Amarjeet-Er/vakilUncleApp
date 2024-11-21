@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './vakil-report-a-problem.component.html',
   styleUrls: ['./vakil-report-a-problem.component.scss'],
 })
-export class VakilReportAProblemComponent  implements OnInit {
+export class VakilReportAProblemComponent implements OnInit {
 
   ngOnInit() { }
 
@@ -14,15 +14,9 @@ export class VakilReportAProblemComponent  implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      image: ['', Validators.required],
     });
-  }
-
-  setTouched(controlName: string) {
-    this.contactForm.get(controlName)?.markAsTouched();
   }
 
   submitSupportRequest() {

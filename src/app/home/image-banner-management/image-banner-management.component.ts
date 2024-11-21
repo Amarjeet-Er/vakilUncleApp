@@ -73,7 +73,8 @@ export class ImageBannerManagementComponent implements OnInit {
       this._crud.add_image_banner(formdata).subscribe(
         (res: any) => {
           if (res.status === true) {
-            this._shared.tostSuccessTop('Image Added Successfully...');
+            this._shared.tostSuccessTop(res.message);
+            this.addImage_form.reset();
             this._crud.get_image_banner(this.login_data.advId).subscribe(
               (response: any) => {
                 if (response.status === true) {
@@ -84,11 +85,11 @@ export class ImageBannerManagementComponent implements OnInit {
             );
             this.modal.dismiss();
           } else {
-            this._shared.tostErrorTop('Failed to add image');
+            this._shared.tostErrorTop(res.message);
           }
         },
         (error: any) => {
-          this._shared.tostErrorTop('Error occurred while adding image');
+          this._shared.tostErrorTop(error);
         }
       );
     } else {

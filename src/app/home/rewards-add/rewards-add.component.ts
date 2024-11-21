@@ -9,7 +9,7 @@ import { SharedService } from 'src/app/service/shared.service';
   templateUrl: './rewards-add.component.html',
   styleUrls: ['./rewards-add.component.scss'],
 })
-export class RewardsAddComponent  implements OnInit {
+export class RewardsAddComponent implements OnInit {
   @ViewChild('modal') modal !: IonModal;
   rewared_form!: FormGroup
   document_select: any;
@@ -92,12 +92,12 @@ export class RewardsAddComponent  implements OnInit {
     formdata.append('docs1', this.document_select);
     formdata.append('docs2', this.document_select1);
     console.log(this.document_select1, 'doc');
-    
+
     if (this.rewared_form.valid) {
       this._crud.add_rewards(formdata).subscribe((res: any) => {
         console.log(res);
         if (res.status === true) {
-          this._shared.tostSuccessTop('Add Success');
+          this._shared.tostSuccessTop(res.message);
           this._crud.get_rewards(this.login_data.advId).subscribe(
             (res: any) => {
               console.log(res, 'response');
@@ -109,12 +109,12 @@ export class RewardsAddComponent  implements OnInit {
           this.modal.dismiss();
         }
         else {
-          this._shared.tostErrorTop('Not Add');
+          this._shared.tostErrorTop(res.message);
         }
       },
         (error: any) => {
           console.log(error);
-          this._shared.tostErrorTop('Not Add');
+          this._shared.tostErrorTop(error);
         }
       );
     }
@@ -135,7 +135,7 @@ export class RewardsAddComponent  implements OnInit {
     const filter = event.target.value.toLowerCase();
     this.view_rewards = this.filter_data.filter((data: any) =>
       data.title.toLowerCase().includes(filter) ||
-      data.desc.toLowerCase().includes(filter) 
+      data.desc.toLowerCase().includes(filter)
     );
   }
 }

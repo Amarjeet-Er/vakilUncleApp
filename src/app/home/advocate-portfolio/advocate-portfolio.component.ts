@@ -34,6 +34,7 @@ export class AdvocatePortfolioComponent implements OnInit {
   review_list: any;
   avg_total_review: any;
   awards_list: any;
+  achievement_list: any;
 
   constructor(
     private _router: Router,
@@ -83,8 +84,9 @@ export class AdvocatePortfolioComponent implements OnInit {
       video: this._crud.get_video(this.login_data),
       review: this._crud.get_review_list(this.login_data),
       award: this._crud.get_rewards(this.login_data),
+      achievement: this._crud.get_achievement(this.login_data),
     }).subscribe(
-      ({ profile, banner, video, review, award }) => {
+      ({ profile, banner, video, review, award, achievement }) => {
         if (profile.status === true) {
           this.profile_data = profile.data;
           console.log(this.profile_data, 'profile');
@@ -111,6 +113,10 @@ export class AdvocatePortfolioComponent implements OnInit {
         if (award.status === true) {
           this.awards_list = award.data;
           console.log(this.awards_list, 'award data');
+        }
+        if (achievement.status === true) {
+          this.achievement_list = achievement.data;
+          console.log(this.achievement_list, 'achivement data');
         }
       },
       (error) => {

@@ -6,6 +6,7 @@
 
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
+  <h6 style="margin: 5px 10px 0;">Total : {{enquiry_list?.length || '0'}}</h6>
 
   <ion-list id="client-list">
     <ion-card *ngFor="let client of enquiry_list">
@@ -26,7 +27,7 @@
           <span>City</span>
           <span>{{client.cityName || 'N/A' | titlecase}}</span>
         </ion-row>
-        <ion-row>
+        <ion-row style="color: green;">
           <span>Query Date</span>
           <span>{{client.queryDate || 'N/A'}}</span>
         </ion-row>

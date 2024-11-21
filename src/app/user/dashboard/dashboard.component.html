@@ -1,4 +1,5 @@
 <div class="header">
+  <span>Vakil Uncle</span>
   <ion-buttons shape="round" routerLink="/home/userprofile">
     <ng-container *ngIf="profile_data?.profile; else iconTemplate">
       <img [src]="img_url + profile_data?.profile" alt="Profile Image"
@@ -47,32 +48,6 @@
 
   </ion-list>
 
-  <!-- Type Of Lawyers Section -->
-  <ion-list *ngIf="Lawyers_types?.length > 0">
-    <ion-row class="ion-justify-content-between ion-align-items-center">
-      <span class="ion-margin-start">Type Of Lawyers</span>
-      <ion-button size="small" fill="clear" shape="round" routerLink="/home/totaladvocatetype">See All</ion-button>
-    </ion-row>
-    <div class="menuList">
-      <div class="chipList" *ngFor="let type of Lawyers_types" (click)="filterAdvocate(type.Id)">
-        <ion-chip>{{type?.name}}</ion-chip>
-      </div>
-    </div>
-  </ion-list>
-
-  <!-- Type Of kanoon Section -->
-
-  <ion-list *ngIf="kanoon_list?.length > 0">
-    <ion-row class="ion-justify-content-between ion-align-items-center">
-      <span class="ion-margin-start">Indian Kanoon</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="allKanoon()">See All</ion-button>
-    </ion-row>
-    <div class="menuList">
-      <div class="chipList" *ngFor="let kanoon of kanoon_list" (click)="kanoon_id(kanoon)">
-        <ion-chip>{{kanoon?.bareType}}</ion-chip>
-      </div>
-    </div>
-  </ion-list>
 
   <!-- Top Lawyer Section -->
   <ion-list *ngIf="top_Lawyers?.length > 0">
@@ -105,15 +80,42 @@
     </div>
   </ion-list>
 
-
-  <!-- Top Properity Lawyer Section -->
-  <ion-list *ngIf="top_properity?.length > 0">
+  <!-- Type Of Lawyers Section -->
+  <ion-list *ngIf="Lawyers_types?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
-      <span class="ion-margin-start">Top Properity Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_properity)">See All</ion-button>
+      <span class="ion-margin-start">Type Of Lawyers</span>
+      <ion-button size="small" fill="clear" shape="round" routerLink="/home/totaladvocatetype">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of top_properity" (click)="advocate_Profile(lawyer)">
+      <div class="chipList" *ngFor="let type of Lawyers_types" (click)="filterAdvocate(type.Id)">
+        <ion-chip>{{type?.name}}</ion-chip>
+      </div>
+    </div>
+  </ion-list>
+
+  <!-- Type Of kanoon Section -->
+
+  <ion-list *ngIf="kanoon_list?.length > 0">
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Indian Kanoon</span>
+      <ion-button size="small" fill="clear" shape="round" (click)="allKanoon()">See All</ion-button>
+    </ion-row>
+    <div class="menuList">
+      <div class="chipList" *ngFor="let kanoon of kanoon_list" (click)="kanoon_id(kanoon)">
+        <ion-chip>{{kanoon?.bareType}}</ion-chip>
+      </div>
+    </div>
+  </ion-list>
+
+
+  <!-- nearest Lawyer Section -->
+  <ion-list *ngIf="nearest_Lawyers?.length > 0">
+    <ion-row class="ion-justify-content-between ion-align-items-center">
+      <span class="ion-margin-start">Nearest Lawyer</span>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(nearest_Lawyers)">See All</ion-button>
+    </ion-row>
+    <div class="menuList">
+      <div class="lawyerCard" *ngFor="let lawyer of nearest_Lawyers" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
           <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>
@@ -139,14 +141,15 @@
     </div>
   </ion-list>
 
-  <!-- nearest Lawyer Section -->
-  <ion-list *ngIf="nearest_Lawyers?.length > 0">
+
+  <!-- Top Properity Lawyer Section -->
+  <ion-list *ngIf="top_properity?.length > 0">
     <ion-row class="ion-justify-content-between ion-align-items-center">
-      <span class="ion-margin-start">Nearest Lawyer</span>
-      <ion-button size="small" fill="clear" shape="round" (click)="see_All(nearest_Lawyers)">See All</ion-button>
+      <span class="ion-margin-start">Top Properity Lawyer</span>
+      <ion-button size="small" fill="clear" shape="round" (click)="see_All(top_properity)">See All</ion-button>
     </ion-row>
     <div class="menuList">
-      <div class="lawyerCard" *ngFor="let lawyer of nearest_Lawyers" (click)="advocate_Profile(lawyer)">
+      <div class="lawyerCard" *ngFor="let lawyer of top_properity" (click)="advocate_Profile(lawyer)">
         <div class="cardImg">
           <img [src]="lawyer.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'">
         </div>

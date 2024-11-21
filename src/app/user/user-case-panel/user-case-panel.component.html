@@ -42,19 +42,20 @@
         </ion-row>
 
         <ion-row [ngStyle]="{'color': case?.status ? 'green' : 'red'}">
-          <span *ngIf="case?.status === true"><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp; Status</span>
-          <span *ngIf="case?.status === false"><ion-icon name="close-circle-outline"></ion-icon>&nbsp; Status</span>
+          <span> <ion-icon [name]="case?.status ? 'checkmark-circle-outline' : 'close-circle-outline'"></ion-icon>
+            &nbsp; Status</span>
           <span>
-            {{ case?.status ? 'Completed' : 'Pending'}}
+            {{ case?.status ? 'Completed' : 'Pending' }}
           </span>
         </ion-row>
+
 
       </div>
 
       <div class="actionButton">
         <div (click)="addHearing(case)">
           <ion-icon name="calendar"></ion-icon>
-          <span>Next Hearing</span>
+          <span>{{ case?.status ? 'Last Hearing' : 'Next Hearing' }}</span>
         </div>
         <div (click)="aboutCase(case)">
           <ion-icon name="newspaper"></ion-icon>
