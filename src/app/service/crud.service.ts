@@ -203,6 +203,13 @@ export class CrudService {
   get_enquiry_list(vakilId: any) {
     return this._http.get<any>(`${this.base_url}VakilEnquiryList?vakilId=${vakilId}`);
   }
+  get_services_list() {
+    return this._http.get<any>(`${this.base_url}allServices`);
+  }
+  add_enquiry(data: any) {
+    return this._http.post<any>(`${this.base_url}SubmitVakilEnquiry`, data);
+  }
+
 
 
 

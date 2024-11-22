@@ -1,0 +1,88 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon>
+    <span>New Enquiry</span>
+  </div>
+</div>
+
+<ion-content>
+  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
+
+  <div class="addbutton">
+    <ion-row class="AddCase">
+      <span>Pending</span>
+    </ion-row>
+    <ion-row class="AddCase" routerLink="/home/enquirycompleted">
+      <span>Completed</span>
+    </ion-row>
+  </div>
+
+  <h6 style="margin: 5px 10px 0;">Total : {{enquiry_list?.length || '0'}}</h6>
+
+  <ion-list id="client-list">
+    <ion-card *ngFor="let client of enquiry_list">
+      <div class="client-text">
+        <ion-row>
+          <span class="highlight">Name </span>
+          <span class="highlight">{{client.clientName || 'N/A' | titlecase}}</span>
+        </ion-row>
+        <ion-row>
+          <span>Contact No</span>
+          <span>{{client.contactNum || 'N/A'}} </span>
+        </ion-row>
+        <ion-row>
+          <span>Email Id </span>
+          <span>{{client.email || 'N/A'}} </span>
+        </ion-row>
+        <ion-row>
+          <span>City</span>
+          <span>{{client.cityName || 'N/A' | titlecase}}</span>
+        </ion-row>
+        <ion-row style="color: green;">
+          <span>Query Date</span>
+          <span>{{client.queryDate || 'N/A'}}</span>
+        </ion-row>
+      </div>
+
+    </ion-card>
+  </ion-list>
+  <p class="NoRecord" *ngIf="enquiry_list?.length === 0">No Record Found</p>
+</ion-content>
+
+
+<ion-modal #enquirydetails>
+  <ng-template>
+
+    <div class="header">
+      <div class="navbar">
+        <ion-icon name="chevron-back" (click)="enquirydetails.dismiss()"></ion-icon> <span>Enquiries</span>
+      </div>
+    </div>
+    <ion-content class="ion-padding">
+      <h1>Scroll the content and notice that the text goes behind the header and footer.</h1>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed tellus nec mauris auctor dignissim fermentum
+        in
+        risus. Sed nec convallis sapien, id tincidunt enim. Mauris ornare eleifend nunc id mattis. Fusce augue diam,
+        sagittis nec posuere at, consectetur tempor lectus. Nulla at lectus eget mauris iaculis malesuada mollis sed
+        neque.
+        Curabitur et risus tristique, malesuada mauris finibus, elementum massa. Proin lacinia mauris quis ligula
+        blandit
+        ullamcorper. Donec ut posuere lorem. In volutpat magna vitae tellus posuere pulvinar. Nam varius ligula justo,
+        nec
+        placerat lacus pharetra ac. Aenean massa orci, tristique in nisl ut, aliquet consectetur libero. Etiam luctus
+        placerat vulputate. Aliquam ipsum massa, porttitor at mollis ut, pretium sit amet mi. In neque mauris, placerat
+        et
+        neque vel, tempor interdum dolor. Suspendisse gravida malesuada tellus, vel dapibus nisl dignissim vel. Cras ut
+        nulla sit amet erat malesuada euismod vel a nulla.
+      </p>
+
+      <ion-textarea label="About Case" labelPlacement="floating" fill="outline"
+        placeholder="Write about the case"></ion-textarea>
+
+      <ion-button>Submit</ion-button>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>

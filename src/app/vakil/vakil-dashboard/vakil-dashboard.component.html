@@ -76,13 +76,13 @@
         </div>
       </ion-card>
 
-      <ion-card class="menuBox" routerLink="/home/enquiry">
+      <ion-card class="menuBox" routerLink="/home/enquirypending">
         <div class="menuIcon">
           <img src="../../../assets/menuIcon/enquiry.png">
           <span>{{dashboard?.newEnquiry || '0'}}</span>
         </div>
         <div class="menuInfo">
-          <span>Enquiry</span>
+          <span>New Enquiry</span>
         </div>
       </ion-card>
 
@@ -110,7 +110,7 @@
           <h3>Name:- {{data?.clientName || 'N/A' | titlecase}}</h3>
           <p>Title:- {{data?.caseTitle}}</p>
           <p>Case No:- {{data?.caseNo}}</p>
-          <span>Next Date:- {{data?.hearingDate | date:'dd MMM yyyy, h:m a'}}</span>
+          <span>Next Date:- {{data?.hearingDate | date:'dd MMM yyyy, h:mm a'}}</span>
         </ion-label>
         <ion-icon name="chevron-forward"></ion-icon>
       </ion-item>

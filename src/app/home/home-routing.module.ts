@@ -18,7 +18,6 @@ import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { RobotChatComponent } from './robot-chat/robot-chat.component';
 import { VakilTotalCaseComponent } from './vakil-total-case/vakil-total-case.component';
 import { CaseDocumentsComponent } from './case-documents/case-documents.component';
-import { EnquiryComponent } from './enquiry/enquiry.component';
 import { VakilReviewComponent } from './vakil-review/vakil-review.component';
 import { MembershipPremiumComponent } from './membership-premium/membership-premium.component';
 import { PaymentHistoryComponent } from './payment-history/payment-history.component';
@@ -62,6 +61,8 @@ import { VakilTotalCompleteCaseComponent } from './vakil-total-complete-case/vak
 import { ClientAboutUsComponent } from './client-about-us/client-about-us.component';
 import { TotalAdvocateTypeComponent } from './total-advocate-type/total-advocate-type.component';
 import { NewClientRegComponent } from './new-client-reg/new-client-reg.component';
+import { VakilEnquiryCompletedComponent } from './vakil-enquiry-completed/vakil-enquiry-completed.component';
+import { VakilEnquiryPendingComponent } from './vakil-enquiry-pending/vakil-enquiry-pending.component';
 
 const routes: Routes = [
   {
@@ -85,7 +86,6 @@ const routes: Routes = [
       { path: 'robotchat', component: RobotChatComponent },
       { path: 'vakiltotalcase', component: VakilTotalCaseComponent },
       { path: 'casedocuments', component: CaseDocumentsComponent },
-      { path: 'enquiry', component: EnquiryComponent },
       { path: 'vakilreview', component: VakilReviewComponent },
       { path: 'paymenthistory', component: PaymentHistoryComponent },
       { path: 'paymentlock', component: PaymentLockComponent },
@@ -129,6 +129,8 @@ const routes: Routes = [
       { path: 'totaladvocatetype', component: TotalAdvocateTypeComponent },
       { path: 'membershipPremium', component: MembershipPremiumComponent },
       { path: 'newclientreg', component: NewClientRegComponent },
+      { path: 'enquirycompleted', component: VakilEnquiryCompletedComponent },
+      { path: 'enquirypending', component: VakilEnquiryPendingComponent },
     ]
   },
 ];

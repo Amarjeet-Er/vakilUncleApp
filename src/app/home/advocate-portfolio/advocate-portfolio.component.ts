@@ -141,7 +141,10 @@ export class AdvocatePortfolioComponent implements OnInit {
     this._router.navigate(['/user/home']);
   }
 
-
+  openEnquiry() {
+    localStorage.setItem('vakilId', JSON.stringify(this.login_data))
+    this._router.navigate(['/home/clientwithenquiry'])
+  }
   onStarClick(value: number) {
     this.rating = value;
     this.reviewForm.patchValue({ rating: value });

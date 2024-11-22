@@ -32,13 +32,10 @@ export class MembershipPlanValidityComponent implements OnInit {
     this._crud.get_plan_validity(this.login_data.advId).subscribe(
       (res: any) => {
         console.log(res);
+        
+        console.log(res.data[0] , 'plan v');
         if (res?.status === true) {
-          this.plan_data = res.data;
-
-          // Ensure that feature is a string before splitting
-          if (this.plan_data?.feature) {
-            this.plan_data.featuresArray = this.plan_data.feature.split(','); // Split the features string into an array
-          }
+          this.plan_data = res.data[0]
         }
       },
       (error) => {
@@ -46,4 +43,15 @@ export class MembershipPlanValidityComponent implements OnInit {
       }
     );
   }
+
+  getTotalUsedService(): { key: string; value: any }[] {
+    if (this.plan_data?.totalUsedService) {
+      return Object.entries(this.plan_data.totalUsedService).map(([key, value]) => ({
+        key,
+        value,
+      }));
+    }
+    return [];
+  }
+  
 }

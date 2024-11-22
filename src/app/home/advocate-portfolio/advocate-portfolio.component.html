@@ -8,7 +8,8 @@
 <ion-content>
   <ion-item lines="none">
     <ion-thumbnail slot="start">
-      <img alt="Lawyer Profile" [src]="profile_data?.profilePath ? img_url + profile_data?.profilePath : '' " />
+      <img alt="Lawyer Profile" [src]="profile_data?.profilePath ? img_url + profile_data?.profilePath : '' "
+        loading="lazy" />
     </ion-thumbnail>
 
     <ion-label>
@@ -37,7 +38,7 @@
         </p>
       </ion-row>
 
-      <ion-row class="ion-align-items-center" routerLink="/home/clientwithenquiry">
+      <ion-row class="ion-align-items-center" (click)="openEnquiry()">
         <ion-button>
           <ion-icon name="help-circle" slot="icon-only"></ion-icon>
         </ion-button>
@@ -59,7 +60,7 @@
 
   <ion-list>
     <span style="display: flex;">
-      <ion-icon name="location" style="color: var(--color-primary);"></ion-icon>
+      <ion-icon name="location" style="color: var(--color-primary); font-size: 24px;"></ion-icon>
       {{ profile_data?.offAddress }} {{ profile_data?.cityName }} {{ profile_data?.stateName }}
     </span>
   </ion-list>

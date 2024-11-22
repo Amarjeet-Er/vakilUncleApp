@@ -39,9 +39,9 @@ ion-row {
     }
 }
 
-ion-searchbar {
-    --border-radius: 50px !important;
-    --ion-color-base: var(--color-light) !important;
+ion-input {
+    margin: 0px 10px 10px;
+    width: calc(100% - 20px);
 }
 
 h3 {
@@ -53,6 +53,7 @@ h3 {
 
 .documentsclass {
     padding: 2px;
+    font-size: 12px;
 }
 
 ion-content {

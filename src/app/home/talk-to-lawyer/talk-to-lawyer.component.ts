@@ -87,13 +87,11 @@ export class TalkToLawyerComponent implements OnInit {
       city: ['', Validators.required],
       subCatId: ['', Validators.required],
       catId: ['', Validators.required],
-      advTyId: ['', Validators.required],
     });
   }
 
   submit() {
     this.onSubmit()
-    this.talktolawyer.present()
   }
 
   onSubmit() {
@@ -107,17 +105,22 @@ export class TalkToLawyerComponent implements OnInit {
     formdata.append('catId', this.clientForm.get('catId')?.value);
     formdata.append('subCatId', this.clientForm.get('subCatId')?.value);
     formdata.append('advTyId', this.adv_type_id);
-
-    this._crud.robot_find_lawyer(formdata).subscribe(
-      (res: any) => {
-        console.log(res, 'res');
-        if (res.status === true) {
-          this.find_lawyers = res.data
-          this.clientForm.reset()
-          this._shared.tostSuccessTop('Success');
+    if (this.clientForm.valid) {
+      this._crud.robot_find_lawyer(formdata).subscribe(
+        (res: any) => {
+          console.log(res, 'res');
+          if (res.status === true) {
+            this.find_lawyers = res.data
+            this.talktolawyer.present()
+            this.clientForm.reset()
+            this._shared.tostSuccessTop('Success');
+          }
         }
-      }
-    )
+      )
+    }
+    else {
+      this._shared.tostErrorTop('Please fill all the fields');
+    }
   }
 
 }

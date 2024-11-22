@@ -6,9 +6,10 @@
 </div>
 
 <ion-content>
+  <ion-input type="date" fill="outline" (ionChange)="filterDate($event)"></ion-input>
 
-  <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"> </ion-searchbar>
   <h6 style="margin: 5px 10px;">Total : {{case_hearing_details?.length || '0'}}</h6>
+
 
   <ion-list *ngFor="let hearing of case_hearing_details">
     <ion-row *ngIf="hearing?.extraCharge">

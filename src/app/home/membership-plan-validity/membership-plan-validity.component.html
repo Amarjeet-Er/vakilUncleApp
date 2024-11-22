@@ -16,7 +16,7 @@
         <ion-button>Upgrade your plan</ion-button>
       </ion-card-title>
       <ion-card-title class="member-name" *ngIf="plan_data?.planName">{{ plan_data?.planName }}</ion-card-title>
-      <ion-card-subtitle class="fee" *ngIf="plan_data?.price">Fee: {{ plan_data?.price | currency:'INR' || 'N/A'
+      <ion-card-subtitle class="fee" *ngIf="plan_data?.price">Fee: {{ plan_data?.price | currency:'INR'
         }}</ion-card-subtitle>
     </ion-card-header>
 
@@ -28,31 +28,32 @@
               <ion-icon name="calendar-outline" slot="start"></ion-icon>
               <ion-label class="date-label"><strong>Start Date:</strong></ion-label>
             </div>
-            <p>{{ plan_data?.startDate | date: 'mediumDate' || 'N/A' }}</p>
+            <p>{{ plan_data?.startDate | date: 'mediumDate'}}</p>
           </ion-col>
-          <ion-col size="6" style="color: red;" *ngIf="plan_data?.endDate">
+          <ion-col size="6" style="color: red;" *ngIf="plan_data?.expiryDate">
             <div class="date_membership">
               <ion-icon name="calendar-outline" slot="start"></ion-icon>
               <ion-label class="date-label"><strong>End Date:</strong></ion-label>
             </div>
-            <p>{{ plan_data?.endDate | date: 'mediumDate' || 'N/A' }}</p>
+            <p>{{ plan_data?.expiryDate | date: 'mediumDate'}}</p>
           </ion-col>
         </ion-row>
 
-        <ion-row *ngIf="plan_data?.featuresArray">
+        <ion-row *ngIf="plan_data?.totalUsedService">
           <ion-col>
             <ion-item lines="none">
               <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
               <ion-label><strong>Features</strong></ion-label>
             </ion-item>
             <ion-list>
-              <ion-item *ngFor="let feature of plan_data?.featuresArray" lines="none" class="feature-item">
+              <ion-item *ngFor="let feature of getTotalUsedService()" lines="none" class="feature-item">
                 <ion-icon name="star-outline" slot="start" color="primary"></ion-icon>
-                <ion-label>{{ feature || 'N/A' }}</ion-label>
+                <ion-label>{{ feature.key }}</ion-label>
               </ion-item>
             </ion-list>
           </ion-col>
         </ion-row>
+
       </ion-grid>
     </ion-card-content>
   </ion-card>

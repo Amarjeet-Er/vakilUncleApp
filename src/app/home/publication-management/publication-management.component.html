@@ -29,7 +29,7 @@
       </ion-row>
       <ion-row class="ion-justify-content-between ion-align-items-center">
         <span>Document</span>
-        <ion-icon name="document-attach" (click)="downloadDocument(img_url + data?.documentUrl)"
+        <ion-icon name="cloud-download-sharp" (click)="downloadDocument(img_url + data?.documentUrl)"
           style="cursor: pointer;">
         </ion-icon>
       </ion-row>
@@ -58,11 +58,10 @@
           <ion-input formControlName="journal" fill="outline" placeholder="Enter journal">
           </ion-input>
 
-          <ion-input formControlName="date" fill="outline" placeholder="Date and Time" type="datetime-local"
-            presentation="date-time">
+          <ion-input formControlName="date" fill="outline" placeholder="Date and Time" type="date" [min]="minDate">
           </ion-input>
 
-          <ion-text>Document</ion-text>
+          <ion-text>Upload Document</ion-text>
           <ion-input type="file" fill="outline" formControlName="document" (change)="onDocument($event)"
             accept=".jpg,.png,.jpeg">
           </ion-input>

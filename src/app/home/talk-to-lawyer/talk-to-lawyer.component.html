@@ -5,8 +5,6 @@
   </div>
 </div>
 <ion-content class="ion-padding">
-  <!-- <p>Just fill in your details to immediately get the best matched lawyers for legal issues. Every lawyer profile has
-    been verified, and you can contact them within minutes.</p> -->
   <ion-list>
     <form [formGroup]="clientForm">
       <ion-input formControlName="clientName" fill="outline" placeholder="Enter your name">
@@ -40,7 +38,6 @@
           {{cat?.subcategoryName}}
         </ion-select-option>
       </ion-select>
-
 
       <ion-textarea id="custom-input" fill="outline" placeholder="Write your issue" [counter]="true" maxlength="500"
         [counterFormatter]="customCounterFormatter" formControlName="description">

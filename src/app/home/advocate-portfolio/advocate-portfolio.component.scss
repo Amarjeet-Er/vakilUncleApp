@@ -69,6 +69,8 @@ ion-content {
     }
 
     ion-list {
+        margin: 0 15px;
+        padding: 0;
 
         textarea {
             width: 100%;
@@ -118,8 +120,6 @@ ion-content {
                 }
             }
         }
-
-        margin: 0 15px;
 
         ion-row {
             display: flex;
@@ -174,8 +174,6 @@ ion-content {
             }
         }
 
-
-
         .videoList {
             display: flex;
             gap: 15px;
@@ -223,6 +221,4 @@ ion-content {
             }
         }
     }
-
-
 }

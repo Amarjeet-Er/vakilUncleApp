@@ -18,6 +18,7 @@ export class PublicationManagementComponent implements OnInit {
   view_publication: any;
   img_url: any;
   filter_data: any;
+  minDate: string='';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,6 +36,10 @@ export class PublicationManagementComponent implements OnInit {
   }
 
   ngOnInit() {
+    const today = new Date();
+    // Format the date as YYYY-MM-DD for the min attribute
+    this.minDate = today.toISOString().split('T')[0];
+    
     this.publication_form = this.formBuilder.group({
       vakilId: [''],
       title: ['', Validators.required],

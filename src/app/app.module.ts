@@ -42,7 +42,6 @@ import { RobotChatComponent } from './home/robot-chat/robot-chat.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { VakilTotalCaseComponent } from './home/vakil-total-case/vakil-total-case.component';
 import { CaseDocumentsComponent } from './home/case-documents/case-documents.component';
-import { EnquiryComponent } from './home/enquiry/enquiry.component';
 import { VakilReviewComponent } from './home/vakil-review/vakil-review.component';
 import { VakilRegistrationComponent } from './vakil-registration/vakil-registration.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
@@ -90,6 +89,8 @@ import { ClientWithEnquiryComponent } from './home/client-with-enquiry/client-wi
 import { VakilTotalCompleteCaseComponent } from './home/vakil-total-complete-case/vakil-total-complete-case.component';
 import { ClientAboutUsComponent } from './home/client-about-us/client-about-us.component';
 import { TotalAdvocateTypeComponent } from './home/total-advocate-type/total-advocate-type.component';
+import { VakilEnquiryCompletedComponent } from './home/vakil-enquiry-completed/vakil-enquiry-completed.component';
+import { VakilEnquiryPendingComponent } from './home/vakil-enquiry-pending/vakil-enquiry-pending.component';
 
 @NgModule({
   declarations: [
@@ -126,7 +127,6 @@ import { TotalAdvocateTypeComponent } from './home/total-advocate-type/total-adv
     RobotChatComponent,
     VakilTotalCaseComponent,
     CaseDocumentsComponent,
-    EnquiryComponent,
     VakilReviewComponent,
     VakilRegistrationComponent,
     MembershipPremiumComponent,
@@ -173,6 +173,8 @@ import { TotalAdvocateTypeComponent } from './home/total-advocate-type/total-adv
     VakilTotalCompleteCaseComponent,
     ClientAboutUsComponent,
     TotalAdvocateTypeComponent,
+    VakilEnquiryCompletedComponent,
+    VakilEnquiryPendingComponent
   ],
   imports: [
     BrowserModule,

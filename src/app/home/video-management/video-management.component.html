@@ -1,6 +1,7 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon> <span>Video List</span>
+    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon>
+    <span>Legal Advice Videos</span>
   </div>
 </div>
 <ion-content>
@@ -11,7 +12,6 @@
   </ion-row>
 
   <ion-list style="margin: 0;" *ngIf="videoList?.length > 0">
-    <h3 class="ion-padding">Legal Advice Videos</h3>
     <div class="videoList">
       <div class="video" *ngFor="let video of videoList">
         <span (click)="onVideo(video)">

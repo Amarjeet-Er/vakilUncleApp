@@ -6,11 +6,12 @@ import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
-  selector: 'app-enquiry',
-  templateUrl: './enquiry.component.html',
-  styleUrls: ['./enquiry.component.scss'],
+  selector: 'app-vakil-enquiry-completed',
+  templateUrl: './vakil-enquiry-completed.component.html',
+  styleUrls: ['./vakil-enquiry-completed.component.scss'],
 })
-export class EnquiryComponent implements OnInit {
+export class VakilEnquiryCompletedComponent  implements OnInit {
+
   @ViewChild('enquirydetails') enquirydetails !: IonModal;
   login: any;
   login_data: any;

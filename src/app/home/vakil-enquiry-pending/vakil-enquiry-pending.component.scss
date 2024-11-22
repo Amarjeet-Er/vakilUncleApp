@@ -1,0 +1,129 @@
+.header {
+    width: 100%;
+    height: 70px;
+    background: var(--color-primary);
+    color: var(--color-light);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        position: relative;
+
+        ion-icon {
+            position: absolute;
+            font-size: 24px;
+            left: 10px;
+        }
+
+        span {
+            font-size: 16px;
+            margin: 0 auto;
+        }
+    }
+}
+
+ion-content {
+    .addbutton {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 2fr));
+        gap: 0px 10px;
+        padding: 0px 10px;
+    }
+
+    .AddCase {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        justify-content: center;
+        background-color: var(--color-light);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        font-weight: 500;
+        border-radius: 50px;
+        cursor: pointer;
+
+        ion-icon {
+            font-size: 24px;
+            color: var(--color-primary);
+        }
+    }
+
+    .AddCase:first-child {
+        background-color: #650202;
+        color: #ffffff;
+    }
+
+    .AddCase:last-child {
+        color: #007222;
+        border: 2px solid #007222;
+    }
+
+    ion-row {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        justify-content: space-between;
+        background: var(--color-secondary);
+        font-weight: 600;
+        color: var(--color-dark);
+
+        ion-icon {
+            font-size: 24px;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+    }
+
+    .NoRecord {
+        padding-left: 20px;
+        margin: 0px;
+    }
+
+    #client-list {
+        padding: 0;
+
+        ion-card {
+            width: calc(100% - 20px);
+            display: flex;
+            background-color: var(--color-light);
+            padding: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+
+            .client-text {
+                width: 100%;
+                padding: 5px 5px 0px;
+
+                // background-color: green;
+                ion-row {
+                    font-weight: normal;
+                    background: none;
+                    padding: 0px 0px 6px 0px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+ion-modal {
+    ion-content {
+        ion-textarea {
+            min-height: 200px;
+            margin: 20px 0;
+        }
+
+        ion-button {
+            width: 100%;
+            --border-radius: 50px;
+            --background: var(--color-primary)
+        }
+    }
+}

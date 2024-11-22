@@ -1,11 +1,22 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon> <span>Enquiry</span>
+    <ion-icon name="chevron-back" routerLink="/vakil/home/dashboard"></ion-icon>
+    <span>Completed Enquiry</span>
   </div>
 </div>
 
 <ion-content>
   <ion-searchbar color="light" placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
+
+  <div class="addbutton">
+    <ion-row class="AddCase" routerLink="/home/enquirypending">
+      <span>Pending</span>
+    </ion-row>
+    <ion-row class="AddCase">
+      <span>Completed</span>
+    </ion-row>
+  </div>
+
   <h6 style="margin: 5px 10px 0;">Total : {{enquiry_list?.length || '0'}}</h6>
 
   <ion-list id="client-list">

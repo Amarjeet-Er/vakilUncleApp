@@ -33,7 +33,7 @@ export class VakilAccountStatusComponent implements OnInit {
       (res: any) => {
         console.log(res.data);
         if (res?.status === true) {
-          this.plan_data = res.data;
+          this.plan_data = res.data[0];
         }
         else {
           console.log('No Data');
@@ -44,4 +44,60 @@ export class VakilAccountStatusComponent implements OnInit {
       }
     );
   }
+  getTotalUsedService(): { key: string; value: any }[] {
+    if (this.plan_data?.totalUsedService) {
+      return Object.entries(this.plan_data.totalUsedService).map(([key, value]) => ({
+        key,
+        value,
+      }));
+    }
+    return [];
+  }
+
+  handleClick(member: any) {
+    console.log(member);
+
+    switch (member?.key) {
+      case 'Article':
+        this.addPublication();
+        break;
+      case 'Image and Banner':
+        this.addImageBanner();
+        break;
+      case 'video':
+        this.addVideo();
+        break;
+      case 'Client Registration':
+        this.registerNewClient();
+        break;
+      case 'Achievement':
+        this.addachievement();
+        break;
+      case 'Rewards':
+        this.addrewards();
+        break;
+      default:
+        this.disable();
+        break;
+    }
+  }
+  registerNewClient() {
+    this._router.navigate(['/home/newclientreg'])
+  }
+  addVideo() {
+    this._router.navigate(['/home/videomanagement'])
+  }
+  addImageBanner() {
+    this._router.navigate(['/home/imagemanagement'])
+  }
+  addPublication() {
+    this._router.navigate(['/home/publication'])
+  }
+  addachievement() {
+    this._router.navigate(['/home/achievementadd'])
+  }
+  addrewards() {
+    this._router.navigate(['/home/rewardsadd'])
+  }
+  disable() { }
 }

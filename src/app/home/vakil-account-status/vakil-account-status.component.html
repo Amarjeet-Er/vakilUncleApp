@@ -24,15 +24,16 @@
           {{ plan_data?.price !== 0 ? 'Active' : 'Inactive'}}
         </ion-note>
       </ion-item>
-      <ion-item *ngIf="plan_data?.startDate">
-        <ion-label>Start Date</ion-label>
-        <ion-note slot="end">{{plan_data?.startDate}}</ion-note>
-      </ion-item>
-      <ion-item *ngIf="plan_data?.endDate">
-        <ion-label>End Date</ion-label>
-        <ion-note slot="end">{{plan_data?.endDate}}</ion-note>
-      </ion-item>
+
+      <ion-row class="featuresBox" *ngIf="plan_data?.totalUsedService">
+        <div class="featuresPlan" *ngFor="let feature of getTotalUsedService()" (click)="handleClick(feature)">
+          <ion-label class="featuresCount"
+            [ngStyle]="{'background-color': feature?.value === plan_data?.serviceCount ? 'red' : 'green' }">
+            {{ feature?.value }} / {{ plan_data?.serviceCount }}
+          </ion-label>
+          <span>{{ feature.key }}</span>
+        </div>
+      </ion-row>
     </ion-card-content>
   </ion-card>
-
 </ion-content>

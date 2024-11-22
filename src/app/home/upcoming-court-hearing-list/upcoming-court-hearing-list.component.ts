@@ -72,7 +72,6 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
                   hearing.documents = [];
                 }
               });
-
               console.log(this.case_hearing_details, 'details');
             }
           },
@@ -83,28 +82,67 @@ export class UpcomingCourtHearingListComponent implements OnInit, OnDestroy {
     }
   }
 
+  filterDate(event: any) {
+    const selectedDate = new Date(event.target.value); // Parse the selected date
+    const formattedSelectedDate = this.formatDate(selectedDate); // Format the selected date
+    console.log(formattedSelectedDate, 'Selected Date');
+
+    if (this.hearing_id) {
+      this._crud
+        .get_case_hearing_law_details(this.login_data.advId, this.hearing_id.caseNo)
+        .subscribe(
+          (res: any) => {
+            if (res.status === true) {
+              this.case_hearing_details = res.data;
+              this.filter_data = res.data;
+
+              // Process documents for each hearing
+              this.case_hearing_details.forEach((hearing: any) => {
+                if (hearing.documentName) {
+                  hearing.documents = hearing.documentName
+                    .split(',')
+                    .map((name: string, index: number) => ({
+                      id: index + 1,
+                      name: name.trim(),
+                    }));
+                } else {
+                  hearing.documents = [];
+                }
+              });
+
+              // Filter data for exact date match in MM/DD/YYYY format
+              this.filter_data = this.case_hearing_details.filter((hearing: any) => {
+                if (hearing.hearingDate) {
+                  const hearingDate = new Date(hearing.hearingDate); // Parse the hearing date
+                  const formattedHearingDate = this.formatDate(hearingDate); // Format the hearing date
+                  return formattedHearingDate === formattedSelectedDate;
+                }
+                return false;
+              });
+              this.case_hearing_details = this.filter_data;
+              console.log(this.filter_data, 'Filtered Details');
+            }
+          },
+          (error) => {
+            console.error('Error fetching case hearing details', error);
+          }
+        );
+    }
+  }
+
+  // Helper method to format date as MM/DD/YYYY
+  private formatDate(date: Date): string {
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Ensure two digits
+    const day = date.getDate().toString().padStart(2, '0'); // Ensure two digits
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  }
+
+
   ngOnDestroy() {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }
-  }
-  onSearch(event: any) {
-    const filter = event.target.value ? event.target.value.toLowerCase() : '';
-    if (!filter) {
-      this.case_hearing_details = [...this.filter_data];
-      return;
-    }
-
-    this.case_hearing_details = this.filter_data.filter((data: any) => {
-      return [
-        data?.hearingDate,
-        data?.extraCharge,
-        data?.chargeDetail,
-        data?.documentName,
-      ].some(field =>
-        field?.toString().toLowerCase().includes(filter)
-      );
-    });
   }
 }
 

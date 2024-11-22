@@ -1,6 +1,6 @@
 <div class="header">
   <div class="navbar">
-    <ion-icon name="chevron-back" routerLink="/home/advocateportfolio"></ion-icon>
+    <ion-icon name="chevron-back" (click)="onBack()"></ion-icon>
     <span>Enquiry</span>
   </div>
 </div>
@@ -11,15 +11,15 @@
     <ion-input formControlName="name" placeholder="Enter name" fill="outline">
     </ion-input>
 
-    <ion-input formControlName="contact" type="tel" placeholder="Enter contact number" fill="outline">
+    <ion-input formControlName="contact" type="number" placeholder="Enter contact number" fill="outline">
     </ion-input>
 
     <ion-input formControlName="email" type="Enter email" placeholder="Email" fill="outline">
     </ion-input>
 
-    <ion-select formControlName="city" placeholder="Select City" fill="outline">
-      <ion-select-option *ngFor="let city of cities" [value]="city">
-        {{ city }}
+    <ion-select fill="outline" interface="action-sheet" placeholder="Select City" formControlName="city">
+      <ion-select-option *ngFor="let city of city_list" [value]="city?.Id">
+        {{city?.name}}
       </ion-select-option>
     </ion-select>
 

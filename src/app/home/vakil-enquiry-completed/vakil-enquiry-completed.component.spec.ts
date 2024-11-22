@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { EnquiryComponent } from './enquiry.component';
+import { VakilEnquiryCompletedComponent } from './vakil-enquiry-completed.component';
 
-describe('EnquiryComponent', () => {
-  let component: EnquiryComponent;
-  let fixture: ComponentFixture<EnquiryComponent>;
+describe('VakilEnquiryCompletedComponent', () => {
+  let component: VakilEnquiryCompletedComponent;
+  let fixture: ComponentFixture<VakilEnquiryCompletedComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EnquiryComponent ],
+      declarations: [ VakilEnquiryCompletedComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EnquiryComponent);
+    fixture = TestBed.createComponent(VakilEnquiryCompletedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
