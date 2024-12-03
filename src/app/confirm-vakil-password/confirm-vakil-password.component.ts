@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from '../service/crud.service';
 import { SharedService } from '../service/shared.service';
 
 @Component({
-  selector: 'app-confirm-password',
-  templateUrl: './confirm-password.component.html',
-  styleUrls: ['./confirm-password.component.scss'],
+  selector: 'app-confirm-vakil-password',
+  templateUrl: './confirm-vakil-password.component.html',
+  styleUrls: ['./confirm-vakil-password.component.scss'],
 })
-export class ConfirmPasswordComponent implements OnInit {
+export class ConfirmVakilPasswordComponent implements OnInit {
   forget_pass_form!: FormGroup;
   userEmail: any;
   email_id: any;
   email: any;
-  usertype: string = 'Client';
+  usertype: string = 'Vakil';
   constructor(
     private _router: Router,
     private _formBuilder: FormBuilder,
@@ -51,7 +51,7 @@ export class ConfirmPasswordComponent implements OnInit {
           console.log(response);
           this._shared.tostSuccessTop(response?.message);
           localStorage.removeItem('veryEmail');
-          this._router.navigate(['/loginclient']);
+          this._router.navigate(['/loginvakil']);
         },
         (error) => {
           console.log(error);

@@ -6,16 +6,17 @@ import { CrudService } from '../service/crud.service';
 import { SharedService } from '../service/shared.service';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss'],
+  selector: 'app-forgot-vakil-password',
+  templateUrl: './forgot-vakil-password.component.html',
+  styleUrls: ['./forgot-vakil-password.component.scss'],
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotVakilPasswordComponent  implements OnInit {
+
   @ViewChild('modal') modal!: IonModal;
 
   forgotForm !: FormGroup
   Verify_OTP_Form !: FormGroup
-  usertype: string = 'Client';
+  usertype: string = 'Vakil';
 
   constructor(
     private _router: Router,
@@ -84,7 +85,7 @@ export class ForgotPasswordComponent implements OnInit {
     console.log(otpData, verifyOtp, 'confirm otp');
 
     if (otpData == verifyOtp) {
-      this._router.navigate(['/confirmpassword'])
+      this._router.navigate(['/vakilconfirmpassword'])
       this.modal.dismiss()
       this._shared.tostSuccessTop('OTP matched');
     }

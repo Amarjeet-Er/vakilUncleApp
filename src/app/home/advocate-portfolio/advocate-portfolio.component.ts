@@ -5,6 +5,7 @@ import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 import { forkJoin } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-advocate-portfolio',
@@ -40,7 +41,9 @@ export class AdvocatePortfolioComponent implements OnInit {
     private _router: Router,
     private _crud: CrudService,
     private _shared: SharedService,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private alertController: AlertController
+
   ) {
     this.login = localStorage.getItem('vakilProfile');
     this.login_data = JSON.parse(this.login);
@@ -125,11 +128,37 @@ export class AdvocatePortfolioComponent implements OnInit {
       }
     );
   }
-  onVideo(video: any) {
-    console.log(video?.videoUrl, 'video');
-    this._shared.sharedData.next(video?.videoUrl)
-    this._router.navigate(['/home/videoplay'])
+  async onVideo(video: any) {
+    if (this.user_id?.id) {
+      console.log(video?.videoUrl, 'video');
+      this._shared.sharedData.next(video?.videoUrl)
+      this._router.navigate(['/home/videoplay'])
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Confirm Registration',
+        message: 'Please register first to access your play video. Do you want to register now?',
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel',
+            handler: () => {
+              // If No is clicked, do nothing
+              console.log('User chose No');
+            }
+          },
+          {
+            text: 'Yes',
+            handler: () => {
+              // If Yes is clicked, navigate to the registration page
+              this._router.navigate(['/clientregistration']);
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
   }
+
   ngOnDestroy() {
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
@@ -141,10 +170,36 @@ export class AdvocatePortfolioComponent implements OnInit {
     this._router.navigate(['/user/home']);
   }
 
-  openEnquiry() {
-    localStorage.setItem('vakilId', JSON.stringify(this.login_data))
-    this._router.navigate(['/home/clientwithenquiry'])
+  async openEnquiry() {
+    if (this.user_id?.id) {
+      localStorage.setItem('vakilId', JSON.stringify(this.login_data));
+      this._router.navigate(['/home/clientwithenquiry']);
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Confirm Registration',
+        message: 'Please register first to access your enquiry. Do you want to register now?',
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel',
+            handler: () => {
+              // If No is clicked, do nothing
+              console.log('User chose No');
+            }
+          },
+          {
+            text: 'Yes',
+            handler: () => {
+              // If Yes is clicked, navigate to the registration page
+              this._router.navigate(['/clientregistration']);
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
   }
+
   onStarClick(value: number) {
     this.rating = value;
     this.reviewForm.patchValue({ rating: value });
@@ -161,14 +216,41 @@ export class AdvocatePortfolioComponent implements OnInit {
       };
       console.log('Review submitted:', data);
       this._crud.add_review(data).subscribe(
-        (response: any) => {
-          console.log('Review added:', response);
-          this._shared.tostSuccessTop('Success Review')
-          this.resetForm();
+        async (response: any) => {
+          if (response.status === true) {
+            console.log('Review added:', response);
+            this._shared.tostSuccessTop(response?.message)
+            this.resetForm();
+          }
+          else {
+            console.log(response?.message);
+            const alert = await this.alertController.create({
+              header: 'Confirm Registration',
+              message: 'Please register first to access your review. Do you want to register now?',
+              buttons: [
+                {
+                  text: 'No',
+                  role: 'cancel',
+                  handler: () => {
+                    // If No is clicked, do nothing
+                    console.log('User chose No');
+                  }
+                },
+                {
+                  text: 'Yes',
+                  handler: () => {
+                    // If Yes is clicked, navigate to the registration page
+                    this._router.navigate(['/clientregistration']);
+                  }
+                }
+              ]
+            });
+            await alert.present();
+          }
         },
         (error: any) => {
           console.error('Error adding review:', error);
-          this._shared.tostErrorTop('Not add review')
+          this._shared.tostErrorTop(error)
         }
       )
     } else {

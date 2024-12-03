@@ -12,71 +12,119 @@ import { SharedService } from 'src/app/service/shared.service';
 export class ClientWithEnquiryComponent implements OnInit {
 
   enquiryForm!: FormGroup;
-  city_list: any;
-  vakilId: any;
-  vakil_id: any;
+  cityList: any[] = [];
+  vakilId: number | null = null;
+  loginData: any = null;
+  profileData: any = null;
 
   constructor(
     private fb: FormBuilder,
-    private _crud: CrudService,
-    private _shared: SharedService,
-    private _router: Router
+    private crudService: CrudService,
+    private sharedService: SharedService,
+    private router: Router,
+  ) { }
 
-  ) {
+  ngOnInit(): void {
+    // Initialize form
+    this.initializeForm();
 
-    this.vakilId = localStorage.getItem('vakilId');
-    this.vakil_id = JSON.parse(this.vakilId);
+    // Retrieve data from local storage
+    this.retrieveLocalStorageData();
 
-    this._crud.get_city_list().subscribe(
+    // Fetch city list
+    this.fetchCityList();
+
+    // Fetch client profile
+    this.fetchClientProfile();
+  }
+
+  // Initialize the enquiry form
+  private initializeForm() {
+    this.enquiryForm = this.fb.group({
+      clientName: ['', Validators.required],
+      contactNum: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      email: ['', [Validators.required, Validators.email]],
+      city: ['', Validators.required],
+    });
+  }
+
+  // Retrieve data from local storage
+  private retrieveLocalStorageData() {
+    const storedVakilId = localStorage.getItem('vakilId');
+    const storedLoginData = localStorage.getItem('userLoginData');
+
+    this.vakilId = storedVakilId ? JSON.parse(storedVakilId) : null;
+    this.loginData = storedLoginData ? JSON.parse(storedLoginData) : null;
+  }
+
+  // Fetch city list from the API
+  private fetchCityList() {
+    this.crudService.get_city_list().subscribe(
       (response: any) => {
-        console.log(response.data);
         if (response.data) {
-          this.city_list = response.data;
+          this.cityList = response.data;
         }
       },
-      error => console.error(error)
+      (error) => this.sharedService.tostErrorTop(error)
     );
   }
 
-  ngOnInit(): void {
-    this.enquiryForm = this.fb.group({
-      name: ['', Validators.required],
-      contact: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      email: ['', [Validators.required, Validators.email]],
-      city: ['', Validators.required]
-    });
-  }
-  onBack() {
-    localStorage.removeItem('vakilId');
-    this._router.navigate(['/home/advocateportfolio']);
-  }
-  submitForm() {
-    const formdata = new FormData()
-    console.log(this.enquiryForm.value, 'sent message');
-    formdata.append('clientName', this.enquiryForm.get('name')?.value);
-    formdata.append('Email', this.enquiryForm.get('email')?.value);
-    formdata.append('contactNume', this.enquiryForm.get('contact')?.value);
-    formdata.append('cityId', this.enquiryForm.get('city')?.value);
-    formdata.append('vakilId', this.vakil_id);
-    if (this.enquiryForm.valid) {
-      this._crud.add_enquiry(formdata).subscribe(
+  // Fetch client profile from the API
+  private fetchClientProfile() {
+    if (this.loginData?.id) {
+      this.crudService.get_client_profile(this.loginData.id).subscribe(
         (res: any) => {
-          console.log(res, 'res');
-          if (res.status === true) {
-            this.enquiryForm.reset();
-            localStorage.removeItem('vakilId');
-            this._router.navigate(['/home/advocateportfolio']);
-            this._shared.tostSuccessTop(res.message);
-          }
-          else {
-            this._shared.tostErrorTop(res.message);
+          if (res.data) {
+            this.profileData = res.data;
+            this.populateForm(this.profileData);
           }
         },
-        error => this._shared.tostErrorTop(error)
-      )
+        (error) => this.sharedService.tostErrorTop(error)
+      );
     }
-    else {
-      this._shared.tostErrorTop('Please fill all the fields');
+  }
+
+  // Populate form with profile data
+  private populateForm(data: any) {
+    this.enquiryForm.setValue({
+      clientName: data.clientName || '',
+      contactNum: data.contactNum || '',
+      email: data.email || '',
+      city: data.city || '',
+    });
+  }
+
+  // Navigate back to advocate portfolio
+  onBack() {
+    localStorage.removeItem('vakilId');
+    this.router.navigate(['/home/advocateportfolio']);
+  }
+
+  // Submit the enquiry form
+  submitForm() {
+    if (this.enquiryForm.valid) {
+      const formData = new FormData();
+      formData.append('clientName', this.enquiryForm.get('clientName')?.value);
+      formData.append('contactNum', this.enquiryForm.get('contactNum')?.value);
+      formData.append('email', this.enquiryForm.get('email')?.value);
+      formData.append('cityId', this.enquiryForm.get('city')?.value);
+      if (this.vakilId) formData.append('vakilId', this.vakilId.toString());
+
+      this.crudService.add_enquiry(formData).subscribe(
+        (res: any) => {
+          if (res.status === true) {
+            this.sharedService.tostSuccessTop(res.message);
+            this.enquiryForm.reset();
+            localStorage.removeItem('vakilId');
+            this.router.navigate(['/home/advocateportfolio']);
+          } else {
+            this.sharedService.tostErrorTop(res.message);
+          }
+        },
+        (error) => this.sharedService.tostErrorTop('Failed to submit enquiry')
+      );
+    } else {
+      this.sharedService.tostErrorTop('Please fill all the fields');
     }
   }
 }

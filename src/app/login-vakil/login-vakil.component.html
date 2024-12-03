@@ -1,0 +1,35 @@
+<ion-content>
+  <div class="topNav">
+    <img src="../../assets/icon/app-logo-bgremove.png">
+    <div class="info">
+      <h3>Login</h3>
+      <span>Please sign in to continue.</span>
+    </div>
+  </div>
+  <div class="main">
+    <form [formGroup]="loginForm">
+      <ion-input label="Enter your username" label-placement="floating" fill="outline" placeholder="e.g: abcd"
+        formControlName="userid" (keyup.enter)="passwordInput.setFocus()">
+        <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
+      </ion-input>
+
+      <ion-input label="Enter your password" label-placement="floating" fill="outline" placeholder="e.g: abc@123"
+        [type]="showPassword ? 'text' : 'password'" formControlName="Password" #passwordInput (keyup.enter)="login()">
+        <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+        <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="showPassword = !showPassword">
+          <ion-icon slot="icon-only" [name]="showPassword ? 'eye' : 'eye-off'" aria-hidden="true"></ion-icon>
+        </ion-button>
+      </ion-input>
+
+      <ion-row class="ion-float-right ion-margin-bottom ion-margin-end">
+        <span (click)="forgotPassword()" class="actionAccount">Forgot Password?</span>
+      </ion-row>
+    </form>
+    <ion-button class="submitBtn" shape="round" (click)="login()">Login</ion-button>
+
+    <p class="actionAccount">Don't have account?<b (click)="SignUp()">Sign Up</b></p>
+    <div class="footer">
+      <span>Developed By </span><img src="../../assets/icon/macreel_logo.png" alt="macreel icon">
+    </div>
+  </div>
+</ion-content>

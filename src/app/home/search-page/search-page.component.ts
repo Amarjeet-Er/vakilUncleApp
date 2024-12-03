@@ -13,12 +13,11 @@ export class SearchPageComponent implements OnInit {
   @ViewChild('searchbar', { static: false }) searchbar!: IonSearchbar;
   userRating = 4;
   searchQuery: string = '';
-  recentSearches: any[] = []; 
-  validSearch: boolean = false; 
+  recentSearches: any[] = [];
+  validSearch: boolean = false;
   searchLawyers: any;
   img_url: any;
   profile_data: any;
-  login_data: any;
 
   constructor(
     private _router: Router,
@@ -28,16 +27,6 @@ export class SearchPageComponent implements OnInit {
     this._shared.img_url.subscribe((res: any) => {
       this.img_url = res;
     });
-
-    const login = localStorage.getItem('userLoginData');
-    this.login_data = login ? JSON.parse(login) : null;
-
-    this._crud.get_client_profile(this.login_data.id).subscribe(
-      (res: any) => {
-        this.profile_data = res.data;
-        console.log(this.profile_data);
-      }
-    );
   }
 
   ionViewDidEnter() {
@@ -45,7 +34,7 @@ export class SearchPageComponent implements OnInit {
     this.loadRecentSearches();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSearch(event: any) {
     this.searchQuery = event.target.value.trim();
@@ -62,7 +51,7 @@ export class SearchPageComponent implements OnInit {
           if (res.data && res.data.length > 0) {
             this.validSearch = true;
             this.searchLawyers = res.data;
-            this.saveRecentSearch(this.searchLawyers); 
+            this.saveRecentSearch(this.searchLawyers);
             console.log(res.data);
           } else {
             this.validSearch = false;
@@ -91,7 +80,7 @@ export class SearchPageComponent implements OnInit {
   saveRecentSearch(searchData: any) {
     searchData.forEach((search: any) => {
       const existingIndex = this.recentSearches.findIndex(s => s.advocateName === search.advocateName);
-      
+
       if (existingIndex === -1) {
         if (this.recentSearches.length >= 10) {
           this.recentSearches.pop();

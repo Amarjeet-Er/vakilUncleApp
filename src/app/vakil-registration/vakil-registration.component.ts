@@ -92,9 +92,12 @@ export class VakilRegistrationComponent implements OnInit {
       return;
     }
     const email = this.Send_OTP_Form.value.email;
-    this._crud.verify_email(email).subscribe(
+    const userType = 'Vakil'
+    this._crud.verify_email(email, userType).subscribe(
       (res: any) => {
-        if (res.status === false) {
+        console.log(res);
+
+        if (res.status === true) {
           localStorage.setItem('vakilEmail', JSON.stringify(email));
           this._crud.otp_send(email).subscribe(
             (otpRes: any) => {
@@ -210,7 +213,7 @@ export class VakilRegistrationComponent implements OnInit {
             console.log(response);
             if (response.status === true) {
               console.log(response);
-              this._router.navigate(['/login']);
+              this._router.navigate(['/loginvakil']);
               this._shared.tostSuccessTop('Registration successful!');
               return
             }
@@ -259,6 +262,6 @@ export class VakilRegistrationComponent implements OnInit {
     }
   }
   Login() {
-    this._router.navigate(['/login']);
+    this._router.navigate(['/loginvakil']);
   }
 }

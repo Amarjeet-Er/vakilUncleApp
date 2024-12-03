@@ -7,7 +7,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
 import { HomePageComponent } from './user/home-page/home-page.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { SwiperModule } from 'swiper/angular';
@@ -20,7 +19,6 @@ import { AdvocatePortfolioComponent } from './home/advocate-portfolio/advocate-p
 import { UserProfileComponent } from './home/user-profile/user-profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { SearchPageComponent } from './home/search-page/search-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { VakilHomePageComponent } from './vakil/vakil-home-page/vakil-home-page.component';
@@ -91,11 +89,16 @@ import { ClientAboutUsComponent } from './home/client-about-us/client-about-us.c
 import { TotalAdvocateTypeComponent } from './home/total-advocate-type/total-advocate-type.component';
 import { VakilEnquiryCompletedComponent } from './home/vakil-enquiry-completed/vakil-enquiry-completed.component';
 import { VakilEnquiryPendingComponent } from './home/vakil-enquiry-pending/vakil-enquiry-pending.component';
+import { LoginJunctionComponent } from './login-junction/login-junction.component';
+import { LoginClientComponent } from './login-client/login-client.component';
+import { LoginVakilComponent } from './login-vakil/login-vakil.component';
+import { ClientRegistartionComponent } from './client-registartion/client-registartion.component';
+import { ForgotVakilPasswordComponent } from './forgot-vakil-password/forgot-vakil-password.component';
+import { ConfirmVakilPasswordComponent } from './confirm-vakil-password/confirm-vakil-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomePageComponent,
     DashboardComponent,
     UserCasePanelComponent,
@@ -107,7 +110,6 @@ import { VakilEnquiryPendingComponent } from './home/vakil-enquiry-pending/vakil
     UserProfileComponent,
     ForgotPasswordComponent,
     ConfirmPasswordComponent,
-    SignUpComponent,
     SearchPageComponent,
     VakilHomePageComponent,
     VakilAccountComponent,
@@ -174,7 +176,13 @@ import { VakilEnquiryPendingComponent } from './home/vakil-enquiry-pending/vakil
     ClientAboutUsComponent,
     TotalAdvocateTypeComponent,
     VakilEnquiryCompletedComponent,
-    VakilEnquiryPendingComponent
+    VakilEnquiryPendingComponent,
+    LoginJunctionComponent,
+    LoginClientComponent,
+    LoginVakilComponent,
+    ClientRegistartionComponent,
+    ForgotVakilPasswordComponent,
+    ConfirmVakilPasswordComponent
   ],
   imports: [
     BrowserModule,

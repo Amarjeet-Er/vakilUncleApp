@@ -61,7 +61,7 @@ export class VakilChangePasswordComponent implements OnInit {
           if (response?.status === true) {
             console.log(response);
             this._shared.tostSuccessTop("Password updated successfully");
-            this._router.navigate(['/login']);
+            this._router.navigate(['/loginvakil']);
             this.passwordForm.reset()
           }
           else {

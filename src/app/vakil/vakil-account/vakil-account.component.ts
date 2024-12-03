@@ -63,7 +63,7 @@ export class VakilAccountComponent implements OnInit {
   }
 
   logout() {
-    this._router.navigate(['/login'])
+    this._router.navigate(['/loginvakil'])
   }
 
   // for modal 

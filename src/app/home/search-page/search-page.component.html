@@ -1,20 +1,6 @@
-<div class="header">
-  
-  <ion-icon name="chevron-back" routerLink="/user/home"></ion-icon>
-  <ion-buttons shape="round" routerLink="/home/userprofile">
-    <ng-container *ngIf="profile_data?.profile; else iconTemplate">
-      <img [src]="img_url + profile_data?.profile" alt="Profile Image"
-        style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50px;">
-    </ng-container>
-    <ng-template #iconTemplate>
-      <ion-icon name="person-circle" style="font-size: 40px; color: white;"></ion-icon>
-    </ng-template>
-  </ion-buttons>
-</div>
-
+<ion-searchbar #searchbar show-cancel-button="always" placeholder="Search" (keyup.enter)="onSearch($event)"
+  (ionCancel)="onCancel()" style="padding: 0 0 2px;"></ion-searchbar>
 <ion-content>
-  <ion-searchbar #searchbar show-cancel-button="always" placeholder="Search" (keyup.enter)="onSearch($event)"
-    (ionCancel)="onCancel()"></ion-searchbar>
   <div class="recent-header" *ngIf="recentSearches.length > 0">
     <h2>Recent Searches</h2>
     <ion-button fill="clear" color="danger" (click)="clearRecentSearches()">Clear All</ion-button>

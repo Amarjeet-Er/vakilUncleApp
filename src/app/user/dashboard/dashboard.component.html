@@ -1,6 +1,6 @@
 <div class="header">
   <span>Vakil Uncle</span>
-  <ion-buttons shape="round" routerLink="/home/userprofile">
+  <ion-buttons shape="round" (click)="onProfile()">
     <ng-container *ngIf="profile_data?.profile; else iconTemplate">
       <img [src]="img_url + profile_data?.profile" alt="Profile Image"
         style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50px;">
@@ -479,7 +479,7 @@
     </div>
   </ion-list>
 
-  <div class="chatBox" routerLink="/user/home/contact">
+  <div class="chatBox" (click)="onchatting()">
     <ion-icon name="chatbubble-ellipses"></ion-icon>
   </div>
 </ion-content>

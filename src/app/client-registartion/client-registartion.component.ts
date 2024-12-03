@@ -1,16 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
 import { CrudService } from '../service/crud.service';
 import { SharedService } from '../service/shared.service';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
+  selector: 'app-client-registartion',
+  templateUrl: './client-registartion.component.html',
+  styleUrls: ['./client-registartion.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class ClientRegistartionComponent  implements OnInit {
+
   segmentValue = 'user';
   @ViewChild('veryotp') veryotp!: IonModal;
   @ViewChild('userRegistration') userRegistration!: IonModal;
@@ -89,9 +90,10 @@ export class SignUpComponent implements OnInit {
       return;
     }
     const email = this.Send_OTP_Form.value.email;
-    this._crud.verify_email(email).subscribe(
+    const userType = 'Client'
+    this._crud.verify_email(email, userType).subscribe(
       (res: any) => {
-        if (res.status === false) {
+        if (res.status === true) {
           localStorage.setItem('userEmail', JSON.stringify(email));
           this._crud.otp_send(email).subscribe(
             (otpRes: any) => {
@@ -172,7 +174,7 @@ export class SignUpComponent implements OnInit {
           (response) => {
             if (response.status === true) {
               console.log(response);
-              this._router.navigate(['/login']);
+              this._router.navigate(['/loginclient']);
               this._shared.tostSuccessTop('Registration successful!');
               return
             }
@@ -223,6 +225,6 @@ export class SignUpComponent implements OnInit {
   }
 
   Login() {
-    this._router.navigate(['/login']);
+    this._router.navigate(['/loginclient']);
   }
 }

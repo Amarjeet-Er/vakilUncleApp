@@ -63,7 +63,7 @@ export class AccountComponent implements OnInit {
   }
 
   logout() {
-    this._router.navigate(['/login'])
+    this._router.navigate(['/loginclient'])
   }
 
   openTerms() {

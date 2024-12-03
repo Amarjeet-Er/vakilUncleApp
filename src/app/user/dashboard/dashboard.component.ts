@@ -4,6 +4,7 @@ import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
 import { filter } from 'rxjs/operators';
+import { AlertController } from '@ionic/angular';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 @Component({
@@ -39,7 +40,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private _router: Router,
     private _shared: SharedService,
-    private _crud: CrudService
+    private _crud: CrudService,
+    private alertController: AlertController,
+
   ) {
     const login = localStorage.getItem('userLoginData');
     this.login_data = login ? JSON.parse(login) : null;
@@ -55,7 +58,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     this.startPlaceholderRotation();
   }
- // formattypes(type: string) {
+  // formattypes(type: string) {
   // const parts = type.split(',').map((item) => item.trim());
   // if (parts.length >= 3) {
   //   return `${parts[0]}, ${parts[1]}, ${parts[2]}`;
@@ -233,6 +236,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  async onProfile() {
+    if (this.login_data?.id) {
+      this._router.navigate(['/home/userprofile']);
+    }
+    else {
+      const alert = await this.alertController.create({
+        header: 'Confirm Registration',
+        message: 'Please register first to access your profile. Do you want to register now?',
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel',
+            handler: () => {
+              // If No is clicked, do nothing
+              console.log('User chose No');
+            }
+          },
+          {
+            text: 'Yes',
+            handler: () => {
+              // If Yes is clicked, navigate to the registration page
+              this._router.navigate(['/clientregistration']);
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
+  }
+
   searchPage() {
     this._router.navigate(['/home/search']);
   }
@@ -265,5 +298,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   robotChat() {
     this._router.navigate(['/home/robotchat']);
+  }
+
+
+  async onchatting() {
+    if (this.login_data?.id) {
+      this._router.navigate(['/user/home/contact']);
+    }
+    else {
+      const alert = await this.alertController.create({
+        header: 'Confirm Registration',
+        message: 'Please register first to access your chatting. Do you want to register now?',
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel',
+            handler: () => {
+              // If No is clicked, do nothing
+              console.log('User chose No');
+            }
+          },
+          {
+            text: 'Yes',
+            handler: () => {
+              // If Yes is clicked, navigate to the registration page
+              this._router.navigate(['/clientregistration']);
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
   }
 }

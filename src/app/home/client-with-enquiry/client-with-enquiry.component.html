@@ -8,17 +8,19 @@
 <!-- client-enquiry.component.html -->
 <ion-content>
   <form [formGroup]="enquiryForm" (ngSubmit)="submitForm()">
-    <ion-input formControlName="name" placeholder="Enter name" fill="outline">
+    <ion-input formControlName="clientName" placeholder="Enter name" fill="outline">
     </ion-input>
 
-    <ion-input formControlName="contact" type="number" placeholder="Enter contact number" fill="outline">
+    <ion-input type="tel" placeholder="Enter mobile number" fill="outline" helperText="Enter a valid mobile number"
+      errorText="Invalid mobile number" required formControlName="contactNum" minlength="10" maxlength="10"
+      pattern="\d{10}">
     </ion-input>
 
-    <ion-input formControlName="email" type="Enter email" placeholder="Email" fill="outline">
+    <ion-input formControlName="email" type="Enter email" placeholder="Enter email" fill="outline">
     </ion-input>
 
     <ion-select fill="outline" interface="action-sheet" placeholder="Select City" formControlName="city">
-      <ion-select-option *ngFor="let city of city_list" [value]="city?.Id">
+      <ion-select-option *ngFor="let city of cityList" [value]="city?.Id">
         {{city?.name}}
       </ion-select-option>
     </ion-select>

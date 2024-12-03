@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SharedService } from '../service/shared.service';
 import { CrudService } from '../service/crud.service';
+import { SharedService } from '../service/shared.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-vakil',
+  templateUrl: './login-vakil.component.html',
+  styleUrls: ['./login-vakil.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginVakilComponent implements OnInit {
   isPasswordVisible: boolean = false;
   loginForm !: FormGroup
   showPassword = false;
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         this._crud.login(data).subscribe(
           (res: any) => {
             console.log(res, 'login');
-
             if (res.UserRole == "Advocate") {
               const vakilLogin = {
                 advId: res.data.advId,
@@ -57,33 +56,16 @@ export class LoginComponent implements OnInit {
                 status: res.status,
                 plan: res.plan,
               }
-
               this._shared.tostSuccessTop('Login Successfully...')
               localStorage.setItem('vakilLoginData', JSON.stringify(vakilLogin))
-              if (res.CompleteProfile === true) {
-                this._router.navigate(['/vakil/home/dashboard']);
-              }
-              else {
-                this._router.navigate(['/home/vakilprofile']);
-              }
-            }
-            else if (res.UserRole == "Client") {
-              const clientLogin = {
-                id: res.data.id,
-                clientName: res.data.clientName,
-                email: res.data.email,
-                contactNum: res.data.contactNum,
-              }
-              this._shared.tostSuccessTop('Login Successfully...')
-              localStorage.setItem('userLoginData', JSON.stringify(clientLogin))
-              this._router.navigate(['/user/home/dashboard']);
+              this._router.navigate(['/vakil/home/dashboard']);
             }
             else {
-              this._shared.tostErrorTop('Not Login');
+              this._shared.tostErrorTop('Invalid User Id or Password');
             }
           },
           (error) => {
-            this._shared.tostErrorTop('Invalid User Id or Password');
+            this._shared.tostErrorTop(error);
           }
         );
       } else {
@@ -97,10 +79,10 @@ export class LoginComponent implements OnInit {
 
   // Navigate to forgot password page
   forgotPassword() {
-    this._router.navigate(['/forgotpassword']);
+    this._router.navigate(['/vakilforgotpassword']);
   }
 
   SignUp() {
-    this._router.navigate(['/signup']);
+    this._router.navigate(['/vakilregistration']);
   }
 }

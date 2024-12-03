@@ -22,11 +22,11 @@ export class CrudService {
   }
 
   //forgot password
-  verify_email(email: string) {
-    return this._http.post<any>(`${this.base_url}verifyEmail?email=${email}`, {});
+  verify_email(email: string, userType: string) {
+    return this._http.post<any>(`${this.base_url}verifyEmail?email=${email}&userType=${userType}`, {});
   }
-  forget_password(email: string, password: any) {
-    return this._http.post<any>(`${this.base_url}resetPassword?email=${email}&pass=${password}`, {});
+  forget_password(email: string, password: any, userType: string) {
+    return this._http.post<any>(`${this.base_url}resetPassword?email=${email}&pass=${password}&userType=${userType}`, {});
   }
 
   // for vakil 
