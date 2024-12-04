@@ -124,7 +124,7 @@ export class AdvocatePortfolioComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching data:', error);
-        this._shared.tostErrorTop('Error fetching data')
+        this._shared.tostErrorTop(error)
       }
     );
   }
@@ -133,24 +133,22 @@ export class AdvocatePortfolioComponent implements OnInit {
       console.log(video?.videoUrl, 'video');
       this._shared.sharedData.next(video?.videoUrl)
       this._router.navigate(['/home/videoplay'])
-    } else {
+    }  else {
       const alert = await this.alertController.create({
-        header: 'Confirm Registration',
-        message: 'Please register first to access your play video. Do you want to register now?',
+        header: 'Login Required',
+        message: 'You need to login to use this feature. Please login or create new account.',
         buttons: [
           {
-            text: 'No',
+            text: 'Cancel',
             role: 'cancel',
             handler: () => {
-              // If No is clicked, do nothing
               console.log('User chose No');
             }
           },
           {
-            text: 'Yes',
+            text: 'Login',
             handler: () => {
-              // If Yes is clicked, navigate to the registration page
-              this._router.navigate(['/clientregistration']);
+              this._router.navigate(['/loginclient']);
             }
           }
         ]
@@ -176,22 +174,20 @@ export class AdvocatePortfolioComponent implements OnInit {
       this._router.navigate(['/home/clientwithenquiry']);
     } else {
       const alert = await this.alertController.create({
-        header: 'Confirm Registration',
-        message: 'Please register first to access your enquiry. Do you want to register now?',
+        header: 'Login Required',
+        message: 'You need to login to use this feature. Please login or create new account.',
         buttons: [
           {
-            text: 'No',
+            text: 'Cancel',
             role: 'cancel',
             handler: () => {
-              // If No is clicked, do nothing
               console.log('User chose No');
             }
           },
           {
-            text: 'Yes',
+            text: 'Login',
             handler: () => {
-              // If Yes is clicked, navigate to the registration page
-              this._router.navigate(['/clientregistration']);
+              this._router.navigate(['/loginclient']);
             }
           }
         ]
@@ -223,24 +219,21 @@ export class AdvocatePortfolioComponent implements OnInit {
             this.resetForm();
           }
           else {
-            console.log(response?.message);
             const alert = await this.alertController.create({
-              header: 'Confirm Registration',
-              message: 'Please register first to access your review. Do you want to register now?',
+              header: 'Login Required',
+              message: 'You need to login to use this feature. Please login or create new account.',
               buttons: [
                 {
-                  text: 'No',
+                  text: 'Cancel',
                   role: 'cancel',
                   handler: () => {
-                    // If No is clicked, do nothing
                     console.log('User chose No');
                   }
                 },
                 {
-                  text: 'Yes',
+                  text: 'Login',
                   handler: () => {
-                    // If Yes is clicked, navigate to the registration page
-                    this._router.navigate(['/clientregistration']);
+                    this._router.navigate(['/loginclient']);
                   }
                 }
               ]

@@ -133,3 +133,30 @@ ion-modal {
 .textarea-fill-outline.textarea-label-placement-floating[auto-grow].sc-ion-textarea-md-h .native-wrapper.sc-ion-textarea-md::after {
     height: 184px;
 }
+
+
+// custom alert start
+.alert-wrapper.sc-ion-alert-md {
+    border-radius: 15px;
+}
+
+.alert-head.sc-ion-alert-md+.alert-message.sc-ion-alert-md {
+    font-size: 12px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.alert-title.sc-ion-alert-md {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.alert-button-inner.sc-ion-alert-md {
+    text-transform: capitalize;
+}
+
+.alert-button.sc-ion-alert-md {
+    padding: 0;
+}
+// custom alert end

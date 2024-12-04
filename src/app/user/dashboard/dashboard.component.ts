@@ -242,22 +242,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     else {
       const alert = await this.alertController.create({
-        header: 'Confirm Registration',
-        message: 'Please register first to access your profile. Do you want to register now?',
+        header: 'Login Required',
+        message: 'You need to login to use this feature. Please login or create new account.',
         buttons: [
           {
-            text: 'No',
+            text: 'Cancel',
             role: 'cancel',
             handler: () => {
-              // If No is clicked, do nothing
               console.log('User chose No');
             }
           },
           {
-            text: 'Yes',
+            text: 'Login',
             handler: () => {
-              // If Yes is clicked, navigate to the registration page
-              this._router.navigate(['/clientregistration']);
+              this._router.navigate(['/loginclient']);
             }
           }
         ]
@@ -307,22 +305,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     else {
       const alert = await this.alertController.create({
-        header: 'Confirm Registration',
-        message: 'Please register first to access your chatting. Do you want to register now?',
+        header: 'Login Required',
+        message: 'You need to login to use this feature. Please login or create new account.',
         buttons: [
           {
-            text: 'No',
+            text: 'Cancel',
             role: 'cancel',
             handler: () => {
-              // If No is clicked, do nothing
               console.log('User chose No');
             }
           },
           {
-            text: 'Yes',
+            text: 'Login',
             handler: () => {
-              // If Yes is clicked, navigate to the registration page
-              this._router.navigate(['/clientregistration']);
+              this._router.navigate(['/loginclient']);
             }
           }
         ]

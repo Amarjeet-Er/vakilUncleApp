@@ -96,30 +96,61 @@
         required formControlName="offAddress" [readonly]="isEdit" [fill]="isEdit? 'solid' : 'outline'">
       </ion-input>
 
-      <!-- Aadhar Card -->
-      <div class="VakilDocuments" *ngIf="edit_profile_data?.adharUrl || !isEdit">
-        <div class="Documents" [hidden]="AadharSelected">
-          <span>Aadhar</span>
+      <!-- Aadhar front Card -->
+      <div class="VakilDocuments" *ngIf="edit_profile_data?.adharFrontUrl || !isEdit">
+        <div class="Documents" [hidden]="AadharSelected_front">
+          <span>Aadhar Front</span>
           <img
-            [src]="edit_profile_data?.adharUrl? img_url+edit_profile_data?.adharUrl: '../../../assets/images/document.png'"
+            [src]="edit_profile_data?.adharFrontUrl? img_url+edit_profile_data?.adharFrontUrl: '../../../assets/images/document.png'"
             alt="" width="100%" height="100%" accept=".jpg,.png,.jpeg,">
         </div>
       </div>
 
       <div class="VakilDocuments" *ngIf="!isEdit">
-        <div class="Documents" [hidden]="AadharSelect">
-          <span>Aadhar Card</span>
-          <img alt="documents" [src]="Aadhar_img_url">
-          <input class="d-none" type="file" accept=".jpg,.png,.jpeg," #Aadhar (change)="onAadhar(Aadhar.files)">
+        <div class="Documents" [hidden]="AadharSelect_front">
+          <span>Aadhar front</span>
+          <img alt="documents" [src]="Aadhar_img_url_front">
+          <input class="d-none" type="file" accept=".jpg,.png,.jpeg," #Aadharfront (change)="onAadharfront(Aadharfront.files)">
         </div>
         <div class="SelectAadhar">
-          <ion-text>Aadhar Card</ion-text>
+          <ion-text>Aadhar front</ion-text>
           <ion-fab>
             <ion-fab-button size="small">
               <ion-icon name="add-circle-sharp"></ion-icon>
             </ion-fab-button>
             <ion-fab-list side="start">
-              <ion-fab-button (click)="Aadhar.click()">
+              <ion-fab-button (click)="Aadharfront.click()">
+                <ion-icon name="image-outline"></ion-icon>
+              </ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+        </div>
+      </div>
+
+      <!-- Aadhar Back Card -->
+      <div class="VakilDocuments" *ngIf="edit_profile_data?.adharBackUrl || !isEdit">
+        <div class="Documents" [hidden]="AadharSelected_back">
+          <span>Aadhar Back</span>
+          <img
+            [src]="edit_profile_data?.adharBackUrl? img_url+edit_profile_data?.adharBackUrl: '../../../assets/images/document.png'"
+            alt="" width="100%" height="100%" accept=".jpg,.png,.jpeg,">
+        </div>
+      </div>
+
+      <div class="VakilDocuments" *ngIf="!isEdit">
+        <div class="Documents" [hidden]="AadharSelect_back">
+          <span>Aadhar back</span>
+          <img alt="documents" [src]="Aadhar_img_url_back">
+          <input class="d-none" type="file" accept=".jpg,.png,.jpeg," #Aadharback (change)="onAadharback(Aadharback.files)">
+        </div>
+        <div class="SelectAadhar">
+          <ion-text>Aadhar back</ion-text>
+          <ion-fab>
+            <ion-fab-button size="small">
+              <ion-icon name="add-circle-sharp"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="start">
+              <ion-fab-button (click)="Aadharback.click()">
                 <ion-icon name="image-outline"></ion-icon>
               </ion-fab-button>
             </ion-fab-list>

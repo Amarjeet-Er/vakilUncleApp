@@ -10,7 +10,7 @@ import { SharedService } from '../service/shared.service';
   templateUrl: './client-registartion.component.html',
   styleUrls: ['./client-registartion.component.scss'],
 })
-export class ClientRegistartionComponent  implements OnInit {
+export class ClientRegistartionComponent implements OnInit {
 
   segmentValue = 'user';
   @ViewChild('veryotp') veryotp!: IonModal;
@@ -100,6 +100,7 @@ export class ClientRegistartionComponent  implements OnInit {
               if (otpRes.status === true && otpRes.OTP) {
                 localStorage.setItem('otpData', JSON.stringify(otpRes.OTP));
                 this._shared.tostSuccessTop('OTP sent successfully');
+                this.Send_OTP_Form.reset();
                 this.veryotp.present();
               } else {
                 this._shared.tostWrraingTop('OTP not sent. Try again');
@@ -137,6 +138,7 @@ export class ClientRegistartionComponent  implements OnInit {
     if (otpData == verifyOtp) {
       this.userRegistration.present()
       this._shared.tostSuccessTop('OTP matched');
+      this.Verify_OTP_Form.reset();
     }
     else {
       this._shared.tostWrraingTop('OTP does not match');
@@ -176,11 +178,11 @@ export class ClientRegistartionComponent  implements OnInit {
               console.log(response);
               this._router.navigate(['/loginclient']);
               this._shared.tostSuccessTop('Registration successful!');
+              this.User_Registration_Form.reset()
               return
             }
             else if (response.status === false) {
               this._shared.tostErrorTop('Already Register Mobile Number');
-              this.userRegistration.present();
               return
             }
           },

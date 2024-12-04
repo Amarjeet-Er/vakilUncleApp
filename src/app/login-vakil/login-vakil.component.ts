@@ -58,7 +58,12 @@ export class LoginVakilComponent implements OnInit {
               }
               this._shared.tostSuccessTop('Login Successfully...')
               localStorage.setItem('vakilLoginData', JSON.stringify(vakilLogin))
-              this._router.navigate(['/vakil/home/dashboard']);
+              if (res.CompleteProfile === true) {
+                this._router.navigate(['/vakil/home/dashboard']);
+              }
+              else {
+                this._router.navigate(['/home/vakilprofile']);
+              }
             }
             else {
               this._shared.tostErrorTop('Invalid User Id or Password');

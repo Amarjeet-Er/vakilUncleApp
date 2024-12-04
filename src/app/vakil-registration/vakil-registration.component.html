@@ -1,3 +1,10 @@
+<ion-header>
+  <ion-card class="topNav">
+    <ion-icon name="arrow-back" routerLink="/loginvakil"></ion-icon>
+    <ion-title>Vakil Registartion</ion-title>
+    <span></span>
+  </ion-card>
+</ion-header>
 
 <ion-content>
   <div class="imgBox">
@@ -86,14 +93,15 @@
     <ion-content class="ion-padding">
       <!-- form design input fileds, button design start  here  -->
       <form [formGroup]="vakil_Registration_Form">
-        <ion-input placeholder="Enter name" fill="outline" required formControlName="advocateName"></ion-input>
+        <ion-input placeholder="Enter first name" fill="outline" required formControlName="firstName"></ion-input>
+        <ion-input placeholder="Enter last name" fill="outline" required formControlName="lastName"></ion-input>
 
         <ion-input type="tel" placeholder="Enter mobile number" fill="outline" helperText="Enter a valid mobile number"
           errorText="Invalid mobile number" required formControlName="contactNum" minlength="10" maxlength="10"
           pattern="\d{10}">
         </ion-input>
 
-        <ion-select placeholder="Select Gender" fill="outline" formControlName="gender">
+        <ion-select placeholder="Select Gender" fill="outline" interface="action-sheet" formControlName="gender">
           <ion-select-option value="Male"> Male </ion-select-option>
           <ion-select-option value="Female"> Female </ion-select-option>
           <ion-select-option value="Other"> Other </ion-select-option>
@@ -112,8 +120,13 @@
           </ion-select-option>
         </ion-select>
 
-        <ion-text>Aadhar Card</ion-text>
-        <ion-input type="file" fill="outline" formControlName="adhar" (change)="onAadhar($event)"
+        <ion-text>Aadhar Front</ion-text>
+        <ion-input type="file" fill="outline" formControlName="adharFront" (change)="onAadharFront($event)"
+          accept=".jpg,.png,.jpeg">
+        </ion-input>
+
+        <ion-text>Aadhar Back</ion-text>
+        <ion-input type="file" fill="outline" formControlName="adharBack" (change)="onAadharBack($event)"
           accept=".jpg,.png,.jpeg">
         </ion-input>
 
@@ -122,10 +135,10 @@
           accept=".jpg,.png,.jpeg">
         </ion-input>
 
+        <ion-text *ngIf="vakil_Registration_Form.get('pass')?.errors?.['required']">Password is required</ion-text>
         <ion-input fill="outline" formControlName="pass" type="password" placeholder="Enter strong password">
         </ion-input>
 
-        <div *ngIf="vakil_Registration_Form.get('pass')?.errors?.['required']">Password is required</div>
         <ion-text color="danger"
           *ngIf="vakil_Registration_Form.get('pass')?.invalid && (vakil_Registration_Form.get('pass')?.dirty || vakil_Registration_Form.get('pass')?.touched)">
           <ng-container
@@ -140,8 +153,7 @@
           </ng-container>
         </ion-text>
 
-        <ion-input label-placement="floating" fill="outline" formControlName="ConfirmPassword"
-          placeholder="Enter Confirm Password"></ion-input>
+        <ion-input fill="outline" formControlName="ConfirmPassword" placeholder="Enter confirm password"></ion-input>
         <div *ngIf="passwordsMatch" class="error-message">
           <ion-text color="danger">
             Passwords do not match!

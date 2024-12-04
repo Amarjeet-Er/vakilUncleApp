@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { IonModal } from '@ionic/angular';
+import { AlertController, IonModal } from '@ionic/angular';
 import { filter } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
@@ -22,7 +22,8 @@ export class AccountComponent implements OnInit {
   constructor(
     private _router: Router,
     private _crud: CrudService,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private alertController:AlertController
   ) {
     this.login = localStorage.getItem('userLoginData');
     this.login_data = JSON.parse(this.login);
@@ -48,10 +49,37 @@ export class AccountComponent implements OnInit {
   }
 
 
-  updatedProfile() {
-    this._router.navigate(['/home/userprofile'])
-  }
+  // updatedProfile() {
+  //   this._router.navigate(['/home/userprofile'])
+  // }
 
+  async updatedProfile() {
+    if (this.login_data?.id) {
+      this._router.navigate(['/home/userprofile']);
+    }
+    else {
+      const alert = await this.alertController.create({
+        header: 'Login Required',
+        message: 'You need to login to use this feature. Please login or create new account.',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('User chose No');
+            }
+          },
+          {
+            text: 'Login',
+            handler: () => {
+              this._router.navigate(['/loginclient']);
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
+  }
   termsConditions() {
     this.terms.dismiss();
     this._router.navigate(['/home/vakiltermsandconditions'])

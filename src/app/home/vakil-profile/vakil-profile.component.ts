@@ -29,10 +29,15 @@ export class VakilProfileComponent implements OnInit {
   profileSelected: boolean = false
 
 
-  Aadhar_select: any;
-  Aadhar_img_url: any = "../../../assets/images/documents.jpg"
-  AadharSelect: boolean = true
-  AadharSelected: boolean = false
+  Aadhar_select_front: any;
+  Aadhar_img_url_front: any = "../../../assets/images/documents.jpg"
+  AadharSelect_front: boolean = true
+  AadharSelected_front: boolean = false
+
+  Aadhar_select_back: any;
+  Aadhar_img_url_back: any = "../../../assets/images/documents.jpg"
+  AadharSelect_back: boolean = true
+  AadharSelected_back: boolean = false
 
   Pan_select: any;
   Pan_img_url: any = "../../../assets/images/documents.jpg"
@@ -99,7 +104,8 @@ export class VakilProfileComponent implements OnInit {
       adBio: ['', Validators.required],
       llbRegistrationNum: ['', Validators.required],
       offAddress: ['', Validators.required],
-      adhar: [''],
+      adharFront: [''],
+      adharBack: [''],
       pan: [''],
       barCouncil: [''],
       llb: [''],
@@ -154,15 +160,26 @@ export class VakilProfileComponent implements OnInit {
   }
 
   // for select Aadhar Card
-  onAadhar(files: any) {
-    this.AadharSelect = false
-    this.AadharSelected = true
+  onAadharfront(files: any) {
+    this.AadharSelect_front = false
+    this.AadharSelected_front = true
     let reader = new FileReader();
-    this.Aadhar_select = files[0];
+    this.Aadhar_select_front = files[0];
     reader.onload = () => {
-      this.Aadhar_img_url = reader.result;
+      this.Aadhar_img_url_front = reader.result;
     };
-    reader.readAsDataURL(this.Aadhar_select);
+    reader.readAsDataURL(this.Aadhar_select_front);
+  }
+  // for select Aadhar Card
+  onAadharback(files: any) {
+    this.AadharSelect_back = false
+    this.AadharSelected_back = true
+    let reader = new FileReader();
+    this.Aadhar_select_back = files[0];
+    reader.onload = () => {
+      this.Aadhar_img_url_back = reader.result;
+    };
+    reader.readAsDataURL(this.Aadhar_select_back);
   }
 
   // for select Pan Card
@@ -238,13 +255,15 @@ export class VakilProfileComponent implements OnInit {
     formUpdate.append('advType', this.vakil_profile_update.get('advType')?.value);
     formUpdate.append('courtType', this.vakil_profile_update.get('courtType')?.value);
 
-    formUpdate.append('adhar', this.Aadhar_select || null);
+    formUpdate.append('adharFront', this.Aadhar_select_front || null);
+    formUpdate.append('adharBack', this.Aadhar_select_back || null);
     formUpdate.append('pan', this.Pan_select || null);
     formUpdate.append('barcouncil', this.BarCouncil_select || null);
     formUpdate.append('llb', this.LLBC_select || null);
     formUpdate.append('profile', this.profile_select || null);
 
-    formUpdate.append('adharUrl', this.edit_profile_data.adharUrl);
+    formUpdate.append('adharFrontUrl', this.edit_profile_data.adharFrontUrl);
+    formUpdate.append('adharBackUrl', this.edit_profile_data.adharBackUrl);
     formUpdate.append('panUrl', this.edit_profile_data.panUrl);
     formUpdate.append('barcouncilUrl', this.edit_profile_data.barcouncilUrl);
     formUpdate.append('llbUrl', this.edit_profile_data.llbUrl);

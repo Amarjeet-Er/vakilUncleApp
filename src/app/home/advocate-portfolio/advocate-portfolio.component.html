@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<ion-content>
+<ion-content *ngIf="profile_data?.advocateTypeName?.length > 0">
   <ion-item lines="none">
     <ion-thumbnail slot="start">
       <img alt="Lawyer Profile" [src]="profile_data?.profilePath ? img_url + profile_data?.profilePath : '' "
@@ -84,7 +84,7 @@
     </ion-list>
   </ion-list>
 
-  <ion-list>
+  <ion-list *ngIf="profile_data?.advocateTypeName?.length > 0">
     <h3>Specialization</h3>
     <ion-list>
       <ion-chip *ngFor="let spec of profile_data?.advocateTypeName">{{ spec }}</ion-chip>

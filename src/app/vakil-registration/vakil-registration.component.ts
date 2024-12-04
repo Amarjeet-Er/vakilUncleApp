@@ -19,7 +19,8 @@ export class VakilRegistrationComponent implements OnInit {
   Verify_OTP_Form !: FormGroup;
   states: any;
   citys: any;
-  Aadhar_select: any;
+  Aadhar_select_front: any;
+  Aadhar_select_back: any;
   BarCouncil: any;
   vakilEmail: any;
   passwordsMatch: boolean = false;
@@ -67,11 +68,13 @@ export class VakilRegistrationComponent implements OnInit {
     });
 
     this.vakil_Registration_Form = this._formBuilder.group({
-      advocateName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       contactNum: ['', [Validators.required, Validators.pattern('\\d{10}')]],
       state: ['', Validators.required],
       city: ['', Validators.required],
-      adhar: ['', Validators.required],
+      adharFront: ['', Validators.required],
+      adharBack: ['', Validators.required],
       barCouncil: ['', Validators.required],
       gender: ['', Validators.required],
       pass: [
@@ -104,6 +107,7 @@ export class VakilRegistrationComponent implements OnInit {
               if (otpRes.status === true && otpRes.OTP) {
                 localStorage.setItem('otpData', JSON.stringify(otpRes.OTP));
                 this._shared.tostSuccessTop('OTP sent successfully');
+                this.Send_OTP_Form.reset();
                 this.veryotp.present();
               } else {
                 this._shared.tostWrraingTop('OTP not sent. Try again');
@@ -134,28 +138,52 @@ export class VakilRegistrationComponent implements OnInit {
     const digit4 = this.Verify_OTP_Form.get('digit4')?.value;
     const digit5 = this.Verify_OTP_Form.get('digit5')?.value;
     const digit6 = this.Verify_OTP_Form.get('digit6')?.value;
+
+    // Concatenate OTP digits
     const verifyOtp = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
     console.log('verifyOtp:', verifyOtp);
-    const otpData = localStorage.getItem('otpData');
-    console.log(otpData, 'confirm otp amr');
 
-    if (otpData == verifyOtp) {
-      this.vakilregistration.present()
-      this._shared.tostSuccessTop('OTP matched');
-    }
-    else {
-      this._shared.tostWrraingTop('OTP does not match');
+    // Get the OTP data from localStorage
+    const otpData = localStorage.getItem('otpData');
+    console.log(otpData, 'confirm otp');
+
+    // Check if otpData exists and verify the OTP
+    if (otpData && verifyOtp.length === 6) {
+      if (otpData === verifyOtp) {
+        this.vakilregistration.present();
+        this._shared.tostSuccessTop('OTP matched');
+        this.Verify_OTP_Form.reset();
+      } else {
+        this._shared.tostErrorTop('OTP does not match');
+      }
+    } else {
+      this._shared.tostWrraingTop('All fields are required');
     }
   }
 
-  // for select Aadhar Card
-  onAadhar(event: any) {
+
+  // for select Aadhar Front Card
+  onAadharFront(event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
         console.log('File content:', reader.result);
-        this.Aadhar_select = file;
+        this.Aadhar_select_front = file;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      console.log('No file selected');
+    }
+  }
+  // for select Aadhar Back Card
+  onAadharBack(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        console.log('File content:', reader.result);
+        this.Aadhar_select_back = file;
       };
       reader.readAsDataURL(file);
     } else {
@@ -185,15 +213,18 @@ export class VakilRegistrationComponent implements OnInit {
     console.log(this.vakil_Registration_Form.value);
     if (this.vakil_Registration_Form.valid) {
       const formdata = new FormData();
-      formdata.append('advocateName', this.vakil_Registration_Form.value.advocateName);
+      formdata.append('firstName', this.vakil_Registration_Form.value.firstName);
+      formdata.append('lastName', this.vakil_Registration_Form.value.lastName);
       formdata.append('contactNum', this.vakil_Registration_Form.value.contactNum);
       formdata.append('gender', this.vakil_Registration_Form.value.gender);
       formdata.append('email', this.vakilEmail);
       formdata.append('state', this.vakil_Registration_Form.value.state);
       formdata.append('city', this.vakil_Registration_Form.value.city);
-      formdata.append('adhar', this.Aadhar_select);
+      formdata.append('adharFront', this.Aadhar_select_front);
+      formdata.append('adharBack', this.Aadhar_select_back);
       formdata.append('barCouncil', this.BarCouncil);
-      console.log('adhar', this.Aadhar_select);
+      console.log('adharFront', this.Aadhar_select_front);
+      console.log('adharBack', this.Aadhar_select_back);
       console.log('BarCouncil', this.BarCouncil);
 
       if (this.vakil_Registration_Form.get('pass')?.value === this.vakil_Registration_Form.get('ConfirmPassword')?.value) {
@@ -215,6 +246,7 @@ export class VakilRegistrationComponent implements OnInit {
               console.log(response);
               this._router.navigate(['/loginvakil']);
               this._shared.tostSuccessTop('Registration successful!');
+              this.vakil_Registration_Form.reset()
               return
             }
             else if (response.status === false) {

@@ -8,13 +8,13 @@
   </div>
   <div class="main">
     <form [formGroup]="loginForm">
-      <ion-input label="Enter your username" label-placement="floating" fill="outline" placeholder="e.g: abcd"
-        formControlName="userid" (keyup.enter)="passwordInput.setFocus()">
+      <ion-input fill="outline" placeholder="Username" formControlName="userid"
+        (keyup.enter)="passwordInput.setFocus()">
         <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
       </ion-input>
 
-      <ion-input label="Enter your password" label-placement="floating" fill="outline" placeholder="e.g: abc@123"
-        [type]="showPassword ? 'text' : 'password'" formControlName="Password" #passwordInput (keyup.enter)="login()">
+      <ion-input fill="outline" placeholder="Ex: Abc@123" [type]="showPassword ? 'text' : 'password'"
+        formControlName="Password" #passwordInput (keyup.enter)="login()">
         <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
         <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="showPassword = !showPassword">
           <ion-icon slot="icon-only" [name]="showPassword ? 'eye' : 'eye-off'" aria-hidden="true"></ion-icon>
