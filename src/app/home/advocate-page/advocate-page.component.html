@@ -59,10 +59,10 @@
     </form>
 
     <ion-list>
-      <ion-card *ngFor="let lawyer of advocated_list" (click)="advocate_Profile(lawyer)">
-        <ion-card-content class="profile-card">
+      <ion-card *ngFor="let lawyer of finalDataList" (click)="advocate_Profile(lawyer)">
+        <ion-card-content class="profile-card" *ngIf="lawyer.advocateName">
           <div class="profile-image">
-            <img [src]="lawyer?.profilePath ? img_url + lawyer?.profilePath : '../../../assets/icon/profile.png'"
+            <img [src]="lawyer.profilePath ? img_url + lawyer.profilePath : '../../../assets/icon/profile.png'"
               alt="Profile Picture" />
           </div>
           <div class="profile-details">
@@ -85,6 +85,11 @@
               </ion-row>
             </div>
           </div>
+        </ion-card-content>
+
+        <ion-card-content *ngIf="!lawyer.advocateName">
+          <ion-text>Ad</ion-text>
+          <img [src]="img_url+lawyer.imageUrl" alt="">
         </ion-card-content>
       </ion-card>
     </ion-list>

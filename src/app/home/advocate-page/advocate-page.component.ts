@@ -2,9 +2,47 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
-import { filter } from 'rxjs';
+import { filter, forkJoin } from 'rxjs';
 import { CrudService } from 'src/app/service/crud.service';
 import { SharedService } from 'src/app/service/shared.service';
+interface Adv {
+  image: string,
+  adid: string,
+  id: string
+  imageUrl: string
+  status: string
+  title: string
+  userid: string,
+  advocateName?: string;  // Optional properties
+  experiance?: string;
+  stateName?: string;
+  cityName?: string;
+  advocateTypeName?: [];
+  totalUserRating?: string;
+  avgUserRating: number;
+  profilePath?: string;
+}
+
+interface Advocate {
+  advocateName: string,
+  experiance: string,
+  stateName: string,
+  cityName: string,
+  advocateTypeName: [],
+  totalUserRating: string,
+  avgUserRating: number,
+  profilePath: string,
+  image: string,
+  adid: string,
+  id: string
+  imageUrl: string
+  status: string
+  title: string
+  userid: string,
+}
+
+
+
 
 @Component({
   selector: 'app-advocate-page',
@@ -19,9 +57,11 @@ export class AdvocatePageComponent implements OnInit {
   court_list: any[] = [];
   filter_form!: FormGroup;
   img_url: string | undefined;
-  advocated_list: any[] = [];
   parameter: any;
 
+  advocated_list: Advocate[] = []; // Example type
+  advertisementList: Adv[] = [];
+  finalDataList: (typeof this.advocated_list[0] | typeof this.advertisementList[0])[] = [];
   experience_list = [
     { experience: 'Less than 5 Years', id: '1,5' },
     { experience: '5-10 Years', id: '5,10' },
@@ -51,6 +91,9 @@ export class AdvocatePageComponent implements OnInit {
   errorMes: any;
   advType: any;
   filter_data: any;
+  advocates: any;
+  advertisements: any;
+  combinedList: any;
 
   constructor(
     private _router: Router,
@@ -64,9 +107,46 @@ export class AdvocatePageComponent implements OnInit {
   ngOnInit() {
     this.initializeForm();
     this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
-      this.fetchData();
+      this.getAdvocateData();
+      this.getAdvertisementData();
     });
+
+    setTimeout(() => {
+      this.getFinalList();
+    }, 1000);
   }
+
+
+  getAdvertisementData() {
+    this._crud.get_image_banner(1).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.advertisementList = res.data
+      }
+    )
+  }
+
+  getFinalList() {
+    this.finalDataList = [];
+
+    const advocatedBatchSize = 5;
+    let advocatedIndex = 0;
+    let advertisementIndex = 0;
+
+    while (advocatedIndex < this.advocated_list.length || advertisementIndex < this.advertisementList.length) {
+      for (let i = 0; i < advocatedBatchSize && advocatedIndex < this.advocated_list.length; i++) {
+        this.finalDataList.push(this.advocated_list[advocatedIndex]);
+        advocatedIndex++;
+      }
+
+      if (advertisementIndex < this.advertisementList.length) {
+        this.finalDataList.push(this.advertisementList[advertisementIndex]);
+        advertisementIndex++;
+      }
+    }
+    console.log(this.finalDataList);
+  }
+
 
   initializeForm() {
     this.filter_form = this._fb.group({
@@ -83,14 +163,14 @@ export class AdvocatePageComponent implements OnInit {
   filterAdvocate() {
     this.advocateFilter.present();
     this.filter_form.reset()
-    this.fetchData();
+    this.getAdvocateData();
   }
   selectList(list: string) {
     this.selectedList = list;
-    this.fetchData();
+    this.getAdvocateData();
   }
 
-  fetchData() {
+  getAdvocateData() {
     this._shared.sharedData.subscribe(
       (res: any) => {
         this.advType = res;
@@ -99,7 +179,7 @@ export class AdvocatePageComponent implements OnInit {
         }
         this._crud.get_total_advocate_list(parameter).subscribe(
           (res: any) => {
-            console.log(res.data, 'filter result');
+            console.log(res.data);
             this.advocated_list = res?.data
           }
         )
@@ -107,7 +187,7 @@ export class AdvocatePageComponent implements OnInit {
     )
     this._crud.get_total_advocate_list(this.advType).subscribe(
       (res: any) => {
-        console.log(res.data, 'filter result');
+        console.log(res.data,);
         this.advocated_list = res.data
       }
     )
@@ -150,6 +230,7 @@ export class AdvocatePageComponent implements OnInit {
         this.advocated_list = res.data;
         this.advocateFilter.dismiss()
         this.errorMes = ''
+        this.getFinalList()
       },
       (error) => {
         console.error('Error filtering data:', error);
